@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_kit/utils/index.dart';
 import 'package:flutter_kit/widgets/passwordInput.dart';
 
 class demoPasswordInput extends StatefulWidget{
@@ -34,7 +35,7 @@ class _demoPasswordInput extends State<demoPasswordInput> {
             value: _value,
             info: "密码为 6 位数字",
             onSubmitted: (val) {
-              print("onSubmitted $val");
+              Utils.toast("onSubmitted $val");
             },
           ),
           Title("自定义长度"),

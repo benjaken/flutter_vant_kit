@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_kit/utils/index.dart';
 import 'package:flutter_kit/widgets/button.dart';
 import 'package:flutter_kit/widgets/imagePreview.dart';
 
@@ -66,7 +67,7 @@ class _demoImagePreview extends State<demoImagePreview> {
                     startPosition: 2,
                     swipeDuration: Duration(seconds: 2),
                     onChange: (val) {
-                      print("Page Changed $val");
+                      Utils.toast("Page Changed $val");
                     }
                   );
                 }

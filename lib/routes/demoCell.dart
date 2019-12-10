@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_kit/utils/index.dart';
 
 import 'package:flutter_kit/widgets/cell.dart';
 import 'package:flutter_kit/widgets/cellGroup.dart';
@@ -56,7 +57,7 @@ class _demoCell extends State<demoCell> {
                 isLink: true,
                 arrowDirection: "down",
                 onClick: () {
-                  print("Clicked");
+                  Utils.toast("Clicked");
                 },
               ),
               Cell(
@@ -65,7 +66,7 @@ class _demoCell extends State<demoCell> {
                 label: "描述信息",
                 isLink: true,
                 onClick: () {
-                  print("Clicked");
+                  Utils.toast("Clicked");
                 },
               ),
             ]

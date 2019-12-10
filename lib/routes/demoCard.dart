@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_kit/utils/index.dart';
 
 import 'package:flutter_kit/widgets/button.dart';
 import 'package:flutter_kit/widgets/tag.dart';
@@ -47,7 +48,7 @@ class _demoCard extends State<demoCard> {
             originPrice: 10.00,
             image: Image.network("https://img.yzcdn.cn/vant/t-thirt.jpg"),
             onClick: () {
-              print("Clicked");
+              Utils.toast("Clicked");
             },
           ),
           Title("自定义内容"),

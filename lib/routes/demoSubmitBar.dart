@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_kit/utils/index.dart';
 
 import 'package:flutter_kit/widgets/checkbox.dart';
 import 'package:flutter_kit/widgets/submitBar.dart';
@@ -54,7 +55,7 @@ class _demoSubmitBar extends State<demoSubmitBar> {
             tip: "你的收货地址不支持同城送，",
             customTip: GestureDetector(
               onTap: () {
-                print("Clicked Tip");
+                Utils.toast("Clicked Tip");
               },
               child: Text("修改地址", style: TextStyle(fontSize: 12, color: Colors.blueAccent)),
             ),

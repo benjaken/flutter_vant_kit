@@ -68,7 +68,7 @@ class _demoSwipe extends State<demoSwipe>{
             indicatorColor: Colors.white,
             children: buildItem(4),
             // onChange: (val) {
-            //   print(val);
+            //   Utils.toast(val);
             // },
           )
         ),

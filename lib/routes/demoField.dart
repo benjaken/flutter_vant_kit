@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_kit/utils/index.dart';
 
 import 'package:flutter_kit/widgets/button.dart';
 import 'package:flutter_kit/widgets/field.dart';
@@ -54,10 +55,10 @@ class _demoField extends State<demoField> {
                 placeholder: "请输入用户名",
                 controller: testInput1,
                 onChange: (val) {
-                  print("text changed: $val");
+                  Utils.toast("text changed: $val");
                 },
                 onSubmitted: (val) {
-                  print("submitted: $val");
+                  Utils.toast("submitted: $val");
                 },
               )
             ],
@@ -74,7 +75,7 @@ class _demoField extends State<demoField> {
                 rightIcon: Icons.help_outline,
                 require: true,
                 clickRight: () async {
-                  print("Click Right!");
+                  Utils.toast("Click Right!");
                 },
               ),
               Field(
@@ -96,7 +97,7 @@ class _demoField extends State<demoField> {
                 controller: testInput4,
                 leftIcon: Icons.perm_identity,
                 clickLeft: () async {
-                  print("click left");
+                  Utils.toast("click left");
                 },
               )
             ],

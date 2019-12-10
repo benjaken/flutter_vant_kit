@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_kit/utils/index.dart';
 import 'package:flutter_kit/widgets/sidebar.dart';
 
 import 'package:flutter_kit/widgets/treeSelect.dart';
@@ -120,7 +121,7 @@ class _demoTreeSelect extends State<demoTreeSelect>{
             list: list1,
             max: 3,
             onChange: (list) {
-              print(list.toString());
+              Utils.toast(list.toString());
             },
           ),
           Title("自定义内容"),

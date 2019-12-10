@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_kit/utils/index.dart';
 
 import 'package:flutter_kit/widgets/button.dart';
 import 'package:flutter_kit/widgets/actionSheet.dart';
@@ -82,7 +83,7 @@ class _demoActionSheet extends State<demoActionSheet> {
                     actions: actionList,
                     cancelText: "取消",
                     onCancel: () {
-                      print("cancel");
+                      Utils.toast("cancel");
                     },
                   );
                 }

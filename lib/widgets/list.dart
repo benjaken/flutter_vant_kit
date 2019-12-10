@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_kit/utils/index.dart';
 import 'package:flutter_kit/widgets/divider.dart';
 
 typedef PullCallback(int val);
@@ -50,7 +51,7 @@ class _NList extends State<NList> {
           setState(() {
             _hasMore = false;
           });
-          print('没有更多数据');
+          Utils.toast('没有更多数据');
         }
       }
     }

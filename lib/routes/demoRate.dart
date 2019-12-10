@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_kit/utils/index.dart';
 
 import 'package:flutter_kit/widgets/rate.dart';
 
@@ -37,7 +38,7 @@ class _demoRate extends State<demoRate>{
             icon: Icons.favorite,
             voidIcon: Icons.favorite_border,
             onChange: (v) {
-              print(v);
+              Utils.toast(v);
             },
           ),
           Title("自定义样式"),
@@ -47,7 +48,7 @@ class _demoRate extends State<demoRate>{
             size: 36.0,
             gutter: 8.0,
             onChange: (v) {
-              print(v);
+              Utils.toast(v);
             },
           ),
           Title("自定义数量"),

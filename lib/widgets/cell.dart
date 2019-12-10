@@ -55,58 +55,72 @@ class Cell extends StatelessWidget{
     }
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      //TODO:增加点击效果
-      onTap: ((clickable || isLink) && onClick != null) ? () {
-        onClick();
-      } : null,
-      child: Container(
-        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-        color: Colors.white,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.max,
+  Widget buildContent () {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.max,
+      children: <Widget>[
+        Row(
+          mainAxisAlignment: (title != null || customTitle != null) ? MainAxisAlignment.spaceBetween : MainAxisAlignment.start,
           children: <Widget>[
             Row(
-              mainAxisAlignment: (title != null || customTitle != null) ? MainAxisAlignment.spaceBetween : MainAxisAlignment.start,
               children: <Widget>[
-                Row(
-                  children: <Widget>[
-                    require ? Text("*", style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.redAccent,
-                      )
-                    ) : Container(),
-                    icon != null ? Icon(icon, size: 14, color: Colors.black) : Container(),
-                    icon != null ? SizedBox(width: 4) : Container(),
-                    title != null ? Text(title, style: TextStyle(
-                      fontSize: 14
-                    )) : Container(),
-                    customTitle != null ? customTitle : Container(),
-                  ],
-                ),
-                Row(
-                  children: <Widget>[
-                    value != null ? Text(value, style: TextStyle(
-                      fontSize: 14,
-                      color: (title != null || customTitle != null) ? Colors.grey : Colors.black
-                    )) : Container(),
-                    isLink ? Icon(getLinkIcon(), color: Colors.grey,) : Container(),
-                    customRight != null ? customRight : Container(),
-                  ],
-                )
+                require ? Text("*", style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.redAccent,
+                  )
+                ) : Container(),
+                icon != null ? Icon(icon, size: 14, color: Colors.black) : Container(),
+                icon != null ? SizedBox(width: 4) : Container(),
+                title != null ? Text(title, style: TextStyle(
+                  fontSize: 14
+                )) : Container(),
+                customTitle != null ? customTitle : Container(),
               ],
             ),
-            SizedBox(height: 4.0),
-            label != null ? Text(label, style: TextStyle(
-              fontSize: 12,
-              color: Colors.grey
-            )) : Container()
+            Row(
+              children: <Widget>[
+                value != null ? Text(value, style: TextStyle(
+                  fontSize: 14,
+                  color: (title != null || customTitle != null) ? Colors.grey : Colors.black
+                )) : Container(),
+                isLink ? Icon(getLinkIcon(), color: Colors.grey,) : Container(),
+                customRight != null ? customRight : Container(),
+              ],
+            )
           ],
-        )
+        ),
+        SizedBox(height: 4.0),
+        label != null ? Text(label, style: TextStyle(
+          fontSize: 12,
+          color: Colors.grey
+        )) : Container()
+      ],
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ((clickable || isLink) && onClick != null) ? DecoratedBox(
+      decoration: BoxDecoration(
+        color: Colors.white
       ),
+      child: Material(
+        type: MaterialType.transparency,
+        child: InkWell(
+          child: Container(
+            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+            child: buildContent()
+          ),
+          onTap: () {
+            onClick();
+          },
+        ),
+      ),
+    ) : Container(
+      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+      color: Colors.white,
+      child: buildContent()
     );
   }
 }

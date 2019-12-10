@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_kit/utils/index.dart';
 
 import 'package:flutter_kit/widgets/tag.dart';
 
@@ -174,14 +175,14 @@ class _demoTag extends State<demoTag>{
               Tag(
                 text: "标签",
                 onClose: () async {
-                  print("close");
+                  Utils.toast("close");
                 },
               ),
               Tag(
                 color: Colors.green,
                 text: "标签",
                 onClose: () async {
-                  print("close");
+                  Utils.toast("close");
                 },
               )
             ]

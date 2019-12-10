@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_kit/utils/index.dart';
 
 import 'package:flutter_kit/widgets/cell.dart';
 import 'package:flutter_kit/widgets/cellGroup.dart';
@@ -36,7 +37,7 @@ class _demoStepper extends State<demoStepper> {
                 title: "基础用法",
                 customRight: Steppers(
                   onChange: (val) {
-                    print(val);
+                    Utils.toast(val);
                   },
                 ),
               ),
@@ -45,7 +46,7 @@ class _demoStepper extends State<demoStepper> {
                 customRight: Steppers(
                   step: 2,
                   onChange: (val) {
-                    print(val);
+                    Utils.toast(val);
                   },
                 ),
               ),
@@ -56,7 +57,7 @@ class _demoStepper extends State<demoStepper> {
                   min: 5,
                   max: 10,
                   onChange: (val) {
-                    print(val);
+                    Utils.toast(val);
                   },
                 ),
               ),

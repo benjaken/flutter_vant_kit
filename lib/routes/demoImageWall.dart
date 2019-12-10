@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_kit/utils/index.dart';
 
 import 'package:flutter_kit/widgets/ImageWall.dart';
 
@@ -41,7 +42,7 @@ class _demoImageWall extends State<demoImageWall>{
             images: images,
             count: 6,
             onUpload: (files) async {
-              print(files);
+              Utils.toast(files.toString());
             },
             onChange: (image) {},
           ),
@@ -51,7 +52,7 @@ class _demoImageWall extends State<demoImageWall>{
             count: 6,
             multiple: true,
             onUpload: (files) async {
-              print(files);
+              Utils.toast(files.toString());
             },
             onChange: (image) {},
           ),

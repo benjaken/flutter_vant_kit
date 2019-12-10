@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_kit/utils/index.dart';
 
 import 'package:flutter_kit/widgets/noticeBar.dart';
 
@@ -47,7 +48,7 @@ class _demoNoticeBar extends State<demoNoticeBar>{
             text: "足协杯战线连续第2年上演广州德比战，上赛季半决赛上恒大以两回合5-3的总比分淘汰富力。",
             mode: "closeable",
             onClose: () {
-              print("NoticeBar closed");
+              Utils.toast("NoticeBar closed");
             },
           ),
           SizedBox(height: 4,),
@@ -55,7 +56,7 @@ class _demoNoticeBar extends State<demoNoticeBar>{
             text: "足协杯战线连续第2年上演广州德比战，上赛季半决赛上恒大以两回合5-3的总比分淘汰富力。",
             mode: "link",
             onClick: () {
-              print("NoticeBar clicked");
+              Utils.toast("NoticeBar clicked");
             },
           ),
           Title("自定义样式"),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_kit/utils/index.dart';
 
 import 'package:flutter_kit/widgets/addressList.dart';
 
@@ -64,13 +65,13 @@ class _demoAddressList extends State<demoAddressList> {
       top: Title("基本用法"),
       disabledList: disabledList,
       onSelect: (item, i) {
-        print(item.toString());
+        Utils.toast(item.toString());
       },
       onEdit: (item, i) {
-        print("edit");
+        Utils.toast("edit");
       },
       onAdd: () {
-        print("add");
+        Utils.toast('add');
       },
     );
   }

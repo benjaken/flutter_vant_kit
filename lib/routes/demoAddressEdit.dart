@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_kit/utils/index.dart';
 
 import 'package:flutter_kit/widgets/field.dart';
 import 'package:flutter_kit/widgets/addressEdit.dart';
@@ -52,7 +53,7 @@ class _demoAddressEdit extends State<demoAddressEdit> {
               )
             ],
             onSave: (map) {
-              print("Saved! ${map.toString()}");
+              Utils.toast("Saved! ${map.toString()}");
             },
           )
         ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_kit/utils/index.dart';
 
 import 'package:flutter_kit/widgets/rate.dart';
 import 'package:flutter_kit/widgets/search.dart';
@@ -39,10 +40,10 @@ class _demoSearch extends State<demoSearch>{
           Search(
             showAction: true,
             onSubmitted: (val) {
-              print("searching $val");
+              Utils.toast("searching $val");
             },
             onCancel: () {
-              print("canceled");
+              Utils.toast("canceled");
             },            
           ),
           Title("自定义样式"),
@@ -73,13 +74,13 @@ class _demoSearch extends State<demoSearch>{
             ),
             rightIcon: Icons.search,
             onClickRight: () {
-              print("clicked Right Icon");
+              Utils.toast("clicked Right Icon");
             },
             right: Row(
               children: <Widget>[
                 GestureDetector(
                   onTap: () {
-                    print("clicked Right");
+                    Utils.toast("clicked Right");
                   },
                   child: Text("搜索"),
                 ),

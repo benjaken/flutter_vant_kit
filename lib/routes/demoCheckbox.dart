@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_kit/utils/index.dart';
 import 'package:flutter_kit/widgets/checkbox.dart';
 import 'package:flutter_kit/widgets/checkboxGroup.dart';
 import 'package:flutter_kit/widgets/cell.dart';
@@ -53,7 +54,7 @@ class _demoCheckbox extends State<demoCheckbox> {
             list: list,
             value: ["a"],
             onChange: (list) {
-              print(list.toString());
+              Utils.toast(list.toString());
             },
           ),
           Title("禁用状态"),
