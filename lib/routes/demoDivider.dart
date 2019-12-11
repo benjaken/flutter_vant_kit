@@ -28,8 +28,25 @@ class _demoDivider extends State<demoDivider> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Title("基础用法"),
+          NDivider(),
+          Title("展示文本"),
           NDivider(
             content: "分割线",
+          ),
+          Title("内容位置"),
+          NDivider(
+            content: "分割线",
+            contentPosition: 'left',
+          ),
+          SizedBox(height: 10),
+          NDivider(
+            content: "分割线",
+            contentPosition: 'right',
+          ),
+          Title("细分割线"),
+          NDivider(
+            content: "分割线",
+            hairline: true,
           ),
           Title("自定义颜色"),
           NDivider(

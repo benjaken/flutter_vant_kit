@@ -9,18 +9,19 @@ class NDivider extends StatefulWidget {
   final double fontSize;
   // 分割线颜色	
   Color lineColor;
-  // 背景颜色
-  final Color backgroundColor;
+  final bool hairline;
+  final String contentPosition;
   // 自定义分隔符内容
   final Widget child;
 
   NDivider({
     Key key,
     this.content,
-    this.fontColor: Colors.blueAccent,
-    this.fontSize: 12,
+    this.fontColor: Colors.grey,
+    this.fontSize: 14,
     this.lineColor,
-    this.backgroundColor: Colors.white,
+    this.hairline: false,
+    this.contentPosition: 'center',
     this.child
   }) : super(key: key);
 
@@ -57,9 +58,13 @@ class _NDivider extends State<NDivider> {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          Expanded(
+          widget.contentPosition == 'left' ? Container(
+            height: widget.hairline ? .5 : 1,
+            width: 32,
+            color: widget.lineColor,
+          ) : Expanded(
             child: Container(
-              height: 1,
+              height: widget.hairline ? .5 : 1,
               color: widget.lineColor,
             ),
           ),
@@ -70,17 +75,16 @@ class _NDivider extends State<NDivider> {
               style: TextStyle(fontSize: widget.fontSize, color: widget.fontColor)
             ),
           ) : Container(),
-          Expanded(
+          widget.contentPosition == 'right' ? Container(
+            height: widget.hairline ? .5 : 1,
+            width: 32,
+            color: widget.lineColor,
+          ) : Expanded(
             child: Container(
-              height: 1,
+              height: widget.hairline ? .5 : 1,
               color: widget.lineColor,
             ),
           ),
-          // Positioned(
-          //   top: textTop,
-          //   left: textLeft,
-          //   child: 
-          // ),
         ],
       ),
     );
