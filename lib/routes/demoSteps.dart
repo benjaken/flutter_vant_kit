@@ -35,10 +35,10 @@ class _demoSteps extends State<demoSteps> {
           Title("基础用法"),
           Steps(
             steps: [
-              StepItem("test"),
-              StepItem("test"),
-              StepItem("test"),
-              StepItem("test"),
+              StepItem("买家下单"),
+              StepItem("商家接单"),
+              StepItem("买家提货"),
+              StepItem("交易完成"),
             ],
             active: _active
           ),
@@ -56,6 +56,7 @@ class _demoSteps extends State<demoSteps> {
                     });
                   },
                 ),
+                SizedBox(width: 6),
                 CustomButton(
                   text: "下一步",
                   plain: true,
@@ -71,10 +72,10 @@ class _demoSteps extends State<demoSteps> {
           Title("自定义样式"),
           Steps(
             steps: [
-              StepItem("test"),
-              StepItem("test"),
-              StepItem("test"),
-              StepItem("test"),
+              StepItem("买家下单"),
+              StepItem("商家接单"),
+              StepItem("买家提货"),
+              StepItem("交易完成"),
             ],
             active: _active,
             activeIcon: Icons.done,

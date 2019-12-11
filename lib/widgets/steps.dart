@@ -31,34 +31,41 @@ class _Steps extends State<Steps> {
   }
 
   buildHorizontal () {
-    List<Widget> widgets = [];
+    List<Widget> tops = [];
+    List<Widget> bottoms = [];
     for (int i = 0; i < widget.steps.length; i++) {
       StepItem step = widget.steps[i];
-      widgets.add(Container(
-        margin: EdgeInsets.symmetric(horizontal: 6),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            Text(step.title, style: TextStyle(color: i == widget.active ? widget.activeColor
-              : i < widget.active ? Colors.black : Colors.grey)),
-            Container(
-              width: 12,
-              height: 12,
-              alignment: AlignmentDirectional.topStart,
-              margin: EdgeInsets.symmetric(vertical: 6),
-              child: i == widget.active ? Icon(widget.activeIcon, color: widget.activeColor, size: 14,)
-              : Icon(widget.inactiveIcon??Icons.lens, size: widget.inactiveIcon != null ? 14 : 8, color: i < widget.active ? widget.activeColor : Colors.grey),
-            )
-          ],
-        ),
+      tops.add(Container(
+        margin: EdgeInsets.only(bottom: 6),
+        child: Text(step.title??"", style: TextStyle(color: i == widget.active ? widget.activeColor
+          : i < widget.active ? Colors.black : Colors.grey)),
       ));
-      if (i < widget.steps.length - 1) widgets.add(
-        Expanded(child: NDivider(
-          lineColor: i < widget.active ? widget.activeColor : Colors.grey,
-        ))
+      bottoms.add(
+        Container(
+          alignment: AlignmentDirectional.centerStart,
+          margin: i == 0 ? EdgeInsets.only(right: 8) : i == widget.steps.length - 1 ? EdgeInsets.only(left: 8) : EdgeInsets.symmetric(horizontal: 8),
+          child: i == widget.active ? Icon(widget.activeIcon, color: widget.activeColor, size: 14,)
+          : Icon(widget.inactiveIcon??Icons.lens, size: widget.inactiveIcon != null ? 14 : 8, color: i < widget.active ? widget.activeColor : Colors.grey),
+        )
+      );
+      if (i < widget.steps.length - 1) bottoms.add(
+        Expanded(
+          child: NDivider(
+            lineColor: i < widget.active ? widget.activeColor : Colors.grey,
+          ),
+        )
       );
     }
-    return widgets;
+    return [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: tops,
+      ),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: bottoms,
+      )
+    ];
   }
 
   buildVertical () {
@@ -77,9 +84,9 @@ class _Steps extends State<Steps> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text(step.title, style: TextStyle(fontSize: 14, color: i == widget.active ? widget.activeColor
+                  Text(step.title??"", style: TextStyle(fontSize: 14, color: i == widget.active ? widget.activeColor
                     : i < widget.active ? Colors.black : Colors.grey)),
-                  Text(step.date, style: TextStyle(fontSize: 14, color: i == widget.active ? widget.activeColor
+                  Text(step.date??"", style: TextStyle(fontSize: 14, color: i == widget.active ? widget.activeColor
                     : i < widget.active ? Colors.black : Colors.grey)),
                 ],
               )
@@ -92,7 +99,7 @@ class _Steps extends State<Steps> {
         width: 20,
         child: Column(
           mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Container(
               width: 12,
@@ -104,7 +111,6 @@ class _Steps extends State<Steps> {
             ),
             (i < widget.steps.length - 1) ? Container(
               width: 1,
-              //FIXME:此处高度需计算而不是固定值
               height: 34,
               color: i < widget.active ? widget.activeColor : Colors.grey,
             ) : Container()
@@ -113,7 +119,10 @@ class _Steps extends State<Steps> {
       ));
     }
     return [
-      Column(children: left),
+      Container(
+        padding: EdgeInsets.symmetric(vertical: 8),
+        child: Column(children: left),
+      ),
       Expanded(child: Column(
         children: right,
       ),)
@@ -131,10 +140,13 @@ class _Steps extends State<Steps> {
         ),
         color: Colors.white,
       ),
-      child: Row(
+      child: widget.direction == 'horizontal' ? Column(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: buildHorizontal(),
+      ) : Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        textBaseline: TextBaseline.alphabetic,
-        children: widget.direction == 'vertical' ? buildVertical() : buildHorizontal(),
+        children: buildVertical(),
       ),
     );
   }
