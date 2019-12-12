@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_kit/widgets/Tag.dart';
+import 'package:flutter_kit/widgets/price.dart';
 
 class NCard extends StatelessWidget {
   // 左侧图片
@@ -16,6 +17,8 @@ class NCard extends StatelessWidget {
   final double price;
   // 商品划线原价	
   final double originPrice;
+  // 内容是否垂直居中	
+  final bool centered;
   // 货币符号	
   final String currency;
   // 点击时触发	
@@ -40,6 +43,7 @@ class NCard extends StatelessWidget {
     this.num,
     this.price,
     this.originPrice,
+    this.centered: false,
     this.currency: "¥",
     this.onClick,
     this.customTitle,
@@ -83,7 +87,7 @@ class NCard extends StatelessWidget {
           children: <Widget>[
             Column(
               mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: centered ? CrossAxisAlignment.center : CrossAxisAlignment.start,
               children: <Widget>[
                 customTitle??Text(title, style: TextStyle(fontWeight: FontWeight.bold)),
                 customDesc??Text(desc, maxLines: 1, style: TextStyle(fontSize: 12, color: Colors.grey)),
@@ -103,7 +107,7 @@ class NCard extends StatelessWidget {
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: <Widget>[
-                      customPrice??Text("$currency${price.toStringAsFixed(2)}", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),  
+                      customPrice??Price(value: price, currency: currency),  
                       SizedBox(width: 6),
                       customOriginPrice??(originPrice != null ? Text("$currency${originPrice.toStringAsFixed(2)}", style: TextStyle(color: Colors.grey, fontSize: 12, decoration: TextDecoration.lineThrough)) : Container())
                     ],

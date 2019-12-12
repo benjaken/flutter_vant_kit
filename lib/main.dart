@@ -119,6 +119,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 PageInfo("List 列表", (ctx) => demoList(), padding: false, withScaffold: false),
                 PageInfo("NoticeBar 通知栏", (ctx) => demoNoticeBar(), padding: false),
                 PageInfo("Panel 面板", (ctx) => demoPanel(), padding: false),
+                PageInfo("Price 商品价格", (ctx) => demoPrice(), padding: true),
                 PageInfo("Progress 进度条", (ctx) => demoProgress(), padding: true),
                 PageInfo("Skeleton 骨架屏", (ctx) => demoSkeleton(), padding: true),
                 PageInfo("Steps 步骤条", (ctx) => demoSteps(), padding: false),

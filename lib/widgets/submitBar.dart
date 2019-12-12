@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_kit/widgets/button.dart';
+import 'package:flutter_kit/widgets/price.dart';
 
 class SubmitBar extends StatelessWidget {
   // 价格
@@ -67,7 +68,6 @@ class SubmitBar extends StatelessWidget {
   }
 
   Widget buildContent () {
-    String priceString = price.toStringAsFixed(decimalLength);
     return Container(
       padding: EdgeInsets.symmetric(vertical: 6, horizontal: 16),
       color: Colors.white,
@@ -83,7 +83,7 @@ class SubmitBar extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: <Widget>[
                     Text("$label", style: TextStyle(fontSize: 14)),
-                    Text("$currency$priceString", style: TextStyle(fontSize: 20, color: Colors.red, fontWeight: FontWeight.bold)),
+                    Price(value: price, currency: currency, size: 20, color: Colors.red, decimal: decimalLength)
                   ],
                 )
               ],
