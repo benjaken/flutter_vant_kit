@@ -36,3 +36,4 @@ export 'demoGoodsAction.dart';
 export 'demoSubmitBar.dart';
 export 'demoCoupon.dart';
 export 'demoPrice.dart';
+export 'demoAvatar.dart';

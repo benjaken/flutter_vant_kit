@@ -84,6 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 PageInfo("Button 按钮", (ctx) => demoButton(), padding: false),
                 PageInfo("Cell 单元格", (ctx) => demoCell(), padding: false),
                 PageInfo("Image 图片", (ctx) => demoImage(), padding: true),
+                PageInfo("Avatar 头像", (ctx) => demoAvatar(), padding: true),
               ])
             ),
             ExpansionTile(
