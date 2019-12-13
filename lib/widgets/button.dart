@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 typedef CallBack();
 
 class CustomButton extends StatelessWidget {
+  // 尺寸
   final String size;
   // 按钮文字	
   final String text;
@@ -32,8 +33,9 @@ class CustomButton extends StatelessWidget {
   final bool loading;
   // 是否使用 0.5px 边框	
   final bool hairline;
-  // 设置内边距宽度
+  // 自定义内边距
   final EdgeInsets padding;
+  // 自定义按钮圆角
   final BorderRadius borderRadius;
   // 点击后回调
   final CallBack onClick;

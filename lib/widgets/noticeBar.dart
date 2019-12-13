@@ -24,23 +24,24 @@ class NoticeBar extends StatefulWidget {
   // 点击通知栏时触发
   final CallBack onClick;
   // 滚动速率
-  final num speed;
+  final int speed;
   // 动画延迟时间 (s)
-  final num delay;
+  final int delay;
 
-  NoticeBar(
-      {Key key,
-      @required this.text,
-      this.color: Colors.orange,
-      this.background: Colors.yellow,
-      this.leftIcon,
-      this.mode,
-      this.scrollable: true,
-      this.wrapable: false,
-      this.speed: 5,
-      this.delay: 100,
-      this.onClose,
-      this.onClick});
+  NoticeBar({
+    Key key,
+    @required this.text,
+    this.color: Colors.orange,
+    this.background: Colors.yellow,
+    this.leftIcon,
+    this.mode,
+    this.scrollable: true,
+    this.wrapable: false,
+    this.speed: 5,
+    this.delay: 100,
+    this.onClose,
+    this.onClick
+  });
 
   @override
   _NoticeBar createState() => _NoticeBar();

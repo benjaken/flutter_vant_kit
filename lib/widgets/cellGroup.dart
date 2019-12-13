@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 
 class CellGroup extends StatelessWidget {
+  // 分组标题
   final String title;
-  final List<Widget> children;
+  // 是否显示外边框
   final bool border;
+  // 自定义边框样式
   final BoxDecoration decoration;
+  // 默认插槽
+  final List<Widget> children;
 
   CellGroup({
     Key key,

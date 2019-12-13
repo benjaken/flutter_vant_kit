@@ -4,11 +4,17 @@ import 'package:flutter_kit/widgets/sidebar.dart';
 typedef ValueCallBack(List<int> list);
 
 class TreeSelect extends StatefulWidget {
+  // 所有选项
   List<SideBarItem> list;
+  // 左侧选中项的索引
   int mainActiveIndex;
+  // 右侧选中项的 id
   List<int> activeId;
+  // 高度
   final double height;
+  // 右侧项最大选中个数	
   final int max;
+  // 左侧选中值改变时触发
   final ValueCallBack onChange;
 
   TreeSelect({
@@ -36,7 +42,7 @@ class _TreeSelect extends State<TreeSelect> {
     List<Widget> widgets = [];
     List areaList = widget.list[widget.mainActiveIndex].children;
     for(int i = 0; i < areaList.length; i++) {
-      AreaItem item = areaList[i];
+      TreeItem item = areaList[i];
       widgets.add(GestureDetector(
         child: Container(
           padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
@@ -109,12 +115,12 @@ class _TreeSelect extends State<TreeSelect> {
   }
 }
 
-class AreaItem {
+class TreeItem {
   final String text;
   final int id;
   final bool disabled;
 
-  AreaItem({
+  TreeItem({
     @required this.text,
     this.id,
     this.disabled: false

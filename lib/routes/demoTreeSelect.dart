@@ -34,27 +34,27 @@ class _demoTreeSelect extends State<demoTreeSelect>{
       SideBarItem(
         title: "浙江",
         children: [
-          AreaItem(text: "杭州", id: 1),
-          AreaItem(text: "温州", id: 2),
-          AreaItem(text: "宁波", id: 3, disabled: true),
-          AreaItem(text: "义乌", id: 4),
+          TreeItem(text: "杭州", id: 1),
+          TreeItem(text: "温州", id: 2),
+          TreeItem(text: "宁波", id: 3, disabled: true),
+          TreeItem(text: "义乌", id: 4),
         ]
       ),
       SideBarItem(
         title: "江苏",
         children: [
-          AreaItem(text: "南京", id: 5),
-          AreaItem(text: "无锡", id: 6),
-          AreaItem(text: "徐州", id: 7),
-          AreaItem(text: "苏州", id: 8),
+          TreeItem(text: "南京", id: 5),
+          TreeItem(text: "无锡", id: 6),
+          TreeItem(text: "徐州", id: 7),
+          TreeItem(text: "苏州", id: 8),
         ]
       ),
       SideBarItem(
         title: "福建",
         disabled: true,
         children: [
-          AreaItem(text: "泉州", id: 9),
-          AreaItem(text: "厦门", id: 10),
+          TreeItem(text: "泉州", id: 9),
+          TreeItem(text: "厦门", id: 10),
         ]
       ),
     ];
@@ -80,20 +80,20 @@ class _demoTreeSelect extends State<demoTreeSelect>{
       SideBarItem(
         title: "浙江",
         children: [
-          AreaItem(text: "杭州", id: 1),
-          AreaItem(text: "温州", id: 2),
-          AreaItem(text: "宁波", id: 3, disabled: true),
-          AreaItem(text: "义乌", id: 4),
+          TreeItem(text: "杭州", id: 1),
+          TreeItem(text: "温州", id: 2),
+          TreeItem(text: "宁波", id: 3, disabled: true),
+          TreeItem(text: "义乌", id: 4),
         ],
       ),
       SideBarItem(
         title: "江苏",
         info: _info,
         children: [
-          AreaItem(text: "南京", id: 5),
-          AreaItem(text: "无锡", id: 6),
-          AreaItem(text: "徐州", id: 7),
-          AreaItem(text: "苏州", id: 8),
+          TreeItem(text: "南京", id: 5),
+          TreeItem(text: "无锡", id: 6),
+          TreeItem(text: "徐州", id: 7),
+          TreeItem(text: "苏州", id: 8),
         ],
         // onClick: (val) {
           // setState(() {

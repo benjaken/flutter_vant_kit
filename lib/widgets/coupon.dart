@@ -48,12 +48,12 @@ class Coupon extends StatefulWidget {
     this.exchangeMaxLength: 10,
     this.displayedCouponIndex,
     this.showCloseButton: true,
-    this.onSelect,
-    this.onExchange,
     this.closeButtonText: "不使用优惠",
     this.inputPlaceholder: "请输入优惠码",
     this.showExchangeBar: true,
-    this.emptyImage
+    this.emptyImage,
+    this.onSelect,
+    this.onExchange,
   }) : super(key: key);
 
   @override
@@ -242,7 +242,7 @@ class _Coupon extends State<Coupon> with SingleTickerProviderStateMixin {
   }
 
   Widget buildCoupons () {
-    return ListView.builder(
+    return widget.coupons.length == 0 ? buildEmptyList() : ListView.builder(
       padding: EdgeInsets.all(16),
       controller: _scrollController,
       itemCount: widget.coupons.length,
@@ -253,11 +253,11 @@ class _Coupon extends State<Coupon> with SingleTickerProviderStateMixin {
   }
 
   Widget buildDisabledCoupons () {
-    return ListView.builder(
+    return widget.disabledCoupons.length == 0 ? buildEmptyList() : ListView.builder(
       padding: EdgeInsets.all(16),
       itemCount: widget.disabledCoupons.length,
       itemBuilder: (BuildContext context, int index) {
-        return buildCoupon(index, false);
+        return buildCoupon(index, true);
       }
     );
   }

@@ -9,7 +9,9 @@ class NDivider extends StatefulWidget {
   final double fontSize;
   // 分割线颜色	
   Color lineColor;
+  // 是否为细分割线
   final bool hairline;
+  // 文本位置
   final String contentPosition;
   // 自定义分隔符内容
   final Widget child;

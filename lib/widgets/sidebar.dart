@@ -4,8 +4,11 @@ import 'package:flutter_kit/widgets/badge.dart';
 typedef ValueCallBack(int val);
 
 class Sidebar extends StatefulWidget {
+  // 当前选项
   int active;
+  // 所有选项
   final List<SideBarItem> list;
+  // 当前值改变时触发
   final ValueCallBack onChange;
 
   Sidebar({

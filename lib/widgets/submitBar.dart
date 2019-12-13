@@ -19,6 +19,7 @@ class SubmitBar extends StatelessWidget {
   final IconData tipIcon;
   // 是否禁用按钮	
   final bool disabled;
+  // 是否加载中
   final bool loading;
   // 货币符号	
   final String currency;

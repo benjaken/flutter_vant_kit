@@ -32,9 +32,12 @@ class _demoRate extends State<demoRate>{
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Title("基础用法"),
-          Rate(),
+          Rate(
+            value: 3,
+          ),
           Title("自定义图标"),
           Rate(
+            value: 3,
             icon: Icons.favorite,
             voidIcon: Icons.favorite_border,
             onChange: (v) {
@@ -43,6 +46,7 @@ class _demoRate extends State<demoRate>{
           ),
           Title("自定义样式"),
           Rate(
+            value: 3,
             color: Colors.blueAccent,
             voidColor: Colors.blueAccent,
             size: 36.0,
@@ -52,24 +56,18 @@ class _demoRate extends State<demoRate>{
             },
           ),
           Title("自定义数量"),
-          Row(
-            children: <Widget>[
-              Rate(
-                count: 7,
-                value: 4,
-              )
-            ],
+          Rate(
+            count: 7,
+            value: 4,
           ),
           Title("禁用状态"),
-          Row(
-            children: <Widget>[
-              Rate(
-                disabled: true
-              )
-            ],
+          Rate(
+            value: 3,
+            disabled: true
           ),
           Title("只读状态"),
           Rate(
+            value: 3,
             readonly: true
           )
         ]

@@ -5,14 +5,18 @@ import 'package:flutter/services.dart';
 typedef int CallBack(int);
 
 class Field extends StatefulWidget {
+  // 控制属性
   final TextEditingController controller;
+  // 输入类型
   final TextInputType keyboardType;
+  // 焦点控制
   final FocusNode focusNode;
+  // 键盘右下角的类型
   final TextInputAction textInputAction;
   // 输入框左侧文本
   final String label;
   // 输入的最大字符数
-  final num maxLength;
+  final int maxLength;
   // 占位提示文字
   final String placeholder;
   // 是否禁用输入框	
@@ -30,10 +34,12 @@ class Field extends StatefulWidget {
   // 输入框类型
   final String type;
   // 输入框行数，当type=textarea可用
-  final num rows;
+  final int rows;
   // 显示字数统计
   final bool showWordLimit;
+  // 是否将输入内容标红	
   final bool error;
+  // 底部错误提示文案
   final String errorMessage;
   // 左侧文本宽度
   final double labelWidth;
@@ -44,11 +50,11 @@ class Field extends StatefulWidget {
   // 左侧图标
   final IconData leftIcon;
   // 点击左侧图标时触发
-  final Future<void> Function() clickLeft;
+  final Function() clickLeft;
   // 右侧图标
   final IconData rightIcon;
   // 点击右侧图标时触发
-  final Future<void> Function() clickRight;
+  final Function() clickRight;
   // 自定义右侧内容
   final Widget right;
   // 工具栏定制
@@ -80,24 +86,24 @@ class Field extends StatefulWidget {
     this.autofocus: false,
     this.inputFormatters,
     this.type: "text",
+    this.rows: 2,
+    this.showWordLimit: false,
+    this.error: false,
+    this.errorMessage,
     this.labelWidth: 90.0,
     this.labelAlign: TextAlign.start,
     this.inputAlign: TextAlign.start,
-    this.rows: 2,
     this.leftIcon,
     this.clickLeft,
     this.rightIcon,
     this.clickRight,
     this.right,
-    this.showWordLimit: false,
     this.toolbarOptions,
     this.onChange,
     this.onEditingComplete,
     this.onSubmitted,
     this.onClick,
     this.style,
-    this.error: false,
-    this.errorMessage
   }) : super(key: key);
 
   @override

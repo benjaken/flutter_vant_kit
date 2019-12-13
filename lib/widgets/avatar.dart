@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
 
 class Avatar extends StatelessWidget {
+  // 头像类型
   final String type;
+  // 头像大小
   final double size;
+  // 头像形状
   final String shape;
+  // 头像背景颜色
   final Color color;
+  // 头像图标颜色
   final Color iconColor;
+  // 自定义图标内容
   final Widget custom;
+  // 头像图片内容
   final ImageProvider image;
-
+  // 点击头像后回调
   final Function onClick;
 
   Avatar({

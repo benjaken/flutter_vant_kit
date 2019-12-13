@@ -18,7 +18,7 @@ class Price extends StatelessWidget {
     Key key,
     this.currency: "¥",
     this.size: 20,
-    this.value,
+    @required this.value,
     this.color: Colors.black,
     this.decimal: 2,
     this.thousands: false

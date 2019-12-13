@@ -25,11 +25,17 @@ class Search extends StatefulWidget {
   final IconData leftIcon;
   // 输入框右侧图标
   final IconData rightIcon; 
+  // 自定义左侧内容
   final Widget left; 
+  // 自定义右侧内容
   final Widget right;
+  // 点击左侧内容反馈
   final CallBack onClickLeft;
+  // 点击右侧内容反馈
   final CallBack onClickRight;
+  // 点击提交按钮反馈
   final SubmitCallBack onSubmitted;
+  // 点击取消按钮反馈
   final CallBack onCancel;
 
   Search({

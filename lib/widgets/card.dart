@@ -23,15 +23,23 @@ class NCard extends StatelessWidget {
   final String currency;
   // 点击时触发	
   final Function onClick;
-
+  // 自定义标题内容
   final Widget customTitle;
+  // 自定义描述
   final Widget customDesc;
+  // 自定义数量
   final Widget customNum;
+  // 自定义价格
   final Widget customPrice;
+  // 自定义商品原价
   final Widget customOriginPrice;
+  // 自定义图片
   final Widget customThumb;
+  // 自定义图片角标
   final Widget customTag;
+  // 自定义描述下方标签区域
   final Widget customTags;
+  // 自定义 footer
   final Widget customFooter;
 
   const NCard({

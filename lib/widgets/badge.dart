@@ -11,6 +11,7 @@ class Badge extends StatefulWidget {
   final Color textColor;
   // 自定义文本大小
   final double textSize;
+  // 自定义内容
   final Widget child;
 
   const Badge({

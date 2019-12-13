@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_kit/utils/index.dart';
 import 'package:flutter_kit/widgets/avatar.dart';
 
-import 'package:flutter_kit/widgets/badge.dart';
-import 'package:flutter_kit/widgets/button.dart';
-
 class demoAvatar extends StatefulWidget {
   @override
   _demoAvatar createState() => _demoAvatar();

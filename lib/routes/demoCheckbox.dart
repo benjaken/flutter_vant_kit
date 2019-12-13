@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_kit/utils/index.dart';
-import 'package:flutter_kit/widgets/checkbox.dart';
 import 'package:flutter_kit/widgets/checkboxGroup.dart';
-import 'package:flutter_kit/widgets/cell.dart';
-import 'package:flutter_kit/widgets/cellGroup.dart';
 
 class demoCheckbox extends StatefulWidget{
   @override

@@ -19,6 +19,8 @@ class Cell extends StatelessWidget{
   final String arrowDirection;
   // 自定义标题内容
   final Widget customTitle;
+  // 自定义标题内容
+  final Widget customLabel;
   // 自定义右侧内容
   final Widget customRight;
   // 点击单元格时触发
@@ -36,6 +38,7 @@ class Cell extends StatelessWidget{
     this.onClick,
     this.arrowDirection: "right",
     this.customTitle,
+    this.customLabel,
     this.customRight,
   }) : super(key: key);
 
@@ -75,7 +78,7 @@ class Cell extends StatelessWidget{
                 title != null ? Text(title, style: TextStyle(
                   fontSize: 14
                 )) : Container(),
-                customTitle != null ? customTitle : Container(),
+                customTitle??Container(),
               ],
             ),
             Row(
@@ -91,10 +94,10 @@ class Cell extends StatelessWidget{
           ],
         ),
         SizedBox(height: 4.0),
-        label != null ? Text(label, style: TextStyle(
+        customLabel??(label != null ? Text(label, style: TextStyle(
           fontSize: 12,
           color: Colors.grey
-        )) : Container()
+        )) : Container())
       ],
     );
   }

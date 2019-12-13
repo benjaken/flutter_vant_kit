@@ -3,11 +3,17 @@ import 'package:flutter_kit/widgets/divider.dart';
 
 
 class Steps extends StatefulWidget {
+  // 所有步骤
   final List<StepItem> steps;
+  // 当前步骤	
   final int active;
+  // 显示方向，可选值为 vertical	
   final String direction;
+  // 激活状态颜色	
   final Color activeColor;
+  // 激活状态图标
   final IconData activeIcon;
+  // 未激活状态图标
   final IconData inactiveIcon;
 
   Steps({

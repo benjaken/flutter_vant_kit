@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 typedef CallBack(String val);
 
 class Steppers extends StatefulWidget {
+  // 当前值
   final double value;
   // 最小值
   final double min;
@@ -25,7 +26,7 @@ class Steppers extends StatefulWidget {
   final bool showMinus;
   // 固定显示的小数位数
   final int decimalLength;
-
+  // 当前值变化时触发的事件
   final CallBack onChange;
 
   Steppers({

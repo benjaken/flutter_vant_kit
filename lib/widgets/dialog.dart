@@ -34,6 +34,7 @@ class NDialog extends StatefulWidget {
   final Function onCancel;
   // 关闭前的回调函数
   final Function beforeClose;
+  // 自定义内容
   final Widget child;
 
   const NDialog({

@@ -30,9 +30,8 @@ class Rate extends StatefulWidget {
 
   Rate({
     Key key,
-    this.onChange,
     this.count: 5,
-    this.value: 3,
+    @required this.value,
     this.size: 24.0,
     this.gutter: 4.0,
     this.icon: Icons.star,
@@ -41,6 +40,7 @@ class Rate extends StatefulWidget {
     this.voidColor: Colors.grey,
     this.readonly: false,
     this.disabled: false,
+    this.onChange,
   }) : assert(count > 1 && value >= 1,
     'count 或 value 不能小于1'),
     super(key: key);
