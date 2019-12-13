@@ -19,7 +19,7 @@ class Cell extends StatelessWidget{
   final String arrowDirection;
   // 自定义标题内容
   final Widget customTitle;
-  // 自定义标题内容
+  // 自定义标题下方描述
   final Widget customLabel;
   // 自定义右侧内容
   final Widget customRight;

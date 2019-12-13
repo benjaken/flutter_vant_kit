@@ -12,6 +12,7 @@ class Search extends StatefulWidget {
   final int maxLength;
   // 占位提示文字	
   final String placeholder;
+  // 是否启用清除控件	
   final bool clearable;
   // 是否在搜索框右侧显示取消按钮	
   final bool showAction;

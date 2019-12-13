@@ -3,11 +3,17 @@ import 'package:flutter/material.dart';
 
 
 class Loading extends StatelessWidget {
+  // 加载描述
   final String text;
+  // 加载环颜色
   final Color color;
+  // 加载环大小
   final double size;
+  // 加载描述字体大小
   final double textSize;
+  // 加载条排列方式
   final bool vertical;
+  // 自定义内容
   final Widget loading;
 
   const Loading({
