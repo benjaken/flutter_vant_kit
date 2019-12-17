@@ -1,6 +1,4 @@
-import 'package:decorated_flutter/decorated_flutter.dart';
 import 'package:flutter/material.dart';
-
 
 class Loading extends StatelessWidget {
   // 加载描述
