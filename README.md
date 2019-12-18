@@ -40,6 +40,7 @@ flutter run
 | ------ |
 | [Badge 徽标](docs/badge.md)  |
 | [Circle 环形进度条](docs/circle.md) |
+| [Collapse 折叠面板](docs/collapse.md) |
 | [Loading 加载](docs/loading.md) |
 | [ImagePreview 图片预览](docs/imagePreview.md) |
 | [NoticeBar 通知栏](docs/noticeBar.md) |

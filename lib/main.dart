@@ -114,6 +114,7 @@ class _MyHomePageState extends State<MyHomePage> {
               children: _generateItem(context, [
                 PageInfo("Badge 徽标", (ctx) => demoBadge(), padding: true),
                 PageInfo("Circle 环形进度条", (ctx) => demoCircle(), padding: true),
+                PageInfo("Collapse 折叠面板", (ctx) => demoCollapse(), padding: false),
                 // PageInfo("CountDown 倒计时", (ctx) => demoCountDown(), padding: false),
                 PageInfo("Divider 分割线", (ctx) => demoDivider(), padding: true),
                 PageInfo("ImagePreview 图片预览", (ctx) => demoImagePreview(), padding: true),
