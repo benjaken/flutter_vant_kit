@@ -52,5 +52,4 @@ Collapse(
 | customTitle | 自定义标题内容 | `Widget` | - |
 | customLabel | 自定义标题下方描述 | `Widget` | - |
 | children | 面板内容 | `List<Widget>` | - |
-| border | 是否显示外边框 | `bool` | `true` |
 | onExpansionChanged | 面板展开后回调 | `Function(bool isExpand)` | - |
