@@ -13,7 +13,7 @@ class demoCell extends StatefulWidget {
 class _demoCell extends State<demoCell> {
   Widget Title(String title) {
     return Padding(
-      padding: EdgeInsets.fromLTRB(20, 30, 0, 10),
+      padding: EdgeInsets.fromLTRB(16, 30, 0, 10),
       child: Text(
         title, 
         style: TextStyle(
@@ -34,13 +34,20 @@ class _demoCell extends State<demoCell> {
           CellGroup(
             children: <Widget>[
               Cell(title: "单元格", value: "内容"),
-              Cell(title: "单元格", value: "内容", label: "描述信息", require: true,),
+              Cell(title: "单元格", value: "内容", label: "描述信息", require: true),
+            ]
+          ),
+          Title("单元格大小"),
+          CellGroup(
+            children: <Widget>[
+              Cell(title: "单元格", value: "内容", size: "large"),
+              Cell(title: "单元格", value: "内容", size: "large", label: "描述信息"),
             ]
           ),
           Title("展示图标"),
           CellGroup(
             children: <Widget>[
-              Cell(title: "单元格", value: "内容", label: "描述信息", icon: Icons.my_location),
+              Cell(title: "单元格", value: "内容", icon: Icons.my_location),
             ]
           ),
           Title("只设置 value"),
@@ -55,7 +62,14 @@ class _demoCell extends State<demoCell> {
               Cell(
                 title: "单元格",
                 isLink: true,
-                arrowDirection: "down",
+                onClick: () {
+                  Utils.toast("Clicked");
+                },
+              ),
+              Cell(
+                title: "单元格",
+                value: "内容",
+                isLink: true,
                 onClick: () {
                   Utils.toast("Clicked");
                 },
@@ -64,6 +78,7 @@ class _demoCell extends State<demoCell> {
                 title: "单元格",
                 value: "内容",
                 label: "描述信息",
+                arrowDirection: "down",
                 isLink: true,
                 onClick: () {
                   Utils.toast("Clicked");
@@ -91,7 +106,7 @@ class _demoCell extends State<demoCell> {
                 customTitle: Row(
                   children: <Widget>[
                     Text("自定义标题"),
-                    SizedBox(width: 4,),
+                    SizedBox(width: 4),
                     Tag(text: "标签", color: Colors.blueAccent,)
                   ],
                 ),
@@ -101,7 +116,7 @@ class _demoCell extends State<demoCell> {
               Cell(
                 title: "单元格",
                 icon: Icons.store,
-                customRight: Icon(Icons.search, color: Colors.blueAccent, size: 14,)
+                customRight: Icon(Icons.search, color: Colors.blueAccent, size: 16)
               )
             ]
           ),

@@ -38,6 +38,7 @@ CellGroup(
 | label | 标题下方的描述信息 | `String` | - |
 | value | 右侧内容 | `String` | - |
 | icon | 左侧图标 | `IconData` | - |
+| size | 单元格大小，可选值为`large` | `String` | `normal` |
 | require | 是否显示表单必填星号 | `bool` | `false` |
 | clickable | 是否可点击 | `bool` | `false` |
 | isLink | 是否展示右侧箭头并开启点击反馈 | `bool` | `false` |

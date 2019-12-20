@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_kit/theme/style.dart';
 
 class CellGroup extends StatelessWidget {
   // 分组标题
@@ -23,9 +24,9 @@ class CellGroup extends StatelessWidget {
     for(int i = 0; i < list.length; i++) {
       widgets.add(list[i]);
       if (i < list.length - 1) widgets.add(Container(
-        height: 1,
-        margin: EdgeInsets.symmetric(horizontal: 16),
-        color: Color(0xffebedf0),
+        height: Style.borderWidthBase,
+        margin: EdgeInsets.symmetric(horizontal: Style.cellHorizontalPadding),
+        color: Style.cellBorderColor,
       ));
     }
     return widgets;
@@ -37,17 +38,17 @@ class CellGroup extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         title != null ? Padding(
-          padding: EdgeInsets.only(top: 10, bottom: 10, left: 20),
+          padding: Style.cellGroupTitlePadding,
           child: Text(title, style: TextStyle(
-            fontSize: 14,
+            fontSize: Style.cellGroupTitleFontSize,
             color: Colors.grey
           )),
         ) : Container(),
         Container(
           decoration: decoration??BoxDecoration(
             border: border ? Border(
-              top: BorderSide(width: 1.0, color: Color(0xffebedf0)),
-              bottom: BorderSide(width: 1.0, color: Color(0xffebedf0)),
+              top: BorderSide(width: Style.borderWidthBase, color: Style.cellBorderColor),
+              bottom: BorderSide(width: Style.borderWidthBase, color: Style.cellBorderColor),
             ) : null,
             color: Colors.white
           ),
