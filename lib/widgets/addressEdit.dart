@@ -177,7 +177,7 @@ class _AddressEdit extends State<AddressEdit> {
           text: widget.saveButtonText,
           round: true,
           block: true,
-          color: Colors.red,
+          type: "danger",
           onClick: () {
             if (widget.onSave != null) widget.onSave(getContent());
           },
@@ -187,7 +187,6 @@ class _AddressEdit extends State<AddressEdit> {
           text: widget.deleteButtonText,
           round: true,
           block: true,
-          color: Colors.white,
           onClick: () {
             showDialog(
               context: context,

@@ -58,6 +58,7 @@ class _demoLoading extends State<demoLoading>{
           Title("显示Loading"),
           CustomButton(
             text: "显示loading",
+            type: "primary",
             onClick: () {
               showDialog(
                 context: context,

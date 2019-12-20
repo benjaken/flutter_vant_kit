@@ -46,24 +46,27 @@ class _demoButton extends State<demoButton>{
             runSpacing: 12,
             children: <Widget>[
               CustomButton(
-                text: "按钮",
-                color: Colors.white,
-                textColor: Colors.black,
+                text: "默认按钮",
                 onClick: () {},
               ),
               CustomButton(
-                text: "按钮",
-                color: Colors.blueAccent,
+                text: "主要按钮",
+                type: "primary",
                 onClick: () {},
               ),
               CustomButton(
-                text: "按钮",
-                color: Colors.green,
+                text: "信息按钮",
+                type: "info",
                 onClick: () {},
               ),
               CustomButton(
-                text: "按钮",
-                color: Colors.redAccent,
+                text: "危险按钮",
+                type: "danger",
+                onClick: () {},
+              ),
+              CustomButton(
+                text: "警告按钮",
+                type: "warning",
                 onClick: () {},
               ),
             ],
@@ -75,13 +78,13 @@ class _demoButton extends State<demoButton>{
               CustomButton(
                 plain: true,
                 text: "朴素按钮",
-                color: Colors.blueAccent,
+                type: "primary",
                 onClick: () {},
               ),
               CustomButton(
                 plain: true,
                 text: "朴素按钮",
-                color: Colors.green,
+                type: "info",
                 onClick: () {},
               )
             ],
@@ -94,14 +97,14 @@ class _demoButton extends State<demoButton>{
                 plain: true, 
                 hairline: true,
                 text: "细边框按钮",
-                color: Colors.blueAccent,
+                type: "primary",
                 onClick: () {},
               ),
               CustomButton(
                 plain: true,
                 hairline: true,
                 text: "细边框按钮",
-                color: Colors.green,
+                type: "info",
                 onClick: () {},
               )
             ],
@@ -114,19 +117,17 @@ class _demoButton extends State<demoButton>{
               CustomButton(
                 disabled: true,
                 text: "禁用状态",
-                color: Colors.white,
-                textColor: Colors.black,
               ),
               CustomButton(
                 disabled: true,
                 text: "禁用状态",
-                color: Colors.green,
+                type: "primary",
               ),
               CustomButton(
                 plain: true,
                 disabled: true,
                 text: "禁用状态",
-                color: Colors.blueAccent,
+                type: "info",
               )
             ],
           ),
@@ -137,18 +138,18 @@ class _demoButton extends State<demoButton>{
             children: <Widget>[
               CustomButton(
                 loading: true,
-                color: Colors.blueAccent,
+                type: "primary",
               ),
               CustomButton(
                 loading: true,
                 text: "加载中...",
-                color: Colors.green,
+                type: "primary",
               ),
               CustomButton(
                 plain: true,
                 loading: _loading,
                 text: "点击2S后恢复",
-                color: Colors.blueAccent,
+                type: "info",
                 onClick: () {
                   setState(() {
                     _loading = true;
@@ -175,62 +176,29 @@ class _demoButton extends State<demoButton>{
             children: <Widget>[
               CustomButton(
                 text: "方形按钮",
-                color: Colors.blueAccent,
+                type: "primary",
                 square: true,
                 onClick: () {},
               ),
               CustomButton(
                 text: "圆形按钮",
-                color: Colors.blueAccent,
+                type: "info",
                 round: true,
                 onClick: () {},
               ),
               CustomButton(
                 plain: true,
                 text: "圆形按钮",
-                color: Colors.blueAccent,
+                type: "primary",
                 round: true,
                 onClick: () {},
               ),
               CustomButton(
                 block: true,
                 text: "块级按钮",
-                color: Colors.blueAccent,
+                type: "info",
                 onClick: () {},
               )
-            ],
-          ),
-          SizedBox(height: 6),
-          Title("图标边框"),
-          Wrap(
-            spacing: 12,
-            runSpacing: 12,
-            crossAxisAlignment: WrapCrossAlignment.center,
-            children: <Widget>[
-              CustomButton(
-                color: Colors.blueAccent,
-                size: "large",
-                text: "大号按钮",
-                onClick: () {},
-              ),
-              CustomButton(
-                color: Colors.blueAccent,
-                size: "normal",
-                text: "普通按钮",
-                onClick: () {},
-              ),
-              CustomButton(
-                color: Colors.blueAccent,
-                size: "small",
-                text: "小型按钮",
-                onClick: () {},
-              ),
-              CustomButton(
-                color: Colors.blueAccent,
-                size: "mini",
-                text: "迷你按钮",
-                onClick: () {},
-              ),
             ],
           ),
           Title("图标边框"),
@@ -240,13 +208,13 @@ class _demoButton extends State<demoButton>{
             children: <Widget>[
               CustomButton(
                 icon: Icon(Icons.star_border, color: Colors.white, size: 18),
-                color: Colors.blueAccent,
+                type: "primary",
                 onClick: () {},
               ),
               CustomButton(
                 text: "按钮",
                 icon: Icon(Icons.star_border, color: Colors.white, size: 18),
-                color: Colors.blueAccent,
+                type: "primary",
                 onClick: () {},
               ),
               CustomButton(
@@ -256,16 +224,59 @@ class _demoButton extends State<demoButton>{
                   width: 18,
                   child: Image.network("https://img.yzcdn.cn/vant/logo.png"),
                 ),
-                color: Colors.blueAccent,
+                type: "primary",
                 onClick: () {},
               )
             ],
           ),
-          Title("渐变色按钮"),
+          Title("按钮尺寸"),
+          Wrap(
+            spacing: 12,
+            runSpacing: 12,
+            crossAxisAlignment: WrapCrossAlignment.center,
+            children: <Widget>[
+              CustomButton(
+                type: "primary",
+                size: "large",
+                text: "大号按钮",
+                onClick: () {},
+              ),
+              CustomButton(
+                type: "primary",
+                size: "normal",
+                text: "普通按钮",
+                onClick: () {},
+              ),
+              CustomButton(
+                type: "primary",
+                size: "small",
+                text: "小型按钮",
+                onClick: () {},
+              ),
+              CustomButton(
+                type: "primary",
+                size: "mini",
+                text: "迷你按钮",
+                onClick: () {},
+              ),
+            ],
+          ),
+          Title("自定义颜色"),
           Wrap(
             spacing: 12,
             runSpacing: 12,
             children: <Widget>[
+              CustomButton(
+                text: "单色按钮",
+                color: Colors.purple,
+                onClick: () {},
+              ),
+              CustomButton(
+                text: "单色按钮",
+                color: Colors.purple,
+                plain: true,
+                onClick: () {},
+              ),
               CustomButton(
                 text: "渐变色按钮",
                 gradient: LinearGradient(colors: [Colors.lightBlue[300], Colors.blueAccent]),

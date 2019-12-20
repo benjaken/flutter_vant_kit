@@ -44,6 +44,7 @@ class _demoActionSheet extends State<demoActionSheet> {
           Title("基础用法"),
           CustomButton(
             text: "弹出菜单",
+            type: "primary",
             onClick: () {
               showModalBottomSheet(
                 context: context,
@@ -59,6 +60,7 @@ class _demoActionSheet extends State<demoActionSheet> {
           Title("选项状态"),
           CustomButton(
             text: "弹出菜单",
+            type: "primary",
             onClick: () {
               showModalBottomSheet(
                 context: context,
@@ -74,6 +76,7 @@ class _demoActionSheet extends State<demoActionSheet> {
           Title("展示取消按钮"),
           CustomButton(
             text: "弹出菜单",
+            type: "primary",
             onClick: () {
               showModalBottomSheet(
                 context: context,
@@ -93,6 +96,7 @@ class _demoActionSheet extends State<demoActionSheet> {
           Title("展示描述信息"),
           CustomButton(
             text: "弹出菜单",
+            type: "primary",
             onClick: () {
               showModalBottomSheet(
                 context: context,
@@ -110,6 +114,7 @@ class _demoActionSheet extends State<demoActionSheet> {
           Title("展示标题栏"),
           CustomButton(
             text: "弹出菜单",
+            type: "primary",
             onClick: () {
               showModalBottomSheet(
                 context: context,

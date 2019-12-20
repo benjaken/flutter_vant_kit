@@ -127,6 +127,7 @@ class _demoDialog extends State<demoDialog> {
             children: <Widget>[
               CustomButton(
                 text: "提示弹窗",
+                type: "primary",
                 onClick: () {
                   _showDialog1(context);
                 },
@@ -134,6 +135,7 @@ class _demoDialog extends State<demoDialog> {
               SizedBox(width: 10),
               CustomButton(
                 text: "提示弹窗(无标题)",
+                type: "primary",
                 onClick: () {
                   _showDialog2(context);
                 },
@@ -145,6 +147,7 @@ class _demoDialog extends State<demoDialog> {
             children: <Widget>[
               CustomButton(
                 text: "确认弹窗",
+                type: "primary",
                 onClick: () {
                   _showDialog3(context);
                 },
@@ -152,6 +155,7 @@ class _demoDialog extends State<demoDialog> {
               SizedBox(width: 10),
               CustomButton(
                 text: "自定义确认弹窗",
+                type: "primary",
                 onClick: () {
                   _showDialog4(context);
                 },
@@ -163,6 +167,7 @@ class _demoDialog extends State<demoDialog> {
             children: <Widget>[
               CustomButton(
                 text: "异步调用",
+                type: "primary",
                 onClick: () {
                   _showDialog5(context);
                 },
@@ -174,6 +179,7 @@ class _demoDialog extends State<demoDialog> {
             children: <Widget>[
               CustomButton(
                 text: "自定义内容",
+                type: "primary",
                 onClick: () {
                   _showDialog6(context);
                 },

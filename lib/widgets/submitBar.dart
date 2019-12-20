@@ -91,20 +91,17 @@ class SubmitBar extends StatelessWidget {
             ),
           ),
           SizedBox(width: 12,),
-          Opacity(
-            opacity: disabled ? .5 : 1,
-            child: CustomButton(
-              text: loading ? "" : buttonText,
-              round: true,
-              gradient: LinearGradient(colors: [Color(0xffff6034), Color(0xffee0a24)]),
-              width: 120,
-              height: 40,
-              loading: loading,
-              disabled: disabled,
-              onClick: () {
-                if (onSubmit != null) onSubmit();
-              },
-            ),
+          CustomButton(
+            text: loading ? "" : buttonText,
+            round: true,
+            gradient: LinearGradient(colors: [Color(0xffff6034), Color(0xffee0a24)]),
+            width: 120,
+            height: 40,
+            loading: loading,
+            disabled: disabled,
+            onClick: () {
+              if (onSubmit != null) onSubmit();
+            },
           )
         ],
       ),

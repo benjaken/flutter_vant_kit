@@ -106,6 +106,7 @@ class _Coupon extends State<Coupon> with SingleTickerProviderStateMixin {
       right: CustomButton(
         text: widget.exchangeButtonText,
         size: "small",
+        type: "primary",
         disabled: widget.exchangeButtonDisabled || searchInput.text == '',
         width: 60,
         onClick: () {

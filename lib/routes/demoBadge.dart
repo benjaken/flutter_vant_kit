@@ -25,6 +25,7 @@ class _demoBadge extends State<demoBadge> {
   Widget testButton() {
     return CustomButton(
       text: "按钮",
+      type: "primary",
       onClick: () {},  
     );
   }

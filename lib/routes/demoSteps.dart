@@ -49,6 +49,7 @@ class _demoSteps extends State<demoSteps> {
               children: <Widget>[
                 CustomButton(
                   text: "上一步",
+                  type: "primary",
                   plain: true,
                   onClick: () {
                     setState(() {
@@ -59,6 +60,7 @@ class _demoSteps extends State<demoSteps> {
                 SizedBox(width: 6),
                 CustomButton(
                   text: "下一步",
+                  type: "primary",
                   plain: true,
                   onClick: () {
                     setState(() {

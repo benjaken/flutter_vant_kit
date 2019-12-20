@@ -142,6 +142,7 @@ class _demoField extends State<demoField> {
                 controller: testInput7,
                 right: CustomButton(
                   text: "发送验证码",
+                  type: "primary",
                   size: "small",
                   onClick: () => {},
                 ),

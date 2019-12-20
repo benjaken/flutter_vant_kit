@@ -35,6 +35,7 @@ class _demoNumberKeyboard extends State<demoNumberKeyboard> {
           Title("基础用法"),
           CustomButton(
             text: "弹出默认键盘",
+            type: "primary",
             onClick: () {
               NumberKeyboard(
                 title: "默认键盘",

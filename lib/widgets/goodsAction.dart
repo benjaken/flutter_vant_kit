@@ -45,23 +45,20 @@ class _GoodsAction extends State<GoodsAction>{
         mainAxisAlignment: MainAxisAlignment.end,
         children: List.generate(widget.buttons.length, (i) {
           ButtonItem button = widget.buttons[i];
-          return Opacity(
-            opacity: button.disabled ? .5 : 1,
-            child: CustomButton(
-              borderRadius: widget.buttons.length == 1 ? BorderRadius.circular(99.0) 
-                : i == 0 ? BorderRadius.horizontal(left: Radius.circular(99)) : i == widget.buttons.length - 1 ? BorderRadius.horizontal(right: Radius.circular(99)) : null,
-              text: button.loading ? "" : button.customText??button.text,
-              disabled: button.disabled,
-              loading: button.loading,
-              color: button.color??null,
-              gradient: button.gradient??null,
-              height: 40,
-              width: buttonWidth,
-              onClick: () {
-                if (button.disabled) return;
-                if (button.onClick != null) button.onClick();
-              },
-            ),
+          return CustomButton(
+            borderRadius: widget.buttons.length == 1 ? BorderRadius.circular(99.0) 
+              : i == 0 ? BorderRadius.horizontal(left: Radius.circular(99)) : i == widget.buttons.length - 1 ? BorderRadius.horizontal(right: Radius.circular(99)) : null,
+            text: button.loading ? "" : button.customText??button.text,
+            disabled: button.disabled,
+            loading: button.loading,
+            color: button.color??null,
+            gradient: button.gradient??null,
+            height: 40,
+            width: buttonWidth,
+            onClick: () {
+              if (button.disabled) return;
+              if (button.onClick != null) button.onClick();
+            },
           );
         }),
       ),

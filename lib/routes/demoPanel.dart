@@ -58,12 +58,16 @@ class _demoPanel extends State<demoPanel>{
               children: <Widget>[
                 CustomButton(
                   padding: EdgeInsets.symmetric(vertical: 6, horizontal: 12),
+                  type: "primary",
+                  size: "small",
                   text: "确定",
                   onClick: () => {},
                 ),
                 SizedBox(width: 8),
                 CustomButton(
                   padding: EdgeInsets.symmetric(vertical: 6, horizontal: 12),
+                  type: "primary",
+                  size: "small",
                   text: "取消",
                   plain: true,
                   onClick: () => {},

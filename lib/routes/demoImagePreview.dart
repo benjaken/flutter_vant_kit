@@ -41,6 +41,7 @@ class _demoImagePreview extends State<demoImagePreview> {
           Title("基础用法"),
           CustomButton(
             text: "预览图片",
+            type: "primary",
             onClick: () {
               showDialog(
                 context: context,
@@ -56,6 +57,7 @@ class _demoImagePreview extends State<demoImagePreview> {
           Title("指定初始位置"),
           CustomButton(
             text: "指定初始位置",
+            type: "primary",
             onClick: () {
               showDialog(
                 context: context,

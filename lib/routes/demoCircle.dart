@@ -42,6 +42,7 @@ class _demoCircle extends State<demoCircle> {
             children: <Widget>[
               CustomButton(
                 text: "增加",
+                type: "primary",
                 onClick: () {
                   setState(() {
                     percentage += 10;
@@ -51,7 +52,7 @@ class _demoCircle extends State<demoCircle> {
               SizedBox(width: 6),
               CustomButton(
                 text: "减少",
-                color: Colors.redAccent,
+                type: "danger",
                 onClick: () {
                   setState(() {
                     percentage -= 10;

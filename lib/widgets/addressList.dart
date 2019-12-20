@@ -131,7 +131,7 @@ class _AddressList extends State<AddressList>{
         child: CustomButton(
           text: "新增地址",
           block: true,
-          color: Colors.red,
+          type: "danger",
           round: true,
           onClick: () {
             if (widget.onAdd != null) widget.onAdd();
