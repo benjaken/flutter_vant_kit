@@ -69,7 +69,7 @@ class _demoCard extends State<demoCard> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
-                  CustomButton(
+                  NButton(
                     text: "按钮",
                     round: true,
                     plain: true,
@@ -78,7 +78,7 @@ class _demoCard extends State<demoCard> {
                     padding: EdgeInsets.symmetric(vertical: 3, horizontal: 12),
                   ),
                   SizedBox(width: 6),
-                  CustomButton(
+                  NButton(
                     text: "按钮",
                     round: true,
                     size: "small",

@@ -5,7 +5,7 @@
 ```
 import 'package:flutter_kit/widgets/button.dart';
 
-CustomButton(
+NButton(
   text: "按钮",
   color: Colors.white,
   ...

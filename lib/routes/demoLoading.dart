@@ -56,7 +56,7 @@ class _demoLoading extends State<demoLoading>{
             ),
           ),
           Title("显示Loading"),
-          CustomButton(
+          NButton(
             text: "显示loading",
             type: "primary",
             onClick: () {

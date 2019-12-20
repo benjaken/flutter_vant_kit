@@ -91,7 +91,7 @@ class SubmitBar extends StatelessWidget {
             ),
           ),
           SizedBox(width: 12,),
-          CustomButton(
+          NButton(
             text: loading ? "" : buttonText,
             round: true,
             gradient: LinearGradient(colors: [Color(0xffff6034), Color(0xffee0a24)]),

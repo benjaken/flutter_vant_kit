@@ -125,7 +125,7 @@ class _demoDialog extends State<demoDialog> {
           Title("基础用法"),
           Row(
             children: <Widget>[
-              CustomButton(
+              NButton(
                 text: "提示弹窗",
                 type: "primary",
                 onClick: () {
@@ -133,7 +133,7 @@ class _demoDialog extends State<demoDialog> {
                 },
               ),
               SizedBox(width: 10),
-              CustomButton(
+              NButton(
                 text: "提示弹窗(无标题)",
                 type: "primary",
                 onClick: () {
@@ -145,7 +145,7 @@ class _demoDialog extends State<demoDialog> {
           Title("确认弹窗"),
           Row(
             children: <Widget>[
-              CustomButton(
+              NButton(
                 text: "确认弹窗",
                 type: "primary",
                 onClick: () {
@@ -153,7 +153,7 @@ class _demoDialog extends State<demoDialog> {
                 },
               ),
               SizedBox(width: 10),
-              CustomButton(
+              NButton(
                 text: "自定义确认弹窗",
                 type: "primary",
                 onClick: () {
@@ -165,7 +165,7 @@ class _demoDialog extends State<demoDialog> {
           Title("异步调用"),
           Row(
             children: <Widget>[
-              CustomButton(
+              NButton(
                 text: "异步调用",
                 type: "primary",
                 onClick: () {
@@ -177,7 +177,7 @@ class _demoDialog extends State<demoDialog> {
           Title("自定义内容"),
           Row(
             children: <Widget>[
-              CustomButton(
+              NButton(
                 text: "自定义内容",
                 type: "primary",
                 onClick: () {

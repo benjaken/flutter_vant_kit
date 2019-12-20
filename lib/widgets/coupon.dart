@@ -103,7 +103,7 @@ class _Coupon extends State<Coupon> with SingleTickerProviderStateMixin {
           searchInput.text = val;
         });
       },
-      right: CustomButton(
+      right: NButton(
         text: widget.exchangeButtonText,
         size: "small",
         type: "primary",

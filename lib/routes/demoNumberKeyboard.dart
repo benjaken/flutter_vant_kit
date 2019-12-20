@@ -33,7 +33,7 @@ class _demoNumberKeyboard extends State<demoNumberKeyboard> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Title("基础用法"),
-          CustomButton(
+          NButton(
             text: "弹出默认键盘",
             type: "primary",
             onClick: () {

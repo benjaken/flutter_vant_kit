@@ -173,7 +173,7 @@ class _AddressEdit extends State<AddressEdit> {
           ),
         ) : Container(),
         SizedBox(height: 30),
-        CustomButton(
+        NButton(
           text: widget.saveButtonText,
           round: true,
           block: true,
@@ -183,7 +183,7 @@ class _AddressEdit extends State<AddressEdit> {
           },
         ),
         SizedBox(height: 10),
-        widget.showDelete ? CustomButton(
+        widget.showDelete ? NButton(
           text: widget.deleteButtonText,
           round: true,
           block: true,

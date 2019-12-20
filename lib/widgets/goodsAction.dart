@@ -45,7 +45,7 @@ class _GoodsAction extends State<GoodsAction>{
         mainAxisAlignment: MainAxisAlignment.end,
         children: List.generate(widget.buttons.length, (i) {
           ButtonItem button = widget.buttons[i];
-          return CustomButton(
+          return NButton(
             borderRadius: widget.buttons.length == 1 ? BorderRadius.circular(99.0) 
               : i == 0 ? BorderRadius.horizontal(left: Radius.circular(99)) : i == widget.buttons.length - 1 ? BorderRadius.horizontal(right: Radius.circular(99)) : null,
             text: button.loading ? "" : button.customText??button.text,

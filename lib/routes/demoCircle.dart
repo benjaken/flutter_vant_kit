@@ -40,7 +40,7 @@ class _demoCircle extends State<demoCircle> {
           Title("样式定制"),
           Row(
             children: <Widget>[
-              CustomButton(
+              NButton(
                 text: "增加",
                 type: "primary",
                 onClick: () {
@@ -50,7 +50,7 @@ class _demoCircle extends State<demoCircle> {
                 },
               ),
               SizedBox(width: 6),
-              CustomButton(
+              NButton(
                 text: "减少",
                 type: "danger",
                 onClick: () {

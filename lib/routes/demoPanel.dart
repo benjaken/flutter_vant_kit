@@ -56,7 +56,7 @@ class _demoPanel extends State<demoPanel>{
             footer: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
-                CustomButton(
+                NButton(
                   padding: EdgeInsets.symmetric(vertical: 6, horizontal: 12),
                   type: "primary",
                   size: "small",
@@ -64,7 +64,7 @@ class _demoPanel extends State<demoPanel>{
                   onClick: () => {},
                 ),
                 SizedBox(width: 8),
-                CustomButton(
+                NButton(
                   padding: EdgeInsets.symmetric(vertical: 6, horizontal: 12),
                   type: "primary",
                   size: "small",

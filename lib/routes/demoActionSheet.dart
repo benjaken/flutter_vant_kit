@@ -42,7 +42,7 @@ class _demoActionSheet extends State<demoActionSheet> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Title("基础用法"),
-          CustomButton(
+          NButton(
             text: "弹出菜单",
             type: "primary",
             onClick: () {
@@ -58,7 +58,7 @@ class _demoActionSheet extends State<demoActionSheet> {
             },
           ),
           Title("选项状态"),
-          CustomButton(
+          NButton(
             text: "弹出菜单",
             type: "primary",
             onClick: () {
@@ -74,7 +74,7 @@ class _demoActionSheet extends State<demoActionSheet> {
             },
           ),
           Title("展示取消按钮"),
-          CustomButton(
+          NButton(
             text: "弹出菜单",
             type: "primary",
             onClick: () {
@@ -94,7 +94,7 @@ class _demoActionSheet extends State<demoActionSheet> {
             },
           ),
           Title("展示描述信息"),
-          CustomButton(
+          NButton(
             text: "弹出菜单",
             type: "primary",
             onClick: () {
@@ -112,7 +112,7 @@ class _demoActionSheet extends State<demoActionSheet> {
             },
           ),
           Title("展示标题栏"),
-          CustomButton(
+          NButton(
             text: "弹出菜单",
             type: "primary",
             onClick: () {

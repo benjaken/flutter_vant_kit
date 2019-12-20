@@ -3,7 +3,7 @@ import 'package:flutter_kit/theme/style.dart';
 
 typedef CallBack();
 
-class CustomButton extends StatelessWidget {
+class NButton extends StatelessWidget {
   // 类型
   final String type;
   // 尺寸
@@ -43,7 +43,7 @@ class CustomButton extends StatelessWidget {
   // 点击后回调
   final CallBack onClick;
 
-  CustomButton({
+  NButton({
     Key key,
     this.type: "default",
     this.size: "normal",

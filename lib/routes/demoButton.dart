@@ -45,26 +45,26 @@ class _demoButton extends State<demoButton>{
             spacing: 12,
             runSpacing: 12,
             children: <Widget>[
-              CustomButton(
+              NButton(
                 text: "默认按钮",
                 onClick: () {},
               ),
-              CustomButton(
+              NButton(
                 text: "主要按钮",
                 type: "primary",
                 onClick: () {},
               ),
-              CustomButton(
+              NButton(
                 text: "信息按钮",
                 type: "info",
                 onClick: () {},
               ),
-              CustomButton(
+              NButton(
                 text: "危险按钮",
                 type: "danger",
                 onClick: () {},
               ),
-              CustomButton(
+              NButton(
                 text: "警告按钮",
                 type: "warning",
                 onClick: () {},
@@ -75,13 +75,13 @@ class _demoButton extends State<demoButton>{
           Wrap(
             spacing: 12,
             children: <Widget>[
-              CustomButton(
+              NButton(
                 plain: true,
                 text: "朴素按钮",
                 type: "primary",
                 onClick: () {},
               ),
-              CustomButton(
+              NButton(
                 plain: true,
                 text: "朴素按钮",
                 type: "info",
@@ -93,14 +93,14 @@ class _demoButton extends State<demoButton>{
           Wrap(
             spacing: 12,
             children: <Widget>[
-              CustomButton(
+              NButton(
                 plain: true, 
                 hairline: true,
                 text: "细边框按钮",
                 type: "primary",
                 onClick: () {},
               ),
-              CustomButton(
+              NButton(
                 plain: true,
                 hairline: true,
                 text: "细边框按钮",
@@ -114,16 +114,16 @@ class _demoButton extends State<demoButton>{
             spacing: 12,
             runSpacing: 12,
             children: <Widget>[
-              CustomButton(
+              NButton(
                 disabled: true,
                 text: "禁用状态",
               ),
-              CustomButton(
+              NButton(
                 disabled: true,
                 text: "禁用状态",
                 type: "primary",
               ),
-              CustomButton(
+              NButton(
                 plain: true,
                 disabled: true,
                 text: "禁用状态",
@@ -136,16 +136,16 @@ class _demoButton extends State<demoButton>{
             spacing: 12,
             runSpacing: 12,
             children: <Widget>[
-              CustomButton(
+              NButton(
                 loading: true,
                 type: "primary",
               ),
-              CustomButton(
+              NButton(
                 loading: true,
                 text: "加载中...",
                 type: "primary",
               ),
-              CustomButton(
+              NButton(
                 plain: true,
                 loading: _loading,
                 text: "点击2S后恢复",
@@ -174,26 +174,26 @@ class _demoButton extends State<demoButton>{
             spacing: 12,
             runSpacing: 12,
             children: <Widget>[
-              CustomButton(
+              NButton(
                 text: "方形按钮",
                 type: "primary",
                 square: true,
                 onClick: () {},
               ),
-              CustomButton(
+              NButton(
                 text: "圆形按钮",
                 type: "info",
                 round: true,
                 onClick: () {},
               ),
-              CustomButton(
+              NButton(
                 plain: true,
                 text: "圆形按钮",
                 type: "primary",
                 round: true,
                 onClick: () {},
               ),
-              CustomButton(
+              NButton(
                 block: true,
                 text: "块级按钮",
                 type: "info",
@@ -206,18 +206,18 @@ class _demoButton extends State<demoButton>{
             spacing: 12,
             runSpacing: 12,
             children: <Widget>[
-              CustomButton(
+              NButton(
                 icon: Icon(Icons.star_border, color: Colors.white, size: 18),
                 type: "primary",
                 onClick: () {},
               ),
-              CustomButton(
+              NButton(
                 text: "按钮",
                 icon: Icon(Icons.star_border, color: Colors.white, size: 18),
                 type: "primary",
                 onClick: () {},
               ),
-              CustomButton(
+              NButton(
                 text: "按钮",
                 plain: true,
                 icon: SizedBox(
@@ -235,25 +235,25 @@ class _demoButton extends State<demoButton>{
             runSpacing: 12,
             crossAxisAlignment: WrapCrossAlignment.center,
             children: <Widget>[
-              CustomButton(
+              NButton(
                 type: "primary",
                 size: "large",
                 text: "大号按钮",
                 onClick: () {},
               ),
-              CustomButton(
+              NButton(
                 type: "primary",
                 size: "normal",
                 text: "普通按钮",
                 onClick: () {},
               ),
-              CustomButton(
+              NButton(
                 type: "primary",
                 size: "small",
                 text: "小型按钮",
                 onClick: () {},
               ),
-              CustomButton(
+              NButton(
                 type: "primary",
                 size: "mini",
                 text: "迷你按钮",
@@ -266,23 +266,23 @@ class _demoButton extends State<demoButton>{
             spacing: 12,
             runSpacing: 12,
             children: <Widget>[
-              CustomButton(
+              NButton(
                 text: "单色按钮",
                 color: Colors.purple,
                 onClick: () {},
               ),
-              CustomButton(
+              NButton(
                 text: "单色按钮",
                 color: Colors.purple,
                 plain: true,
                 onClick: () {},
               ),
-              CustomButton(
+              NButton(
                 text: "渐变色按钮",
                 gradient: LinearGradient(colors: [Colors.lightBlue[300], Colors.blueAccent]),
                 onClick: () {},
               ),
-              CustomButton(
+              NButton(
                 text: "渐变色按钮",
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
@@ -291,7 +291,7 @@ class _demoButton extends State<demoButton>{
                 ),
                 onClick: () {},
               ),
-              CustomButton(
+              NButton(
                 text: "渐变色按钮",
                 gradient: RadialGradient(
                   radius: 2,

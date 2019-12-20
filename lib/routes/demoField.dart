@@ -140,7 +140,7 @@ class _demoField extends State<demoField> {
                 label: "短信验证码",
                 placeholder: "请输入短信验证码",
                 controller: testInput7,
-                right: CustomButton(
+                right: NButton(
                   text: "发送验证码",
                   type: "primary",
                   size: "small",

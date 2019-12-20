@@ -47,7 +47,7 @@ class _demoSteps extends State<demoSteps> {
             child: Wrap(
               runSpacing: 10,
               children: <Widget>[
-                CustomButton(
+                NButton(
                   text: "上一步",
                   type: "primary",
                   plain: true,
@@ -58,7 +58,7 @@ class _demoSteps extends State<demoSteps> {
                   },
                 ),
                 SizedBox(width: 6),
-                CustomButton(
+                NButton(
                   text: "下一步",
                   type: "primary",
                   plain: true,

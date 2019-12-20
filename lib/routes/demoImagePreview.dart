@@ -39,7 +39,7 @@ class _demoImagePreview extends State<demoImagePreview> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Title("基础用法"),
-          CustomButton(
+          NButton(
             text: "预览图片",
             type: "primary",
             onClick: () {
@@ -55,7 +55,7 @@ class _demoImagePreview extends State<demoImagePreview> {
             },
           ),
           Title("指定初始位置"),
-          CustomButton(
+          NButton(
             text: "指定初始位置",
             type: "primary",
             onClick: () {

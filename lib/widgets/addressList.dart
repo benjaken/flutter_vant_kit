@@ -128,7 +128,7 @@ class _AddressList extends State<AddressList>{
         height: 65,
         color: Colors.white,
         padding: EdgeInsets.symmetric(vertical: 12, horizontal: 20),
-        child: CustomButton(
+        child: NButton(
           text: "新增地址",
           block: true,
           type: "danger",
