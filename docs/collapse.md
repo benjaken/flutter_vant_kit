@@ -51,5 +51,6 @@ Collapse(
 | clickable | 是否可点击 | `bool` | `true` |
 | customTitle | 自定义标题内容 | `Widget` | - |
 | customLabel | 自定义标题下方描述 | `Widget` | - |
-| children | 面板内容 | `List<Widget>` | - |
+| content | 面板纯文本内容 | `String` | - |
+| children | 自定义面板内容 | `List<Widget>` | - |
 | onExpansionChanged | 面板展开后回调 | `Function(bool isExpand)` | - |

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_kit/theme/style.dart';
 import 'package:flutter_kit/widgets/badge.dart';
 import 'package:flutter_kit/widgets/button.dart';
 
@@ -6,17 +7,13 @@ class GoodsAction extends StatefulWidget {
   List<ActionItem> actions;
   List<ButtonItem> buttons;
 
-  GoodsAction({
-    Key key,
-    this.actions,
-    this.buttons
-  }) : super(key: key);  
+  GoodsAction({Key key, this.actions, this.buttons}) : super(key: key);
 
   @override
   _GoodsAction createState() => _GoodsAction();
 }
 
-class _GoodsAction extends State<GoodsAction>{
+class _GoodsAction extends State<GoodsAction> {
   GlobalKey _buttons = GlobalKey();
   double buttonWidth;
 
@@ -33,27 +30,30 @@ class _GoodsAction extends State<GoodsAction>{
       buttonWidth = (buttonsWidth - 20) / widget.buttons.length;
     });
   }
-  
-  Widget buildButtons () {
+
+  Widget buildButtons() {
     return Container(
       key: _buttons,
-      // alignment: AlignmentDirectional.centerEnd,
-      padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-      color: Colors.white,
-      height: 50,
+      padding: Style.goodsActionButtonsPadding,
+      color: Style.goodsActionBackgroundColor,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: List.generate(widget.buttons.length, (i) {
           ButtonItem button = widget.buttons[i];
           return NButton(
-            borderRadius: widget.buttons.length == 1 ? BorderRadius.circular(99.0) 
-              : i == 0 ? BorderRadius.horizontal(left: Radius.circular(99)) : i == widget.buttons.length - 1 ? BorderRadius.horizontal(right: Radius.circular(99)) : null,
-            text: button.loading ? "" : button.customText??button.text,
+            borderRadius: widget.buttons.length == 1
+                ? BorderRadius.circular(Style.borderRadiusMax)
+                : i == 0
+                    ? BorderRadius.horizontal(left: Radius.circular(Style.borderRadiusMax))
+                    : i == widget.buttons.length - 1
+                        ? BorderRadius.horizontal(right: Radius.circular(Style.borderRadiusMax))
+                        : null,
+            text: button.loading ? "" : button.customText ?? button.text,
             disabled: button.disabled,
             loading: button.loading,
-            color: button.color??null,
-            gradient: button.gradient??null,
-            height: 40,
+            color: button.color ?? null,
+            gradient: button.gradient ?? null,
+            height: Style.goodsActionButtonHeight,
             width: buttonWidth,
             onClick: () {
               if (button.disabled) return;
@@ -65,12 +65,10 @@ class _GoodsAction extends State<GoodsAction>{
     );
   }
 
-  Widget buildActionItem (i) {
+  Widget buildActionItem(i) {
     ActionItem action = widget.actions[i];
     return DecoratedBox(
-      decoration: BoxDecoration(
-        color: Colors.white
-      ),
+      decoration: BoxDecoration(color: Colors.white),
       child: Material(
         type: MaterialType.transparency,
         child: InkWell(
@@ -78,17 +76,24 @@ class _GoodsAction extends State<GoodsAction>{
             if (action.onClick != null) action.onClick();
           },
           child: Container(
-            width: 46,
-            height: 50,
+            width: Style.goodsActionIconWidth,
+            height: Style.goodsActionIconHeight,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Badge(
                   value: action.info,
-                  child: action.customIcon??Icon(action.icon, size: 16, color: Color(0xff323233)),
+                  child: action.customIcon ??
+                      Icon(action.icon,
+                          size: Style.goodsActionIconSize,
+                          color: Style.goodsActionIconColor),
                 ),
-                SizedBox(height: 3),
-                action.customText??Text("${action.text}", style: TextStyle(fontSize: 12, color: Color(0xff646566)))
+                SizedBox(height: Style.intervalSm),
+                action.customText ??
+                    Text("${action.text}",
+                        style: TextStyle(
+                            fontSize: Style.goodsActionFontSize,
+                            color: Style.goodsActionIconTextColor))
               ],
             ),
           ),
@@ -97,21 +102,22 @@ class _GoodsAction extends State<GoodsAction>{
     );
   }
 
-  Widget buildAction () {
+  Widget buildAction() {
     return Container(
       // padding: EdgeInsets.only(right: 10),
       color: Colors.white,
       child: Wrap(
         spacing: 6,
-        children: List.generate(widget.actions.length, (i) => buildActionItem(i)),
+        children:
+            List.generate(widget.actions.length, (i) => buildActionItem(i)),
       ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    widget.actions = widget.actions??[];
-    widget.buttons = widget.buttons??[];
+    widget.actions = widget.actions ?? [];
+    widget.buttons = widget.buttons ?? [];
     return Row(
       children: <Widget>[
         widget.actions.length > 0 ? buildAction() : Container(),
@@ -131,7 +137,13 @@ class ActionItem {
   final Widget customIcon;
   final Widget customText;
 
-  ActionItem({this.text, this.icon, this.info, this.onClick,  this.customIcon, this.customText});
+  ActionItem(
+      {this.text,
+      this.icon,
+      this.info,
+      this.onClick,
+      this.customIcon,
+      this.customText});
 }
 
 class ButtonItem {
@@ -143,5 +155,12 @@ class ButtonItem {
   final Function onClick;
   final Widget customText;
 
-  ButtonItem({this.text, this.gradient, this.color, this.disabled: false, this.loading: false, this.onClick, this.customText});
+  ButtonItem(
+      {this.text,
+      this.gradient,
+      this.color,
+      this.disabled: false,
+      this.loading: false,
+      this.onClick,
+      this.customText});
 }

@@ -18,7 +18,7 @@ Avatar(
 | 参数  | 说明  | 类型  | 默认值  |
 | ------------ | ------------ | ------------ | ------------ |
 | type | 头像类型，可选值为`large` `small` | `String` | `normal` |
-| size | 头像大小 | `double` | - |
+| size | 头像大小，优先级比`type`的尺寸高 | `double` | - |
 | shape | 头像形状，可选值为`square` | `String` | `round` |
 | color | 头像背景颜色 | `Color` | `Color(0xffebedf0)` |
 | iconColor | 头像图标颜色 | `Color` | `black` |

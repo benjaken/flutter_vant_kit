@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_kit/utils/index.dart';
 
 import 'package:flutter_kit/widgets/button.dart';
+import 'package:flutter_kit/widgets/price.dart';
 import 'package:flutter_kit/widgets/tag.dart';
 import 'package:flutter_kit/widgets/card.dart';
 
@@ -13,7 +14,7 @@ class demoCard extends StatefulWidget {
 class _demoCard extends State<demoCard> {
   Widget Title(String title) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 20),
+      padding: EdgeInsets.symmetric(vertical: 20, horizontal: 16),
       child: Text(
         title, 
         style: TextStyle(
@@ -56,7 +57,7 @@ class _demoCard extends State<demoCard> {
             customTitle: Text("商品名称", style: TextStyle(fontSize: 16, color: Colors.blueAccent)),
             desc: "描述信息",
             num: 2,
-            customPrice: Text("¥2.00", style: TextStyle(fontSize: 16, color: Colors.red, fontWeight: FontWeight.bold)),
+            customPrice: Price(value: 2.0, color: Colors.red,),
             image: Image.network("https://img.yzcdn.cn/vant/t-thirt.jpg"),
             customTags: Row(
               children: <Widget>[
@@ -72,16 +73,14 @@ class _demoCard extends State<demoCard> {
                   NButton(
                     text: "按钮",
                     round: true,
-                    plain: true,
-                    size: "small",
-                    type: "info",
+                    size: "mini",
                     padding: EdgeInsets.symmetric(vertical: 3, horizontal: 12),
                   ),
                   SizedBox(width: 6),
                   NButton(
                     text: "按钮",
                     round: true,
-                    size: "small",
+                    size: "mini",
                     padding: EdgeInsets.symmetric(vertical: 3, horizontal: 12),
                   ),
                 ],

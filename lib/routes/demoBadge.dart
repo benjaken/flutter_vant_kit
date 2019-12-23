@@ -63,15 +63,6 @@ class _demoBadge extends State<demoBadge> {
               ),
             ]
           ),
-          Title("省略号"),
-          Row(
-            children: <Widget>[
-              Badge(
-                value: "…",
-                child: testButton(),
-              ),
-            ]
-          ),
           Title("自定义样式"),
           Row(
             children: <Widget>[

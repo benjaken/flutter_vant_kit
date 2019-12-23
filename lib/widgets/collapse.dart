@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_kit/theme/style.dart';
 import 'package:flutter_kit/widgets/collapseItem.dart';
+import 'package:flutter_kit/widgets/divider.dart';
 
 class Collapse extends StatefulWidget {
   // 当前展开面板的 name	
@@ -43,6 +45,7 @@ class _Collapse extends State<Collapse> {
           customLabel: item.customLabel,
           clickable: item.clickable,
           isExpanded: widget.name.contains(name),
+          content: item.content,
           children: item.children,
           rightIcon: item.rightIcon,
           onExpansionChanged: (val) {
@@ -54,10 +57,7 @@ class _Collapse extends State<Collapse> {
           },
         )
       );
-      if (i < widget.list.length - 1) widgets.add(Container(
-        height: 1,
-        color: Color(0xffebedf0),
-      ));
+      if (i < widget.list.length - 1) widgets.add(NDivider());
     }
     return widgets;
   }
@@ -68,8 +68,8 @@ class _Collapse extends State<Collapse> {
     return Container(
       decoration: BoxDecoration(
         border: Border(
-          top: BorderSide(width: widget.border ? 1 : 0, color: Color(0xffebedf0)),
-          bottom: BorderSide(width: widget.border ? 1 : 0, color: Color(0xffebedf0)),
+          top: BorderSide(width: widget.border ? Style.borderWidthBase : 0, color: Style.borderColor),
+          bottom: BorderSide(width: widget.border ? Style.borderWidthBase : 0, color: Style.borderColor),
         )
       ),
       child: Column(

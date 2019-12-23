@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_kit/theme/style.dart';
+import 'package:flutter_kit/widgets/divider.dart';
 
 class CellGroup extends StatelessWidget {
   // 分组标题
@@ -11,23 +12,19 @@ class CellGroup extends StatelessWidget {
   // 默认插槽
   final List<Widget> children;
 
-  CellGroup({
-    Key key,
-    this.title,
-    this.children,
-    this.border: true,
-    this.decoration
-  }) : super(key: key);
+  CellGroup(
+      {Key key, this.title, this.children, this.border: true, this.decoration})
+      : super(key: key);
 
-  buildItems (List list) {
+  buildItems(List list) {
     List<Widget> widgets = [];
-    for(int i = 0; i < list.length; i++) {
+    for (int i = 0; i < list.length; i++) {
       widgets.add(list[i]);
-      if (i < list.length - 1) widgets.add(Container(
-        height: Style.borderWidthBase,
-        margin: EdgeInsets.symmetric(horizontal: Style.cellHorizontalPadding),
-        color: Style.cellBorderColor,
-      ));
+      if (i < list.length - 1)
+        widgets.add(Container(
+          margin: EdgeInsets.symmetric(horizontal: Style.cellHorizontalPadding),
+          child: NDivider(),
+        ));
     }
     return widgets;
   }
@@ -37,21 +34,29 @@ class CellGroup extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        title != null ? Padding(
-          padding: Style.cellGroupTitlePadding,
-          child: Text(title, style: TextStyle(
-            fontSize: Style.cellGroupTitleFontSize,
-            color: Colors.grey
-          )),
-        ) : Container(),
+        title != null
+            ? Padding(
+                padding: Style.cellGroupTitlePadding,
+                child: Text(title,
+                    style: TextStyle(
+                        fontSize: Style.cellGroupTitleFontSize,
+                        color: Colors.grey)),
+              )
+            : Container(),
         Container(
-          decoration: decoration??BoxDecoration(
-            border: border ? Border(
-              top: BorderSide(width: Style.borderWidthBase, color: Style.cellBorderColor),
-              bottom: BorderSide(width: Style.borderWidthBase, color: Style.cellBorderColor),
-            ) : null,
-            color: Colors.white
-          ),
+          decoration: decoration ??
+              BoxDecoration(
+                  border: border
+                      ? Border(
+                          top: BorderSide(
+                              width: Style.borderWidthBase,
+                              color: Style.cellBorderColor),
+                          bottom: BorderSide(
+                              width: Style.borderWidthBase,
+                              color: Style.cellBorderColor),
+                        )
+                      : null,
+                  color: Colors.white),
           child: Column(
             children: buildItems(children),
           ),

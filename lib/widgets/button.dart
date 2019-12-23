@@ -8,7 +8,7 @@ class NButton extends StatelessWidget {
   final String type;
   // 尺寸
   final String size;
-  // 按钮文字	
+  // 按钮文字
   final String text;
   // 按钮宽度
   final double width;
@@ -22,19 +22,19 @@ class NButton extends StatelessWidget {
   final Gradient gradient;
   // 按钮内文字颜色
   final Color textColor;
-  // 是否为块级元素	
+  // 是否为块级元素
   final bool block;
-  // 是否为朴素按钮	
+  // 是否为朴素按钮
   final bool plain;
-  // 是否为方形按钮	
+  // 是否为方形按钮
   final bool square;
-  // 是否为圆形按钮	
+  // 是否为圆形按钮
   final bool round;
-  // 是否禁用按钮	
+  // 是否禁用按钮
   final bool disabled;
   // 是否为加载中
   final bool loading;
-  // 是否使用 0.5px 边框	
+  // 是否使用 0.5px 边框
   final bool hairline;
   // 自定义内边距
   final EdgeInsets padding;
@@ -43,32 +43,34 @@ class NButton extends StatelessWidget {
   // 点击后回调
   final CallBack onClick;
 
-  NButton({
-    Key key,
-    this.type: "default",
-    this.size: "normal",
-    this.text,
-    this.width,
-    this.height,
-    this.color,
-    this.textColor,
-    this.icon,
-    this.block: false,
-    this.plain: false,
-    this.square: false,
-    this.round: false,
-    this.disabled: false,
-    this.hairline: false,
-    this.loading: false,
-    this.padding,
-    this.borderRadius,
-    this.gradient,
-    this.onClick
-  }) : assert(["mini", "small", "normal", "large"].indexOf(size) > -1,
+  NButton(
+      {Key key,
+      this.type: "default",
+      this.size: "normal",
+      this.text,
+      this.width,
+      this.height,
+      this.color,
+      this.textColor,
+      this.icon,
+      this.block: false,
+      this.plain: false,
+      this.square: false,
+      this.round: false,
+      this.disabled: false,
+      this.hairline: false,
+      this.loading: false,
+      this.padding,
+      this.borderRadius,
+      this.gradient,
+      this.onClick})
+      : assert(["mini", "small", "normal", "large"].indexOf(size) > -1,
             "size must be mini, small, normal, or large"),
-      assert(["default", "primary", "info", "danger", "warning"].indexOf(type) > -1,
-          "type must be default, primary, info, danger or warning"),
-      super(key: key);
+        assert(
+            ["default", "primary", "info", "danger", "warning"].indexOf(type) >
+                -1,
+            "type must be default, primary, info, danger or warning"),
+        super(key: key);
 
   Color borderColor;
   Color buttonColor;
@@ -125,26 +127,35 @@ class NButton extends StatelessWidget {
     },
   };
 
-  Widget buildContent () {
+  Widget buildContent() {
     return Container(
-      width: width??null,
-      height: height??sizes[size]["height"],
-      padding: padding??sizes[size]["padding"],
+      width: width ?? null,
+      height: height ?? sizes[size]["height"],
+      padding: padding ?? sizes[size]["padding"],
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: block ? MainAxisSize.max : MainAxisSize.min,
         children: <Widget>[
-          loading ? SizedBox(
-            width: sizes[size]["fontSize"],
-            height: sizes[size]["fontSize"],
-            child: CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation(buttonTextColor),
-              backgroundColor: buttonColor,
-              strokeWidth: Style.borderWidthBase,
-            ),
-          ) : (icon != null ? icon : Container()),
-          (loading || icon != null) && text != null ? SizedBox(width: 6) : Container(),
-          text != null ? Text(text, style: TextStyle(color: buttonTextColor, fontSize: sizes[size]["fontSize"])) : Container(),
+          loading
+              ? SizedBox(
+                  width: sizes[size]["fontSize"],
+                  height: sizes[size]["fontSize"],
+                  child: CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation(buttonTextColor),
+                    backgroundColor: buttonColor,
+                    strokeWidth: Style.borderWidthBase,
+                  ),
+                )
+              : (icon != null ? icon : Container()),
+          (loading || icon != null) && text != null
+              ? SizedBox(width: Style.intervalSm)
+              : Container(),
+          text != null
+              ? Text(text,
+                  style: TextStyle(
+                      color: buttonTextColor,
+                      fontSize: sizes[size]["fontSize"]))
+              : Container(),
         ],
       ),
     );
@@ -153,35 +164,62 @@ class NButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (gradient == null) {
-      borderColor = (color??colors[type]["borderColor"]);
-      buttonColor = plain ? Style.buttonPlainBackgroundColor : (color??colors[type]["buttonColor"]);
+      borderColor = (color ?? colors[type]["borderColor"]);
+      buttonColor = plain
+          ? Style.buttonPlainBackgroundColor
+          : (color ?? colors[type]["buttonColor"]);
     }
-    buttonTextColor = (textColor??(plain ? (color??colors[type]["buttonColor"])
-      : ((color != null || gradient != null) && type == 'default' ? Colors.white : colors[type]["textColor"])));
+    buttonTextColor = (textColor ??
+        (plain
+            ? (color ?? colors[type]["buttonColor"])
+            : ((color != null || gradient != null) && type == 'default'
+                ? Colors.white
+                : colors[type]["textColor"])));
     return Opacity(
       opacity: disabled ? Style.buttonDisabledOpacity : 1.0,
       child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: buttonColor??null,
-          gradient: gradient??null,
-          border: gradient == null ? Border.all(color: borderColor, width: hairline ? Style.buttonHairBorderWidth : Style.buttonBorderWidth) : null,
-          borderRadius: borderRadius??(square ? null : BorderRadius.circular(round ? Style.buttonRoundBorderRadius : Style.buttonBorderRadius))
-        ),
-        child: Material(
-          type: MaterialType.transparency,
-          child: InkWell(
-            focusColor: (disabled || loading) ? Colors.transparent : Theme.of(context).focusColor,
-            highlightColor: (disabled || loading) ? Colors.transparent : Theme.of(context).highlightColor,
-            hoverColor: (disabled || loading) ? Colors.transparent : Theme.of(context).hoverColor,
-            splashColor: (disabled || loading) ? Colors.transparent : Theme.of(context).splashColor,
-            borderRadius: borderRadius??(square ? null : BorderRadius.circular(round ? Style.buttonRoundBorderRadius : Style.buttonBorderRadius)),
-            onTap: () {
-              if (!disabled && !loading && onClick != null) onClick();
-            },
-            child: buildContent()
-          ),
-        )
-      ),
+          decoration: BoxDecoration(
+              color: buttonColor ?? null,
+              gradient: gradient ?? null,
+              border: gradient == null
+                  ? Border.all(
+                      color: borderColor,
+                      width: hairline
+                          ? Style.buttonHairBorderWidth
+                          : Style.buttonBorderWidth)
+                  : null,
+              borderRadius: borderRadius ??
+                  (square
+                      ? null
+                      : BorderRadius.circular(round
+                          ? Style.buttonRoundBorderRadius
+                          : Style.buttonBorderRadius))),
+          child: Material(
+            type: MaterialType.transparency,
+            child: InkWell(
+                focusColor: (disabled || loading)
+                    ? Colors.transparent
+                    : Theme.of(context).focusColor,
+                highlightColor: (disabled || loading)
+                    ? Colors.transparent
+                    : Theme.of(context).highlightColor,
+                hoverColor: (disabled || loading)
+                    ? Colors.transparent
+                    : Theme.of(context).hoverColor,
+                splashColor: (disabled || loading)
+                    ? Colors.transparent
+                    : Theme.of(context).splashColor,
+                borderRadius: borderRadius ??
+                    (square
+                        ? null
+                        : BorderRadius.circular(round
+                            ? Style.buttonRoundBorderRadius
+                            : Style.buttonBorderRadius)),
+                onTap: () {
+                  if (!disabled && !loading && onClick != null) onClick();
+                },
+                child: buildContent()),
+          )),
     );
   }
 }

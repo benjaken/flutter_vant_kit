@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_kit/theme/style.dart';
 
 class NDivider extends StatefulWidget {
   // 分隔符文字	
@@ -19,8 +20,8 @@ class NDivider extends StatefulWidget {
   NDivider({
     Key key,
     this.content,
-    this.fontColor: Colors.grey,
-    this.fontSize: 14,
+    this.fontColor: Style.dividerTextColor,
+    this.fontSize: Style.dividerFontSize,
     this.lineColor,
     this.hairline: false,
     this.contentPosition: 'center',
@@ -54,36 +55,36 @@ class _NDivider extends State<NDivider> {
 
   @override
   Widget build(BuildContext context) {
-    widget.lineColor = widget.lineColor??Color(0xffebedf0);
+    widget.lineColor = widget.lineColor??Style.dividerBorderColor;
     return Container(
       key: _dividerKey,
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           widget.contentPosition == 'left' ? Container(
-            height: widget.hairline ? .5 : 1,
-            width: 32,
+            height: widget.hairline ? Style.borderWidthHair : Style.borderWidthBase,
+            width: Style.dividerContentLeftWidth,
             color: widget.lineColor,
           ) : Expanded(
             child: Container(
-              height: widget.hairline ? .5 : 1,
+              height: widget.hairline ? Style.borderWidthHair : Style.borderWidthBase,
               color: widget.lineColor,
             ),
           ),
           (widget.child != null || widget.content != null) ? Container(
             key: _textKey,
-            padding: EdgeInsets.symmetric(horizontal: 10),
+            padding: Style.dividerContentPadding,
             child: widget.child != null ? widget.child : Text(widget.content,
               style: TextStyle(fontSize: widget.fontSize, color: widget.fontColor)
             ),
           ) : Container(),
           widget.contentPosition == 'right' ? Container(
-            height: widget.hairline ? .5 : 1,
-            width: 32,
+            height: widget.hairline ? Style.borderWidthHair : Style.borderWidthBase,
+            width: Style.dividerContentRightWidth,
             color: widget.lineColor,
           ) : Expanded(
             child: Container(
-              height: widget.hairline ? .5 : 1,
+              height: widget.hairline ? Style.borderWidthHair : Style.borderWidthBase,
               color: widget.lineColor,
             ),
           ),

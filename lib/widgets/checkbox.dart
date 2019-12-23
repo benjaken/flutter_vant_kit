@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_kit/theme/style.dart';
 
 typedef ValueCallBack(bool value);
 
@@ -13,29 +14,39 @@ class NCheckbox extends StatefulWidget {
   final Color checkedColor;
   final ValueCallBack onChange;
 
-  NCheckbox({
-    Key key,
-    this.name,
-    this.value: false,
-    this.shape: 'round',
-    this.text,
-    this.disabled: false,
-    this.readonly: false,
-    this.iconSize: 20,
-    this.checkedColor: Colors.blueAccent,
-    this.onChange
-  }) : super(key: key);
-  
+  NCheckbox(
+      {Key key,
+      this.name,
+      this.value: false,
+      this.shape: 'round',
+      this.text,
+      this.disabled: false,
+      this.readonly: false,
+      this.iconSize: Style.checkboxSize,
+      this.checkedColor: Style.checkboxCheckedIconColor,
+      this.onChange})
+      : assert(["round", "square"].indexOf(shape) > -1,
+            "shape must be round, or square"),
+        super(key: key);
+
   @override
   _NCheckbox createState() => _NCheckbox();
 }
 
-class _NCheckbox extends State<NCheckbox>{
+class _NCheckbox extends State<NCheckbox> {
   @override
   Widget build(BuildContext context) {
-    Color backgroundColor = widget.disabled ? Color(0xffebedf0) : widget.value ? widget.checkedColor : Colors.white;
-    Color borderColor = widget.disabled || !widget.value ? Color(0xffc8c9cc) : widget.checkedColor;
-    Color iconColor = widget.disabled ? (widget.value ? Color(0xffc8c9cc) : Color(0xffebedf0)) : Colors.white;
+    Color backgroundColor = widget.disabled
+        ? Style.checkboxDisabledBackgroundColor
+        : widget.value ? widget.checkedColor : Style.checkboxBackgroundColor;
+    Color borderColor = widget.disabled || !widget.value
+        ? Style.checkboxBorderColor
+        : widget.checkedColor;
+    Color iconColor = widget.disabled
+        ? (widget.value
+            ? Style.checkboxDisabledIconColor
+            : Style.checkboxDisabledBackgroundColor)
+        : Style.checkboxBackgroundColor;
     return GestureDetector(
       onTap: () {
         if (widget.disabled || widget.readonly) return;
@@ -52,14 +63,24 @@ class _NCheckbox extends State<NCheckbox>{
               height: widget.iconSize,
               alignment: AlignmentDirectional.center,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(widget.shape == 'square' ? 0 : widget.iconSize / 2),
-                border: Border.all(width: 1, color: borderColor),
-                color: backgroundColor
-              ),
-              child: Icon(Icons.check, size: widget.iconSize - 4, color: iconColor),
+                  borderRadius: BorderRadius.circular(
+                      widget.shape == 'square' ? 0 : Style.borderRadiusMax),
+                  border: Border.all(
+                      width: Style.borderWidthBase, color: borderColor),
+                  color: backgroundColor),
+              child: Icon(Icons.check,
+                  size: widget.iconSize / 1.25, color: iconColor),
             ),
-            widget.text != null ? SizedBox(width: 6) : Container(),
-            widget.text != null ? Text("${widget.text}", style: TextStyle()) : Container()
+            widget.text != null
+                ? SizedBox(width: Style.checkboxLabelMargin)
+                : Container(),
+            widget.text != null
+                ? Text("${widget.text}",
+                    style: TextStyle(
+                        color: widget.disabled
+                            ? Style.checkboxDisabledLabelColor
+                            : Style.checkboxLabelColor))
+                : Container()
           ],
         ),
       ),

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_kit/theme/style.dart';
 import 'package:flutter_kit/widgets/cell.dart';
 
-const Duration _kExpand = Duration(milliseconds: 200);
+const Duration _kExpand = Style.animationDurationBase;
 
 class CollapseItem extends StatefulWidget {
   // 是否为展开状态
@@ -24,7 +25,9 @@ class CollapseItem extends StatefulWidget {
   final Widget customTitle;
   // 自定义标题下方描述
   final Widget customLabel;
-  // 面板内容
+  // 面板纯文本内容
+  final String content;
+  // 自定义面板内容
   final List<Widget> children;
   // 面板展开后回调
   final Function(bool val) onExpansionChanged;
@@ -41,6 +44,7 @@ class CollapseItem extends StatefulWidget {
     this.isExpanded: false,
     this.customTitle,
     this.customLabel,
+    this.content,
     this.children,
     this.onExpansionChanged,
   }) : super(key: key);
@@ -111,7 +115,7 @@ class _CollapseItem extends State<CollapseItem> with SingleTickerProviderStateMi
         Cell(
           customTitle: Row(
             children: <Widget>[
-              Text(widget.title??"", style: TextStyle(color: widget.clickable ? Colors.black : Colors.grey)),
+              Text(widget.title??"", style: TextStyle(color: widget.clickable ? Style.textColor : Style.collapseItemTitleDisabledColor)),
               widget.customTitle??Container()
             ],
           ),
@@ -121,7 +125,7 @@ class _CollapseItem extends State<CollapseItem> with SingleTickerProviderStateMi
           icon: widget.icon,
           customRight: RotationTransition(
             turns: _iconTurns,
-            child: widget.rightIcon??Icon(Icons.expand_more, color: widget.clickable ? Color(0xff969799) : Colors.grey),
+            child: widget.rightIcon??Icon(Icons.expand_more, color: widget.clickable ? Style.collapseItemContentTextColor : Style.collapseItemTitleDisabledColor),
           ),
           onClick: () {
             _handleTap();
@@ -141,22 +145,25 @@ class _CollapseItem extends State<CollapseItem> with SingleTickerProviderStateMi
   @override
   Widget build (BuildContext context) {
     return Container(
-      color: Colors.white,
+      color: Style.collapseItemContentBackgroundColor,
       child: AnimatedBuilder(
         animation: _controller.view,
         builder: _buildChildren,
         child: Container(
           alignment: AlignmentDirectional.centerStart,
-          padding: EdgeInsets.fromLTRB(0, 15, 20, 15),
-          margin: EdgeInsets.only(left: 20),
+          padding: Style.collapseItemContentPadding,
+          margin: Style.collapseItemContentMargin,
           decoration: BoxDecoration(
             border: Border(
-              top: BorderSide(width: 1, color: Color(0xffebedf0))
+              top: BorderSide(width: Style.borderWidthBase, color: Style.borderColor)
             ),
           ),
-          child: Column(
+          child: widget.children != null ? Column(
             children: widget.children
-          ),
+          ) : Text("${widget.content}", style: TextStyle(
+            color: Style.collapseItemContentTextColor,
+            fontSize: Style.collapseItemContentFontSize,
+          )),
         )
       ),
     );

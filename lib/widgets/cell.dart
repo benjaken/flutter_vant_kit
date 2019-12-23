@@ -44,11 +44,11 @@ class Cell extends StatelessWidget {
     this.customTitle,
     this.customLabel,
     this.customRight,
-  }) : assert(size == "normal" || size == "large",
+  })  : assert(size == "normal" || size == "large",
             "size must be normal or large"),
-      assert(["left", "right", "up", "down"].indexOf(arrowDirection) > -1,
-          "arrowDirection must be left, right, up or down"),
-      super(key: key);
+        assert(["left", "right", "up", "down"].indexOf(arrowDirection) > -1,
+            "arrowDirection must be left, right, up or down"),
+        super(key: key);
 
   IconData getLinkIcon() {
     switch (arrowDirection) {
@@ -92,7 +92,7 @@ class Cell extends StatelessWidget {
         icon != null
             ? Icon(icon, size: Style.cellIconSize, color: Style.cellTextColor)
             : Container(),
-        icon != null ? SizedBox(width: 4) : Container(),
+        icon != null ? SizedBox(width: Style.intervalSm) : Container(),
         title != null
             ? Text(title,
                 style: TextStyle(
@@ -145,7 +145,7 @@ class Cell extends StatelessWidget {
               : MainAxisAlignment.start,
           children: <Widget>[buildLeft(), buildRight()],
         ),
-        SizedBox(height: 4.0),
+        SizedBox(height: Style.intervalSm),
         buildBottom()
       ],
     );

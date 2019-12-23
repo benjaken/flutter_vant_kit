@@ -36,27 +36,21 @@ class _demoCollapse extends State<demoCollapse>{
             list: [
               CollapseItem(
                 title: "标题1",
-                children: <Widget>[
-                  Text("代码是写出来给人看的，附带能在机器上运行", style: TextStyle(color: Colors.grey, fontSize: 12)),
-                ],
+                content: "代码是写出来给人看的，附带能在机器上运行",
               ),
               CollapseItem(
                 title: "标题2",
-                children: <Widget>[
-                  Text("代码是写出来给人看的，附带能在机器上运行", style: TextStyle(color: Colors.grey, fontSize: 12)),
-                ],
+                content: "代码是写出来给人看的，附带能在机器上运行",
               ),
               CollapseItem(
                 title: "标题3",
                 label: "不能点击",
                 clickable: false,
-                children: <Widget>[
-                  Text("代码是写出来给人看的，附带能在机器上运行", style: TextStyle(color: Colors.grey, fontSize: 12)),
-                ],
+                content: "代码是写出来给人看的，附带能在机器上运行",
               )
             ],
             onChange: (List list) {
-              Utils.toast("$list");
+              Utils.toast("Expanded! $list");
             },
           ),
           Title("手风琴"),
@@ -66,21 +60,15 @@ class _demoCollapse extends State<demoCollapse>{
             list: [
               CollapseItem(
                 title: "标题1",
-                children: <Widget>[
-                  Text("代码是写出来给人看的，附带能在机器上运行", style: TextStyle(color: Colors.grey, fontSize: 12)),
-                ],
+                content: "代码是写出来给人看的，附带能在机器上运行",
               ),
               CollapseItem(
                 title: "标题2",
-                children: <Widget>[
-                  Text("代码是写出来给人看的，附带能在机器上运行", style: TextStyle(color: Colors.grey, fontSize: 12)),
-                ],
+                content: "代码是写出来给人看的，附带能在机器上运行",
               ),
               CollapseItem(
                 title: "标题3",
-                children: <Widget>[
-                  Text("代码是写出来给人看的，附带能在机器上运行", style: TextStyle(color: Colors.grey, fontSize: 12)),
-                ],
+                content: "代码是写出来给人看的，附带能在机器上运行",
               )
             ],
           ),
@@ -97,7 +85,7 @@ class _demoCollapse extends State<demoCollapse>{
                 name: 'a',
                 rightIcon: Icon(Icons.favorite, size: 16, color: Colors.blueAccent),
                 children: <Widget>[
-                  Text("代码是写出来给人看的，附带能在机器上运行", style: TextStyle(color: Colors.grey, fontSize: 12)),
+                  Text("代码是写出来给人看的，附带能在机器上运行", style: TextStyle(color: Colors.red, fontSize: 12)),
                 ],
               ),
               CollapseItem(
@@ -106,7 +94,7 @@ class _demoCollapse extends State<demoCollapse>{
                 value: "内容",
                 icon: Icons.store,
                 children: <Widget>[
-                  Text("代码是写出来给人看的，附带能在机器上运行", style: TextStyle(color: Colors.grey, fontSize: 12)),
+                  Image.network("https://img.yzcdn.cn/vant/apple-1.jpg")
                 ],
               ),
             ],

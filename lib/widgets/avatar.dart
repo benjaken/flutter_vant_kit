@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_kit/theme/style.dart';
 
 class Avatar extends StatelessWidget {
   // 头像类型
@@ -18,22 +19,26 @@ class Avatar extends StatelessWidget {
   // 点击头像后回调
   final Function onClick;
 
-  Avatar({
-    Key key,
-    this.type: 'normal',
-    this.size,
-    this.shape: 'round',
-    this.color,
-    this.iconColor,
-    this.custom,
-    this.image,
-    this.onClick
-  }) : super(key: key);
+  Avatar(
+      {Key key,
+      this.type: 'normal',
+      this.size,
+      this.shape: 'round',
+      this.color,
+      this.iconColor,
+      this.custom,
+      this.image,
+      this.onClick})
+      : assert(["small", "normal", "large"].indexOf(type) > -1,
+            "type must be small, normal, or large"),
+        assert(["round", "square"].indexOf(shape) > -1,
+            "shape must be round, or square"),
+        super(key: key);
 
   Map<String, double> defaultSize = {
-    "small": 20,
-    "normal": 24,
-    "large": 28
+    "small": Style.avatarWidthSm,
+    "normal": Style.avatarWidthBase,
+    "large": Style.avatarWidthLg,
   };
 
   @override
@@ -43,17 +48,23 @@ class Avatar extends StatelessWidget {
         if (onClick != null) onClick();
       },
       child: Container(
-        width: size??defaultSize[type] * 1.5,
-        height: size??defaultSize[type] * 1.5,
+        width: size ?? defaultSize[type] * 1.5,
+        height: size ?? defaultSize[type] * 1.5,
         decoration: BoxDecoration(
-          color: color??Color(0xffebedf0),
-          borderRadius: BorderRadius.circular(shape == 'square' ? 4 : 999)
-        ),
-        child: image != null ? CircleAvatar(
-          backgroundImage: image,
-        ) : Center(
-          child: custom??Icon(Icons.perm_identity, color: iconColor??Colors.black, size: size??defaultSize[type]),
-        ),
+            color: color ?? Style.avatarBackgroundColor,
+            borderRadius: BorderRadius.circular(shape == 'square'
+                ? Style.avatarBorderRaidus
+                : Style.avatarRoundBorderRaidus)),
+        child: image != null
+            ? CircleAvatar(
+                backgroundImage: image,
+              )
+            : Center(
+                child: custom ??
+                    Icon(Icons.perm_identity,
+                        color: iconColor ?? Style.avatarIconColor,
+                        size: size ?? defaultSize[type]),
+              ),
       ),
     );
   }
