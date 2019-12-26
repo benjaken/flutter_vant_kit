@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_kit/widgets/button.dart';
-import 'package:flutter_kit/widgets/field.dart';
-import 'package:flutter_kit/widgets/numberKeyboard.dart';
+import 'package:flutter_vant_kit/widgets/button.dart';
+import 'package:flutter_vant_kit/widgets/field.dart';
+import 'package:flutter_vant_kit/widgets/numberKeyboard.dart';
 
 
 class demoNumberKeyboard extends StatefulWidget{

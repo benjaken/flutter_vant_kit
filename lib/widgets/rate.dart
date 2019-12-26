@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_kit/theme/style.dart';
+import 'package:flutter_vant_kit/theme/style.dart';
 
 //星级评分
 class Rate extends StatefulWidget {

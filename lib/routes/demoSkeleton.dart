@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_kit/widgets/skeleton.dart';
+import 'package:flutter_vant_kit/widgets/skeleton.dart';
 
 
 class demoSkeleton extends StatefulWidget{

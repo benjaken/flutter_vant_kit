@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_kit/theme/style.dart';
+import 'package:flutter_vant_kit/theme/style.dart';
 import 'package:multi_image_picker/multi_image_picker.dart';
 
 typedef void ImagesChangeCallback(List<String> newImages);

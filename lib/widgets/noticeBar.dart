@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_kit/theme/style.dart';
+import 'package:flutter_vant_kit/theme/style.dart';
 
 class NoticeBar extends StatefulWidget {
   // 文本颜色

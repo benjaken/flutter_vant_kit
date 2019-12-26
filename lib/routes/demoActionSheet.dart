@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_kit/utils/index.dart';
+import 'package:flutter_vant_kit/utils/index.dart';
 
-import 'package:flutter_kit/widgets/button.dart';
-import 'package:flutter_kit/widgets/actionSheet.dart';
+import 'package:flutter_vant_kit/widgets/button.dart';
+import 'package:flutter_vant_kit/widgets/actionSheet.dart';
 
 class demoActionSheet extends StatefulWidget {
   @override

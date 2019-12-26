@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_kit/theme/style.dart';
-import 'package:flutter_kit/widgets/swipe.dart';
+import 'package:flutter_vant_kit/theme/style.dart';
+import 'package:flutter_vant_kit/widgets/swipe.dart';
 
 class ImagePreview extends StatefulWidget {
   // 需要预览的图片数组

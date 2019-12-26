@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter_kit/utils/index.dart';
-import 'package:flutter_kit/widgets/divider.dart';
+import 'package:flutter_vant_kit/utils/index.dart';
+import 'package:flutter_vant_kit/widgets/divider.dart';
 
 typedef PullCallback(int val);
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_kit/theme/style.dart';
+import 'package:flutter_vant_kit/theme/style.dart';
 
-import 'package:flutter_kit/widgets/divider.dart';
+import 'package:flutter_vant_kit/widgets/divider.dart';
 
 class ActionSheet extends StatelessWidget {
   // 菜单选项

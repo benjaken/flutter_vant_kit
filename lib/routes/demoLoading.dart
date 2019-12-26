@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_kit/widgets/loading.dart';
-import 'package:flutter_kit/widgets/button.dart';
+import 'package:flutter_vant_kit/widgets/loading.dart';
+import 'package:flutter_vant_kit/widgets/button.dart';
 
 class demoLoading extends StatefulWidget{
   @override

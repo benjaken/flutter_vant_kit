@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_kit/utils/index.dart';
+import 'package:flutter_vant_kit/utils/index.dart';
 
-import 'package:flutter_kit/widgets/cell.dart';
-import 'package:flutter_kit/widgets/cellGroup.dart';
-import 'package:flutter_kit/widgets/tag.dart';
+import 'package:flutter_vant_kit/widgets/cell.dart';
+import 'package:flutter_vant_kit/widgets/cellGroup.dart';
+import 'package:flutter_vant_kit/widgets/tag.dart';
 
 class demoCell extends StatefulWidget {
   @override

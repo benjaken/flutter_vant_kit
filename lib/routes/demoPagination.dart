@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_kit/widgets/pagination.dart';
+import 'package:flutter_vant_kit/widgets/pagination.dart';
 
 
 class demoPagination extends StatefulWidget{

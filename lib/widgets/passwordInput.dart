@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_kit/theme/style.dart';
-import 'package:flutter_kit/widgets/numberKeyboard.dart';
+import 'package:flutter_vant_kit/theme/style.dart';
+import 'package:flutter_vant_kit/widgets/numberKeyboard.dart';
 
 class PasswordInput extends StatefulWidget {
   // 密码值

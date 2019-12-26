@@ -13,59 +13,59 @@ flutter run
 
 | 基础组件 |
 | ------ |
-| [Button 按钮](docs/button.md) |
-| [Cell 单元格](docs/cell.md) |
+| [Button 按钮](doc/button.md) |
+| [Cell 单元格](doc/cell.md) |
 | Image 图片 |
-| [Avatar 头像](docs/avatar.md) |
+| [Avatar 头像](doc/avatar.md) |
 
 | 表单组件 |
 | ------ |
-| [Checkbox 复选框](docs/checkbox.md)  |
-| [Field 输入框](docs/field.md) |
-| [NumberKeyboard 数字键盘](docs/numberKeyboard.md) |
-| [PasswordInput 密码输入框](docs/passwordInput.md) |
-| [Radio 单选框](docs/radio.md) |
-| [Rate 评分](docs/rate.md) |
-| [Search 搜索](docs/search.md) |
-| [Stepper 步进器](docs/stepper.md) |
-| [ImageWall 图片选择器](docs/imageWall.md) |
+| [Checkbox 复选框](doc/checkbox.md)  |
+| [Field 输入框](doc/field.md) |
+| [NumberKeyboard 数字键盘](doc/numberKeyboard.md) |
+| [PasswordInput 密码输入框](doc/passwordInput.md) |
+| [Radio 单选框](doc/radio.md) |
+| [Rate 评分](doc/rate.md) |
+| [Search 搜索](doc/search.md) |
+| [Stepper 步进器](doc/stepper.md) |
+| [ImageWall 图片选择器](doc/imageWall.md) |
 
 | 反馈组件 |
 | ------ |
-| [ActionSheet 上拉菜单](docs/actionSheet.md)  |
-| [Dialog 弹窗](docs/dialog.md) |
-| [Divider 分割线](docs/divider.md) |
+| [ActionSheet 上拉菜单](doc/actionSheet.md)  |
+| [Dialog 弹窗](doc/dialog.md) |
+| [Divider 分割线](doc/divider.md) |
 
 | 展示组件 |
 | ------ |
-| [Badge 徽标](docs/badge.md)  |
-| [Circle 环形进度条](docs/circle.md) |
-| [Collapse 折叠面板](docs/collapse.md) |
-| [Loading 加载](docs/loading.md) |
-| [ImagePreview 图片预览](docs/imagePreview.md) |
-| [NoticeBar 通知栏](docs/noticeBar.md) |
-| [Panel 面板](docs/panel.md) |
-| [Price 商品价格](docs/price.md) |
-| [Progress 进度条](docs/progress.md) |
-| [Skeleton 骨架屏](docs/skeleton.md) |
-| [Steps 步骤条](docs/steps.md) |
-| [Swipe 轮播](docs/swipe.md) |
-| [Tag 标签](docs/tag.md) |
+| [Badge 徽标](doc/badge.md)  |
+| [Circle 环形进度条](doc/circle.md) |
+| [Collapse 折叠面板](doc/collapse.md) |
+| [Loading 加载](doc/loading.md) |
+| [ImagePreview 图片预览](doc/imagePreview.md) |
+| [NoticeBar 通知栏](doc/noticeBar.md) |
+| [Panel 面板](doc/panel.md) |
+| [Price 商品价格](doc/price.md) |
+| [Progress 进度条](doc/progress.md) |
+| [Skeleton 骨架屏](doc/skeleton.md) |
+| [Steps 步骤条](doc/steps.md) |
+| [Swipe 轮播](doc/swipe.md) |
+| [Tag 标签](doc/tag.md) |
 
 | 导航组件 |
 | ------ |
-| [Pagination 分页](docs/pagination.md)  |
-| [Sidebar 侧边导航](docs/sidebar.md) |
-| [TreeSelect 分类选择](docs/treeSelect.md) |
+| [Pagination 分页](doc/pagination.md)  |
+| [Sidebar 侧边导航](doc/sidebar.md) |
+| [TreeSelect 分类选择](doc/treeSelect.md) |
 
 | 业务组件 |
 | ------ |
-| [AddressEdit 地址编辑](docs/addressEdit.md)  |
-| [AddressList 地址列表](docs/addressList.md) |
-| [Card 商品卡片](docs/card.md) |
-| [Coupon 优惠券选择器](docs/coupon.md) |
-| [GoodsAction 商品导航](docs/goodsAction.md) |
-| [SubmitBar 提交订单栏](docs/submitBar.md) |
+| [AddressEdit 地址编辑](doc/addressEdit.md)  |
+| [AddressList 地址列表](doc/addressList.md) |
+| [Card 商品卡片](doc/card.md) |
+| [Coupon 优惠券选择器](doc/coupon.md) |
+| [GoodsAction 商品导航](doc/goodsAction.md) |
+| [SubmitBar 提交订单栏](doc/submitBar.md) |
 
 ## Demo截图
 

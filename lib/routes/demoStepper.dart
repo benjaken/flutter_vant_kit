@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_kit/utils/index.dart';
+import 'package:flutter_vant_kit/utils/index.dart';
 
-import 'package:flutter_kit/widgets/cell.dart';
-import 'package:flutter_kit/widgets/cellGroup.dart';
-import 'package:flutter_kit/widgets/stepper.dart';
+import 'package:flutter_vant_kit/widgets/cell.dart';
+import 'package:flutter_vant_kit/widgets/cellGroup.dart';
+import 'package:flutter_vant_kit/widgets/stepper.dart';
 
 class demoStepper extends StatefulWidget {
   @override

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_kit/utils/index.dart';
+import 'package:flutter_vant_kit/utils/index.dart';
 
-import 'package:flutter_kit/widgets/rate.dart';
+import 'package:flutter_vant_kit/widgets/rate.dart';
 
 
 class demoRate extends StatefulWidget{

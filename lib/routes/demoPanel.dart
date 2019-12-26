@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_kit/widgets/panel.dart';
-import 'package:flutter_kit/widgets/button.dart';
+import 'package:flutter_vant_kit/widgets/panel.dart';
+import 'package:flutter_vant_kit/widgets/button.dart';
 
 
 class demoPanel extends StatefulWidget{

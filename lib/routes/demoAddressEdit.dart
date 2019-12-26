@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_kit/utils/index.dart';
+import 'package:flutter_vant_kit/utils/index.dart';
 
-import 'package:flutter_kit/widgets/field.dart';
-import 'package:flutter_kit/widgets/addressEdit.dart';
+import 'package:flutter_vant_kit/widgets/field.dart';
+import 'package:flutter_vant_kit/widgets/addressEdit.dart';
 
 class demoAddressEdit extends StatefulWidget {
   @override

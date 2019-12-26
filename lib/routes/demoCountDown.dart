@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_kit/widgets/countDown.dart';
+import 'package:flutter_vant_kit/widgets/countDown.dart';
 
 class demoCountDown extends StatefulWidget{
   @override

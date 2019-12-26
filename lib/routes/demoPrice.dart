@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_kit/widgets/price.dart';
+import 'package:flutter_vant_kit/widgets/price.dart';
 
 class demoPrice extends StatefulWidget{
   @override

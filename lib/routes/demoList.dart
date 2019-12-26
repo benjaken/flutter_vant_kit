@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_kit/widgets/list.dart';
+import 'package:flutter_vant_kit/widgets/list.dart';
 
 class demoList extends StatefulWidget{
   @override

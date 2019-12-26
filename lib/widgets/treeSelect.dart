@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_kit/theme/style.dart';
-import 'package:flutter_kit/widgets/sidebar.dart';
+import 'package:flutter_vant_kit/theme/style.dart';
+import 'package:flutter_vant_kit/widgets/sidebar.dart';
 
 class TreeSelect extends StatefulWidget {
   // 所有选项

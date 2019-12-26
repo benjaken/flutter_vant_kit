@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_kit/utils/index.dart';
+import 'package:flutter_vant_kit/utils/index.dart';
 
-import 'package:flutter_kit/widgets/collapse.dart';
-import 'package:flutter_kit/widgets/collapseItem.dart';
+import 'package:flutter_vant_kit/widgets/collapse.dart';
+import 'package:flutter_vant_kit/widgets/collapseItem.dart';
 
 
 class demoCollapse extends StatefulWidget{

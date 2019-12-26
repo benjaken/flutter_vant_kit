@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_kit/widgets/button.dart';
-import 'package:flutter_kit/widgets/steps.dart';
+import 'package:flutter_vant_kit/widgets/button.dart';
+import 'package:flutter_vant_kit/widgets/steps.dart';
 
 class demoSteps extends StatefulWidget{
   @override

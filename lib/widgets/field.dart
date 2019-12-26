@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_kit/theme/style.dart';
+import 'package:flutter_vant_kit/theme/style.dart';
 
 class Field extends StatefulWidget {
   // 控制属性

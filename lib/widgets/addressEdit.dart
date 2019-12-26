@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_kit/theme/style.dart';
-import 'package:flutter_kit/utils/index.dart';
-import 'package:flutter_kit/widgets/cellGroup.dart';
-import 'package:flutter_kit/widgets/field.dart';
-import 'package:flutter_kit/widgets/cell.dart';
-import 'package:flutter_kit/widgets/button.dart';
-import 'package:flutter_kit/widgets/dialog.dart';
+import 'package:flutter_vant_kit/theme/style.dart';
+import 'package:flutter_vant_kit/utils/index.dart';
+import 'package:flutter_vant_kit/widgets/cellGroup.dart';
+import 'package:flutter_vant_kit/widgets/field.dart';
+import 'package:flutter_vant_kit/widgets/cell.dart';
+import 'package:flutter_vant_kit/widgets/button.dart';
+import 'package:flutter_vant_kit/widgets/dialog.dart';
 
 class AddressEdit extends StatefulWidget {
   // 地区选择列占位提示文字

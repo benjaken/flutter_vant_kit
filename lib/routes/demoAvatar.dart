@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_kit/utils/index.dart';
-import 'package:flutter_kit/widgets/avatar.dart';
+import 'package:flutter_vant_kit/utils/index.dart';
+import 'package:flutter_vant_kit/widgets/avatar.dart';
 
 class demoAvatar extends StatefulWidget {
   @override

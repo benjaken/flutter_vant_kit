@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_kit/theme/style.dart';
-import 'package:flutter_kit/widgets/badge.dart';
+import 'package:flutter_vant_kit/theme/style.dart';
+import 'package:flutter_vant_kit/widgets/badge.dart';
 
 class Sidebar extends StatefulWidget {
   // 当前选项

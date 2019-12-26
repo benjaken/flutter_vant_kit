@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_kit/utils/index.dart';
+import 'package:flutter_vant_kit/utils/index.dart';
 
-import 'package:flutter_kit/widgets/addressList.dart';
+import 'package:flutter_vant_kit/widgets/addressList.dart';
 
 class demoAddressList extends StatefulWidget {
   @override

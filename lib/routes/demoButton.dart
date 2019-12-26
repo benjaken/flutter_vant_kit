@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-import 'package:flutter_kit/widgets/button.dart';
+import 'package:flutter_vant_kit/widgets/button.dart';
 
 
 class demoButton extends StatefulWidget{

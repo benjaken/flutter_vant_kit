@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_kit/widgets/cell.dart';
-import 'package:flutter_kit/widgets/coupon.dart';
+import 'package:flutter_vant_kit/widgets/cell.dart';
+import 'package:flutter_vant_kit/widgets/coupon.dart';
 import 'package:intl/intl.dart';
 
 class demoCoupon extends StatefulWidget{

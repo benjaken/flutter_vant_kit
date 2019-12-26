@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_kit/widgets/divider.dart';
+import 'package:flutter_vant_kit/widgets/divider.dart';
 
 class demoDivider extends StatefulWidget {
   @override

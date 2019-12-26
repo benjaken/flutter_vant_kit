@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_kit/widgets/goodsAction.dart';
+import 'package:flutter_vant_kit/widgets/goodsAction.dart';
 
 class demoGoodsAction extends StatefulWidget {
   @override

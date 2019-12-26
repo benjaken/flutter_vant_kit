@@ -1,11 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_kit/routes/index.dart';
-import 'package:flutter_kit/widgets/cell.dart';
-import 'package:flutter_kit/widgets/cellGroup.dart';
-import 'package:flutter_kit/widgets/collapse.dart';
-import 'package:flutter_kit/widgets/collapseItem.dart';
+import 'package:flutter_vant_kit/routes/index.dart';
+import 'package:flutter_vant_kit/widgets/cell.dart';
+import 'package:flutter_vant_kit/widgets/cellGroup.dart';
+import 'package:flutter_vant_kit/widgets/collapse.dart';
+import 'package:flutter_vant_kit/widgets/collapseItem.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {

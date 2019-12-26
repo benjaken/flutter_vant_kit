@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_kit/theme/style.dart';
-import 'package:flutter_kit/widgets/cell.dart';
+import 'package:flutter_vant_kit/theme/style.dart';
+import 'package:flutter_vant_kit/widgets/cell.dart';
 
 const Duration _kExpand = Style.animationDurationFast;
 
@@ -72,7 +72,6 @@ class _CollapseItem extends State<CollapseItem>
     _iconTurns = _controller.drive(_halfTween.chain(_easeInTween));
     bool _isExpanded =
         PageStorage.of(context)?.readState(context) ?? widget.isExpanded;
-    print(PageStorage.of(context)?.readState(context));
     if (_isExpanded) _controller.value = 1.0;
   }
 

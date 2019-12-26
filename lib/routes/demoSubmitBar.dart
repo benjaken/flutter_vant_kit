@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_kit/utils/index.dart';
+import 'package:flutter_vant_kit/utils/index.dart';
 
-import 'package:flutter_kit/widgets/checkbox.dart';
-import 'package:flutter_kit/widgets/submitBar.dart';
+import 'package:flutter_vant_kit/widgets/checkbox.dart';
+import 'package:flutter_vant_kit/widgets/submitBar.dart';
 
 class demoSubmitBar extends StatefulWidget {
   @override

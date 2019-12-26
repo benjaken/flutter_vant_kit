@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_kit/utils/index.dart';
-import 'package:flutter_kit/widgets/button.dart';
-import 'package:flutter_kit/widgets/imagePreview.dart';
+import 'package:flutter_vant_kit/utils/index.dart';
+import 'package:flutter_vant_kit/widgets/button.dart';
+import 'package:flutter_vant_kit/widgets/imagePreview.dart';
 
 class demoImagePreview extends StatefulWidget{
   @override

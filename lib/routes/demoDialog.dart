@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-import 'package:flutter_kit/widgets/button.dart';
-import 'package:flutter_kit/widgets/dialog.dart';
+import 'package:flutter_vant_kit/widgets/button.dart';
+import 'package:flutter_vant_kit/widgets/dialog.dart';
 
 class demoDialog extends StatefulWidget {
   @override

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_kit/widgets/swipe.dart';
+import 'package:flutter_vant_kit/widgets/swipe.dart';
 
 
 class demoSwipe extends StatefulWidget{

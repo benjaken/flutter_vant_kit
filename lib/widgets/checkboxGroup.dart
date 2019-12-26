@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_kit/theme/style.dart';
-import 'package:flutter_kit/widgets/checkbox.dart';
-import 'package:flutter_kit/widgets/cell.dart';
-import 'package:flutter_kit/widgets/cellGroup.dart';
+import 'package:flutter_vant_kit/theme/style.dart';
+import 'package:flutter_vant_kit/widgets/checkbox.dart';
+import 'package:flutter_vant_kit/widgets/cell.dart';
+import 'package:flutter_vant_kit/widgets/cellGroup.dart';
 
 class CheckboxGroup extends StatefulWidget {
   // 所有选项

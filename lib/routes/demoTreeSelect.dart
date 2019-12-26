@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_kit/utils/index.dart';
-import 'package:flutter_kit/widgets/sidebar.dart';
+import 'package:flutter_vant_kit/utils/index.dart';
+import 'package:flutter_vant_kit/widgets/sidebar.dart';
 
-import 'package:flutter_kit/widgets/treeSelect.dart';
+import 'package:flutter_vant_kit/widgets/treeSelect.dart';
 
 
 class demoTreeSelect extends StatefulWidget{
