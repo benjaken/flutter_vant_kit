@@ -35,6 +35,7 @@ class _demoNoticeBar extends State<demoNoticeBar>{
           Title("禁止滚动"),
           NoticeBar(
             scrollable: false,
+            leftIcon: Icons.volume_up,
             text: "足协杯战线连续第2年上演广州德比战，上赛季半决赛上恒大以两回合5-3的总比分淘汰富力。",
           ),
           Title("多行展示"),
@@ -63,8 +64,8 @@ class _demoNoticeBar extends State<demoNoticeBar>{
           NoticeBar(
             text: "足协杯战线连续第2年上演广州德比战，上赛季半决赛上恒大以两回合5-3的总比分淘汰富力。",
             leftIcon: Icons.info_outline,
-            background: Colors.blue,
-            color: Colors.blue,
+            background: Color(0xffecf9ff),
+            color: Color(0xff1989fa),
           )
       ],
     );

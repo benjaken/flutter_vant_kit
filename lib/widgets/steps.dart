@@ -1,30 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_kit/theme/style.dart';
 import 'package:flutter_kit/widgets/divider.dart';
-
 
 class Steps extends StatefulWidget {
   // 所有步骤
   final List<StepItem> steps;
-  // 当前步骤	
+  // 当前步骤
   final int active;
-  // 显示方向，可选值为 vertical	
+  // 显示方向，可选值为 vertical
   final String direction;
-  // 激活状态颜色	
+  // 激活状态颜色
   final Color activeColor;
   // 激活状态图标
   final IconData activeIcon;
   // 未激活状态图标
   final IconData inactiveIcon;
 
-  Steps({
-    Key key,
-    @required this.steps,
-    this.active: 0,
-    this.direction: 'horizontal',
-    this.activeColor: Colors.blueAccent,
-    this.activeIcon: Icons.check_circle,
-    this.inactiveIcon
-  }) : assert(steps.length > 0, '步骤数量必须大于零');
+  Steps(
+      {Key key,
+      @required this.steps,
+      this.active: 0,
+      this.direction: 'horizontal',
+      this.activeColor: Style.stepFinishLineColor,
+      this.activeIcon: Icons.check_circle,
+      this.inactiveIcon})
+      : assert(steps.length > 0, '步骤数量必须大于零');
 
   @override
   _Steps createState() => _Steps();
@@ -32,35 +32,62 @@ class Steps extends StatefulWidget {
 
 class _Steps extends State<Steps> {
   @override
-  void initState () {
+  void initState() {
     super.initState();
   }
 
-  buildHorizontal () {
+  Widget buildHorizontalTop(StepItem step, int i) {
+    return Container(
+      margin: EdgeInsets.only(bottom: Style.paddingXs),
+      child: Text(step.title ?? "",
+          style: TextStyle(
+              fontSize: Style.stepHorizontalTitleFontSize,
+              color: i == widget.active
+                  ? widget.activeColor
+                  : i < widget.active
+                      ? Style.stepFinishTextColor
+                      : Style.stepTextColor)),
+    );
+  }
+
+  Widget buildHorizontalBottom(StepItem step, int i) {
+    return Container(
+      alignment: AlignmentDirectional.centerStart,
+      margin: i == 0
+          ? EdgeInsets.only(right: Style.paddingSm)
+          : i == widget.steps.length - 1
+              ? EdgeInsets.only(left: Style.paddingSm)
+              : EdgeInsets.symmetric(horizontal: Style.paddingSm),
+      child: i == widget.active
+          ? Icon(
+              widget.activeIcon,
+              color: widget.activeColor,
+              size: Style.stepIconSize,
+            )
+          : Icon(widget.inactiveIcon ?? Icons.lens,
+              size: widget.inactiveIcon != null
+                  ? Style.stepIconSize
+                  : Style.stepCircleSize,
+              color: i < widget.active
+                  ? widget.activeColor
+                  : Style.stepCircleColor),
+    );
+  }
+
+  List<Widget> buildHorizontal() {
     List<Widget> tops = [];
     List<Widget> bottoms = [];
     for (int i = 0; i < widget.steps.length; i++) {
       StepItem step = widget.steps[i];
-      tops.add(Container(
-        margin: EdgeInsets.only(bottom: 6),
-        child: Text(step.title??"", style: TextStyle(color: i == widget.active ? widget.activeColor
-          : i < widget.active ? Colors.black : Colors.grey)),
-      ));
-      bottoms.add(
-        Container(
-          alignment: AlignmentDirectional.centerStart,
-          margin: i == 0 ? EdgeInsets.only(right: 8) : i == widget.steps.length - 1 ? EdgeInsets.only(left: 8) : EdgeInsets.symmetric(horizontal: 8),
-          child: i == widget.active ? Icon(widget.activeIcon, color: widget.activeColor, size: 14,)
-          : Icon(widget.inactiveIcon??Icons.lens, size: widget.inactiveIcon != null ? 14 : 8, color: i < widget.active ? widget.activeColor : Colors.grey),
-        )
-      );
-      if (i < widget.steps.length - 1) bottoms.add(
-        Expanded(
+      tops.add(buildHorizontalTop(step, i));
+      bottoms.add(buildHorizontalBottom(step, i));
+      if (i < widget.steps.length - 1)
+        bottoms.add(Expanded(
           child: NDivider(
-            lineColor: i < widget.active ? widget.activeColor : Colors.grey,
+            lineColor:
+                i < widget.active ? widget.activeColor : Style.stepLineColor,
           ),
-        )
-      );
+        ));
     }
     return [
       Row(
@@ -74,86 +101,124 @@ class _Steps extends State<Steps> {
     ];
   }
 
-  buildVertical () {
+  Widget buildVerticalLeft(StepItem step, int i) {
+    return Container(
+      width: Style.stepVerticalProgressWidth,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          Container(
+            alignment: AlignmentDirectional.center,
+            margin: EdgeInsets.symmetric(vertical: Style.paddingXs),
+            child: (i == widget.active)
+                ? Icon(
+                    widget.activeIcon,
+                    color: widget.activeColor,
+                    size: Style.stepIconSize,
+                  )
+                : Icon(widget.inactiveIcon ?? Icons.lens,
+                    size: widget.inactiveIcon != null
+                        ? Style.stepIconSize
+                        : Style.stepCircleSize,
+                    color: i < widget.active
+                        ? widget.activeColor
+                        : Style.stepCircleColor),
+          ),
+          (i < widget.steps.length - 1)
+              ? Container(
+                  width: 1,
+                  height: 37,
+                  color: i < widget.active
+                      ? widget.activeColor
+                      : Style.stepLineColor,
+                )
+              : Container()
+        ],
+      ),
+    );
+  }
+
+  Widget buildVerticalRight(StepItem step, int i) {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: Style.paddingXs),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Padding(
+              padding: EdgeInsets.symmetric(vertical: Style.paddingSm),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(step.title ?? "",
+                      style: TextStyle(
+                          fontSize: Style.stepFontSize,
+                          color: i == widget.active
+                              ? widget.activeColor
+                              : i < widget.active
+                                  ? Style.stepProcessTextColor
+                                  : Style.stepTextColor)),
+                  Text(step.date ?? "",
+                      style: TextStyle(
+                          fontSize: Style.stepFontSize,
+                          color: i == widget.active
+                              ? widget.activeColor
+                              : i < widget.active
+                                  ? Style.stepProcessTextColor
+                                  : Style.stepTextColor)),
+                ],
+              )),
+          (i < widget.steps.length - 1) ? NDivider() : Container()
+        ],
+      ),
+    );
+  }
+
+  List<Widget> buildVertical() {
     List<Widget> left = [];
     List<Widget> right = [];
     for (int i = 0; i < widget.steps.length; i++) {
       StepItem step = widget.steps[i];
-      right.add(Container(
-        margin: EdgeInsets.symmetric(horizontal: 6),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(step.title??"", style: TextStyle(fontSize: 14, color: i == widget.active ? widget.activeColor
-                    : i < widget.active ? Colors.black : Colors.grey)),
-                  Text(step.date??"", style: TextStyle(fontSize: 14, color: i == widget.active ? widget.activeColor
-                    : i < widget.active ? Colors.black : Colors.grey)),
-                ],
-              )
-            ),
-            (i < widget.steps.length - 1) ? NDivider() : Container()
-          ],
-        ),
-      ));
-      left.add(Container(
-        width: 20,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            Container(
-              width: 12,
-              height: 12,
-              alignment: AlignmentDirectional.center,
-              margin: EdgeInsets.symmetric(vertical: 6),
-              child: i == widget.active ? Icon(widget.activeIcon, color: widget.activeColor, size: 14,)
-              : Icon(widget.inactiveIcon??Icons.lens, size: widget.inactiveIcon != null ? 14 : 8, color: i < widget.active ? widget.activeColor : Colors.grey),
-            ),
-            (i < widget.steps.length - 1) ? Container(
-              width: 1,
-              height: 34,
-              color: i < widget.active ? widget.activeColor : Colors.grey,
-            ) : Container()
-          ],
-        ),
-      ));
+      left.add(buildVerticalLeft(step, i));
+      right.add(buildVerticalRight(step, i));
     }
     return [
       Container(
-        padding: EdgeInsets.symmetric(vertical: 8),
+        padding: EdgeInsets.symmetric(vertical: Style.paddingXs),
         child: Column(children: left),
       ),
-      Expanded(child: Column(
-        children: right,
-      ),)
+      Expanded(
+        child: Column(
+          children: right,
+        ),
+      )
     ];
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+      padding: Style.stepsPadding,
       decoration: BoxDecoration(
         border: Border(
-          top: BorderSide(width: 1, color: Color(0xffebedf0)),
-          bottom: BorderSide(width: 1, color: Color(0xffebedf0)),
+          top: BorderSide(
+              width: Style.stepsBorderWidth, color: Style.stepsBorderColor),
+          bottom: BorderSide(
+              width: Style.stepsBorderWidth, color: Style.stepsBorderColor),
         ),
-        color: Colors.white,
+        color: Style.stepsBackgroundColor,
       ),
-      child: widget.direction == 'horizontal' ? Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: buildHorizontal(),
-      ) : Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: buildVertical(),
-      ),
+      child: widget.direction == 'horizontal'
+          ? Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: buildHorizontal(),
+            )
+          : Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: buildVertical(),
+            ),
     );
   }
 }

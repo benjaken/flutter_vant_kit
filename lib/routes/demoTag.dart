@@ -34,22 +34,22 @@ class _demoTag extends State<demoTag>{
           Row(
             children: <Widget>[
               Tag(
-                color: Colors.grey,
                 text: "标签"
               ),
               Tag(
+                type: "primary",
                 text: "标签"
               ),
               Tag(
-                color: Colors.greenAccent,
+                type: "success",
                 text: "标签"
               ),
               Tag(
-                color: Colors.redAccent,
+                type: "danger",
                 text: "标签"
               ),
               Tag(
-                color: Colors.orangeAccent,
+                type: "warning",
                 text: "标签"
               ),
             ],
@@ -58,28 +58,28 @@ class _demoTag extends State<demoTag>{
           Row(
             children: <Widget>[
               Tag(
-                color: Colors.grey,
-                round: true,
-                text: "标签"
-              ),
-              Tag(
                 text: "标签",
                 round: true,
               ),
               Tag(
-                color: Colors.greenAccent,
+                type: "primary",
+                text: "标签",
                 round: true,
-                text: "标签"
               ),
               Tag(
-                color: Colors.redAccent,
+                type: "success",
+                text: "标签",
                 round: true,
-                text: "标签"
               ),
               Tag(
-                color: Colors.orangeAccent,
+                type: "danger",
+                text: "标签",
                 round: true,
-                text: "标签"
+              ),
+              Tag(
+                type: "warning",
+                text: "标签",
+                round: true,
               ),
             ],
           ),
@@ -87,28 +87,28 @@ class _demoTag extends State<demoTag>{
           Row(
             children: <Widget>[
               Tag(
-                color: Colors.grey,
+                text: "标签",
                 mark: true,
-                text: "标签"
               ),
               Tag(
+                type: "primary",
+                text: "标签",
                 mark: true,
-                text: "标签"
               ),
               Tag(
-                color: Colors.greenAccent,
+                type: "success",
+                text: "标签",
                 mark: true,
-                text: "标签"
               ),
               Tag(
-                color: Colors.redAccent,
+                type: "danger",
+                text: "标签",
                 mark: true,
-                text: "标签"
               ),
               Tag(
-                color: Colors.orangeAccent,
+                type: "warning",
+                text: "标签",
                 mark: true,
-                text: "标签"
               ),
             ],
           ),
@@ -116,28 +116,28 @@ class _demoTag extends State<demoTag>{
           Row(
             children: <Widget>[
               Tag(
-                color: Colors.grey,
+                text: "标签",
                 plain: true,
-                text: "标签"
               ),
               Tag(
+                type: "primary",
+                text: "标签",
                 plain: true,
-                text: "标签"
               ),
               Tag(
-                color: Colors.greenAccent,
+                type: "success",
+                text: "标签",
                 plain: true,
-                text: "标签"
               ),
               Tag(
-                color: Colors.redAccent,
+                type: "danger",
+                text: "标签",
                 plain: true,
-                text: "标签"
               ),
               Tag(
-                color: Colors.orangeAccent,
+                type: "warning",
+                text: "标签",
                 plain: true,
-                text: "标签"
               ),
             ],
           ),
@@ -169,6 +169,25 @@ class _demoTag extends State<demoTag>{
               ),
             ]
           ),
+          Title("标签大小"),
+          Row(
+            children: <Widget>[
+              Tag(
+                text: "标签",
+                type: "success",
+              ),
+              Tag(
+                text: "标签",
+                size: "medium",
+                type: "success",
+              ),
+              Tag(
+                text: "标签",
+                size: "large",
+                type: "success",
+              ),
+            ]
+          ),
           Title("可关闭标签"),
           Row(
             children: <Widget>[
@@ -179,7 +198,16 @@ class _demoTag extends State<demoTag>{
                 },
               ),
               Tag(
-                color: Colors.green,
+                type: "primary",
+                text: "标签",
+                onClose: () async {
+                  Utils.toast("close");
+                },
+              ),
+              Tag(
+                plain: true,
+                round: true,
+                type: "primary",
                 text: "标签",
                 onClose: () async {
                   Utils.toast("close");

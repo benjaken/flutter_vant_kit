@@ -27,7 +27,8 @@ class _GoodsAction extends State<GoodsAction> {
     RenderBox buttons = _buttons.currentContext.findRenderObject();
     double buttonsWidth = buttons.size.width;
     setState(() {
-      buttonWidth = (buttonsWidth - 20) / widget.buttons.length;
+      buttonWidth =
+          (buttonsWidth - (Style.paddingSm * 2)) / widget.buttons.length;
     });
   }
 
@@ -44,9 +45,11 @@ class _GoodsAction extends State<GoodsAction> {
             borderRadius: widget.buttons.length == 1
                 ? BorderRadius.circular(Style.borderRadiusMax)
                 : i == 0
-                    ? BorderRadius.horizontal(left: Radius.circular(Style.borderRadiusMax))
+                    ? BorderRadius.horizontal(
+                        left: Radius.circular(Style.borderRadiusMax))
                     : i == widget.buttons.length - 1
-                        ? BorderRadius.horizontal(right: Radius.circular(Style.borderRadiusMax))
+                        ? BorderRadius.horizontal(
+                            right: Radius.circular(Style.borderRadiusMax))
                         : null,
             text: button.loading ? "" : button.customText ?? button.text,
             disabled: button.disabled,
@@ -55,6 +58,7 @@ class _GoodsAction extends State<GoodsAction> {
             gradient: button.gradient ?? null,
             height: Style.goodsActionButtonHeight,
             width: buttonWidth,
+            padding: EdgeInsets.all(0),
             onClick: () {
               if (button.disabled) return;
               if (button.onClick != null) button.onClick();
@@ -107,7 +111,7 @@ class _GoodsAction extends State<GoodsAction> {
       // padding: EdgeInsets.only(right: 10),
       color: Colors.white,
       child: Wrap(
-        spacing: 6,
+        spacing: Style.intervalSm,
         children:
             List.generate(widget.actions.length, (i) => buildActionItem(i)),
       ),
@@ -133,7 +137,7 @@ class ActionItem {
   final String text;
   final IconData icon;
   final String info;
-  final Function onClick;
+  final Function() onClick;
   final Widget customIcon;
   final Widget customText;
 
@@ -152,7 +156,7 @@ class ButtonItem {
   final Color color;
   final bool disabled;
   final bool loading;
-  final Function onClick;
+  final Function() onClick;
   final Widget customText;
 
   ButtonItem(

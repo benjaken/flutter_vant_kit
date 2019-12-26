@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-
-typedef int CallBack(int);
+import 'package:flutter_kit/theme/style.dart';
 
 //星级评分
 class Rate extends StatefulWidget {
@@ -26,18 +25,18 @@ class Rate extends StatefulWidget {
   // 是否为禁用状态
   final bool disabled;
   // 当前分值变化时触发的事件
-  final CallBack onChange;
+  final Function(String val) onChange;
 
   Rate({
     Key key,
     this.count: 5,
     @required this.value,
-    this.size: 24.0,
-    this.gutter: 4.0,
+    this.size: Style.rateIconSize,
+    this.gutter: Style.rateHorizontalGutter,
     this.icon: Icons.star,
     this.voidIcon: Icons.star_border,
-    this.color: Colors.orange,
-    this.voidColor: Colors.grey,
+    this.color: Style.rateActiveColor,
+    this.voidColor: Style.rateInactiveColor,
     this.readonly: false,
     this.disabled: false,
     this.onChange,
@@ -61,25 +60,23 @@ class _Rate extends State<Rate> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Row(
+      child: Wrap(
         children: _buildChildren(),
+        spacing: widget.gutter,
       ),
     );
   }
 
   List<Widget> _buildChildren() {
-    ThemeData theme = Theme.of(context);
-
     List<Widget> widgets = [];
     for (int i = 1; i <= widget.count; i++) {
       Widget item = Container(
-        margin: EdgeInsets.only(right: widget.gutter),
         child: GestureDetector(
           child: Icon(
             _starNum >= i ? widget.icon : widget.voidIcon,
             color: _starNum >= i
-              ? widget.disabled ? Colors.grey : widget.color
-              : widget.voidColor.withOpacity(0.4),
+              ? widget.disabled ? Style.rateDisabledColor : widget.color
+              : widget.voidColor,
             size: widget.size,
           ),
           onTap: widget.readonly || widget.disabled
@@ -88,7 +85,7 @@ class _Rate extends State<Rate> {
               setState(() {
                 _starNum = i;
               });
-              if (widget.onChange != null) widget.onChange(_starNum);
+              if (widget.onChange != null) widget.onChange(_starNum.toString());
             }
         ),
       );

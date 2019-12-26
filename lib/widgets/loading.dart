@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_kit/theme/style.dart';
 
 class Loading extends StatelessWidget {
   // 加载描述
@@ -14,53 +15,67 @@ class Loading extends StatelessWidget {
   // 自定义内容
   final Widget loading;
 
-  const Loading({
-    Key key,
-    this.text,
-    this.color,
-    this.size: 30,
-    this.textSize: 14,
-    this.vertical: false,
-    this.loading
-  }) : super(key: key);
+  const Loading(
+      {Key key,
+      this.text,
+      this.color,
+      this.size: Style.loadingSpinnerSize,
+      this.textSize: Style.loadingTextFontSize,
+      this.vertical: false,
+      this.loading})
+      : super(key: key);
 
-  _buildLoading () {
+  _buildLoading() {
     return SizedBox(
       width: size,
       height: size,
-      child: loading??CircularProgressIndicator(
-        valueColor: AlwaysStoppedAnimation(Color(0xffebedf0)),
-        backgroundColor: color??Color(0xffc9c9c9),
-        strokeWidth: 2,
-      ),
+      child: loading ??
+          CircularProgressIndicator(
+            valueColor:
+                AlwaysStoppedAnimation(color ?? Style.loadingSpinnerColor),
+            backgroundColor: Style.transparent,
+            strokeWidth: Style.loadingSpinnerWidth,
+          ),
     );
   }
 
   @override
-  Widget build (BuildContext context) {
+  Widget build(BuildContext context) {
     return DecoratedBox(
-      decoration: BoxDecoration(
-        color: Colors.transparent
-      ),
-      child: vertical ? Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          _buildLoading(),
-          text != null ? Padding(
-            padding: EdgeInsets.only(top: 6),
-            child: Text("$text", style: TextStyle(color: Colors.grey, fontSize: textSize)),
-          ) : Container()
-        ],
-      ) : Row(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          _buildLoading(),
-          text != null ? Padding(
-            padding: EdgeInsets.only(left: 12),
-            child: Text("$text", style: TextStyle(color: Colors.grey, fontSize: textSize)),
-          ) : Container()
-        ],
-      ),
+      decoration: BoxDecoration(color: Colors.transparent),
+      child: vertical
+          ? Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                _buildLoading(),
+                text != null
+                    ? Padding(
+                        padding: EdgeInsets.only(top: Style.intervalSm),
+                        child: Text("$text",
+                            style: TextStyle(
+                                color: Style.loadingTextColor,
+                                fontSize: textSize,
+                                decoration: TextDecoration.none)),
+                      )
+                    : Container()
+              ],
+            )
+          : Row(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                _buildLoading(),
+                text != null
+                    ? Padding(
+                        padding: EdgeInsets.only(left: Style.intervalXl),
+                        child: Text("$text",
+                            style: TextStyle(
+                                color: Style.loadingTextColor,
+                                fontSize: textSize,
+                                decoration: TextDecoration.none)),
+                      )
+                    : Container()
+              ],
+            ),
     );
   }
 }

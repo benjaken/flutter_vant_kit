@@ -122,7 +122,7 @@ class _demoField extends State<demoField> {
                 label: "手机号",
                 placeholder: "请输入手机号",
                 controller: testInput6,
-                // errorMessage: isErrorPhone(testInput6.text) ? "手机号格式错误" : null,
+                errorMessage: isErrorPhone(testInput6.text) ? "手机号格式错误" : null,
                 maxLength: 11,
                 clearable: true,
                 onChange: (val) {

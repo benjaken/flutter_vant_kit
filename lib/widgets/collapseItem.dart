@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_kit/theme/style.dart';
 import 'package:flutter_kit/widgets/cell.dart';
 
-const Duration _kExpand = Style.animationDurationBase;
+const Duration _kExpand = Style.animationDurationFast;
 
 class CollapseItem extends StatefulWidget {
   // 是否为展开状态

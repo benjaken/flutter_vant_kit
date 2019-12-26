@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-
-typedef CallBack(int val);
+import 'package:flutter_kit/theme/style.dart';
 
 class Swipe extends StatefulWidget {
   //是否自动播放
@@ -23,7 +22,7 @@ class Swipe extends StatefulWidget {
   // 动画效果，默认fastOutSlowIn
   final Curve curve;
   // 每一页轮播后触发
-  final CallBack onChange;
+  final Function(int val) onChange;
   // 每个页面在滚动方向占据的视窗比例，默认为 1
   final double viewportFraction; 
   // 显示内容
@@ -38,13 +37,13 @@ class Swipe extends StatefulWidget {
     this.interval,
     this.autoPlay: false,
     this.initialSwipe: 0,
-    this.indicatorSize: 8.0,
+    this.indicatorSize: Style.swipeIndicatorSize,
     this.curve: Curves.fastOutSlowIn,
     this.duration,
     this.showIndicators: true,
     this.scrollDirection: 'horizontal',
     this.viewportFraction: 1.0,
-    this.indicatorColor: Colors.blueAccent,
+    this.indicatorColor: Style.swipeIndicatorActiceBackgroundColor,
     this.onChange,
     this.indicator
   }) : _length = children.length,
@@ -74,7 +73,7 @@ class _Swipe extends State<Swipe> with SingleTickerProviderStateMixin {
 
     if (widget.autoPlay) {
       Duration interval = widget.interval ?? Duration(seconds: 3);
-      Duration duration = widget.duration ?? Duration(seconds: 1);
+      Duration duration = widget.duration ?? Style.swipeDuration;
       timer = Timer.periodic(interval, (Timer t) {
         int toPage = _currentPage = _currentPage + 1;
         setState(() {
@@ -98,7 +97,6 @@ class _Swipe extends State<Swipe> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      // padding: EdgeInsets.symmetric(vertical: 20.0),
       child: Stack(
         alignment: widget.scrollDirection == 'vertical' ? AlignmentDirectional.centerStart : AlignmentDirectional.center,
         children: <Widget>[
@@ -129,7 +127,7 @@ class _Swipe extends State<Swipe> with SingleTickerProviderStateMixin {
     List<Widget> widgets = [];
     for (int i = 0; i < widget._length; i++) {
       Color color =
-          _realCurrentPage == i ? widget.indicatorColor	 : Colors.white.withOpacity(.4);
+          _realCurrentPage == i ? widget.indicatorColor	 : Style.swipeIndicatorInacticeBackgroundColor.withOpacity(Style.swipeIndicatorInacticeOpacity);
       widgets.add(Container(
         margin: widget.scrollDirection == 'vertical' ? EdgeInsets.only(bottom: widget.indicatorSize) : EdgeInsets.only(right: widget.indicatorSize),
         width: widget.indicatorSize,

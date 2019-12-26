@@ -7,7 +7,7 @@ import 'package:flutter_kit/widgets/button.dart';
 
 NButton(
   text: "按钮",
-  color: Colors.white,
+  type: "primary",
   ...
 ),
 ```

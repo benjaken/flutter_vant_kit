@@ -17,7 +17,7 @@ class Avatar extends StatelessWidget {
   // 头像图片内容
   final ImageProvider image;
   // 点击头像后回调
-  final Function onClick;
+  final Function() onClick;
 
   Avatar(
       {Key key,

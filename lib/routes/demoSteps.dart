@@ -54,6 +54,7 @@ class _demoSteps extends State<demoSteps> {
                   onClick: () {
                     setState(() {
                       _active -= 1;
+                      if (_active < 0) _active = 3;
                     });
                   },
                 ),
@@ -65,6 +66,7 @@ class _demoSteps extends State<demoSteps> {
                   onClick: () {
                     setState(() {
                       _active += 1;
+                      if (_active > 3) _active = 0;
                     });
                   },
                 ),
@@ -82,7 +84,7 @@ class _demoSteps extends State<demoSteps> {
             active: _active,
             activeIcon: Icons.done,
             inactiveIcon: Icons.chevron_right,
-            activeColor: Colors.green,
+            activeColor: Colors.blueAccent,
           ),
           Title("竖向步骤条"),
           Steps(

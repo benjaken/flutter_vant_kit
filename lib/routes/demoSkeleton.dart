@@ -59,7 +59,7 @@ class _demoSkeleton extends State<demoSkeleton>{
             row: 3,
             title: true,
             avatarShape: "round",
-            loading: _loading,
+            loading: !_loading,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[

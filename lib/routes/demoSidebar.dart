@@ -15,7 +15,7 @@ class _demoSidebar extends State<demoSidebar>{
 
   Widget Title(String title) {
     return Padding(
-      padding: EdgeInsets.fromLTRB(0, 30, 0, 20),
+      padding: EdgeInsets.symmetric(vertical: 20),
       child: Text(
         title, 
         style: TextStyle(

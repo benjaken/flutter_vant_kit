@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_kit/theme/style.dart';
 
 ///自定义Dialog
 class NDialog extends StatefulWidget {
@@ -10,53 +11,53 @@ class NDialog extends StatefulWidget {
   final AlignmentDirectional titleAlign;
   // 内容对齐方式
   final TextAlign messageAlign;
-  // 是否展示确认按钮	
+  // 是否展示确认按钮
   final bool showConfirmButton;
-  // 是否展示取消按钮	
+  // 是否展示取消按钮
   final bool showCancelButton;
-  // 确认按钮文案	
+  // 确认按钮文案
   final String confirmButtonText;
-  // 确认按钮颜色	
+  // 确认按钮颜色
   final Color confirmButtonColor;
   // 确认按钮文本颜色
   final Color confirmTextColor;
-  // 取消按钮文案	
+  // 取消按钮文案
   final String cancelButtonText;
-  // 取消按钮颜色	
+  // 取消按钮颜色
   final Color cancelButtonColor;
   // 取消按钮文本颜色
   final Color cancelTextColor;
-  // 是否在点击遮罩层后关闭弹窗	
+  // 是否在点击遮罩层后关闭弹窗
   final bool closeOnClickOverlay;
-  // 点击确认按钮时触发	
-  final Function onConfirm;
-  // 点击取消按钮时触发	
-  final Function onCancel;
+  // 点击确认按钮时触发
+  final Function() onConfirm;
+  // 点击取消按钮时触发
+  final Function() onCancel;
   // 关闭前的回调函数
-  final Function beforeClose;
+  final Function() beforeClose;
   // 自定义内容
   final Widget child;
 
-  const NDialog({
-    Key key,
-    this.title,
-    this.message,
-    this.titleAlign: AlignmentDirectional.center,
-    this.messageAlign: TextAlign.center,
-    this.showConfirmButton: true,
-    this.showCancelButton: false,
-    this.confirmButtonText: "确认",
-    this.confirmButtonColor: Colors.white,
-    this.confirmTextColor: Colors.blueAccent,
-    this.cancelButtonText: "取消",
-    this.cancelButtonColor: Colors.white,
-    this.cancelTextColor: Colors.black,
-    this.closeOnClickOverlay: false,
-    this.onConfirm,
-    this.onCancel,
-    this.beforeClose,
-    this.child
-  }) : super(key: key);
+  const NDialog(
+      {Key key,
+      this.title,
+      @required this.message,
+      this.titleAlign: AlignmentDirectional.center,
+      this.messageAlign: TextAlign.center,
+      this.showConfirmButton: true,
+      this.showCancelButton: false,
+      this.confirmButtonText: "确认",
+      this.confirmButtonColor: Style.dialogBackgroundColor,
+      this.confirmTextColor: Style.dialogConfirmButtonTextColor,
+      this.cancelButtonText: "取消",
+      this.cancelButtonColor: Style.dialogBackgroundColor,
+      this.cancelTextColor: Style.dialogCancelButtonTextColor,
+      this.closeOnClickOverlay: false,
+      this.onConfirm,
+      this.onCancel,
+      this.beforeClose,
+      this.child})
+      : super(key: key);
 
   @override
   _NDialog createState() => _NDialog();
@@ -88,6 +89,102 @@ class _NDialog extends State<NDialog> {
     Navigator.of(context).pop();
   }
 
+  Widget buildCancelButton() {
+    return DecoratedBox(
+        decoration: BoxDecoration(
+            color: widget.cancelButtonColor,
+            borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(Style.dialogBorderRadius))),
+        child: Material(
+            type: MaterialType.transparency,
+            child: InkWell(
+                onTap: hideDialog,
+                borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(Style.dialogBorderRadius)),
+                child: Container(
+                    height: Style.dialogButtonHeight,
+                    alignment: Alignment.center,
+                    child: Text(widget.cancelButtonText,
+                        style: TextStyle(
+                          fontSize: Style.dialogFontSize,
+                          color: widget.cancelTextColor,
+                        ))))));
+  }
+
+  Widget buildConfirmButton() {
+    return DecoratedBox(
+        decoration: BoxDecoration(
+            color: widget.confirmButtonColor,
+            borderRadius: widget.showCancelButton
+                ? BorderRadius.only(
+                    bottomRight: Radius.circular(Style.dialogBorderRadius))
+                : BorderRadius.only(
+                    bottomLeft: Radius.circular(Style.dialogBorderRadius),
+                    bottomRight: Radius.circular(Style.dialogBorderRadius))),
+        child: Material(
+          type: MaterialType.transparency,
+          child: InkWell(
+              onTap: confirmDialog,
+              focusColor: _confirmLoading
+                    ? Style.transparent
+                    : Theme.of(context).focusColor,
+                highlightColor: _confirmLoading
+                    ? Style.transparent
+                    : Theme.of(context).highlightColor,
+                hoverColor: _confirmLoading
+                    ? Style.transparent
+                    : Theme.of(context).hoverColor,
+                splashColor: _confirmLoading
+                    ? Style.transparent
+                    : Theme.of(context).splashColor,
+              borderRadius: widget.showCancelButton
+                  ? BorderRadius.only(
+                      bottomRight: Radius.circular(Style.dialogBorderRadius))
+                  : BorderRadius.only(
+                      bottomLeft: Radius.circular(Style.dialogBorderRadius),
+                      bottomRight: Radius.circular(Style.dialogBorderRadius)),
+              child: Container(
+                height: Style.dialogButtonHeight,
+                alignment: Alignment.center,
+                child: _confirmLoading
+                    ? SizedBox(
+                        width: Style.dialogFontSize,
+                        height: Style.dialogFontSize,
+                        child: CircularProgressIndicator(
+                          valueColor:
+                              AlwaysStoppedAnimation(widget.confirmTextColor),
+                          backgroundColor: widget.confirmButtonColor,
+                          strokeWidth: 1,
+                        ),
+                      )
+                    : Text(widget.confirmButtonText,
+                        style: TextStyle(
+                          fontSize: Style.dialogFontSize,
+                          color: widget.confirmTextColor,
+                        )),
+              )),
+        ));
+  }
+
+  Widget buildButtons() {
+    return Container(
+    child: Row(
+      children: <Widget>[
+        Expanded(
+            child: widget.showCancelButton ? buildCancelButton() : Text(''),
+            flex: widget.showCancelButton ? 1 : 0),
+        SizedBox(
+            width: widget.showCancelButton ? Style.borderWidthBase : 0,
+            height: Style.dialogButtonHeight,
+            child: Container(color: Style.borderColor)),
+        Expanded(
+            child:
+                widget.showConfirmButton ? buildConfirmButton() : Container(),
+            flex: widget.showConfirmButton ? 1 : 0),
+      ],
+    ));
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -96,111 +193,67 @@ class _NDialog extends State<NDialog> {
     Column _buildContent = Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        widget.title != null ? Container(
-          padding: EdgeInsets.fromLTRB(24, 24, 24, 0),
+        Container(
+          padding: Style.dialogHeaderPadding,
           alignment: widget.titleAlign,
-          child: Text(widget.title,
-            style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold)
-          ),
-        ) : Container(),
-        Flexible(
-          child: widget.child??Container(
-            padding: EdgeInsets.fromLTRB(24, widget.title != null ? 12 : 24, 24, 24),
-            child: Text(widget.message,
-              textAlign: widget.messageAlign,
-              style: TextStyle(fontSize: 14.0, color: Color(0xff333333))
-            ),
-          ),
+          child: Text(widget.title ?? "",
+              style: TextStyle(
+                  fontSize: Style.dialogFontSize,
+                  color: Style.dialogTextColor,
+                  fontWeight: Style.dialogHeaderFontWeight)),
         ),
-        (widget.showConfirmButton || widget.showCancelButton) ? SizedBox(height: 1.0, child: Container(color: Color(0xffebedf0))) : Container(),
-        (widget.showConfirmButton || widget.showCancelButton) ? Container(
-          height: 45,
-          child: Row(
-            children: <Widget>[
-              Expanded(
-                child: widget.showCancelButton ? Container(
-                  decoration: BoxDecoration(
-                    color: widget.cancelButtonColor,
-                    borderRadius: BorderRadius.only(bottomLeft: Radius.circular(12.0))
-                  ),
-                  child: FlatButton(
-                    child: Text(widget.cancelButtonText,
-                      style: TextStyle(
-                        fontSize: 16.0,
-                        color: widget.cancelTextColor,
-                      )
-                    ),
-                    onPressed: hideDialog,
-                    splashColor: widget.cancelButtonColor,
-                    highlightColor: widget.cancelButtonColor,
-                  ),
-                ) : Text(''),
-                flex: widget.showCancelButton ? 1 : 0
+        Flexible(
+          child: widget.child ??
+              Container(
+                padding: EdgeInsets.fromLTRB(
+                    Style.dialogMessagePadding,
+                    widget.title != null
+                        ? Style.dialogHasTitleMessagePaddingTop
+                        : 0,
+                    Style.dialogMessagePadding,
+                    Style.dialogMessagePadding),
+                child: Text(widget.message,
+                    textAlign: widget.messageAlign,
+                    style: TextStyle(
+                        fontSize: Style.dialogMessageFontSize,
+                        color: Style.dialogHasTitleMessageTextColor)),
               ),
-              SizedBox(
-                width: widget.showCancelButton ? 1.0 : 0,
-                child: Container(color: Color(0xffebedf0))
-              ),
-              Expanded(
-                child: widget.showConfirmButton ? Container(
-                  decoration: BoxDecoration(
-                    color: widget.confirmButtonColor,
-                    borderRadius: widget.showCancelButton
-                      ? BorderRadius.only(bottomRight: Radius.circular(12.0))
-                      : BorderRadius.only(
-                          bottomLeft: Radius.circular(12.0),
-                          bottomRight: Radius.circular(12.0)
-                        )
-                      ),
-                  child: FlatButton(
-                    onPressed: confirmDialog,
-                    child: _confirmLoading ? SizedBox(
-                      width: 16,
-                      height: 16,
-                      child: CircularProgressIndicator(
-                        valueColor: AlwaysStoppedAnimation(widget.confirmTextColor),
-                        backgroundColor: widget.confirmButtonColor,
-                        strokeWidth: 1,
-                      ),
-                    ) : Text(
-                      widget.confirmButtonText,
-                      style: TextStyle(
-                        fontSize: 16.0,
-                        color: widget.confirmTextColor,
-                      )
-                    ),
-                    splashColor: widget.confirmButtonColor,
-                    highlightColor: widget.confirmButtonColor,
-                  ),
-                ) : Container(),
-                flex: widget.showConfirmButton ? 1 : 0),
-            ],
-          )
-        ) : Container()
+        ),
+        (widget.showConfirmButton || widget.showCancelButton)
+            ? SizedBox(
+                height: Style.borderWidthBase,
+                child: Container(color: Style.borderColor))
+            : Container(),
+        (widget.showConfirmButton || widget.showCancelButton)
+            ? buildButtons()
+            : Container()
       ],
     );
 
     return WillPopScope(
-        child: GestureDetector(
-          onTap: () => {widget.closeOnClickOverlay ? hideDialog() : null},
-          child: Material(
-            type: MaterialType.transparency,
-            child: Center(
-              child: ConstrainedBox(
-                constraints: BoxConstraints(maxWidth: width - 100.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Color(0xFFFFFFFF),
-                    borderRadius: BorderRadius.circular(12.0)
-                  ),
-                  child: _buildContent,
-                ),
+      child: GestureDetector(
+        onTap: () => {widget.closeOnClickOverlay ? hideDialog() : null},
+        child: Material(
+          type: MaterialType.transparency,
+          child: Center(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                  maxWidth: width > 321
+                      ? Style.dialogWidth
+                      : Style.dialogSmallScreenWidth),
+              child: Container(
+                decoration: BoxDecoration(
+                    color: Style.dialogBackgroundColor,
+                    borderRadius:
+                        BorderRadius.circular(Style.dialogBorderRadius)),
+                child: _buildContent,
               ),
             ),
           ),
         ),
-        onWillPop: () async {
-          return widget.closeOnClickOverlay;
-        });
+      ),
+      onWillPop: () async {
+        return widget.closeOnClickOverlay;
+      });
   }
 }

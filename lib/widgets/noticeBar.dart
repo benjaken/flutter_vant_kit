@@ -1,8 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-
-typedef CallBack();
+import 'package:flutter_kit/theme/style.dart';
 
 class NoticeBar extends StatefulWidget {
   // 文本颜色
@@ -20,28 +19,27 @@ class NoticeBar extends StatefulWidget {
   // 是否开启文本换行，只在禁用滚动时生效
   final bool wrapable;
   // 关闭通知栏时触发
-  final CallBack onClose;
+  final Function() onClose;
   // 点击通知栏时触发
-  final CallBack onClick;
+  final Function() onClick;
   // 滚动速率
   final int speed;
   // 动画延迟时间 (s)
   final int delay;
 
-  NoticeBar({
-    Key key,
-    @required this.text,
-    this.color: Colors.orange,
-    this.background: Colors.yellow,
-    this.leftIcon,
-    this.mode,
-    this.scrollable: true,
-    this.wrapable: false,
-    this.speed: 5,
-    this.delay: 100,
-    this.onClose,
-    this.onClick
-  });
+  NoticeBar(
+      {Key key,
+      @required this.text,
+      this.color: Style.noticeBarTextColor,
+      this.background: Style.noticeBarBackgroundColor,
+      this.leftIcon,
+      this.mode,
+      this.scrollable: true,
+      this.wrapable: false,
+      this.speed: 5,
+      this.delay: 100,
+      this.onClose,
+      this.onClick});
 
   @override
   _NoticeBar createState() => _NoticeBar();
@@ -59,7 +57,8 @@ class _NoticeBar extends State<NoticeBar> {
   @override
   void initState() {
     scrollController = new ScrollController();
-    if (widget.scrollable) WidgetsBinding.instance.addPostFrameCallback(_onLayoutDone);
+    if (widget.scrollable)
+      WidgetsBinding.instance.addPostFrameCallback(_onLayoutDone);
     super.initState();
   }
 
@@ -92,6 +91,73 @@ class _NoticeBar extends State<NoticeBar> {
     super.dispose();
   }
 
+  Widget buildText() {
+    return Expanded(
+      child: widget.scrollable
+          ? ListView(
+              key: _key,
+              scrollDirection: Axis.horizontal,
+              controller: scrollController,
+              physics: NeverScrollableScrollPhysics(),
+              children: <Widget>[
+                Center(
+                  child: Text(
+                    widget.text,
+                    style: TextStyle(
+                        fontSize: Style.noticeBarFontSize, color: widget.color),
+                    maxLines: widget.wrapable && !widget.scrollable ? null : 1,
+                  ),
+                ),
+                Container(width: screenWidth * 0.5),
+                Center(
+                  child: Text(
+                    widget.text,
+                    style: TextStyle(
+                        fontSize: Style.noticeBarFontSize, color: widget.color),
+                    maxLines: widget.wrapable && !widget.scrollable ? null : 1,
+                  ),
+                )
+              ],
+            )
+          : Text(
+              widget.text,
+              style: TextStyle(
+                  fontSize: Style.noticeBarFontSize, color: widget.color),
+              maxLines: widget.wrapable ? null : 1,
+            ),
+    );
+  }
+
+  List<Widget> buildCloseButon() {
+    return [
+      (widget.mode == "closeable" || widget.mode == "link")
+          ? SizedBox(width: Style.intervalSm)
+          : Container(),
+      (widget.mode == "closeable" || widget.mode == "link")
+          ? GestureDetector(
+              child: Icon(
+                  widget.mode == "closeable"
+                      ? Icons.cancel
+                      : Icons.chevron_right,
+                  color: widget.color,
+                  size: Style.noticeBarIconSize),
+              onTap: () {
+                //TODO:增加动画效果
+                if (widget.mode == "closeable" && widget.onClose != null) {
+                  setState(() {
+                    showNotice = false;
+                  });
+                  widget.onClose();
+                }
+                if (widget.mode == "link" && widget.onClick != null) {
+                  widget.onClick();
+                }
+              },
+            )
+          : Container()
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     screenWidth = MediaQuery.of(context).size.width;
@@ -99,66 +165,19 @@ class _NoticeBar extends State<NoticeBar> {
     return Visibility(
       visible: showNotice,
       child: Container(
-        height: widget.wrapable ? null : 40,
-        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
-        color: widget.background.withOpacity(.1),
+        height: widget.wrapable ? null : Style.noticeBarHeight,
+        padding: Style.noticeBarPadding,
+        color: widget.background,
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             widget.leftIcon != null
-                ? Icon(widget.leftIcon, color: widget.color, size: 14)
+                ? Icon(widget.leftIcon,
+                    color: widget.color, size: Style.noticeBarIconSize)
                 : Container(),
-            SizedBox(width: widget.leftIcon != null ? 4 : 0),
-            Expanded(
-              // child: 
-              child: widget.scrollable ? ListView(
-                key: _key,
-                scrollDirection: Axis.horizontal,
-                controller: scrollController,
-                physics: NeverScrollableScrollPhysics(),
-                children: <Widget>[
-                  Text(
-                    widget.text,
-                    style: TextStyle(fontSize: 14, color: widget.color),
-                    maxLines: widget.wrapable && !widget.scrollable ? null : 1,
-                  ),
-                  Container(width: screenWidth * 0.5),
-                  Text(
-                    widget.text,
-                    style: TextStyle(fontSize: 14, color: widget.color),
-                    maxLines: widget.wrapable && !widget.scrollable ? null : 1,
-                  ),
-                ],
-              ) : Text(
-                widget.text,
-                style: TextStyle(fontSize: 14, color: widget.color),
-                maxLines: widget.wrapable ? null : 1,
-              ),
-            ),
-            (widget.mode == "closeable" || widget.mode == "link")
-                ? SizedBox(width: 4) : Container(),
-            (widget.mode == "closeable" || widget.mode == "link")
-                ? GestureDetector(
-                    child: Icon(
-                        widget.mode == "closeable"
-                            ? Icons.cancel
-                            : Icons.chevron_right,
-                        color: widget.color,
-                        size: 14),
-                    onTap: () {
-                      //TODO:增加动画效果
-                      if (widget.mode == "closeable" &&
-                          widget.onClose != null) {
-                        setState(() {
-                          showNotice = false;
-                        });
-                        widget.onClose();
-                      }
-                      if (widget.mode == "link" && widget.onClick != null) {
-                        widget.onClick();
-                      }
-                    },
-                  )
-                : Container()
+            SizedBox(width: widget.leftIcon != null ? Style.intervalSm : 0),
+            buildText(),
+            ...buildCloseButon()
           ],
         ),
       ),

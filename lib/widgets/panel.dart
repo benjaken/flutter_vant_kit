@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_kit/theme/style.dart';
+import 'package:flutter_kit/widgets/cell.dart';
 
 
 class Panel extends StatelessWidget {
@@ -16,8 +18,8 @@ class Panel extends StatelessWidget {
   Panel({
     Key key,
     @required this.title,
-    this.desc: "",
-    this.status: "",
+    this.desc,
+    this.status,
     this.body,
     this.footer
   }) : super(key: key);
@@ -27,43 +29,33 @@ class Panel extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Container(
-            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+            // padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: Style.panelBackgroundColor,
               border: Border(
-                top: BorderSide(width: 1.0, color: Color(0xffebedf0)),
-                bottom: BorderSide(width: 1.0, color: Color(0xffebedf0)),
+                top: BorderSide(width: Style.borderWidthBase, color: Style.borderColor),
+                bottom: BorderSide(width: Style.borderWidthBase, color: Style.borderColor),
               )
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.max,
               children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Text(title, style: TextStyle(
-                      fontSize: 14
-                    )),
-                    Text(status, style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.redAccent
-                    ))
-                  ],
+                Cell(
+                  title: title??"",
+                  label: desc??"",
+                  customRight: Text(status??"", style: TextStyle(
+                    fontSize: Style.panelHeaderValueFontSize,
+                    color: Style.panelHeaderValueColor
+                  )),
                 ),
-                SizedBox(height: 4.0),
-                Text(desc, style: TextStyle(
-                  fontSize: 12,
-                  color: Colors.grey
-                )),
                 Container(
-                  margin: EdgeInsets.only(top: 10),
-                  padding: EdgeInsets.only(top: 20, bottom: 10),
-                  width: MediaQuery.of(context).size.width - 20,
+                  margin: EdgeInsets.only(left: Style.panelContentPadding),
+                  padding: EdgeInsets.only(top: Style.panelContentPadding, bottom: Style.panelContentPadding, right: Style.panelContentPadding),
                   alignment: AlignmentDirectional.centerStart,
                   decoration: BoxDecoration(
                     border: Border(
-                      top: BorderSide(width: 1.0, color: Color(0xffebedf0)),
+                      top: BorderSide(width: Style.borderWidthBase, color: Style.borderColor),
                     )
                   ),
                   child: body,
@@ -72,11 +64,11 @@ class Panel extends StatelessWidget {
             ),
           ),
           footer != null ? Container(
-            padding: EdgeInsets.symmetric(vertical: 6, horizontal: 20),
+            padding: Style.panelFooterPadding,
             decoration: BoxDecoration(
               color: Colors.white,
               border: Border(
-                bottom: BorderSide(width: 1.0, color: Color(0xffebedf0)),
+                bottom: BorderSide(width: Style.borderWidthBase, color: Style.borderColor),
               )
             ),
             child: footer,

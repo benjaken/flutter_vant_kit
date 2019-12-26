@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_kit/theme/style.dart';
 
 
 class Progress extends StatefulWidget {
@@ -30,14 +31,14 @@ class Progress extends StatefulWidget {
     this.type: "line",
     this.inactive: false,
     this.percentage: 0,
-    this.strokeWidth: 5,
+    this.strokeWidth: Style.progressHeight,
     this.showPivot: false,
-    this.color: Colors.blueAccent,
-    this.textColor: Colors.white,
-    this.trackColor: Colors.grey,
+    this.color: Style.progressColor,
+    this.textColor: Style.progressPivotTextColor,
+    this.trackColor: Style.progressBackgroundColor,
     this.pivotText,
     this.pivotColor,
-    this.circularSize: 120,
+    this.circularSize: Style.circleSize,
   }) : super(key: key);
 
   @override
@@ -79,16 +80,16 @@ class _Progress extends State<Progress> with SingleTickerProviderStateMixin {
       top: pivotTop,
       child: Container(
         key: _pivotKey,
-        padding: widget.type == "circular" ? null : EdgeInsets.fromLTRB(12, 2, 12, 2),
+        padding: widget.type == "circular" ? null : Style.progressPivotPadding,
         decoration: BoxDecoration(
           color: widget.type == "circular" ? Colors.transparent : widget.pivotColor??widget.color,
-          borderRadius: BorderRadius.circular(12.0)
+          borderRadius: BorderRadius.circular(Style.borderRadiusMax)
         ),
         child: Text(
-          widget.pivotText??(widget.percentage.toString() + "%"),
+          widget.pivotText??(widget.percentage.toStringAsFixed(0) + "%"),
           style: TextStyle(
-            color: widget.type == "circular" ? widget.pivotColor??Colors.black : widget.textColor,
-            fontSize: widget.type == "circular" ? 14 : 12
+            color: widget.type == "circular" ? widget.pivotColor??Style.circleTextColor : widget.textColor,
+            fontSize: widget.type == "circular" ? Style.circleTextFontSize : Style.progressPivotFontSize
           )
         ),
       ),
@@ -97,11 +98,10 @@ class _Progress extends State<Progress> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    widget.color = widget.inactive ? Colors.grey[400] : widget.color;
+    widget.color = widget.inactive ? Style.progressDisabledColor : widget.color;
     return Container(
       key: _progressKey,
-      // padding: EdgeInsets.symmetric(vertical: 10),
-      margin: EdgeInsets.symmetric(vertical: 10),
+      margin: Style.progressMargin,
       child: Stack(
         overflow: Overflow.visible,
         children: <Widget>[
@@ -110,7 +110,7 @@ class _Progress extends State<Progress> with SingleTickerProviderStateMixin {
             width: widget.circularSize,
             child: CircularProgressIndicator(
               strokeWidth: widget.strokeWidth,
-              backgroundColor: widget.trackColor.withOpacity(.4),
+              backgroundColor: widget.trackColor,
               valueColor: AlwaysStoppedAnimation(widget.color),
               value: widget.percentage / 100,
             ),
@@ -118,7 +118,7 @@ class _Progress extends State<Progress> with SingleTickerProviderStateMixin {
             height: widget.strokeWidth,
             //TODO:增加动画效果
             child: LinearProgressIndicator(
-              backgroundColor: widget.trackColor.withOpacity(.4),
+              backgroundColor: widget.trackColor,
               valueColor: AlwaysStoppedAnimation(widget.color),
               value: widget.percentage / 100,
             )

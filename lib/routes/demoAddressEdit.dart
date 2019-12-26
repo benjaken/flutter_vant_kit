@@ -14,7 +14,7 @@ class _demoAddressEdit extends State<demoAddressEdit> {
 
   Widget Title(String title) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 20),
+      padding: EdgeInsets.symmetric(vertical: 20, horizontal: 12),
       child: Text(
         title, 
         style: TextStyle(

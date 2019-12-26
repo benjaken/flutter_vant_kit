@@ -13,7 +13,7 @@ class demoPanel extends StatefulWidget{
 class _demoPanel extends State<demoPanel>{
   Widget Title(String title) {
     return Padding(
-      padding: EdgeInsets.fromLTRB(20, 30, 0, 10),
+      padding: EdgeInsets.fromLTRB(16, 30, 0, 10),
       child: Text(
         title, 
         style: TextStyle(
@@ -58,18 +58,18 @@ class _demoPanel extends State<demoPanel>{
               children: <Widget>[
                 NButton(
                   padding: EdgeInsets.symmetric(vertical: 6, horizontal: 12),
-                  type: "primary",
+                  type: "danger",
                   size: "small",
+                  width: 60,
                   text: "确定",
                   onClick: () => {},
                 ),
                 SizedBox(width: 8),
                 NButton(
                   padding: EdgeInsets.symmetric(vertical: 6, horizontal: 12),
-                  type: "primary",
                   size: "small",
+                  width: 60,
                   text: "取消",
-                  plain: true,
                   onClick: () => {},
                 ),
               ],

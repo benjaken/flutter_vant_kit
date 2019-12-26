@@ -1,39 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_kit/theme/style.dart';
 import 'package:flutter_kit/widgets/field.dart';
 import 'package:flutter_kit/widgets/button.dart';
 
 class Coupon extends StatefulWidget {
-  // 当前选中优惠券的索引	
+  // 当前选中优惠券的索引
   int chosenCoupon;
-  // 可用优惠券列表	
+  // 可用优惠券列表
   List<CoupenItem> coupons;
-  // 不可用优惠券列表	
+  // 不可用优惠券列表
   List<CoupenItem> disabledCoupons;
-  // 可用优惠券列表标题	
+  // 可用优惠券列表标题
   final String enabledTitle;
-  // 不可用优惠券列表标题	
+  // 不可用优惠券列表标题
   final String disabledTitle;
-  // 兑换按钮文字	
+  // 兑换按钮文字
   final String exchangeButtonText;
-  // 是否禁用兑换按钮	
+  // 是否禁用兑换按钮
   final bool exchangeButtonDisabled;
-  // 兑换码最大长度	
+  // 兑换码最大长度
   final int exchangeMaxLength;
-  // 滚动至特定优惠券位置	
+  // 滚动至特定优惠券位置
   final int displayedCouponIndex;
-  // 是否显示列表底部按钮	
+  // 是否显示列表底部按钮
   final bool showCloseButton;
-  // 列表底部按钮文字	
+  // 列表底部按钮文字
   final String closeButtonText;
-  // 输入框文字提示	
+  // 输入框文字提示
   final String inputPlaceholder;
-  // 是否展示兑换栏	
+  // 是否展示兑换栏
   final bool showExchangeBar;
-  // 列表为空时的占位图	
+  // 列表为空时的占位图
   final Image emptyImage;
-  // 优惠券切换回调	
+  // 优惠券切换回调
   final Function(int val) onSelect;
-  // 兑换优惠券回调	
+  // 兑换优惠券回调
   final Function(String val) onExchange;
 
   Coupon({
@@ -66,23 +67,24 @@ class _Coupon extends State<Coupon> with SingleTickerProviderStateMixin {
   ScrollController _scrollController = new ScrollController();
 
   @override
-  void initState () {
+  void initState() {
     _tabController = TabController(vsync: this, length: 2);
     WidgetsBinding.instance.addPostFrameCallback(_onLayoutDone);
     super.initState();
   }
 
   void _onLayoutDone(_) {
-    int scrollIndex = widget.displayedCouponIndex??widget.chosenCoupon;
-    if (scrollIndex != null && scrollIndex  > 2) {
+    int scrollIndex = widget.displayedCouponIndex ?? widget.chosenCoupon;
+    if (scrollIndex != null && scrollIndex > 2) {
       int couponsLength = widget.coupons.length;
-      int prevIndex = (scrollIndex > (couponsLength - 2) ? couponsLength - 2 : scrollIndex) - 1;
-      double index = ((150 * prevIndex) + 16).toDouble();
+      int prevIndex = (scrollIndex > (couponsLength - 2)
+              ? couponsLength - 2
+              : scrollIndex) -
+          1;
+      double index = ((150 * prevIndex) + Style.paddingMd).toDouble();
       double maxScroll = _scrollController.position.maxScrollExtent;
       _scrollController.animateTo(index > maxScroll ? maxScroll : index,
-        duration: Duration(milliseconds: 200),
-        curve: Curves.ease
-      );
+          duration: Duration(milliseconds: 200), curve: Curves.ease);
     }
   }
 
@@ -93,7 +95,7 @@ class _Coupon extends State<Coupon> with SingleTickerProviderStateMixin {
     super.dispose();
   }
 
-  Widget buildSearchField () {
+  Widget buildSearchField() {
     return Field(
       placeholder: widget.inputPlaceholder,
       controller: searchInput,
@@ -106,9 +108,9 @@ class _Coupon extends State<Coupon> with SingleTickerProviderStateMixin {
       right: NButton(
         text: widget.exchangeButtonText,
         size: "small",
-        type: "primary",
+        type: "info",
         disabled: widget.exchangeButtonDisabled || searchInput.text == '',
-        width: 60,
+        width: Style.couponListExchangeButtonWidth,
         onClick: () {
           if (widget.onExchange != null) widget.onExchange(searchInput.text);
         },
@@ -116,200 +118,277 @@ class _Coupon extends State<Coupon> with SingleTickerProviderStateMixin {
     );
   }
 
-  Widget buildEmptyList () {
-    return Image.network("https://img.yzcdn.cn/vant/coupon-empty.png");
+  Widget buildEmptyList() {
+    return Column(
+      children: <Widget>[
+        Image.network("https://img.yzcdn.cn/vant/coupon-empty.png",
+            width: Style.couponListEmptyImageSize),
+        SizedBox(width: Style.paddingSm),
+        Text("暂无优惠券",
+            style: TextStyle(
+                color: Style.couponListEmptyTipColor,
+                fontSize: Style.couponListEmptyTipFontSize))
+      ],
+    );
   }
 
-  Widget buildTabBar () {
+  Widget buildTabBar() {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
-        border: Border(
-          top: BorderSide(width: 1, color: Color(0xffebedf0))
-        )
-      ),
+          color: Style.couponListTabBackground,
+          border: Border(
+              top: BorderSide(
+                  width: Style.borderWidthBase, color: Style.borderColor))),
       child: TabBar(
-        tabs: <Widget>[
-          Tab(text: "${widget.enabledTitle}（${widget.coupons.length}）"),
-          Tab(text: "${widget.disabledTitle}（${widget.disabledCoupons.length}）"),
+          tabs: <Widget>[
+            Tab(text: "${widget.enabledTitle}（${widget.coupons.length}）"),
+            Tab(
+                text:
+                    "${widget.disabledTitle}（${widget.disabledCoupons.length}）"),
+          ],
+          controller: _tabController,
+          indicatorColor: Style.couponListTabIndicatorColor,
+          labelColor: Style.couponListTabLabelColor,
+          unselectedLabelColor: Style.couponListTabUnselectedLabelColor),
+    );
+  }
+
+  Widget buildCouponContainerLeft(CoupenItem coupon, int i, bool disabled) {
+    return Container(
+      width: Style.couponHeadWidth,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Container(
+            margin: EdgeInsets.only(bottom: Style.intervalSm),
+            height: Style.couponHeadHeight,
+            child: Row(
+              textBaseline: TextBaseline.ideographic,
+              crossAxisAlignment: CrossAxisAlignment.baseline,
+              children: <Widget>[
+                Text("${coupon.valueDesc ?? ''}",
+                    style: TextStyle(
+                        fontSize: Style.couponNameFontSize,
+                        fontWeight: Style.fontWeightBold,
+                        color: disabled
+                            ? Style.couponDisabledTextColor
+                            : Style.couponAmountColor)),
+                SizedBox(
+                  width: Style.intervalSm,
+                ),
+                Text("${coupon.unitDesc ?? ''}",
+                    style: TextStyle(
+                        fontSize: Style.couponFontSize,
+                        fontWeight: Style.fontWeightBold,
+                        color: disabled
+                            ? Style.couponDisabledTextColor
+                            : Style.couponAmountColor)),
+              ],
+            ),
+          ),
+          Text("${coupon.condition ?? ''}",
+              style: TextStyle(
+                  fontSize: Style.couponFontSize, color: Style.couponColor))
         ],
-        controller: _tabController,
-        labelColor: Colors.black,
-        unselectedLabelColor: Colors.grey,
       ),
     );
   }
 
-  Widget buildCoupon (int i, bool disabled) {
-    CoupenItem coupon = disabled ? widget.disabledCoupons[i] : widget.coupons[i];
+  Widget buildCouponContainerRight(CoupenItem coupon, int i, bool disabled) {
+    return Expanded(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Container(
+            height: Style.couponHeadHeight,
+            margin: EdgeInsets.only(bottom: Style.intervalSm),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisSize: MainAxisSize.max,
+              children: <Widget>[
+                Text("${coupon.name ?? ''}",
+                    style: TextStyle(
+                        fontWeight: Style.fontWeightBold,
+                        color: disabled
+                            ? Style.couponDisabledTextColor
+                            : Style.couponNameColor,
+                        fontSize: Style.couponNameFontSize)),
+                disabled
+                    ? Container()
+                    : Icon(Icons.check_circle,
+                        color: i == widget.chosenCoupon && !disabled
+                            ? Style.couponIconSelectedColor
+                            : Style.transparent,
+                        size: Style.couponIconSize),
+              ],
+            ),
+          ),
+          Text("有效期：${coupon.startAt ?? 'null'} - ${coupon.endAt ?? 'null'}",
+              style: TextStyle(
+                  color: Style.couponColor, fontSize: Style.couponFontSize))
+        ],
+      ),
+    );
+  }
+
+  Widget buildCouponContainer(CoupenItem coupon, int i, bool disabled) {
+    return Container(
+      padding: Style.couponContentPadding,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          buildCouponContainerLeft(coupon, i, disabled),
+          buildCouponContainerRight(coupon, i, disabled),
+        ],
+      ),
+    );
+  }
+
+  Widget buildDescription(CoupenItem coupon, int i, bool disabled) {
+    return Container(
+      alignment: AlignmentDirectional.centerStart,
+      decoration: BoxDecoration(
+          border: Border(
+              top: BorderSide(
+                  width: Style.borderWidthBase, color: Style.borderColor)),
+          color: Style.couponDescriptionBackgroundColor),
+      padding: Style.couponDescriptionPadding,
+      child: Text("${disabled ? coupon.reason : coupon.description}",
+          style: TextStyle(
+              color: Style.couponDescriptionColor,
+              fontSize: Style.couponDescriptionFontSize)),
+    );
+  }
+
+  Widget buildCoupon(int i, bool disabled) {
+    CoupenItem coupon =
+        disabled ? widget.disabledCoupons[i] : widget.coupons[i];
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(4.0),
-        border: Border.all(width: 1, color: Color(0xffebedf0)),
-        color: Colors.white
-      ),
-      margin: EdgeInsets.only(bottom: 12),
+          borderRadius: BorderRadius.circular(Style.couponBorderRadius),
+          border: Border.all(
+              width: Style.borderWidthBase, color: Style.borderColor),
+          color: Style.couponBackgroundColor,
+          boxShadow: [Style.couponBoxShadow]),
+      margin: Style.couponMargin,
       child: Column(
         // crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           DecoratedBox(
-            decoration: BoxDecoration(
-              color: Colors.white
-            ),
+            decoration: BoxDecoration(color: Style.couponBackgroundColor),
             child: Material(
               type: MaterialType.transparency,
               child: InkWell(
-                focusColor: disabled ? Colors.transparent : Theme.of(context).focusColor,
-                highlightColor: disabled ? Colors.transparent : Theme.of(context).highlightColor,
-                hoverColor: disabled ? Colors.transparent : Theme.of(context).hoverColor,
-                splashColor: disabled ? Colors.transparent : Theme.of(context).splashColor,
-                onTap: () {
-                  setState(() {
-                    if (disabled) return;
-                    widget.chosenCoupon = i;
-                    if (widget.onSelect != null) widget.onSelect(i);
-                    Navigator.of(context).pop();
-                  });
-                },
-                child: Container(
-                  padding: EdgeInsets.fromLTRB(16, 24, 16, 16),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Container(
-                        width: 80,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Container(
-                              margin: EdgeInsets.only(bottom: 4),
-                              height: 24,
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: <Widget>[
-                                  Text("${coupon.valueDesc??''}", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: disabled ? Colors.grey : Colors.red)),
-                                  SizedBox(width: 4,),
-                                  Text("${coupon.unitDesc??''}", style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color:  disabled ? Colors.grey : Colors.red)),
-                                ],
-                              ),
-                            ),
-                            Text("${coupon.condition??''}", style: TextStyle(fontSize: 12, color: Colors.grey))
-                          ],
-                        ),
-                      ),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Container(
-                              height: 24,
-                              margin: EdgeInsets.only(bottom: 4),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                mainAxisSize: MainAxisSize.max,
-                                children: <Widget>[
-                                  Text("${coupon.name??''}", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-                                  disabled ? Container() : Icon(Icons.check_circle, color: i == widget.chosenCoupon && !disabled ? Colors.red : Colors.transparent, size: 20),
-                                ],
-                              ),
-                            ),
-                            Text("有效期：${coupon.startAt??'null'} - ${coupon.endAt??'null'}", style: TextStyle(color: Colors.grey, fontSize: 12))
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+                  focusColor: disabled
+                      ? Style.transparent
+                      : Theme.of(context).focusColor,
+                  highlightColor: disabled
+                      ? Style.transparent
+                      : Theme.of(context).highlightColor,
+                  hoverColor: disabled
+                      ? Style.transparent
+                      : Theme.of(context).hoverColor,
+                  splashColor: disabled
+                      ? Style.transparent
+                      : Theme.of(context).splashColor,
+                  onTap: () {
+                    setState(() {
+                      if (disabled) return;
+                      widget.chosenCoupon = i;
+                      if (widget.onSelect != null) widget.onSelect(i);
+                      Navigator.of(context).pop();
+                    });
+                  },
+                  child: buildCouponContainer(coupon, i, disabled)),
             ),
           ),
-          (coupon.reason != null || coupon.description != null) ? Container(
-            alignment: AlignmentDirectional.centerStart,
-            decoration: BoxDecoration(
-              border: Border(
-                top: BorderSide(width: 1, color: Color(0xffebedf0))
-              ),
-              color: Color(0xfffafafa)
-            ),
-            padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-            child: Text(
-              "${disabled ? coupon.reason : coupon.description}",
-              style: TextStyle(color: Colors.grey, fontSize: 12)
-            ),
-          ) : Container(),
+          (coupon.reason != null || coupon.description != null)
+              ? buildDescription(coupon, i, disabled)
+              : Container(),
         ],
       ),
     );
   }
 
-  Widget buildCoupons () {
-    return widget.coupons.length == 0 ? buildEmptyList() : ListView.builder(
-      padding: EdgeInsets.all(16),
-      controller: _scrollController,
-      itemCount: widget.coupons.length,
-      itemBuilder: (BuildContext context, int index) {
-        return buildCoupon(index, false);
-      }
-    );
+  Widget buildCoupons() {
+    return widget.coupons.length == 0
+        ? buildEmptyList()
+        : ListView.builder(
+            padding: Style.couponListPadding,
+            controller: _scrollController,
+            itemCount: widget.coupons.length,
+            itemBuilder: (BuildContext context, int index) {
+              return buildCoupon(index, false);
+            });
   }
 
-  Widget buildDisabledCoupons () {
-    return widget.disabledCoupons.length == 0 ? buildEmptyList() : ListView.builder(
-      padding: EdgeInsets.all(16),
-      itemCount: widget.disabledCoupons.length,
-      itemBuilder: (BuildContext context, int index) {
-        return buildCoupon(index, true);
-      }
-    );
+  Widget buildDisabledCoupons() {
+    return widget.disabledCoupons.length == 0
+        ? buildEmptyList()
+        : ListView.builder(
+            padding: Style.couponListPadding,
+            itemCount: widget.disabledCoupons.length,
+            itemBuilder: (BuildContext context, int index) {
+              return buildCoupon(index, true);
+            });
   }
 
-  Widget buildTabView () {
+  Widget buildTabView() {
     return Expanded(
       child: Padding(
-        padding: EdgeInsets.only(bottom: widget.showCloseButton ? 50 : 0),
+        padding: EdgeInsets.only(
+            bottom:
+                widget.showCloseButton ? Style.couponListCloseButtonHeight : 0),
         child: TabBarView(
           controller: _tabController,
-          children: <Widget>[
-            buildCoupons(),
-            buildDisabledCoupons()
-          ],
+          children: <Widget>[buildCoupons(), buildDisabledCoupons()],
         ),
       ),
     );
   }
 
-  Widget buildBottomSheet () {
-    return GestureDetector(
-      onTap: () {
-        Navigator.of(context).pop();
-      },
-      child: Container(
-        height: 50,
-        decoration: BoxDecoration(
-          color: Colors.white,
+  Widget buildBottomSheet() {
+    return DecoratedBox(
+      decoration: BoxDecoration(
+          color: Style.couponListCloseButtonBackground,
           border: Border(
-            top: BorderSide(width: 1, color: Color(0xffebedf0))
-          )
+              top: BorderSide(
+                  width: Style.borderWidthBase, color: Style.borderColor))),
+      child: Material(
+        type: MaterialType.transparency,
+        child: InkWell(
+          onTap: () {
+            Navigator.of(context).pop();
+          },
+          child: Container(
+            height: Style.couponListCloseButtonHeight,
+            alignment: AlignmentDirectional.center,
+            child: Text(widget.closeButtonText,
+                style: TextStyle(
+                    fontSize: Style.couponListCloseButtonFontSize,
+                    color: Style.couponListCloseButtonColor,
+                    fontWeight: Style.fontWeightBold)),
+          ),
         ),
-        alignment: AlignmentDirectional.center,
-        padding: EdgeInsets.symmetric(vertical: 12),
-        child: Text(widget.closeButtonText, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
       ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    widget.coupons = widget.coupons??[];
-    widget.disabledCoupons = widget.disabledCoupons??[];
+    widget.coupons = widget.coupons ?? [];
+    widget.disabledCoupons = widget.disabledCoupons ?? [];
     return Stack(
       children: <Widget>[
-        Column(
-          children: <Widget>[
-            widget.showExchangeBar ? buildSearchField() : Container(),
-            buildTabBar(),
-            buildTabView(),
-          ],
+        Container(
+          color: Style.couponListBackgroundColor,
+          child: Column(
+            children: <Widget>[
+              widget.showExchangeBar ? buildSearchField() : Container(),
+              buildTabBar(),
+              buildTabView(),
+            ],
+          ),
         ),
         Positioned(
           bottom: 0,
@@ -323,15 +402,28 @@ class _Coupon extends State<Coupon> with SingleTickerProviderStateMixin {
 }
 
 class CoupenItem {
-  @required final String name;
-  @required final double value;
-  @required final String valueDesc;
-  @required final String unitDesc;
+  @required
+  final String name;
+  @required
+  final double value;
+  @required
+  final String valueDesc;
+  @required
+  final String unitDesc;
   final String condition;
   final String startAt;
   final String endAt;
   final String description;
   final String reason;
 
-  CoupenItem({this.name, this.condition, this.startAt, this.endAt, this.description, this.reason, this.value, this.valueDesc, this.unitDesc});
+  CoupenItem(
+      {this.name,
+      this.condition,
+      this.startAt,
+      this.endAt,
+      this.description,
+      this.reason,
+      this.value,
+      this.valueDesc,
+      this.unitDesc});
 }

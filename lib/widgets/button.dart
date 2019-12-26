@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_kit/theme/style.dart';
 
-typedef CallBack();
-
 class NButton extends StatelessWidget {
   // 类型
   final String type;
@@ -41,7 +39,7 @@ class NButton extends StatelessWidget {
   // 自定义按钮圆角
   final BorderRadius borderRadius;
   // 点击后回调
-  final CallBack onClick;
+  final Function() onClick;
 
   NButton(
       {Key key,
@@ -198,16 +196,16 @@ class NButton extends StatelessWidget {
             type: MaterialType.transparency,
             child: InkWell(
                 focusColor: (disabled || loading)
-                    ? Colors.transparent
+                    ? Style.transparent
                     : Theme.of(context).focusColor,
                 highlightColor: (disabled || loading)
-                    ? Colors.transparent
+                    ? Style.transparent
                     : Theme.of(context).highlightColor,
                 hoverColor: (disabled || loading)
-                    ? Colors.transparent
+                    ? Style.transparent
                     : Theme.of(context).hoverColor,
                 splashColor: (disabled || loading)
-                    ? Colors.transparent
+                    ? Style.transparent
                     : Theme.of(context).splashColor,
                 borderRadius: borderRadius ??
                     (square

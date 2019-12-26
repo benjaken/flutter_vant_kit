@@ -6,7 +6,7 @@
 import 'package:flutter_kit/widgets/tag.dart';
 
 Tag(
-  color: Colors.grey,
+  type: "primary"
   text: "标签",
   。。。
 )
@@ -18,6 +18,8 @@ Tag(
 
 | 参数  | 说明  | 类型  | 默认值  |
 | ------------ | ------------ | ------------ | ------------ |
+| type | 类型，可选值为`primary` `success` `danger` `warning` | `String` | `default` |
+| size | 尺寸，可选值为`large` `medium` | `String` | `default` |
 | text | 标签内文字 | `String` | - |
 | plain | 是否为空心样式 | `bool` | `false` |
 | round | 是否为圆角样式 | `bool` | `false` |

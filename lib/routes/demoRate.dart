@@ -40,8 +40,8 @@ class _demoRate extends State<demoRate>{
             value: 3,
             icon: Icons.favorite,
             voidIcon: Icons.favorite_border,
-            onChange: (v) {
-              Utils.toast(v);
+            onChange: (val) {
+              Utils.toast("Rate changed: $val");
             },
           ),
           Title("自定义样式"),
@@ -51,8 +51,8 @@ class _demoRate extends State<demoRate>{
             voidColor: Colors.blueAccent,
             size: 36.0,
             gutter: 8.0,
-            onChange: (v) {
-              Utils.toast(v);
+            onChange: (val) {
+              Utils.toast("Rate changed: $val");
             },
           ),
           Title("自定义数量"),

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_kit/theme/style.dart';
 
-typedef ValueCallBack(bool value);
-
 class NCheckbox extends StatefulWidget {
   final String name;
   bool value;
@@ -12,7 +10,7 @@ class NCheckbox extends StatefulWidget {
   final bool readonly;
   final double iconSize;
   final Color checkedColor;
-  final ValueCallBack onChange;
+  final Function(bool value) onChange;
 
   NCheckbox(
       {Key key,

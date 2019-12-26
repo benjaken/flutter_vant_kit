@@ -17,9 +17,9 @@ class ActionSheet extends StatelessWidget {
   // 关闭图标
   final IconData closeIcon;
   // 取消按钮点击时触发
-  final Function onCancel;
+  final Function() onCancel;
   // 关闭菜单时触发
-  final Function onClose;
+  final Function() onClose;
   // 自定义菜单内容
   final Widget child;
 
@@ -36,6 +36,36 @@ class ActionSheet extends StatelessWidget {
       this.child})
       : super(key: key);
 
+  List<Widget> buildActionItemContent(ActionItem action) {
+    return [
+      action.loading
+          ? SizedBox(
+              width: Style.actionSheetItemFontSize,
+              height: Style.actionSheetItemFontSize,
+              child: CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation(
+                    Style.actionSheetItemTextColor),
+                backgroundColor: Style.actionSheetItemBackground,
+                strokeWidth: Style.borderWidthBase,
+              ),
+            )
+          : Container(),
+      Text(action.name ?? "",
+          style: TextStyle(
+              fontSize: Style.actionSheetItemFontSize,
+              color: action.disabled
+                  ? Style.actionSheetItemDisabledTextColor
+                  : action.color ??
+                      Style.actionSheetItemTextColor)),
+      SizedBox(
+          width: action.subname != null ? Style.intervalSm : 0),
+      Text(action.subname ?? "",
+          style: TextStyle(
+              fontSize: Style.actionSheetSubnameFontSize,
+              color: Style.actionSheetSubnameColor))
+    ];
+  }
+
   buildActionItem(BuildContext context, List<ActionItem> actions) {
     List<Widget> widgets = [];
     if (child != null) return [child];
@@ -43,46 +73,39 @@ class ActionSheet extends StatelessWidget {
       ActionItem action = actions[i];
       widgets.add(Column(
         children: <Widget>[
-          GestureDetector(
-            child: Container(
-              height: Style.actionSheetItemHeight,
+          DecoratedBox(
+            decoration: BoxDecoration(
               color: Style.actionSheetItemBackground,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  action.loading
-                      ? SizedBox(
-                          width: Style.actionSheetItemFontSize,
-                          height: Style.actionSheetItemFontSize,
-                          child: CircularProgressIndicator(
-                            valueColor: AlwaysStoppedAnimation(
-                                Style.actionSheetItemTextColor),
-                            backgroundColor: Style.actionSheetItemBackground,
-                            strokeWidth: Style.borderWidthBase,
-                          ),
-                        )
-                      : Container(),
-                  Text(action.name ?? "",
-                      style: TextStyle(
-                          fontSize: Style.actionSheetItemFontSize,
-                          color: action.disabled
-                              ? Style.actionSheetItemDisabledTextColor
-                              : action.color ??
-                                  Style.actionSheetItemTextColor)),
-                  SizedBox(
-                      width: action.subname != null ? Style.intervalSm : 0),
-                  Text(action.subname ?? "",
-                      style: TextStyle(
-                          fontSize: Style.actionSheetSubnameFontSize,
-                          color: Style.actionSheetSubnameColor)),
-                ],
-              ),
             ),
-            onTap: () {
-              if (action.loading || action.disabled) return;
-              if (action.onClick != null) action.onClick();
-              close(context);
-            },
+            child: Material(
+              type: MaterialType.transparency,
+              child: InkWell(
+                focusColor: (action.disabled || action.loading)
+                    ? Style.transparent
+                    : Theme.of(context).focusColor,
+                highlightColor: (action.disabled || action.loading)
+                    ? Style.transparent
+                    : Theme.of(context).highlightColor,
+                hoverColor: (action.disabled || action.loading)
+                    ? Style.transparent
+                    : Theme.of(context).hoverColor,
+                splashColor: (action.disabled || action.loading)
+                    ? Style.transparent
+                    : Theme.of(context).splashColor,
+                child: Container(
+                  height: Style.actionSheetItemHeight,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: buildActionItemContent(action),
+                  ),
+                ),
+                onTap: () {
+                  if (action.loading || action.disabled) return;
+                  if (action.onClick != null) action.onClick();
+                  close(context);
+                },
+              ),
+            )
           ),
           (i < actions.length - 1) ? NDivider() : Container()
         ],
@@ -146,20 +169,27 @@ class ActionSheet extends StatelessWidget {
         Container(
             height: Style.actionSheetCancelPaddingTop,
             color: Style.backgroundColor),
-        GestureDetector(
-          child: Container(
+        DecoratedBox(
+          decoration: BoxDecoration(
             color: Style.actionSheetItemBackground,
-            alignment: AlignmentDirectional.center,
-            height: Style.actionSheetItemHeight,
-            child: Text(cancelText,
-                style: TextStyle(
-                    fontSize: Style.actionSheetItemFontSize,
-                    color: Style.actionSheetItemTextColor)),
           ),
-          onTap: () {
-            if (onCancel != null) onCancel();
-            close(context);
-          },
+          child: Material(
+            type: MaterialType.transparency,
+            child: InkWell(
+              child: Container(
+                alignment: AlignmentDirectional.center,
+                height: Style.actionSheetItemHeight,
+                child: Text(cancelText,
+                    style: TextStyle(
+                        fontSize: Style.actionSheetItemFontSize,
+                        color: Style.actionSheetItemTextColor)),
+              ),
+              onTap: () {
+                if (onCancel != null) onCancel();
+                close(context);
+              },
+            ),
+          ),
         )
       ],
     );
@@ -203,7 +233,7 @@ class ActionItem {
   // 是否为禁用状态
   final bool disabled;
   // 选中选项时触发，禁用或加载状态下不会触发
-  final Function onClick;
+  final Function() onClick;
 
   ActionItem(
       {this.name,

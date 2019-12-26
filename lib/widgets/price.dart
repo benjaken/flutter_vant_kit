@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_kit/theme/style.dart';
 
 class Price extends StatelessWidget {
   // 价格
@@ -17,9 +18,9 @@ class Price extends StatelessWidget {
   const Price({
     Key key,
     this.currency: "¥",
-    this.size: 20,
+    this.size: Style.priceFontSize,
     @required this.value,
-    this.color: Colors.black,
+    this.color: Style.priceTextColor,
     this.decimal: 2,
     this.thousands: false
   }) : super(key: key);
@@ -37,7 +38,7 @@ class Price extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.baseline,
       children: <Widget>[
         Text("$currency", style: TextStyle(fontSize: (size / 1.5).toDouble(), color: color)),
-        Text("$integer", style: TextStyle(fontSize: size, color: color, fontWeight: FontWeight.bold)),
+        Text("$integer", style: TextStyle(fontSize: size, color: color, fontWeight: Style.priceIntegetFontWeight)),
         Text(".$decimalString", style: TextStyle(fontSize: (size / 1.5).toDouble(), color: color))
       ],
     );

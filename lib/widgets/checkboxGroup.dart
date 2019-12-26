@@ -4,8 +4,6 @@ import 'package:flutter_kit/widgets/checkbox.dart';
 import 'package:flutter_kit/widgets/cell.dart';
 import 'package:flutter_kit/widgets/cellGroup.dart';
 
-typedef ListCallBack(List<String> value);
-
 class CheckboxGroup extends StatefulWidget {
   // 所有选项
   final List<CheckItem> list;
@@ -24,7 +22,7 @@ class CheckboxGroup extends StatefulWidget {
   // 所有复选框的选中状态颜色
   final Color checkedColor;
   // 当绑定值变化时触发的事件
-  final ListCallBack onChange;
+  final Function(List<String> value) onChange;
 
   CheckboxGroup(
       {Key key,
@@ -106,10 +104,10 @@ class CheckItem {
 
   CheckItem(
       {this.name,
-      this.value,
-      this.shape,
+      this.value: false,
+      this.shape: 'round',
       this.text,
-      this.disabled,
-      this.iconSize,
-      this.checkedColor});
+      this.disabled: false,
+      this.iconSize: Style.checkboxSize,
+      this.checkedColor: Style.checkboxCheckedIconColor});
 }

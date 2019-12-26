@@ -23,7 +23,7 @@ class NCard extends StatelessWidget {
   // 货币符号
   final String currency;
   // 点击时触发
-  final Function onClick;
+  final Function() onClick;
   // 自定义标题内容
   final Widget customTitle;
   // 自定义描述
@@ -91,7 +91,7 @@ class NCard extends StatelessWidget {
   Widget buildContent() {
     return Expanded(
       child: Container(
-        height: 90,
+        height: Style.cardThumbSize,
         child: Stack(
           children: <Widget>[
             Column(

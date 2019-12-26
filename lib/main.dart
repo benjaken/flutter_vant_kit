@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Flutter 组件库',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -140,9 +140,9 @@ class _MyHomePageState extends State<MyHomePage> {
             ExpansionTile(
               title: Text("业务组件"),
               children: _generateItem(context, [
-                PageInfo("AddressEdit 地址编辑", (ctx) => demoAddressEdit(), padding: true),
+                PageInfo("AddressEdit 地址编辑", (ctx) => demoAddressEdit(), padding: false),
                 PageInfo("AddressList 地址列表", (ctx) => demoAddressList(), padding: false),
-                PageInfo("Card 商品卡片", (ctx) => demoCard(), padding: true),
+                PageInfo("Card 商品卡片", (ctx) => demoCard(), padding: false),
                 PageInfo("Coupon 优惠券选择器", (ctx) => demoCoupon(), padding: false),
                 PageInfo("GoodsAction 商品导航", (ctx) => demoGoodsAction(), padding: false),
                 PageInfo("SubmitBar 提交订单栏", (ctx) => demoSubmitBar(), padding: false),
