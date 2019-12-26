@@ -84,18 +84,20 @@ class _demoCollapse extends State<demoCollapse>{
                 ),
                 name: 'a',
                 rightIcon: Icon(Icons.favorite, size: 16, color: Colors.blueAccent),
-                children: <Widget>[
-                  Text("代码是写出来给人看的，附带能在机器上运行", style: TextStyle(color: Colors.red, fontSize: 12)),
-                ],
+                child: Padding(
+                  padding: EdgeInsets.all(12),
+                  child: Text("代码是写出来给人看的，附带能在机器上运行", style: TextStyle(color: Colors.red, fontSize: 12)),
+                ),
               ),
               CollapseItem(
                 title: "标题2",
                 name: 'b',
                 value: "内容",
                 icon: Icons.store,
-                children: <Widget>[
-                  Image.network("https://img.yzcdn.cn/vant/apple-1.jpg")
-                ],
+                child: Padding(
+                  padding: EdgeInsets.all(12),
+                  child: Image.network("https://img.yzcdn.cn/vant/apple-1.jpg"),
+                ),
               ),
             ],
           )

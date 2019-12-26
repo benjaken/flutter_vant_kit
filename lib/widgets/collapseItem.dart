@@ -11,11 +11,11 @@ class CollapseItem extends StatefulWidget {
   final String name;
   // 左侧图标
   final IconData icon;
-  // 标题栏左侧内容	
+  // 标题栏左侧内容
   final String title;
-  // 标题栏右侧内容	
+  // 标题栏右侧内容
   final String value;
-  // 标题栏描述信息	
+  // 标题栏描述信息
   final String label;
   // 自定义右侧图标
   final Icon rightIcon;
@@ -28,7 +28,7 @@ class CollapseItem extends StatefulWidget {
   // 面板纯文本内容
   final String content;
   // 自定义面板内容
-  final List<Widget> children;
+  final Widget child;
   // 面板展开后回调
   final Function(bool val) onExpansionChanged;
 
@@ -38,14 +38,14 @@ class CollapseItem extends StatefulWidget {
     this.name,
     this.icon,
     this.value,
-    this.label, 
+    this.label,
     this.rightIcon,
     this.clickable: true,
     this.isExpanded: false,
     this.customTitle,
     this.customLabel,
     this.content,
-    this.children,
+    this.child,
     this.onExpansionChanged,
   }) : super(key: key);
 
@@ -53,9 +53,12 @@ class CollapseItem extends StatefulWidget {
   _CollapseItem createState() => _CollapseItem();
 }
 
-class _CollapseItem extends State<CollapseItem> with SingleTickerProviderStateMixin {
-  static final Animatable<double> _easeInTween = CurveTween(curve: Curves.easeIn);
-  static final Animatable<double> _halfTween = Tween<double>(begin: 0, end: 0.5);
+class _CollapseItem extends State<CollapseItem>
+    with SingleTickerProviderStateMixin {
+  static final Animatable<double> _easeInTween =
+      CurveTween(curve: Curves.easeIn);
+  static final Animatable<double> _halfTween =
+      Tween<double>(begin: 0, end: 0.5);
 
   AnimationController _controller;
   Animation<double> _iconTurns;
@@ -67,9 +70,10 @@ class _CollapseItem extends State<CollapseItem> with SingleTickerProviderStateMi
     _controller = AnimationController(duration: _kExpand, vsync: this);
     _heightFactor = _controller.drive(_easeInTween);
     _iconTurns = _controller.drive(_halfTween.chain(_easeInTween));
-    bool _isExpanded = PageStorage.of(context)?.readState(context)??widget.isExpanded;
-    if (_isExpanded)
-      _controller.value = 1.0;
+    bool _isExpanded =
+        PageStorage.of(context)?.readState(context) ?? widget.isExpanded;
+    print(PageStorage.of(context)?.readState(context));
+    if (_isExpanded) _controller.value = 1.0;
   }
 
   @override
@@ -113,25 +117,32 @@ class _CollapseItem extends State<CollapseItem> with SingleTickerProviderStateMi
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Cell(
-          customTitle: Row(
-            children: <Widget>[
-              Text(widget.title??"", style: TextStyle(color: widget.clickable ? Style.textColor : Style.collapseItemTitleDisabledColor)),
-              widget.customTitle??Container()
-            ],
-          ),
-          label: widget.label,
-          customLabel: widget.customLabel,
-          value: widget.value,
-          icon: widget.icon,
-          customRight: RotationTransition(
-            turns: _iconTurns,
-            child: widget.rightIcon??Icon(Icons.expand_more, color: widget.clickable ? Style.collapseItemContentTextColor : Style.collapseItemTitleDisabledColor),
-          ),
-          onClick: () {
-            _handleTap();
-          },
-          clickable: widget.clickable
-        ),
+            customTitle: Row(
+              children: <Widget>[
+                Text(widget.title ?? "",
+                    style: TextStyle(
+                        color: widget.clickable
+                            ? Style.textColor
+                            : Style.collapseItemTitleDisabledColor)),
+                widget.customTitle ?? Container()
+              ],
+            ),
+            label: widget.label,
+            customLabel: widget.customLabel,
+            value: widget.value,
+            icon: widget.icon,
+            customRight: RotationTransition(
+              turns: _iconTurns,
+              child: widget.rightIcon ??
+                  Icon(Icons.expand_more,
+                      color: widget.clickable
+                          ? Style.collapseItemContentTextColor
+                          : Style.collapseItemTitleDisabledColor),
+            ),
+            onClick: () {
+              _handleTap();
+            },
+            clickable: widget.clickable),
         ClipRect(
           child: Align(
             heightFactor: _heightFactor.value,
@@ -143,29 +154,30 @@ class _CollapseItem extends State<CollapseItem> with SingleTickerProviderStateMi
   }
 
   @override
-  Widget build (BuildContext context) {
+  Widget build(BuildContext context) {
     return Container(
       color: Style.collapseItemContentBackgroundColor,
       child: AnimatedBuilder(
-        animation: _controller.view,
-        builder: _buildChildren,
-        child: Container(
-          alignment: AlignmentDirectional.centerStart,
-          padding: Style.collapseItemContentPadding,
-          margin: Style.collapseItemContentMargin,
-          decoration: BoxDecoration(
-            border: Border(
-              top: BorderSide(width: Style.borderWidthBase, color: Style.borderColor)
+          animation: _controller.view,
+          builder: _buildChildren,
+          child: Container(
+            alignment: AlignmentDirectional.centerStart,
+            padding:
+                widget.child != null ? null : Style.collapseItemContentPadding,
+            margin:
+                widget.child != null ? null : Style.collapseItemContentMargin,
+            decoration: BoxDecoration(
+              border: Border(
+                  top: BorderSide(
+                      width: Style.borderWidthBase, color: Style.borderColor)),
             ),
-          ),
-          child: widget.children != null ? Column(
-            children: widget.children
-          ) : Text("${widget.content}", style: TextStyle(
-            color: Style.collapseItemContentTextColor,
-            fontSize: Style.collapseItemContentFontSize,
+            child: widget.child ??
+                Text("${widget.content}",
+                    style: TextStyle(
+                      color: Style.collapseItemContentTextColor,
+                      fontSize: Style.collapseItemContentFontSize,
+                    )),
           )),
-        )
-      ),
     );
   }
 }

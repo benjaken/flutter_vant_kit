@@ -359,9 +359,16 @@ class Style {
   static const imagePreviewDuration = animationDurationSlow;
 
   // ImageWall
-  static const imageWallPadding = EdgeInsets.symmetric(horizontal: paddingLg);
+  static const imageWallPadding = EdgeInsets.symmetric(horizontal: paddingSm);
   static const imageWallCloseButtonColor = gray6;
   static const imageWallCloseButtonFontSize = 16.0;
+  static const imageWallItemSize = 80.0;
+  static const imageWallItemGutter = 10.0;
+  static const imageWallItemBorderRadius = 4.0;
+  static const imageWallUploadBorderColor = borderColor;
+  static const imageWallUploadBackground = white;
+  static const imageWallUploadSize = 18.0;
+  static const imageWallUploadColor = gray6;
 
   // Loading
   static const loadingTextColor = gray6;

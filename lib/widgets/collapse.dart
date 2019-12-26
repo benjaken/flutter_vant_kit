@@ -46,7 +46,7 @@ class _Collapse extends State<Collapse> {
           clickable: item.clickable,
           isExpanded: widget.name.contains(name),
           content: item.content,
-          children: item.children,
+          child: item.child,
           rightIcon: item.rightIcon,
           onExpansionChanged: (val) {
             setState(() {
@@ -65,15 +65,17 @@ class _Collapse extends State<Collapse> {
   @override
   Widget build (BuildContext context) {
     widget.name = widget.name??[];
-    return Container(
-      decoration: BoxDecoration(
-        border: Border(
-          top: BorderSide(width: widget.border ? Style.borderWidthBase : 0, color: Style.borderColor),
-          bottom: BorderSide(width: widget.border ? Style.borderWidthBase : 0, color: Style.borderColor),
-        )
-      ),
-      child: Column(
-        children: buildItems(),
+    return SingleChildScrollView(
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border(
+            top: BorderSide(width: widget.border ? Style.borderWidthBase : 0, color: Style.borderColor),
+            bottom: BorderSide(width: widget.border ? Style.borderWidthBase : 0, color: Style.borderColor),
+          )
+        ),
+        child: Column(
+          children: buildItems(),
+        ),
       ),
     );
   }

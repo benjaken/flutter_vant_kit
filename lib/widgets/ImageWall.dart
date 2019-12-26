@@ -1,8 +1,8 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_kit/theme/style.dart';
 import 'package:multi_image_picker/multi_image_picker.dart';
 
 typedef void ImagesChangeCallback(List<String> newImages);
@@ -17,7 +17,7 @@ class ImageWall extends StatefulWidget {
   final List<String> images;
   // 是否可以多选图片
   final bool multiple;
-  // 单行的图片数量	
+  // 单行的图片数量
   final int length;
   // 最多可以选择的图片张数
   final int count;
@@ -51,43 +51,23 @@ class ImageWall extends StatefulWidget {
 
 class _ImageWall extends State<ImageWall> {
   List<String> images = [];
-  GlobalKey _key = GlobalKey();
-  double space = 10.0;
-  double size;
-
-  @override
-  void initState() {
-    WidgetsBinding.instance.addPostFrameCallback(_onLayoutDone);
-    super.initState();
-  }
-
-  _onLayoutDone(_) {
-    RenderBox test = _key.currentContext.findRenderObject();
-    setState(() {
-      double itemSize = (test.size.width - (space * (widget.length - 1))) / widget.length;
-      size = itemSize.toInt().toDouble();
-    });
-  }
+  double space = Style.imageWallItemGutter;
 
   @override
   Widget build(BuildContext context) {
-    return ConstrainedBox(
-      constraints: BoxConstraints(
-        minWidth: 1,
-      ),
-      key: _key,
+    return Container(
+      padding: Style.imageWallPadding,
       child: Wrap(
         direction: Axis.horizontal,
         spacing: space,
         runSpacing: space,
         children: buildImages(),
-      )
-    );
+      ));
   }
 
   List<Widget> buildImages() {
     List<Widget> widgets = [];
-    images = widget.images??[];
+    images = widget.images ?? [];
     for (int i = 0; i < images.length; i++) {
       widgets.add(_buildImageItem(i));
     }
@@ -101,17 +81,23 @@ class _ImageWall extends State<ImageWall> {
     return Stack(
       overflow: Overflow.visible,
       children: <Widget>[
-        Image.network(
-          images[index],
-          fit: widget.imageFit,
-          width: size,
-          height: size,
+        ClipRRect(
+          child: Image.network(
+            images[index],
+            fit: widget.imageFit,
+            width: Style.imageWallItemSize,
+            height: Style.imageWallItemSize,
+          ),
+          borderRadius: BorderRadius.circular(Style.imageWallItemBorderRadius)
         ),
         Positioned(
-          right: 4.0,
-          top: 4.0,
+          right: 0,
+          top: 0,
           child: InkWell(
-            child: Icon(Icons.cancel, color: Colors.grey.withOpacity(.8), size: 16),
+            borderRadius: BorderRadius.circular(Style.borderRadiusMax),
+            child: Icon(Icons.cancel,
+                color: Style.imageWallCloseButtonColor,
+                size: Style.imageWallCloseButtonFontSize),
             onTap: () {
               String removedUrl;
               setState(() {
@@ -130,33 +116,32 @@ class _ImageWall extends State<ImageWall> {
 
   Widget _buildAddImageButton() {
     Widget btn = Container(
-      width: size,
-      height: size,
+      width: Style.imageWallItemSize,
+      height: Style.imageWallItemSize,
       decoration: BoxDecoration(
         border: Border.all(
-          color: Color(0xffebedf0),
+          color: Style.imageWallUploadBorderColor,
         ),
+        borderRadius: BorderRadius.circular(Style.imageWallItemBorderRadius)
       ),
-      child: Icon(Icons.add, color: Colors.grey),
+      child: Icon(Icons.add,
+          color: Style.imageWallUploadColor, size: Style.imageWallUploadSize),
     );
 
     return InkWell(
       child: widget.uploadBtn ?? btn,
       onTap: () async {
         List<Asset> resultList = List<Asset>();
-         try {
+        try {
           resultList = await MultiImagePicker.pickImages(
             maxImages: widget.multiple ? widget.count - images.length : 1,
             enableCamera: true,
-            cupertinoOptions: CupertinoOptions(
-              takePhotoIcon: "chat"
-            ),
+            cupertinoOptions: CupertinoOptions(takePhotoIcon: "chat"),
             materialOptions: MaterialOptions(
-              startInAllView: true,
-              useDetailsView: true,
-              selectCircleStrokeColor: "#000000",
-              actionBarColor: "#000000"
-            ),
+                startInAllView: true,
+                useDetailsView: true,
+                selectCircleStrokeColor: "#000000",
+                actionBarColor: "#000000"),
           );
         } on Exception catch (e) {}
         String url = await widget.onUpload(resultList);
