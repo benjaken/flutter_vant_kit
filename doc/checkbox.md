@@ -3,7 +3,7 @@
 ### 使用范例
 
 ```
-import 'package:flutter_vant_kit/widgets/checkboxGroup.dart';
+import 'package:flutter_vant_kit/main.dart';
 
 List<CheckItem> list = [
   CheckItem(name: "a", text: "复选框a"),
@@ -17,7 +17,7 @@ CheckboxGroup(
 )
 ```
 
-更多例子请参考[Demo](../lib/routes/demoCheckbox.dart)
+更多例子请参考[Demo](../example/lib/routes/demoCheckbox.dart)
 
 ### API
 

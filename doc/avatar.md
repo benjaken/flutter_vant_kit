@@ -3,7 +3,7 @@
 ### 使用范例
 
 ```
-import 'package:flutter_vant_kit/widgets/avatar.dart';
+import 'package:flutter_vant_kit/main.dart';
 
 Avatar(
   type: 'large'
@@ -11,7 +11,7 @@ Avatar(
 )
 ```
 
-更多例子请参考[Demo](../lib/routes/demoAvatar.dart)
+更多例子请参考[Demo](../example/lib/routes/demoAvatar.dart)
 
 ### API
 

@@ -10,7 +10,7 @@ class RadioGroup extends StatefulWidget {
   // 形状
   final String shape;
   // 所有选项
-  final List<CheckItem> list;
+  final List<RadioItem> list;
   // 是否禁用所有单选框
   final bool disabled;
   // 所有单选框的图标大小
@@ -42,7 +42,7 @@ class _RadioGroup extends State<RadioGroup> {
   List<Widget> buildItems() {
     List<Widget> widgets = [];
     for (int i = 0; i < widget.list.length; i++) {
-      CheckItem item = widget.list[i];
+      RadioItem item = widget.list[i];
       Widget checkbox = NCheckbox(
         value: widget.value == item.name,
         shape: widget.shape ?? item.shape,
@@ -82,7 +82,7 @@ class _RadioGroup extends State<RadioGroup> {
   }
 }
 
-class CheckItem {
+class RadioItem {
   final String name;
   final bool value;
   final String shape;
@@ -91,7 +91,7 @@ class CheckItem {
   final double iconSize;
   final Color checkedColor;
 
-  CheckItem(
+  RadioItem(
       {this.name,
       this.value: false,
       this.shape: 'round',

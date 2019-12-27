@@ -3,7 +3,7 @@
 ### 使用范例
 
 ```
-import 'package:flutter_vant_kit/widgets/badge.dart';
+import 'package:flutter_vant_kit/main.dart';
 
 Badge(
   value: "10",
@@ -11,7 +11,7 @@ Badge(
 ),
 ```
 
-更多例子请参考[Demo](../lib/routes/demoBadge.dart)
+更多例子请参考[Demo](../example/lib/routes/demoBadge.dart)
 
 ### API
 

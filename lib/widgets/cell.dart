@@ -27,7 +27,7 @@ class Cell extends StatelessWidget {
   // 自定义右侧内容
   final Widget customRight;
   // 点击单元格时触发
-  final VoidCallback onClick;
+  final Function() onClick;
 
   Cell({
     Key key,

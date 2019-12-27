@@ -3,7 +3,7 @@
 ### 使用范例
 
 ```
-import 'package:flutter_vant_kit/widgets/dialog.dart';
+import 'package:flutter_vant_kit/main.dart';
 
 NDialog(
   title: '标题',
@@ -11,7 +11,7 @@ NDialog(
 );
 ```
 
-更多例子请参考[Demo](../lib/routes/demoDialog.dart)
+更多例子请参考[Demo](../example/lib/routes/demoDialog.dart)
 
 ### API
 

@@ -3,7 +3,7 @@
 ### 使用范例
 
 ```
-import 'package:flutter_vant_kit/widgets/treeSelect.dart';
+import 'package:flutter_vant_kit/main.dart';
 
 List<SideBarItem> list = [
   SideBarItem(
@@ -24,7 +24,7 @@ TreeSelect(
 )
 ```
 
-更多例子请参考[Demo](../lib/routes/demoTreeSelect.dart)
+更多例子请参考[Demo](../example/lib/routes/demoTreeSelect.dart)
 
 ### API
 

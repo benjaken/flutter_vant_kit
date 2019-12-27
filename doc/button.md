@@ -3,7 +3,7 @@
 ### 使用范例
 
 ```
-import 'package:flutter_vant_kit/widgets/button.dart';
+import 'package:flutter_vant_kit/main.dart';
 
 NButton(
   text: "按钮",
@@ -12,7 +12,7 @@ NButton(
 ),
 ```
 
-更多例子请参考[Demo](../lib/routes/demoButton.dart)
+更多例子请参考[Demo](../example/lib/routes/demoButton.dart)
 
 ### API
 

@@ -1,11 +1,22 @@
 # Flutter 组件库
+
 Flutter Kit 是仿[Vant](https://youzan.github.io/vant/#/zh-CN/intro)组件库的flutter widget库
 
 个人学习项目
 
+## 项目介绍
+
+### 如何使用
+
+```
+dependencies:
+  flutter_vant_kit: ^0.1.6
+```
+
 ### 运行Demo
 
 ```
+cd example/
 flutter run
 ```
 

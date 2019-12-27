@@ -4,7 +4,7 @@ import 'package:flutter_vant_kit/widgets/badge.dart';
 import 'package:flutter_vant_kit/widgets/button.dart';
 
 class GoodsAction extends StatefulWidget {
-  List<ActionItem> actions;
+  List<ActionButtonItem> actions;
   List<ButtonItem> buttons;
 
   GoodsAction({Key key, this.actions, this.buttons}) : super(key: key);
@@ -69,8 +69,8 @@ class _GoodsAction extends State<GoodsAction> {
     );
   }
 
-  Widget buildActionItem(i) {
-    ActionItem action = widget.actions[i];
+  Widget buildActionButtonItem(i) {
+    ActionButtonItem action = widget.actions[i];
     return DecoratedBox(
       decoration: BoxDecoration(color: Colors.white),
       child: Material(
@@ -112,8 +112,8 @@ class _GoodsAction extends State<GoodsAction> {
       color: Colors.white,
       child: Wrap(
         spacing: Style.intervalSm,
-        children:
-            List.generate(widget.actions.length, (i) => buildActionItem(i)),
+        children: List.generate(
+            widget.actions.length, (i) => buildActionButtonItem(i)),
       ),
     );
   }
@@ -133,7 +133,7 @@ class _GoodsAction extends State<GoodsAction> {
   }
 }
 
-class ActionItem {
+class ActionButtonItem {
   final String text;
   final IconData icon;
   final String info;
@@ -141,7 +141,7 @@ class ActionItem {
   final Widget customIcon;
   final Widget customText;
 
-  ActionItem(
+  ActionButtonItem(
       {this.text,
       this.icon,
       this.info,

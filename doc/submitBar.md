@@ -3,7 +3,7 @@
 ### 使用范例
 
 ```
-import 'package:flutter_vant_kit/widgets/submitBar.dart';
+import 'package:flutter_vant_kit/main.dart';
 
 SubmitBar(
   buttonText: "提交订单",
@@ -12,7 +12,7 @@ SubmitBar(
 )
 ```
 
-更多例子请参考[Demo](../lib/routes/demoSubmitBar.dart)
+更多例子请参考[Demo](../example/lib/routes/demoSubmitBar.dart)
 
 ### API
 

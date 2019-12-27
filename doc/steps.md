@@ -3,7 +3,7 @@
 ### 使用范例
 
 ```
-import 'package:flutter_vant_kit/widgets/steps.dart';
+import 'package:flutter_vant_kit/main.dart';
 
 List<StepItem> steps = [
   StepItem("买家下单"),
@@ -18,7 +18,7 @@ Steps(
 ),
 ```
 
-更多例子请参考[Demo](../lib/routes/demoSteps.dart)
+更多例子请参考[Demo](../example/lib/routes/demoSteps.dart)
 
 ### API
 

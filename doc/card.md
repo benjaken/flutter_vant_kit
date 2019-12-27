@@ -3,7 +3,7 @@
 ### 使用范例
 
 ```
-import 'package:flutter_vant_kit/widgets/card.dart';
+import 'package:flutter_vant_kit/main.dart';
 
 NCard(
   title: "商品名称",
@@ -12,7 +12,7 @@ NCard(
 ),
 ```
 
-更多例子请参考[Demo](../lib/routes/demoCard.dart)
+更多例子请参考[Demo](../example/lib/routes/demoCard.dart)
 
 ### API
 

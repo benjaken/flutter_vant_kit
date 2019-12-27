@@ -3,7 +3,7 @@
 ### 使用范例
 
 ```
-import 'package:flutter_vant_kit/widgets/progress.dart';
+import 'package:flutter_vant_kit/main.dart';
 
 Progress(
   percentage: 50,
@@ -12,7 +12,7 @@ Progress(
 )
 ```
 
-更多例子请参考[Demo](../lib/routes/demoProgress.dart)
+更多例子请参考[Demo](../example/lib/routes/demoProgress.dart)
 
 ### API
 

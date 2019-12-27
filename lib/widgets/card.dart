@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_vant_kit/theme/style.dart';
-import 'package:flutter_vant_kit/widgets/Tag.dart';
+import 'package:flutter_vant_kit/widgets/tag.dart';
 import 'package:flutter_vant_kit/widgets/price.dart';
 
 class NCard extends StatelessWidget {

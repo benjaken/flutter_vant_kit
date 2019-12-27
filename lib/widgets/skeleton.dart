@@ -56,10 +56,9 @@ class Skeleton extends StatelessWidget {
           ? FractionallySizedBox(
               widthFactor: titleWidth,
               child: Container(
-                height: Style.skeletonTitleHeight,
-                margin: Style.skeletonRowMarginBottom,
-                color: Style.skeletonRowBackgroundColor
-              ),
+                  height: Style.skeletonTitleHeight,
+                  margin: Style.skeletonRowMarginBottom,
+                  color: Style.skeletonRowBackgroundColor),
             )
           : Container();
     }
@@ -70,10 +69,9 @@ class Skeleton extends StatelessWidget {
         widgets.add(FractionallySizedBox(
           widthFactor: i == row - 1 ? rowWidth / 2 : rowWidth,
           child: Container(
-            height: Style.skeletonRowHeight,
-            margin: Style.skeletonRowMarginBottom,
-            color: Style.skeletonRowBackgroundColor
-          ),
+              height: Style.skeletonRowHeight,
+              margin: Style.skeletonRowMarginBottom,
+              color: Style.skeletonRowBackgroundColor),
         ));
       }
       return widgets;

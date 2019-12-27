@@ -3,7 +3,7 @@
 ### 使用范例
 
 ```
-import 'package:flutter_vant_kit/widgets/progress.dart';
+import 'package:flutter_vant_kit/main.dart';
 
 Progress(
   type: "circular",
@@ -12,7 +12,7 @@ Progress(
 ),
 ```
 
-更多例子请参考[Demo](../lib/routes/demoCircle.dart)
+更多例子请参考[Demo](../example/lib/routes/demoCircle.dart)
 
 ### API
 

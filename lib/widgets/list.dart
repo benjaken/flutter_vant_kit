@@ -1,17 +1,14 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter_vant_kit/utils/index.dart';
-import 'package:flutter_vant_kit/widgets/divider.dart';
-
-typedef PullCallback(int val);
+import './divider.dart';
 
 class NList extends StatefulWidget {
   final int itemCount;
   final double itemExtent;
   final IndexedWidgetBuilder itemBuilder;
 
-  final PullCallback onLoadMore;
-  final RefreshCallback onRefresh;
+  final Function(int val) onLoadMore;
+  final Function() onRefresh;
 
   const NList(
       {Key key,
@@ -51,7 +48,6 @@ class _NList extends State<NList> {
           setState(() {
             _hasMore = false;
           });
-          Utils.toast('没有更多数据');
         }
       }
     }

@@ -43,8 +43,8 @@ class ActionSheet extends StatelessWidget {
               width: Style.actionSheetItemFontSize,
               height: Style.actionSheetItemFontSize,
               child: CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation(
-                    Style.actionSheetItemTextColor),
+                valueColor:
+                    AlwaysStoppedAnimation(Style.actionSheetItemTextColor),
                 backgroundColor: Style.actionSheetItemBackground,
                 strokeWidth: Style.borderWidthBase,
               ),
@@ -55,10 +55,8 @@ class ActionSheet extends StatelessWidget {
               fontSize: Style.actionSheetItemFontSize,
               color: action.disabled
                   ? Style.actionSheetItemDisabledTextColor
-                  : action.color ??
-                      Style.actionSheetItemTextColor)),
-      SizedBox(
-          width: action.subname != null ? Style.intervalSm : 0),
+                  : action.color ?? Style.actionSheetItemTextColor)),
+      SizedBox(width: action.subname != null ? Style.intervalSm : 0),
       Text(action.subname ?? "",
           style: TextStyle(
               fontSize: Style.actionSheetSubnameFontSize,
@@ -74,39 +72,38 @@ class ActionSheet extends StatelessWidget {
       widgets.add(Column(
         children: <Widget>[
           DecoratedBox(
-            decoration: BoxDecoration(
-              color: Style.actionSheetItemBackground,
-            ),
-            child: Material(
-              type: MaterialType.transparency,
-              child: InkWell(
-                focusColor: (action.disabled || action.loading)
-                    ? Style.transparent
-                    : Theme.of(context).focusColor,
-                highlightColor: (action.disabled || action.loading)
-                    ? Style.transparent
-                    : Theme.of(context).highlightColor,
-                hoverColor: (action.disabled || action.loading)
-                    ? Style.transparent
-                    : Theme.of(context).hoverColor,
-                splashColor: (action.disabled || action.loading)
-                    ? Style.transparent
-                    : Theme.of(context).splashColor,
-                child: Container(
-                  height: Style.actionSheetItemHeight,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: buildActionItemContent(action),
-                  ),
-                ),
-                onTap: () {
-                  if (action.loading || action.disabled) return;
-                  if (action.onClick != null) action.onClick();
-                  close(context);
-                },
+              decoration: BoxDecoration(
+                color: Style.actionSheetItemBackground,
               ),
-            )
-          ),
+              child: Material(
+                type: MaterialType.transparency,
+                child: InkWell(
+                  focusColor: (action.disabled || action.loading)
+                      ? Style.transparent
+                      : Theme.of(context).focusColor,
+                  highlightColor: (action.disabled || action.loading)
+                      ? Style.transparent
+                      : Theme.of(context).highlightColor,
+                  hoverColor: (action.disabled || action.loading)
+                      ? Style.transparent
+                      : Theme.of(context).hoverColor,
+                  splashColor: (action.disabled || action.loading)
+                      ? Style.transparent
+                      : Theme.of(context).splashColor,
+                  child: Container(
+                    height: Style.actionSheetItemHeight,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: buildActionItemContent(action),
+                    ),
+                  ),
+                  onTap: () {
+                    if (action.loading || action.disabled) return;
+                    if (action.onClick != null) action.onClick();
+                    close(context);
+                  },
+                ),
+              )),
           (i < actions.length - 1) ? NDivider() : Container()
         ],
       ));

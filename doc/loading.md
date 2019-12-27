@@ -3,7 +3,7 @@
 ### 使用范例
 
 ```
-import 'package:flutter_vant_kit/widgets/loading.dart';
+import 'package:flutter_vant_kit/main.dart';
 
 Loading(
   color: Colors.blueAccent,
@@ -11,7 +11,7 @@ Loading(
 )
 ```
 
-更多例子请参考[Demo](../lib/routes/demoLoading.dart)
+更多例子请参考[Demo](../example/lib/routes/demoLoading.dart)
 
 ### API
 

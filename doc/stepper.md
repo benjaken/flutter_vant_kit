@@ -3,7 +3,7 @@
 ### 使用范例
 
 ```
-import 'package:flutter_vant_kit/widgets/stepper.dart';
+import 'package:flutter_vant_kit/main.dart';
 
 Steppers(
   step: 2,
@@ -11,7 +11,7 @@ Steppers(
 )
 ```
 
-更多例子请参考[Demo](../lib/routes/demoStepper.dart)
+更多例子请参考[Demo](../example/lib/routes/demoStepper.dart)
 
 ### API
 

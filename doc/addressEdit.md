@@ -3,7 +3,7 @@
 ### 使用范例
 
 ```
-import 'package:flutter_vant_kit/widgets/addressEdit.dart';
+import 'package:flutter_vant_kit/main.dart';
 
 AddressEdit(
   showDelete: true,
@@ -22,7 +22,7 @@ AddressEdit(
 )
 ```
 
-更多例子请参考[Demo](../lib/routes/demoAddressEdit.dart)
+更多例子请参考[Demo](../example/lib/routes/demoAddressEdit.dart)
 
 ### API
 

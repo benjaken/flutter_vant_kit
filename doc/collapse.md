@@ -3,8 +3,7 @@
 ### 使用范例
 
 ```
-import 'package:flutter_vant_kit/widgets/collapse.dart';
-import 'package:flutter_vant_kit/widgets/collapseItem.dart';
+import 'package:flutter_vant_kit/main.dart';
 
 List<CollapseItem> list = [[
   CollapseItem(
@@ -23,7 +22,7 @@ Collapse(
 )
 ```
 
-更多例子请参考[Demo](../lib/routes/demoCollapse.dart)
+更多例子请参考[Demo](../example/lib/routes/demoCollapse.dart)
 
 ### API
 

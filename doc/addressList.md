@@ -3,7 +3,7 @@
 ### 使用范例
 
 ```
-import 'package:flutter_vant_kit/widgets/addressList.dart';
+import 'package:flutter_vant_kit/main.dart';
 
 List<AddressInfo> list = [
   AddressInfo(
@@ -27,7 +27,7 @@ AddressList(
 )
 ```
 
-更多例子请参考[Demo](../lib/routes/demoAddressList.dart)
+更多例子请参考[Demo](../example/lib/routes/demoAddressList.dart)
 
 ### API
 

@@ -3,11 +3,11 @@
 ### 使用范例
 
 ```
-import 'package:flutter_vant_kit/widgets/goodsAction.dart';
+import 'package:flutter_vant_kit/main.dart';
 
 GoodsAction(
   actions: [
-    ActionItem(text: "客服", icon: Icons.chat_bubble_outline),
+    ActionButtonItem(text: "客服", icon: Icons.chat_bubble_outline),
     ...
   ],
   buttons: [
@@ -20,7 +20,7 @@ GoodsAction(
 )
 ```
 
-更多例子请参考[Demo](../lib/routes/demoGoodsAction.dart)
+更多例子请参考[Demo](../example/lib/routes/demoGoodsAction.dart)
 
 ### API
 
@@ -28,10 +28,10 @@ GoodsAction(
 
 | 参数  | 说明  | 类型  | 默认值  |
 | ------------ | ------------ | ------------ | ------------ |
-| actions | 左侧图标按钮 | `List<ActionItem>` | - |
+| actions | 左侧图标按钮 | `List<ActionButtonItem>` | - |
 | buttons | 右侧按钮 | `List<ButtonItem>` | - |
 
-#### ActionItem
+#### ActionButtonItem
 
 | 参数  | 说明  | 类型  | 默认值  |
 | ------------ | ------------ | ------------ | ------------ |

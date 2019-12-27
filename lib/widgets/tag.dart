@@ -35,7 +35,8 @@ class Tag extends StatefulWidget {
   })  : assert(["default", "medium", "large"].indexOf(size) > -1,
             "size must be default, medium, or large"),
         assert(
-            ["default", "primary", "success", "danger", "warning"].indexOf(type) >
+            ["default", "primary", "success", "danger", "warning"]
+                    .indexOf(type) >
                 -1,
             "type must be default, primary, success, danger or warning"),
         super(key: key);

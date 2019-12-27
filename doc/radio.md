@@ -3,11 +3,11 @@
 ### 使用范例
 
 ```
-import 'package:flutter_vant_kit/widgets/radioGroup.dart';
+import 'package:flutter_vant_kit/main.dart';
 
-List<CheckItem> list = [
-  CheckItem(name: "a", text: "单选框1"),
-  CheckItem(name: "b", text: "单选框2"),
+List<RadioItem> list = [
+  RadioItem(name: "a", text: "单选框1"),
+  RadioItem(name: "b", text: "单选框2"),
 ];
 
 RadioGroup(
@@ -17,11 +17,11 @@ RadioGroup(
 )
 ```
 
-更多例子请参考[Demo](../lib/routes/demoRadio.dart)
+更多例子请参考[Demo](../example/lib/routes/demoRadio.dart)
 
 ### API
 
-#### CheckGroup
+#### RadioGroup
 
 | 参数  | 说明  | 类型  | 默认值  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -34,7 +34,7 @@ RadioGroup(
 | checkedColor | 所有复选框的选中状态颜色 | `Color` | - |
 | onChange | 当绑定值变化时触发的事件 | `Function` | - |
 
-#### CheckItem
+#### RadioItem
 
 | 参数  | 说明  | 类型  | 默认值  |
 | ------------ | ------------ | ------------ | ------------ |

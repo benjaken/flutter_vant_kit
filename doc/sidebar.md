@@ -3,7 +3,7 @@
 ### 使用范例
 
 ```
-import 'package:flutter_vant_kit/widgets/sidebar.dart';
+import 'package:flutter_vant_kit/main.dart';
 
 List<SideBarItem> list = [
   SideBarItem(
@@ -21,7 +21,7 @@ Sidebar(
 )
 ```
 
-更多例子请参考[Demo](../lib/routes/demoSidebar.dart)
+更多例子请参考[Demo](../example/lib/routes/demoSidebar.dart)
 
 ### API
 

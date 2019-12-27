@@ -105,9 +105,11 @@ class _PasswordInput extends State<PasswordInput> {
       children: <Widget>[
         GestureDetector(
           child: Container(
-            margin: EdgeInsets.only(bottom: widget.info != null ? Style.paddingSm : 0),
+            margin: EdgeInsets.only(
+                bottom: widget.info != null ? Style.paddingSm : 0),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(Style.passwordInputBorderRadius),
+              borderRadius:
+                  BorderRadius.circular(Style.passwordInputBorderRadius),
             ),
             child: Row(
                 children:

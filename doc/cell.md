@@ -3,8 +3,7 @@
 ### 使用范例
 
 ```
-import 'package:flutter_vant_kit/widgets/cellGroup.dart';
-import 'package:flutter_vant_kit/widgets/cell.dart';
+import 'package:flutter_vant_kit/main.dart';
 
 CellGroup(
   children: <Widget>[
@@ -17,7 +16,7 @@ CellGroup(
 ),
 ```
 
-更多例子请参考[Demo](../lib/routes/demoCell.dart)
+更多例子请参考[Demo](../example/lib/routes/demoCell.dart)
 
 ### API
 

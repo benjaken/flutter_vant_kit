@@ -3,7 +3,7 @@
 ### 使用范例
 
 ```
-import 'package:flutter_vant_kit/widgets/list.dart';
+import 'package:flutter_vant_kit/main.dart';
 
 NList(
   itemCount: _dataList.length,
@@ -14,7 +14,7 @@ NList(
 )
 ```
 
-更多例子请参考[Demo](../lib/routes/demoList.dart)
+更多例子请参考[Demo](../example/lib/routes/demoList.dart)
 
 ### API
 

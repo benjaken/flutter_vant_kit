@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_vant_kit/theme/style.dart';
 
-
 class Progress extends StatefulWidget {
   // 进度条类型
   final String type;
@@ -20,7 +19,7 @@ class Progress extends StatefulWidget {
   // 轨道颜色
   final Color trackColor;
   // 文字显示
-  final String pivotText;	
+  final String pivotText;
   // 文字背景色
   final Color pivotColor;
   // 圆形进度条大小
@@ -64,17 +63,21 @@ class _Progress extends State<Progress> with SingleTickerProviderStateMixin {
     double pivotHeight = pivot.size.height;
     RenderBox progress = _progressKey.currentContext.findRenderObject();
     double progressWidth = progress.size.width;
-    double lineLeft = (widget.percentage / 100) * progressWidth - (pivotWidth / 2);
+    double lineLeft =
+        (widget.percentage / 100) * progressWidth - (pivotWidth / 2);
     setState(() {
-      pivotLeft = widget.type == "circular" ? (widget.circularSize - pivotWidth) / 2
-      : widget.percentage < 90 ? lineLeft : null;
-      pivotRight = widget.type != "circular" && widget.percentage >= 90 ? 0 : null;
-      pivotTop = widget.type == "circular" ? (widget.circularSize - pivotHeight) / 2 
-        : -((pivotHeight - widget.strokeWidth) / 2);
+      pivotLeft = widget.type == "circular"
+          ? (widget.circularSize - pivotWidth) / 2
+          : widget.percentage < 90 ? lineLeft : null;
+      pivotRight =
+          widget.type != "circular" && widget.percentage >= 90 ? 0 : null;
+      pivotTop = widget.type == "circular"
+          ? (widget.circularSize - pivotHeight) / 2
+          : -((pivotHeight - widget.strokeWidth) / 2);
     });
   }
 
-  Widget Pivot(BuildContext context) {
+  Widget pivot(BuildContext context) {
     return Positioned(
       left: pivotLeft,
       top: pivotTop,
@@ -82,16 +85,19 @@ class _Progress extends State<Progress> with SingleTickerProviderStateMixin {
         key: _pivotKey,
         padding: widget.type == "circular" ? null : Style.progressPivotPadding,
         decoration: BoxDecoration(
-          color: widget.type == "circular" ? Colors.transparent : widget.pivotColor??widget.color,
-          borderRadius: BorderRadius.circular(Style.borderRadiusMax)
-        ),
+            color: widget.type == "circular"
+                ? Colors.transparent
+                : widget.pivotColor ?? widget.color,
+            borderRadius: BorderRadius.circular(Style.borderRadiusMax)),
         child: Text(
-          widget.pivotText??(widget.percentage.toStringAsFixed(0) + "%"),
-          style: TextStyle(
-            color: widget.type == "circular" ? widget.pivotColor??Style.circleTextColor : widget.textColor,
-            fontSize: widget.type == "circular" ? Style.circleTextFontSize : Style.progressPivotFontSize
-          )
-        ),
+            widget.pivotText ?? (widget.percentage.toStringAsFixed(0) + "%"),
+            style: TextStyle(
+                color: widget.type == "circular"
+                    ? widget.pivotColor ?? Style.circleTextColor
+                    : widget.textColor,
+                fontSize: widget.type == "circular"
+                    ? Style.circleTextFontSize
+                    : Style.progressPivotFontSize)),
       ),
     );
   }
@@ -102,30 +108,28 @@ class _Progress extends State<Progress> with SingleTickerProviderStateMixin {
     return Container(
       key: _progressKey,
       margin: Style.progressMargin,
-      child: Stack(
-        overflow: Overflow.visible,
-        children: <Widget>[
-          widget.type == "circular" ? SizedBox(
-            height: widget.circularSize,
-            width: widget.circularSize,
-            child: CircularProgressIndicator(
-              strokeWidth: widget.strokeWidth,
-              backgroundColor: widget.trackColor,
-              valueColor: AlwaysStoppedAnimation(widget.color),
-              value: widget.percentage / 100,
-            ),
-          ) : SizedBox(
-            height: widget.strokeWidth,
-            //TODO:增加动画效果
-            child: LinearProgressIndicator(
-              backgroundColor: widget.trackColor,
-              valueColor: AlwaysStoppedAnimation(widget.color),
-              value: widget.percentage / 100,
-            )
-          ),
-          if (widget.showPivot) Pivot(context)
-        ]
-      ),
+      child: Stack(overflow: Overflow.visible, children: <Widget>[
+        widget.type == "circular"
+            ? SizedBox(
+                height: widget.circularSize,
+                width: widget.circularSize,
+                child: CircularProgressIndicator(
+                  strokeWidth: widget.strokeWidth,
+                  backgroundColor: widget.trackColor,
+                  valueColor: AlwaysStoppedAnimation(widget.color),
+                  value: widget.percentage / 100,
+                ),
+              )
+            : SizedBox(
+                height: widget.strokeWidth,
+                //TODO:增加动画效果
+                child: LinearProgressIndicator(
+                  backgroundColor: widget.trackColor,
+                  valueColor: AlwaysStoppedAnimation(widget.color),
+                  value: widget.percentage / 100,
+                )),
+        if (widget.showPivot) pivot(context)
+      ]),
     );
   }
 }

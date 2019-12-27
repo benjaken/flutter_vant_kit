@@ -3,7 +3,7 @@
 ### 使用范例
 
 ```
-import 'package:flutter_vant_kit/widgets/rate.dart';
+import 'package:flutter_vant_kit/main.dart';
 
 Rate(
   icon: Icons.favorite,
@@ -11,7 +11,7 @@ Rate(
 )
 ```
 
-更多例子请参考[Demo](../lib/routes/demoRate.dart)
+更多例子请参考[Demo](../example/lib/routes/demoRate.dart)
 
 ### API
 

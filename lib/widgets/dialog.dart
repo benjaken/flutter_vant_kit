@@ -41,7 +41,7 @@ class NDialog extends StatefulWidget {
   const NDialog(
       {Key key,
       this.title,
-      @required this.message,
+      this.message,
       this.titleAlign: AlignmentDirectional.center,
       this.messageAlign: TextAlign.center,
       this.showConfirmButton: true,
@@ -126,17 +126,17 @@ class _NDialog extends State<NDialog> {
           child: InkWell(
               onTap: confirmDialog,
               focusColor: _confirmLoading
-                    ? Style.transparent
-                    : Theme.of(context).focusColor,
-                highlightColor: _confirmLoading
-                    ? Style.transparent
-                    : Theme.of(context).highlightColor,
-                hoverColor: _confirmLoading
-                    ? Style.transparent
-                    : Theme.of(context).hoverColor,
-                splashColor: _confirmLoading
-                    ? Style.transparent
-                    : Theme.of(context).splashColor,
+                  ? Style.transparent
+                  : Theme.of(context).focusColor,
+              highlightColor: _confirmLoading
+                  ? Style.transparent
+                  : Theme.of(context).highlightColor,
+              hoverColor: _confirmLoading
+                  ? Style.transparent
+                  : Theme.of(context).hoverColor,
+              splashColor: _confirmLoading
+                  ? Style.transparent
+                  : Theme.of(context).splashColor,
               borderRadius: widget.showCancelButton
                   ? BorderRadius.only(
                       bottomRight: Radius.circular(Style.dialogBorderRadius))
@@ -168,7 +168,7 @@ class _NDialog extends State<NDialog> {
 
   Widget buildButtons() {
     return Container(
-    child: Row(
+        child: Row(
       children: <Widget>[
         Expanded(
             child: widget.showCancelButton ? buildCancelButton() : Text(''),
@@ -231,29 +231,29 @@ class _NDialog extends State<NDialog> {
     );
 
     return WillPopScope(
-      child: GestureDetector(
-        onTap: () => {widget.closeOnClickOverlay ? hideDialog() : null},
-        child: Material(
-          type: MaterialType.transparency,
-          child: Center(
-            child: ConstrainedBox(
-              constraints: BoxConstraints(
-                  maxWidth: width > 321
-                      ? Style.dialogWidth
-                      : Style.dialogSmallScreenWidth),
-              child: Container(
-                decoration: BoxDecoration(
-                    color: Style.dialogBackgroundColor,
-                    borderRadius:
-                        BorderRadius.circular(Style.dialogBorderRadius)),
-                child: _buildContent,
+        child: GestureDetector(
+          onTap: () => {widget.closeOnClickOverlay ? hideDialog() : null},
+          child: Material(
+            type: MaterialType.transparency,
+            child: Center(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(
+                    maxWidth: width > 321
+                        ? Style.dialogWidth
+                        : Style.dialogSmallScreenWidth),
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: Style.dialogBackgroundColor,
+                      borderRadius:
+                          BorderRadius.circular(Style.dialogBorderRadius)),
+                  child: _buildContent,
+                ),
               ),
             ),
           ),
         ),
-      ),
-      onWillPop: () async {
-        return widget.closeOnClickOverlay;
-      });
+        onWillPop: () async {
+          return widget.closeOnClickOverlay;
+        });
   }
 }

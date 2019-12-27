@@ -3,8 +3,7 @@
 ### 使用范例
 
 ```
-import 'package:flutter_vant_kit/widgets/cellGroup.dart';
-import 'package:flutter_vant_kit/widgets/field.dart';
+import 'package:flutter_vant_kit/main.dart';
 
 Field(
   placeholder: "请输入用户名",
@@ -13,7 +12,7 @@ Field(
 )
 ```
 
-更多例子请参考[Demo](../lib/routes/demoField.dart)
+更多例子请参考[Demo](../example/lib/routes/demoField.dart)
 
 ### API
 

@@ -104,9 +104,8 @@ class _AddressList extends State<AddressList> {
           IconButton(
             focusColor:
                 disabled ? Style.transparent : Theme.of(context).focusColor,
-            highlightColor: disabled
-                ? Style.transparent
-                : Theme.of(context).highlightColor,
+            highlightColor:
+                disabled ? Style.transparent : Theme.of(context).highlightColor,
             hoverColor:
                 disabled ? Style.transparent : Theme.of(context).hoverColor,
             splashColor:

@@ -3,7 +3,7 @@
 ### 使用范例
 
 ```
-import 'package:flutter_vant_kit/widgets/passwordInput.dart';
+import 'package:flutter_vant_kit/main.dart';
 
 PasswordInput(
   value: _value,
@@ -12,7 +12,7 @@ PasswordInput(
 )
 ```
 
-更多例子请参考[Demo](../lib/routes/demoPasswordInput.dart)
+更多例子请参考[Demo](../example/lib/routes/demoPasswordInput.dart)
 
 ### API
 

@@ -3,7 +3,7 @@
 ### 使用范例
 
 ```
-import 'package:flutter_vant_kit/widgets/numberKeyboard.dart';
+import 'package:flutter_vant_kit/main.dart';
 
 NumberKeyboard(
   title: "默认键盘",
@@ -12,7 +12,7 @@ NumberKeyboard(
 ).show(context);
 ```
 
-更多例子请参考[Demo](../lib/routes/demoNumberKeyboard.dart)
+更多例子请参考[Demo](../example/lib/routes/demoNumberKeyboard.dart)
 
 ### API
 

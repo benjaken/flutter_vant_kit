@@ -3,14 +3,14 @@
 ### 使用范例
 
 ```
-import 'package:flutter_vant_kit/widgets/divider.dart';
+import 'package:flutter_vant_kit/main.dart';
 
 NDivider(
   content: "分割线",
 )
 ```
 
-更多例子请参考[Demo](../lib/routes/demoDivider.dart)
+更多例子请参考[Demo](../example/lib/routes/demoDivider.dart)
 
 ### API
 

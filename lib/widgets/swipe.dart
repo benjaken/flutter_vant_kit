@@ -8,12 +8,12 @@ class Swipe extends StatefulWidget {
   // 自动轮播间隔
   final Duration interval;
   // 动画时长
-  final Duration duration; 
+  final Duration duration;
   // 初始位置索引值
   final int initialSwipe;
   // 是否显示指示器
   final bool showIndicators;
-   //指示器大小
+  //指示器大小
   final double indicatorSize;
   // 指示器颜色
   final Color indicatorColor;
@@ -24,7 +24,7 @@ class Swipe extends StatefulWidget {
   // 每一页轮播后触发
   final Function(int val) onChange;
   // 每个页面在滚动方向占据的视窗比例，默认为 1
-  final double viewportFraction; 
+  final double viewportFraction;
   // 显示内容
   final List<Widget> children;
   // 自定义指示器
@@ -32,24 +32,25 @@ class Swipe extends StatefulWidget {
 
   final int _length;
 
-  Swipe({
-    @required this.children,
-    this.interval,
-    this.autoPlay: false,
-    this.initialSwipe: 0,
-    this.indicatorSize: Style.swipeIndicatorSize,
-    this.curve: Curves.fastOutSlowIn,
-    this.duration,
-    this.showIndicators: true,
-    this.scrollDirection: 'horizontal',
-    this.viewportFraction: 1.0,
-    this.indicatorColor: Style.swipeIndicatorActiceBackgroundColor,
-    this.onChange,
-    this.indicator
-  }) : _length = children.length,
-    assert(children.length > 0, 'children 数量必须大于零'),
-    assert(viewportFraction > 0.0),
-    assert((initialSwipe >= 0) && (initialSwipe < children.length), 'initialSwipe 越界');
+  Swipe(
+      {@required this.children,
+      this.interval,
+      this.autoPlay: false,
+      this.initialSwipe: 0,
+      this.indicatorSize: Style.swipeIndicatorSize,
+      this.curve: Curves.fastOutSlowIn,
+      this.duration,
+      this.showIndicators: true,
+      this.scrollDirection: 'horizontal',
+      this.viewportFraction: 1.0,
+      this.indicatorColor: Style.swipeIndicatorActiceBackgroundColor,
+      this.onChange,
+      this.indicator})
+      : _length = children.length,
+        assert(children.length > 0, 'children 数量必须大于零'),
+        assert(viewportFraction > 0.0),
+        assert((initialSwipe >= 0) && (initialSwipe < children.length),
+            'initialSwipe 越界');
 
   @override
   _Swipe createState() => _Swipe();
@@ -98,26 +99,33 @@ class _Swipe extends State<Swipe> with SingleTickerProviderStateMixin {
     return Container(
       color: Colors.white,
       child: Stack(
-        alignment: widget.scrollDirection == 'vertical' ? AlignmentDirectional.centerStart : AlignmentDirectional.center,
+        alignment: widget.scrollDirection == 'vertical'
+            ? AlignmentDirectional.centerStart
+            : AlignmentDirectional.center,
         children: <Widget>[
           Positioned.fill(
-            child: PageView.builder(
-              controller: _pageController,
-              scrollDirection: widget.scrollDirection == 'horizontal' ? Axis.horizontal : Axis.vertical,
-              itemBuilder: (context, i) {
-                int index = i % widget._length;
-                return widget.children[index];
-              },
-              onPageChanged: (i) {
-                setState(() {
-                  _currentPage = i;
-                  _realCurrentPage = i % widget._length;
-                });
-                if (widget.onChange != null) widget.onChange((i) % 100 % widget._length + 1);
-              }
-            )
-          ),
-          widget.showIndicators ? (widget.indicator != null ? widget.indicator : _buildIndicators()) : Container()
+              child: PageView.builder(
+                  controller: _pageController,
+                  scrollDirection: widget.scrollDirection == 'horizontal'
+                      ? Axis.horizontal
+                      : Axis.vertical,
+                  itemBuilder: (context, i) {
+                    int index = i % widget._length;
+                    return widget.children[index];
+                  },
+                  onPageChanged: (i) {
+                    setState(() {
+                      _currentPage = i;
+                      _realCurrentPage = i % widget._length;
+                    });
+                    if (widget.onChange != null)
+                      widget.onChange((i) % 100 % widget._length + 1);
+                  })),
+          widget.showIndicators
+              ? (widget.indicator != null
+                  ? widget.indicator
+                  : _buildIndicators())
+              : Container()
         ],
       ),
     );
@@ -126,10 +134,14 @@ class _Swipe extends State<Swipe> with SingleTickerProviderStateMixin {
   Widget _buildIndicators() {
     List<Widget> widgets = [];
     for (int i = 0; i < widget._length; i++) {
-      Color color =
-          _realCurrentPage == i ? widget.indicatorColor	 : Style.swipeIndicatorInacticeBackgroundColor.withOpacity(Style.swipeIndicatorInacticeOpacity);
+      Color color = _realCurrentPage == i
+          ? widget.indicatorColor
+          : Style.swipeIndicatorInacticeBackgroundColor
+              .withOpacity(Style.swipeIndicatorInacticeOpacity);
       widgets.add(Container(
-        margin: widget.scrollDirection == 'vertical' ? EdgeInsets.only(bottom: widget.indicatorSize) : EdgeInsets.only(right: widget.indicatorSize),
+        margin: widget.scrollDirection == 'vertical'
+            ? EdgeInsets.only(bottom: widget.indicatorSize)
+            : EdgeInsets.only(right: widget.indicatorSize),
         width: widget.indicatorSize,
         height: widget.indicatorSize,
         decoration: ShapeDecoration(shape: StadiumBorder(), color: color),
@@ -138,13 +150,15 @@ class _Swipe extends State<Swipe> with SingleTickerProviderStateMixin {
     return Positioned(
       left: widget.scrollDirection == 'vertical' ? 10.0 : null,
       bottom: widget.scrollDirection == 'horizontal' ? 10.0 : null,
-      child: widget.scrollDirection == 'vertical' ? Column(
-        mainAxisSize: MainAxisSize.min,
-        children: widgets,
-      ) : Row(
-        mainAxisSize: MainAxisSize.min,
-        children: widgets,
-      ),
+      child: widget.scrollDirection == 'vertical'
+          ? Column(
+              mainAxisSize: MainAxisSize.min,
+              children: widgets,
+            )
+          : Row(
+              mainAxisSize: MainAxisSize.min,
+              children: widgets,
+            ),
     );
   }
 }

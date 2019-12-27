@@ -3,7 +3,7 @@
 ### 使用范例
 
 ```
-import 'package:flutter_vant_kit/widgets/tag.dart';
+import 'package:flutter_vant_kit/main.dart';
 
 Tag(
   type: "primary"
@@ -12,7 +12,7 @@ Tag(
 )
 ```
 
-更多例子请参考[Demo](../lib/routes/demoTag.dart)
+更多例子请参考[Demo](../example/lib/routes/demoTag.dart)
 
 ### API
 

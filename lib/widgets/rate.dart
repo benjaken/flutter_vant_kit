@@ -40,9 +40,8 @@ class Rate extends StatefulWidget {
     this.readonly: false,
     this.disabled: false,
     this.onChange,
-  }) : assert(count > 1 && value >= 1,
-    'count 或 value 不能小于1'),
-    super(key: key);
+  })  : assert(count > 1 && value >= 1, 'count 或 value 不能小于1'),
+        super(key: key);
 
   @override
   _Rate createState() => _Rate();
@@ -72,22 +71,22 @@ class _Rate extends State<Rate> {
     for (int i = 1; i <= widget.count; i++) {
       Widget item = Container(
         child: GestureDetector(
-          child: Icon(
-            _starNum >= i ? widget.icon : widget.voidIcon,
-            color: _starNum >= i
-              ? widget.disabled ? Style.rateDisabledColor : widget.color
-              : widget.voidColor,
-            size: widget.size,
-          ),
-          onTap: widget.readonly || widget.disabled
-            ? null
-            : () {
-              setState(() {
-                _starNum = i;
-              });
-              if (widget.onChange != null) widget.onChange(_starNum.toString());
-            }
-        ),
+            child: Icon(
+              _starNum >= i ? widget.icon : widget.voidIcon,
+              color: _starNum >= i
+                  ? widget.disabled ? Style.rateDisabledColor : widget.color
+                  : widget.voidColor,
+              size: widget.size,
+            ),
+            onTap: widget.readonly || widget.disabled
+                ? null
+                : () {
+                    setState(() {
+                      _starNum = i;
+                    });
+                    if (widget.onChange != null)
+                      widget.onChange(_starNum.toString());
+                  }),
       );
       widgets.add(item);
     }

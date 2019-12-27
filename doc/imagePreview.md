@@ -3,7 +3,7 @@
 ### 使用范例
 
 ```
-import 'package:flutter_vant_kit/widgets/imagePreview.dart';
+import 'package:flutter_vant_kit/main.dart';
 
 List<Widget> images = [
   Image.network("https://img.yzcdn.cn/vant/apple-1.jpg"),
@@ -22,7 +22,7 @@ showDialog(
 );
 ```
 
-更多例子请参考[Demo](../lib/routes/demoImagePreview.dart)
+更多例子请参考[Demo](../example/lib/routes/demoImagePreview.dart)
 
 ### API
 

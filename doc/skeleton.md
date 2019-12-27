@@ -3,7 +3,7 @@
 ### 使用范例
 
 ```
-import 'package:flutter_vant_kit/widgets/skeleton.dart';
+import 'package:flutter_vant_kit/main.dart';
 
 Skeleton(
   row: 3,
@@ -12,7 +12,7 @@ Skeleton(
 )
 ```
 
-更多例子请参考[Demo](../lib/routes/demoSkeleton.dart)
+更多例子请参考[Demo](../example/lib/routes/demoSkeleton.dart)
 
 ### API
 

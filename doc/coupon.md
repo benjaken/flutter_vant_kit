@@ -3,7 +3,7 @@
 ### 使用范例
 
 ```
-import 'package:flutter_vant_kit/widgets/coupon.dart';
+import 'package:flutter_vant_kit/main.dart';
 
 List<CouponItem> coupons = [
    CoupenItem(
@@ -26,7 +26,7 @@ showBottomSheet(
   );
 ```
 
-更多例子请参考[Demo](../lib/routes/demoCoupon.dart)
+更多例子请参考[Demo](../example/lib/routes/demoCoupon.dart)
 
 ### API
 

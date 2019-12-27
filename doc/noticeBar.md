@@ -3,7 +3,7 @@
 ### 使用范例
 
 ```
-import 'package:flutter_vant_kit/widgets/noticeBar.dart';
+import 'package:flutter_vant_kit/main.dart';
 
 NoticeBar(
   text: "XXXX",
@@ -11,7 +11,7 @@ NoticeBar(
 ),
 ```
 
-更多例子请参考[Demo](../lib/routes/demoNoticeBar.dart)
+更多例子请参考[Demo](../example/lib/routes/demoNoticeBar.dart)
 
 ### API
 

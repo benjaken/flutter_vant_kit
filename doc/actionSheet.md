@@ -3,7 +3,7 @@
 ### 使用范例
 
 ```
-import 'package:flutter_vant_kit/widgets/actionSheet.dart';
+import 'package:flutter_vant_kit/main.dart';
 
 List<ActionItem> actionList = [
   ActionItem(name: "选项"),
@@ -21,7 +21,7 @@ showModalBottomSheet(
 );
 ```
 
-更多例子请参考[Demo](../lib/routes/demoActionSheet.dart)
+更多例子请参考[Demo](../example/lib/routes/demoActionSheet.dart)
 
 ### API
 

@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_vant_kit/theme/style.dart';
-import 'package:flutter_vant_kit/utils/index.dart';
 import 'package:flutter_vant_kit/widgets/cellGroup.dart';
 import 'package:flutter_vant_kit/widgets/field.dart';
 import 'package:flutter_vant_kit/widgets/cell.dart';
@@ -87,7 +86,6 @@ class _AddressEdit extends State<AddressEdit> {
       map[value] = input[value].text;
     });
     List areas = input['area'].text.split('/');
-    Utils.toast(areas.toString());
     map['province'] = areas[0] ?? "";
     map['city'] = areas[1] ?? "";
     map['county'] = areas[2] ?? "";
@@ -124,9 +122,6 @@ class _AddressEdit extends State<AddressEdit> {
       rightIcon: Icons.chevron_right,
       controller: input['area'],
       readonly: true,
-      onClick: () {
-        Utils.toast("Clicked");
-      },
     );
   }
 

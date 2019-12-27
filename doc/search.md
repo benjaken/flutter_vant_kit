@@ -3,7 +3,7 @@
 ### 使用范例
 
 ```
-import 'package:flutter_vant_kit/widgets/search.dart';
+import 'package:flutter_vant_kit/main.dart';
 
  Search(
   showAction: true,
@@ -11,7 +11,7 @@ import 'package:flutter_vant_kit/widgets/search.dart';
 )
 ```
 
-更多例子请参考[Demo](../lib/routes/demoSearch.dart)
+更多例子请参考[Demo](../example/lib/routes/demoSearch.dart)
 
 ### API
 

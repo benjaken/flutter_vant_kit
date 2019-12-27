@@ -3,7 +3,7 @@
 ### 使用范例
 
 ```
-import 'package:flutter_vant_kit/widgets/ImageWall.dart';
+import 'package:flutter_vant_kit/main.dart';
 
 List<String> images = [
   "https://storage.360buyimg.com/mtd/home/111543234387022.jpg",
@@ -17,7 +17,7 @@ ImageWall(
 )
 ```
 
-更多例子请参考[Demo](../lib/routes/demoImageWall.dart)
+更多例子请参考[Demo](../example/lib/routes/demoImageWall.dart)
 
 ### API
 

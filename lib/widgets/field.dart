@@ -117,13 +117,13 @@ class _Field extends State<Field> {
     super.initState();
 
     /// 获取初始化值
-    _isShowDelete = !widget.controller.text.isEmpty;
+    _isShowDelete = widget.controller.text.isNotEmpty;
 
     /// 监听输入改变
     widget.controller.addListener(() {
       if (mounted) {
         setState(() {
-          _isShowDelete = !widget.controller.text.isEmpty;
+          _isShowDelete = widget.controller.text.isNotEmpty;
         });
       }
     });

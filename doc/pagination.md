@@ -3,7 +3,7 @@
 ### 使用范例
 
 ```
-import 'package:flutter_vant_kit/widgets/pagination.dart';
+import 'package:flutter_vant_kit/main.dart';
 
 Pagination(
   totalItems: 36,
@@ -11,7 +11,7 @@ Pagination(
 )
 ```
 
-更多例子请参考[Demo](../lib/routes/demoPagination.dart)
+更多例子请参考[Demo](../example/lib/routes/demoPagination.dart)
 
 ### API
 

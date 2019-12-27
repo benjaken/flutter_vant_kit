@@ -3,14 +3,14 @@
 ### 使用范例
 
 ```
-import 'package:flutter_vant_kit/widgets/price.dart';
+import 'package:flutter_vant_kit/main.dart';
 
 Price(
   value: 1234.567,
 )
 ```
 
-更多例子请参考[Demo](../lib/routes/demoPrice.dart)
+更多例子请参考[Demo](../example/lib/routes/demoPrice.dart)
 
 ### API
 

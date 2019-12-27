@@ -112,7 +112,8 @@ class Style {
   // AddressList
   static const addressListPadding = EdgeInsets.all(paddingSm);
   static const addressListDisabledTextColor = gray6;
-  static const addressListDisabledTextPadding = EdgeInsets.symmetric(vertical: paddingLg);
+  static const addressListDisabledTextPadding =
+      EdgeInsets.symmetric(vertical: paddingLg);
   static const addressListDisabledTextFontSize = fontSizeMd;
   static const addressListTitleFontSize = fontSizeLg;
   static const addressListItemPadding = EdgeInsets.all(paddingSm);
@@ -124,7 +125,8 @@ class Style {
   static const addressListItemRadioIconFontSize = 20.0;
   static const addressListEditIconSize = 18.0;
   static const addressListEditIconColor = gray6;
-  static const addressListAddPadding = EdgeInsets.symmetric(vertical: paddingSm, horizontal: paddingSm);
+  static const addressListAddPadding =
+      EdgeInsets.symmetric(vertical: paddingSm, horizontal: paddingSm);
   static const addressListAddBackground = white;
 
   // Avatar
@@ -289,7 +291,8 @@ class Style {
   static const dialogTextColor = textColor;
   static const dialogBackgroundColor = white;
   static const dialogHeaderFontWeight = fontWeightBold;
-  static const dialogHeaderPadding = EdgeInsets.fromLTRB(paddingLg, paddingLg, paddingLg, 0);
+  static const dialogHeaderPadding =
+      EdgeInsets.fromLTRB(paddingLg, paddingLg, paddingLg, 0);
   static const dialogMessagePadding = paddingLg;
   static const dialogMessageFontSize = fontSizeMd;
   static const dialogHasTitleMessageTextColor = gray7;
@@ -313,7 +316,8 @@ class Style {
   static const dropdownMenuTitleTextColor = textColor;
   static const dropdownMenuTitleActiveTextColor = blue;
   static const dropdownMenuTitleDisabledTextColor = gray6;
-  static const dropdownMenuTitlePadding = EdgeInsets.symmetric(horizontal: paddingXs);
+  static const dropdownMenuTitlePadding =
+      EdgeInsets.symmetric(horizontal: paddingXs);
   static const dropdownMenuOptionActiveColor = white;
   static const dropdownMenuContentMaxHeight = 200.0;
 
@@ -554,7 +558,8 @@ class Style {
   static const swipeDuration = animationDurationSlow;
 
   // Tag
-  static const tagPadding = EdgeInsets.symmetric(vertical: 2, horizontal: paddingBase);
+  static const tagPadding =
+      EdgeInsets.symmetric(vertical: 2, horizontal: paddingBase);
   static const tagMargin = EdgeInsets.only(right: intervalLg);
   static const tagFontSize = fontSizeXs;
   static const tagMediumFontSize = fontSizeSm;

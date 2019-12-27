@@ -3,7 +3,7 @@
 ### 使用范例
 
 ```
-import 'package:flutter_vant_kit/widgets/panel.dart';
+import 'package:flutter_vant_kit/main.dart';
 
 Panel(
   title: "标题",
@@ -12,7 +12,7 @@ Panel(
 )
 ```
 
-更多例子请参考[Demo](../lib/routes/demoPanel.dart)
+更多例子请参考[Demo](../example/lib/routes/demoPanel.dart)
 
 ### API
 
