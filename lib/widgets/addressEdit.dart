@@ -12,7 +12,7 @@ class AddressEdit extends StatefulWidget {
   // 地区选择列占位提示文字
   final String areaColumnsPlaceholder;
   // 收货人信息初始值
-  Map<String, dynamic> addressInfo;
+  final Map<String, dynamic> addressInfo;
   // 是否显示邮政编码
   final bool showPostal;
   // 是否显示删除按钮
@@ -28,7 +28,7 @@ class AddressEdit extends StatefulWidget {
   // 详细地址最大长度
   final int detailMaxlength;
   // 自定义内容
-  List<Widget> children;
+  final List<Widget> children;
   // 点击保存按钮时触发
   final Function(Map map) onSave;
   // 确认删除地址时触发
@@ -66,11 +66,13 @@ class _AddressEdit extends State<AddressEdit> {
     "postalCode": TextEditingController(),
   };
   bool setDefaultAddress = false;
+  Map<String, dynamic> _addressInfo;
 
   @override
   void initState() {
+    _addressInfo = widget.addressInfo ?? {};
     List areas = [];
-    (widget.addressInfo ?? {}).forEach((key, value) {
+    (_addressInfo ?? {}).forEach((key, value) {
       if (["province", "city", "county"].contains(key) && value != null)
         areas.add(value);
       if (["name", "tel", "addressDetail", "postalCode"].contains(key) &&
@@ -89,8 +91,8 @@ class _AddressEdit extends State<AddressEdit> {
     map['province'] = areas[0] ?? "";
     map['city'] = areas[1] ?? "";
     map['county'] = areas[2] ?? "";
-    map["isDefault"] = widget.addressInfo['isDefault'];
-    widget.addressInfo = map;
+    map["isDefault"] = _addressInfo['isDefault'];
+    _addressInfo = map;
     return map;
   }
 
@@ -154,11 +156,11 @@ class _AddressEdit extends State<AddressEdit> {
       customRight: SizedBox(
         height: Style.addressEditSwitchHeight,
         child: CupertinoSwitch(
-          value: widget.addressInfo["isDefault"] ?? false,
+          value: _addressInfo["isDefault"] ?? false,
           activeColor: Style.addressEditSwitchColor,
           onChanged: (bool value) {
             setState(() {
-              widget.addressInfo["isDefault"] = value;
+              _addressInfo["isDefault"] = value;
             });
           },
         ),
@@ -206,7 +208,7 @@ class _AddressEdit extends State<AddressEdit> {
 
   @override
   Widget build(BuildContext context) {
-    widget.children = widget.children ?? [];
+    List<Widget> _children = widget.children ?? [];
     return Padding(
       padding: EdgeInsets.all(Style.addressEditPadding),
       child: Column(
@@ -219,7 +221,7 @@ class _AddressEdit extends State<AddressEdit> {
               buildAreaField(),
               buildDetailField(),
               widget.showPostal ? buildPostalField() : Container(),
-              ...widget.children,
+              ..._children,
             ],
           ),
           SizedBox(height: widget.showSetDefault ? Style.paddingMd : 0),

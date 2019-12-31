@@ -6,7 +6,7 @@ import 'package:flutter_vant_kit/widgets/cellGroup.dart';
 
 class RadioGroup extends StatefulWidget {
   // 选中项的标识符
-  String value;
+  final String value;
   // 形状
   final String shape;
   // 所有选项
@@ -39,23 +39,31 @@ class RadioGroup extends StatefulWidget {
 }
 
 class _RadioGroup extends State<RadioGroup> {
+  String _value;
+
+  @override
+  void initState() {
+    super.initState();
+    _value = widget.value;
+  }
+
   List<Widget> buildItems() {
     List<Widget> widgets = [];
     for (int i = 0; i < widget.list.length; i++) {
       RadioItem item = widget.list[i];
       Widget checkbox = NCheckbox(
-        value: widget.value == item.name,
+        value: _value == item.name,
         shape: widget.shape ?? item.shape,
         text: widget.inCellGroup ? '' : item.text,
         disabled: widget.disabled ?? item.disabled,
-        readonly: widget.value == item.name,
+        readonly: _value == item.name,
         iconSize: widget.iconSize ?? item.iconSize,
         checkedColor: widget.checkedColor ?? item.checkedColor,
         onChange: (val) {
           setState(() {
-            widget.value = item.name;
+            _value = item.name;
           });
-          if (widget.onChange != null) widget.onChange(widget.value);
+          if (widget.onChange != null) widget.onChange(_value);
         },
       );
       widgets.add(widget.inCellGroup

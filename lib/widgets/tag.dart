@@ -17,7 +17,7 @@ class Tag extends StatefulWidget {
   // 标签颜色
   final Color color;
   // 文字颜色，优先于color属性
-  Color textColor;
+  final Color textColor;
   // 是否为可关闭标签
   final Function() onClose;
 
@@ -75,9 +75,8 @@ class _Tag extends State<Tag> {
     Color bageColor = widget.plain
         ? Style.tagPlainBackgroundColor
         : widget.color ?? colors[widget.type]['color'];
-    widget.textColor = widget.textColor != null
-        ? widget.textColor
-        : (widget.plain
+    Color textColor = widget.textColor ??
+        (widget.plain
             ? widget.color ?? colors[widget.type]['color']
             : Style.tagTextColor);
     return Visibility(
@@ -102,14 +101,14 @@ class _Tag extends State<Tag> {
           children: <Widget>[
             Text(widget.text,
                 style: TextStyle(
-                  color: widget.textColor,
+                  color: textColor,
                   fontSize: sizes[widget.size]['fontSize'],
                 )),
             widget.onClose != null
                 ? GestureDetector(
                     child: Icon(
                       Icons.close,
-                      color: widget.textColor,
+                      color: textColor,
                       size: sizes[widget.size]['fontSize'],
                     ),
                     //TODO:增加动画效果

@@ -104,7 +104,7 @@ class ActionSheet extends StatelessWidget {
                   },
                 ),
               )),
-          (i < actions.length - 1) ? NDivider() : Container()
+          i < actions.length ? NDivider(hairline: true) : Container()
         ],
       ));
     }
@@ -187,7 +187,8 @@ class ActionSheet extends StatelessWidget {
               },
             ),
           ),
-        )
+        ),
+        NDivider(hairline: true)
       ],
     );
   }
@@ -205,7 +206,8 @@ class ActionSheet extends StatelessWidget {
                 top: Radius.circular(
                     round ? Style.actionSheetHeaderBorderRadius : 0)),
             color: Style.actionSheetItemBackground),
-        child: Column(
+        child: SafeArea(
+            child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             (title != null || description != null)
@@ -214,7 +216,7 @@ class ActionSheet extends StatelessWidget {
             ...buildActionItem(context, actions),
             (cancelText != null) ? buildCancelItem(context) : Container()
           ],
-        ));
+        )));
   }
 }
 

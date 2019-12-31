@@ -3,7 +3,7 @@ import 'package:flutter_vant_kit/theme/style.dart';
 
 class Pagination extends StatefulWidget {
   // 当前页码
-  int current;
+  final int current;
   // 总记录数
   final int totalItems;
   // 每页记录数
@@ -41,9 +41,11 @@ class _Pagination extends State<Pagination> {
   List<int> pages = [];
   GlobalKey _key = GlobalKey();
   double _width;
+  int _current;
 
   @override
   void initState() {
+    _current = widget.current;
     WidgetsBinding.instance.addPostFrameCallback(_onLayoutDone);
     super.initState();
   }
@@ -62,9 +64,9 @@ class _Pagination extends State<Pagination> {
     String text = isFirstButton
         ? widget.prevText
         : isLastButton ? widget.nextText : "$index";
-    bool isActive = index == widget.current;
-    bool disabled = (isFirstButton && widget.current == 1) ||
-        (isLastButton && widget.current == pagesLength);
+    bool isActive = index == _current;
+    bool disabled = (isFirstButton && _current == 1) ||
+        (isLastButton && _current == pagesLength);
     bool isSimple = widget.mode == 'simple';
     //TODO:点击反馈
     return DecoratedBox(
@@ -130,18 +132,18 @@ class _Pagination extends State<Pagination> {
             if (disabled) return;
             if (isFirstButton) {
               setState(() {
-                widget.current -= 1;
+                _current -= 1;
               });
             } else if (isLastButton) {
               setState(() {
-                widget.current += 1;
+                _current += 1;
               });
             } else {
               setState(() {
-                widget.current = index;
+                _current = index;
               });
             }
-            if (widget.onChange != null) widget.onChange(widget.current);
+            if (widget.onChange != null) widget.onChange(_current);
           },
           // ),
         ),
@@ -156,7 +158,7 @@ class _Pagination extends State<Pagination> {
             child: widget.mode == 'simple'
                 ? Container(
                     alignment: Alignment.center,
-                    child: Text("${widget.current}/$pagesLength",
+                    child: Text("$_current/$pagesLength",
                         style: TextStyle(
                             fontSize: Style.paginationFontSize,
                             color: Style.paginationDescColor)),

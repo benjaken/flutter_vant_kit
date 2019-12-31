@@ -5,11 +5,11 @@ import 'package:flutter_vant_kit/widgets/button.dart';
 
 class Coupon extends StatefulWidget {
   // 当前选中优惠券的索引
-  int chosenCoupon;
+  final int chosenCoupon;
   // 可用优惠券列表
-  List<CoupenItem> coupons;
+  final List<CoupenItem> coupons;
   // 不可用优惠券列表
-  List<CoupenItem> disabledCoupons;
+  final List<CoupenItem> disabledCoupons;
   // 可用优惠券列表标题
   final String enabledTitle;
   // 不可用优惠券列表标题
@@ -65,18 +65,24 @@ class _Coupon extends State<Coupon> with SingleTickerProviderStateMixin {
   TextEditingController searchInput = TextEditingController();
   TabController _tabController;
   ScrollController _scrollController = new ScrollController();
+  int _chosenCoupon;
+  List<CoupenItem> _coupons;
+  List<CoupenItem> _disabledCoupons;
 
   @override
   void initState() {
     _tabController = TabController(vsync: this, length: 2);
+    _coupons = widget.coupons ?? [];
+    _disabledCoupons = widget.disabledCoupons ?? [];
+    _chosenCoupon = widget.chosenCoupon;
     WidgetsBinding.instance.addPostFrameCallback(_onLayoutDone);
     super.initState();
   }
 
   void _onLayoutDone(_) {
-    int scrollIndex = widget.displayedCouponIndex ?? widget.chosenCoupon;
+    int scrollIndex = widget.displayedCouponIndex ?? _chosenCoupon;
     if (scrollIndex != null && scrollIndex > 2) {
-      int couponsLength = widget.coupons.length;
+      int couponsLength = _coupons.length;
       int prevIndex = (scrollIndex > (couponsLength - 2)
               ? couponsLength - 2
               : scrollIndex) -
@@ -141,10 +147,8 @@ class _Coupon extends State<Coupon> with SingleTickerProviderStateMixin {
                   width: Style.borderWidthBase, color: Style.borderColor))),
       child: TabBar(
           tabs: <Widget>[
-            Tab(text: "${widget.enabledTitle}（${widget.coupons.length}）"),
-            Tab(
-                text:
-                    "${widget.disabledTitle}（${widget.disabledCoupons.length}）"),
+            Tab(text: "${widget.enabledTitle}（${_coupons.length}）"),
+            Tab(text: "${widget.disabledTitle}（${_disabledCoupons.length}）"),
           ],
           controller: _tabController,
           indicatorColor: Style.couponListTabIndicatorColor,
@@ -216,7 +220,7 @@ class _Coupon extends State<Coupon> with SingleTickerProviderStateMixin {
                 disabled
                     ? Container()
                     : Icon(Icons.check_circle,
-                        color: i == widget.chosenCoupon && !disabled
+                        color: i == _chosenCoupon && !disabled
                             ? Style.couponIconSelectedColor
                             : Style.transparent,
                         size: Style.couponIconSize),
@@ -261,8 +265,7 @@ class _Coupon extends State<Coupon> with SingleTickerProviderStateMixin {
   }
 
   Widget buildCoupon(int i, bool disabled) {
-    CoupenItem coupon =
-        disabled ? widget.disabledCoupons[i] : widget.coupons[i];
+    CoupenItem coupon = disabled ? _disabledCoupons[i] : _coupons[i];
     return Container(
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(Style.couponBorderRadius),
@@ -294,7 +297,7 @@ class _Coupon extends State<Coupon> with SingleTickerProviderStateMixin {
                   onTap: () {
                     setState(() {
                       if (disabled) return;
-                      widget.chosenCoupon = i;
+                      _chosenCoupon = i;
                       if (widget.onSelect != null) widget.onSelect(i);
                       Navigator.of(context).pop();
                     });
@@ -311,23 +314,23 @@ class _Coupon extends State<Coupon> with SingleTickerProviderStateMixin {
   }
 
   Widget buildCoupons() {
-    return widget.coupons.length == 0
+    return _coupons.length == 0
         ? buildEmptyList()
         : ListView.builder(
             padding: Style.couponListPadding,
             controller: _scrollController,
-            itemCount: widget.coupons.length,
+            itemCount: _coupons.length,
             itemBuilder: (BuildContext context, int index) {
               return buildCoupon(index, false);
             });
   }
 
   Widget buildDisabledCoupons() {
-    return widget.disabledCoupons.length == 0
+    return _disabledCoupons.length == 0
         ? buildEmptyList()
         : ListView.builder(
             padding: Style.couponListPadding,
-            itemCount: widget.disabledCoupons.length,
+            itemCount: _disabledCoupons.length,
             itemBuilder: (BuildContext context, int index) {
               return buildCoupon(index, true);
             });
@@ -376,8 +379,6 @@ class _Coupon extends State<Coupon> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    widget.coupons = widget.coupons ?? [];
-    widget.disabledCoupons = widget.disabledCoupons ?? [];
     return Stack(
       children: <Widget>[
         Container(

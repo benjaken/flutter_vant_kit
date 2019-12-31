@@ -4,7 +4,7 @@ import 'package:flutter_vant_kit/widgets/numberKeyboard.dart';
 
 class PasswordInput extends StatefulWidget {
   // 密码值
-  String value;
+  final String value;
   // 密码最大长度
   final int length;
   // 是否隐藏密码内容
@@ -37,10 +37,12 @@ class PasswordInput extends StatefulWidget {
 }
 
 class _PasswordInput extends State<PasswordInput> {
+  String _value;
   List<String> _codeList;
 
   @override
   void initState() {
+    _value = widget.value;
     _codeList = new List()..length = widget.length;
     List<String> origin = widget.value.split('');
     _codeList.setAll(0, origin);
@@ -117,14 +119,14 @@ class _PasswordInput extends State<PasswordInput> {
           ),
           onTap: () {
             NumberKeyboard(
-                value: widget.value,
+                value: _value,
                 maxlength: widget.length,
                 onChange: (val) {
                   List<String> newval = val.split('');
                   setState(() {
                     _codeList = new List()..length = widget.length;
                     _codeList.setAll(0, newval);
-                    widget.value = val;
+                    _value = val;
                   });
                   if (widget.onChange != null) widget.onChange(val);
                   if (widget.onSubmitted != null &&

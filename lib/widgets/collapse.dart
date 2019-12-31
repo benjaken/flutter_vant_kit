@@ -5,7 +5,7 @@ import 'package:flutter_vant_kit/widgets/divider.dart';
 
 class Collapse extends StatefulWidget {
   // 当前展开面板的 name
-  List<String> name;
+  final List<String> name;
   // 子面板
   final List<CollapseItem> list;
   // 是否为手风琴
@@ -29,6 +29,14 @@ class Collapse extends StatefulWidget {
 }
 
 class _Collapse extends State<Collapse> {
+  List<String> _name;
+
+  @override
+  void initState() {
+    super.initState();
+    _name = widget.name ?? [];
+  }
+
   List<Widget> buildItems() {
     List<Widget> widgets = [];
     for (int i = 0; i < widget.list.length; i++) {
@@ -43,16 +51,16 @@ class _Collapse extends State<Collapse> {
         label: item.label,
         customLabel: item.customLabel,
         clickable: item.clickable,
-        isExpanded: widget.name.contains(name),
+        isExpanded: _name.contains(name),
         content: item.content,
         child: item.child,
         rightIcon: item.rightIcon,
         onExpansionChanged: (val) {
           setState(() {
-            if (widget.accordion) widget.name = [];
-            val ? widget.name.add(name) : widget.name.remove(name);
+            if (widget.accordion) _name = [];
+            val ? _name.add(name) : _name.remove(name);
           });
-          if (widget.onChange != null) widget.onChange(widget.name);
+          if (widget.onChange != null) widget.onChange(_name);
         },
       ));
       if (i < widget.list.length - 1) widgets.add(NDivider());
@@ -62,7 +70,6 @@ class _Collapse extends State<Collapse> {
 
   @override
   Widget build(BuildContext context) {
-    widget.name = widget.name ?? [];
     return SingleChildScrollView(
       child: Container(
         decoration: BoxDecoration(

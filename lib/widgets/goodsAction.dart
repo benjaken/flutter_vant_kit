@@ -4,8 +4,8 @@ import 'package:flutter_vant_kit/widgets/badge.dart';
 import 'package:flutter_vant_kit/widgets/button.dart';
 
 class GoodsAction extends StatefulWidget {
-  List<ActionButtonItem> actions;
-  List<ButtonItem> buttons;
+  final List<ActionButtonItem> actions;
+  final List<ButtonItem> buttons;
 
   GoodsAction({Key key, this.actions, this.buttons}) : super(key: key);
 
@@ -14,40 +14,43 @@ class GoodsAction extends StatefulWidget {
 }
 
 class _GoodsAction extends State<GoodsAction> {
-  GlobalKey _buttons = GlobalKey();
+  GlobalKey _buttonsKey = GlobalKey();
   double buttonWidth;
+  List<ActionButtonItem> _actions;
+  List<ButtonItem> _buttons;
 
   @override
   void initState() {
+    _actions = widget.actions ?? [];
+    _buttons = widget.buttons ?? [];
     WidgetsBinding.instance.addPostFrameCallback(_onLayoutDone);
     super.initState();
   }
 
   _onLayoutDone(_) {
-    RenderBox buttons = _buttons.currentContext.findRenderObject();
+    RenderBox buttons = _buttonsKey.currentContext.findRenderObject();
     double buttonsWidth = buttons.size.width;
     setState(() {
-      buttonWidth =
-          (buttonsWidth - (Style.paddingSm * 2)) / widget.buttons.length;
+      buttonWidth = (buttonsWidth - (Style.paddingSm * 2)) / _buttons.length;
     });
   }
 
   Widget buildButtons() {
     return Container(
-      key: _buttons,
+      key: _buttonsKey,
       padding: Style.goodsActionButtonsPadding,
       color: Style.goodsActionBackgroundColor,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
-        children: List.generate(widget.buttons.length, (i) {
-          ButtonItem button = widget.buttons[i];
+        children: List.generate(_buttons.length, (i) {
+          ButtonItem button = _buttons[i];
           return NButton(
-            borderRadius: widget.buttons.length == 1
+            borderRadius: _buttons.length == 1
                 ? BorderRadius.circular(Style.borderRadiusMax)
                 : i == 0
                     ? BorderRadius.horizontal(
                         left: Radius.circular(Style.borderRadiusMax))
-                    : i == widget.buttons.length - 1
+                    : i == _buttons.length - 1
                         ? BorderRadius.horizontal(
                             right: Radius.circular(Style.borderRadiusMax))
                         : null,
@@ -70,7 +73,7 @@ class _GoodsAction extends State<GoodsAction> {
   }
 
   Widget buildActionButtonItem(i) {
-    ActionButtonItem action = widget.actions[i];
+    ActionButtonItem action = _actions[i];
     return DecoratedBox(
       decoration: BoxDecoration(color: Colors.white),
       child: Material(
@@ -112,19 +115,17 @@ class _GoodsAction extends State<GoodsAction> {
       color: Colors.white,
       child: Wrap(
         spacing: Style.intervalSm,
-        children: List.generate(
-            widget.actions.length, (i) => buildActionButtonItem(i)),
+        children:
+            List.generate(_actions.length, (i) => buildActionButtonItem(i)),
       ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    widget.actions = widget.actions ?? [];
-    widget.buttons = widget.buttons ?? [];
     return Row(
       children: <Widget>[
-        widget.actions.length > 0 ? buildAction() : Container(),
+        _actions.length > 0 ? buildAction() : Container(),
         Expanded(
           child: buildButtons(),
         )

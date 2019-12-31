@@ -3,7 +3,7 @@ import 'package:flutter_vant_kit/theme/style.dart';
 
 class NCheckbox extends StatefulWidget {
   final String name;
-  bool value;
+  final bool value;
   final String shape;
   final String text;
   final bool disabled;
@@ -32,16 +32,24 @@ class NCheckbox extends StatefulWidget {
 }
 
 class _NCheckbox extends State<NCheckbox> {
+  bool _value;
+
+  @override
+  void initState() {
+    super.initState();
+    _value = widget.value;
+  }
+
   @override
   Widget build(BuildContext context) {
     Color backgroundColor = widget.disabled
         ? Style.checkboxDisabledBackgroundColor
-        : widget.value ? widget.checkedColor : Style.checkboxBackgroundColor;
-    Color borderColor = widget.disabled || !widget.value
+        : _value ? widget.checkedColor : Style.checkboxBackgroundColor;
+    Color borderColor = widget.disabled || !_value
         ? Style.checkboxBorderColor
         : widget.checkedColor;
     Color iconColor = widget.disabled
-        ? (widget.value
+        ? (_value
             ? Style.checkboxDisabledIconColor
             : Style.checkboxDisabledBackgroundColor)
         : Style.checkboxBackgroundColor;
@@ -49,8 +57,8 @@ class _NCheckbox extends State<NCheckbox> {
       onTap: () {
         if (widget.disabled || widget.readonly) return;
         setState(() {
-          widget.value = !widget.value;
-          if (widget.onChange != null) widget.onChange(widget.value);
+          _value = !_value;
+          if (widget.onChange != null) widget.onChange(_value);
         });
       },
       child: Container(

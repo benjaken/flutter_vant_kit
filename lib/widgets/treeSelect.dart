@@ -4,11 +4,11 @@ import 'package:flutter_vant_kit/widgets/sidebar.dart';
 
 class TreeSelect extends StatefulWidget {
   // 所有选项
-  List<SideBarItem> list;
+  final List<SideBarItem> list;
   // 左侧选中项的索引
-  int mainActiveIndex;
+  final int mainActiveIndex;
   // 右侧选中项的 id
-  List<int> activeId;
+  final List<int> activeId;
   // 高度
   final double height;
   // 右侧项最大选中个数
@@ -31,15 +31,19 @@ class TreeSelect extends StatefulWidget {
 }
 
 class _TreeSelect extends State<TreeSelect> {
+  int _mainActiveIndex;
+  List<int> _activeId;
+
   @override
   void initState() {
-    widget.activeId = widget.activeId ?? [];
+    _mainActiveIndex = widget.mainActiveIndex;
+    _activeId = widget.activeId ?? [];
     super.initState();
   }
 
   List<Widget> buildItem() {
     List<Widget> widgets = [];
-    List areaList = widget.list[widget.mainActiveIndex].children;
+    List areaList = widget.list[_mainActiveIndex].children;
     for (int i = 0; i < areaList.length; i++) {
       TreeItem item = areaList[i];
       widgets.add(GestureDetector(
@@ -52,17 +56,17 @@ class _TreeSelect extends State<TreeSelect> {
               Text("${item.text}",
                   style: TextStyle(
                       fontSize: Style.treeSelectFontSize,
-                      fontWeight: widget.activeId.contains(item.id)
+                      fontWeight: _activeId.contains(item.id)
                           ? Style.treeSelectItemFontWeight
                           : null,
                       color: item.disabled
                           ? Style.treeSelectItemDisabledColor
-                          : widget.activeId.contains(item.id)
+                          : _activeId.contains(item.id)
                               ? Style.treeSelectItemActiveColor
                               : Style.treeSelectItemColor)),
               Icon(Icons.check_circle,
                   size: Style.treeSelectFontSize,
-                  color: widget.activeId.contains(item.id)
+                  color: _activeId.contains(item.id)
                       ? Style.treeSelectItemActiveColor
                       : Style.treeSelectContentBackgroundColor)
             ],
@@ -71,17 +75,16 @@ class _TreeSelect extends State<TreeSelect> {
         onTap: () {
           if (item.disabled) return;
           setState(() {
-            if (widget.activeId.contains(item.id)) {
-              widget.activeId.remove(item.id);
+            if (_activeId.contains(item.id)) {
+              _activeId.remove(item.id);
             } else {
-              if (widget.activeId.length == widget.max && widget.max > 1)
-                return;
-              if (widget.activeId.length > 0 && widget.max == 1) {
-                widget.activeId.removeLast();
+              if (_activeId.length == widget.max && widget.max > 1) return;
+              if (_activeId.length > 0 && widget.max == 1) {
+                _activeId.removeLast();
               }
-              widget.activeId.add(item.id);
+              _activeId.add(item.id);
             }
-            if (widget.onChange != null) widget.onChange(widget.activeId);
+            if (widget.onChange != null) widget.onChange(_activeId);
           });
         },
       ));
@@ -98,11 +101,11 @@ class _TreeSelect extends State<TreeSelect> {
       children: <Widget>[
         Container(
             child: Sidebar(
-              active: widget.mainActiveIndex,
+              active: _mainActiveIndex,
               list: widget.list,
               onChange: (val) {
                 setState(() {
-                  widget.mainActiveIndex = val;
+                  _mainActiveIndex = val;
                 });
               },
             ),
@@ -112,8 +115,8 @@ class _TreeSelect extends State<TreeSelect> {
           child: Container(
             height: widget.height,
             color: Style.treeSelectContentBackgroundColor,
-            child: widget.list[widget.mainActiveIndex].content != null
-                ? widget.list[widget.mainActiveIndex].content
+            child: widget.list[_mainActiveIndex].content != null
+                ? widget.list[_mainActiveIndex].content
                 : Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[...buildItem()],

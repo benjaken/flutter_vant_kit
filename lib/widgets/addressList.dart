@@ -5,11 +5,11 @@ import 'package:flutter_vant_kit/widgets/button.dart';
 
 class AddressList extends StatefulWidget {
   // 当前选中地址的 id
-  int id;
+  final int id;
   // 地址列表
-  List<AddressInfo> list;
+  final List<AddressInfo> list;
   // 不可配送地址列表
-  List<AddressInfo> disabledList;
+  final List<AddressInfo> disabledList;
   // 不可配送提示文案
   final String disabledText;
   // 是否允许切换地址
@@ -50,6 +50,18 @@ class AddressList extends StatefulWidget {
 }
 
 class _AddressList extends State<AddressList> {
+  int _id;
+  List<AddressInfo> _list;
+  List<AddressInfo> _disabledList;
+
+  @override
+  void initState() {
+    super.initState();
+    _id = widget.id;
+    _list = widget.list ?? [];
+    _disabledList = widget.disabledList ?? [];
+  }
+
   Widget buildContent(AddressInfo item, int i, bool disabled) {
     return Container(
       padding: Style.addressListItemPadding,
@@ -58,7 +70,7 @@ class _AddressList extends State<AddressList> {
           disabled
               ? Container()
               : Icon(Icons.check_circle,
-                  color: i == widget.id && !disabled
+                  color: i == _id && !disabled
                       ? Style.addressListItemRadioIconColor
                       : Style.transparent,
                   size: Style.addressListItemRadioIconFontSize),
@@ -147,9 +159,9 @@ class _AddressList extends State<AddressList> {
               splashColor:
                   disabled ? Style.transparent : Theme.of(context).splashColor,
               onTap: () {
-                if (disabled || widget.id == i || !widget.switchable) return;
+                if (disabled || _id == i || !widget.switchable) return;
                 setState(() {
-                  widget.id = i;
+                  _id = i;
                 });
                 if (widget.onSelect != null) widget.onSelect(item, i);
               },
@@ -186,8 +198,8 @@ class _AddressList extends State<AddressList> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             widget.top ?? Container(),
-            ...buildItem(widget.list ?? [], false),
-            (widget.disabledList != null)
+            ...buildItem(_list, false),
+            (_disabledList != null)
                 ? Padding(
                     padding: Style.addressListDisabledTextPadding,
                     child: Text(widget.disabledText,
@@ -196,7 +208,7 @@ class _AddressList extends State<AddressList> {
                             color: Style.addressListDisabledTextColor)),
                   )
                 : Container(),
-            ...buildItem(widget.disabledList ?? [], true),
+            ...buildItem(_disabledList ?? [], true),
             widget.children ?? Container(),
           ],
         ),

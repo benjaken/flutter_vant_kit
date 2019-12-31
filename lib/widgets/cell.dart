@@ -66,7 +66,7 @@ class Cell extends StatelessWidget {
     }
   }
 
-  Map<String, dynamic> sizes = {
+  final Map<String, dynamic> sizes = {
     "normal": <String, dynamic>{
       "verticalPadding": Style.cellVerticalPadding,
       "titleFontSize": Style.cellFontSize,

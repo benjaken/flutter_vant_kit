@@ -70,11 +70,7 @@ class NButton extends StatelessWidget {
             "type must be default, primary, info, danger or warning"),
         super(key: key);
 
-  Color borderColor;
-  Color buttonColor;
-  Color buttonTextColor;
-
-  Map<String, dynamic> sizes = {
+  final Map<String, dynamic> sizes = {
     "mini": <String, dynamic>{
       "fontSize": Style.buttonMiniFontSize,
       "padding": EdgeInsets.symmetric(horizontal: 2),
@@ -97,7 +93,7 @@ class NButton extends StatelessWidget {
     },
   };
 
-  Map<String, dynamic> colors = {
+  final Map<String, dynamic> colors = {
     "default": <String, Color>{
       "buttonColor": Style.buttonDefaultBackgroundColor,
       "borderColor": Style.buttonDefaultBorderColor,
@@ -126,6 +122,19 @@ class NButton extends StatelessWidget {
   };
 
   Widget buildContent() {
+    Color buttonColor;
+    if (gradient == null) {
+      buttonColor = plain
+          ? Style.buttonPlainBackgroundColor
+          : (color ?? colors[type]["buttonColor"]);
+    }
+    Color buttonTextColor = (textColor ??
+        (plain
+            ? (color ?? colors[type]["buttonColor"])
+            : ((color != null || gradient != null) && type == 'default'
+                ? Colors.white
+                : colors[type]["textColor"])));
+
     return Container(
       width: width ?? null,
       height: height ?? sizes[size]["height"],
@@ -161,18 +170,15 @@ class NButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Color borderColor;
+    Color buttonColor;
+
     if (gradient == null) {
       borderColor = (color ?? colors[type]["borderColor"]);
       buttonColor = plain
           ? Style.buttonPlainBackgroundColor
           : (color ?? colors[type]["buttonColor"]);
     }
-    buttonTextColor = (textColor ??
-        (plain
-            ? (color ?? colors[type]["buttonColor"])
-            : ((color != null || gradient != null) && type == 'default'
-                ? Colors.white
-                : colors[type]["textColor"])));
     return Opacity(
       opacity: disabled ? Style.buttonDisabledOpacity : 1.0,
       child: DecoratedBox(

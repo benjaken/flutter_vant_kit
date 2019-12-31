@@ -8,7 +8,7 @@ class CheckboxGroup extends StatefulWidget {
   // 所有选项
   final List<CheckItem> list;
   // 所有选中项的标识符
-  List<String> value;
+  final List<String> values;
   // 形状
   final String shape;
   // 最大可选数
@@ -26,7 +26,7 @@ class CheckboxGroup extends StatefulWidget {
 
   CheckboxGroup(
       {Key key,
-      this.value,
+      this.values,
       this.shape,
       this.list,
       this.max: 9999,
@@ -42,30 +42,37 @@ class CheckboxGroup extends StatefulWidget {
 }
 
 class _CheckboxGroup extends State<CheckboxGroup> {
+  List<String> _values;
+
+  @override
+  void initState() {
+    super.initState();
+    _values = widget.values;
+  }
+
   List<Widget> buildItems() {
     List<Widget> widgets = [];
     for (int i = 0; i < widget.list.length; i++) {
       CheckItem item = widget.list[i];
       Widget checkbox = NCheckbox(
-        value: widget.value.contains(item.name),
+        value: _values.contains(item.name),
         shape: widget.shape ?? item.shape,
         text: widget.inCellGroup ? '' : item.text,
         disabled: widget.disabled ?? item.disabled,
-        readonly: !widget.value.contains(item.name) &&
-            widget.value.length == widget.max,
+        readonly: !_values.contains(item.name) && _values.length == widget.max,
         iconSize: widget.iconSize ?? item.iconSize,
         checkedColor: widget.checkedColor ?? item.checkedColor,
         onChange: (val) {
-          if (val && widget.value.length < widget.max) {
+          if (val && _values.length < widget.max) {
             setState(() {
-              widget.value.add(item.name);
+              _values.add(item.name);
             });
           } else {
             setState(() {
-              widget.value.remove(item.name);
+              _values.remove(item.name);
             });
           }
-          if (widget.onChange != null) widget.onChange(widget.value);
+          if (widget.onChange != null) widget.onChange(_values);
         },
       );
       widgets.add(widget.inCellGroup

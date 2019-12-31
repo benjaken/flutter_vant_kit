@@ -13,7 +13,7 @@ class Progress extends StatefulWidget {
   // 是否显示进度条文字
   final bool showPivot;
   // 进度条颜色
-  Color color;
+  final Color color;
   // 进度文字颜色
   final Color textColor;
   // 轨道颜色
@@ -78,6 +78,7 @@ class _Progress extends State<Progress> with SingleTickerProviderStateMixin {
   }
 
   Widget pivot(BuildContext context) {
+    Color color = widget.inactive ? Style.progressDisabledColor : widget.color;
     return Positioned(
       left: pivotLeft,
       top: pivotTop,
@@ -87,7 +88,7 @@ class _Progress extends State<Progress> with SingleTickerProviderStateMixin {
         decoration: BoxDecoration(
             color: widget.type == "circular"
                 ? Colors.transparent
-                : widget.pivotColor ?? widget.color,
+                : widget.pivotColor ?? color,
             borderRadius: BorderRadius.circular(Style.borderRadiusMax)),
         child: Text(
             widget.pivotText ?? (widget.percentage.toStringAsFixed(0) + "%"),
@@ -104,7 +105,7 @@ class _Progress extends State<Progress> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    widget.color = widget.inactive ? Style.progressDisabledColor : widget.color;
+    Color color = widget.inactive ? Style.progressDisabledColor : widget.color;
     return Container(
       key: _progressKey,
       margin: Style.progressMargin,
@@ -116,7 +117,7 @@ class _Progress extends State<Progress> with SingleTickerProviderStateMixin {
                 child: CircularProgressIndicator(
                   strokeWidth: widget.strokeWidth,
                   backgroundColor: widget.trackColor,
-                  valueColor: AlwaysStoppedAnimation(widget.color),
+                  valueColor: AlwaysStoppedAnimation(color),
                   value: widget.percentage / 100,
                 ),
               )
@@ -125,7 +126,7 @@ class _Progress extends State<Progress> with SingleTickerProviderStateMixin {
                 //TODO:增加动画效果
                 child: LinearProgressIndicator(
                   backgroundColor: widget.trackColor,
-                  valueColor: AlwaysStoppedAnimation(widget.color),
+                  valueColor: AlwaysStoppedAnimation(color),
                   value: widget.percentage / 100,
                 )),
         if (widget.showPivot) pivot(context)

@@ -35,7 +35,7 @@ class Avatar extends StatelessWidget {
             "shape must be round, or square"),
         super(key: key);
 
-  Map<String, double> defaultSize = {
+  final Map<String, double> defaultSize = {
     "small": Style.avatarWidthSm,
     "normal": Style.avatarWidthBase,
     "large": Style.avatarWidthLg,

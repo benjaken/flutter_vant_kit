@@ -9,7 +9,7 @@ class NDivider extends StatefulWidget {
   // 文字大小
   final double fontSize;
   // 分割线颜色
-  Color lineColor;
+  final Color lineColor;
   // 是否为细分割线
   final bool hairline;
   // 文本位置
@@ -55,7 +55,7 @@ class _NDivider extends State<NDivider> {
 
   @override
   Widget build(BuildContext context) {
-    widget.lineColor = widget.lineColor ?? Style.dividerBorderColor;
+    Color lineColor = widget.lineColor ?? Style.dividerBorderColor;
     return Container(
       key: _dividerKey,
       child: Row(
@@ -67,14 +67,14 @@ class _NDivider extends State<NDivider> {
                       ? Style.borderWidthHair
                       : Style.borderWidthBase,
                   width: Style.dividerContentLeftWidth,
-                  color: widget.lineColor,
+                  color: lineColor,
                 )
               : Expanded(
                   child: Container(
                     height: widget.hairline
                         ? Style.borderWidthHair
                         : Style.borderWidthBase,
-                    color: widget.lineColor,
+                    color: lineColor,
                   ),
                 ),
           (widget.child != null || widget.content != null)
@@ -95,14 +95,14 @@ class _NDivider extends State<NDivider> {
                       ? Style.borderWidthHair
                       : Style.borderWidthBase,
                   width: Style.dividerContentRightWidth,
-                  color: widget.lineColor,
+                  color: lineColor,
                 )
               : Expanded(
                   child: Container(
                     height: widget.hairline
                         ? Style.borderWidthHair
                         : Style.borderWidthBase,
-                    color: widget.lineColor,
+                    color: lineColor,
                   ),
                 ),
         ],

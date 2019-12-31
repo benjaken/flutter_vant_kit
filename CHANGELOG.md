@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 0.1.6
+## 0.1.7
 
 - Organize documents; Adjust code structure;
 

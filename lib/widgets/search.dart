@@ -5,7 +5,7 @@ class Search extends StatefulWidget {
   // 搜索框形状
   final String shape;
   // 搜索框背景色
-  Color background;
+  final Color background;
   // 输入的最大字符数
   final int maxLength;
   // 占位提示文字
@@ -129,7 +129,7 @@ class _Search extends State<Search> {
 
   @override
   Widget build(BuildContext context) {
-    widget.background = widget.background ?? Style.searchInputBackgroundColor;
+    Color background = widget.background ?? Style.searchInputBackgroundColor;
     return Container(
         color: Style.searchBackgroundColor,
         padding: Style.searchPadding,
@@ -140,7 +140,7 @@ class _Search extends State<Search> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(
                       widget.shape == 'round' ? Style.borderRadiusMax : 0),
-                  color: widget.background,
+                  color: background,
                 ),
                 child: buildInput(),
               ),

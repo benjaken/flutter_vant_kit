@@ -4,7 +4,7 @@ import 'package:flutter_vant_kit/widgets/badge.dart';
 
 class Sidebar extends StatefulWidget {
   // 当前选项
-  int active;
+  final int active;
   // 所有选项
   final List<SideBarItem> list;
   // 当前值改变时触发
@@ -18,14 +18,21 @@ class Sidebar extends StatefulWidget {
 }
 
 class _Sidebar extends State<Sidebar> {
+  int _active;
+
+  @override
+  void initState() {
+    super.initState();
+    _active = widget.active;
+  }
+
   List<Widget> buildItem() {
     List<Widget> widgets = [];
     for (int i = 0; i < widget.list.length; i++) {
       SideBarItem item = widget.list[i];
       Widget text = Text("${item.title}",
           style: TextStyle(
-              fontWeight:
-                  widget.active == i ? Style.sidebarSelectedFontWeight : null,
+              fontWeight: _active == i ? Style.sidebarSelectedFontWeight : null,
               color: item.disabled
                   ? Style.sidebarDisabledTextColor
                   : Style.sidebarTextColor));
@@ -36,10 +43,10 @@ class _Sidebar extends State<Sidebar> {
             border: Border(
                 left: BorderSide(
                     width: Style.sidebarSelectedBorderWidth,
-                    color: widget.active == i
+                    color: _active == i
                         ? Style.sidebarSelectedBorderColor
                         : Style.sidebarBackgroundColor)),
-            color: widget.active == i
+            color: _active == i
                 ? Style.sidebarSelectedBackgroundColor
                 : Style.sidebarBackgroundColor,
           ),
@@ -54,7 +61,7 @@ class _Sidebar extends State<Sidebar> {
         onTap: () {
           if (item.disabled) return;
           setState(() {
-            widget.active = i;
+            _active = i;
             if (widget.onChange != null) widget.onChange(i);
           });
           if (item.onClick != null) item.onClick(i);

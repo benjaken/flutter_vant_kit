@@ -42,7 +42,7 @@ class _DemoCheckbox extends State<DemoCheckbox> {
         title("基础用法"),
         CheckboxGroup(
           list: list,
-          value: ["a"],
+          values: ["a"],
           onChange: (list) {
             Utils.toast(list.toString());
           },
@@ -50,36 +50,36 @@ class _DemoCheckbox extends State<DemoCheckbox> {
         title("禁用状态"),
         CheckboxGroup(
           list: list,
-          value: ["a"],
+          values: ["a"],
           disabled: true,
         ),
         title("自定义形状"),
         CheckboxGroup(
           list: list,
-          value: ["a"],
+          values: ["a"],
           shape: "square",
         ),
         title("自定义颜色"),
         CheckboxGroup(
           list: list,
-          value: ["a"],
+          values: ["a"],
           checkedColor: Colors.green,
         ),
         title("复选框组"),
         CheckboxGroup(
           list: list2,
-          value: ["a", "b"],
+          values: ["a", "b"],
         ),
         title("设置最大可选数"),
         CheckboxGroup(
           list: list3,
-          value: ["a"],
+          values: ["a"],
           max: 2,
         ),
         title("单元格组件"),
         CheckboxGroup(
           list: list3,
-          value: ['a'],
+          values: ['a'],
           inCellGroup: true,
         ),
         SizedBox(

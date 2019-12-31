@@ -13,7 +13,6 @@ export 'widgets/checkbox.dart';
 export 'widgets/checkboxGroup.dart';
 export 'widgets/collapse.dart';
 export 'widgets/collapseItem.dart';
-export 'widgets/countDown.dart';
 export 'widgets/coupon.dart';
 export 'widgets/dialog.dart';
 export 'widgets/divider.dart';
