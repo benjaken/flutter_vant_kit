@@ -32,7 +32,7 @@ class ImageWall extends StatefulWidget {
     this.count: 9,
     this.images,
     this.uploadBtn,
-    this.imageFit: BoxFit.contain,
+    this.imageFit: BoxFit.cover,
     @required this.onChange,
     @required this.onUpload,
     this.onRemove,
@@ -136,7 +136,7 @@ class _ImageWall extends State<ImageWall> {
                 actionBarColor: "#000000"),
           );
         } on Exception catch (e) {
-          throw (e);
+          print(e.toString());
         }
         String url = await widget.onUpload(resultList);
         if (url == null || url.isEmpty) {

@@ -90,7 +90,7 @@ class _Coupon extends State<Coupon> with SingleTickerProviderStateMixin {
       double index = ((150 * prevIndex) + Style.paddingMd).toDouble();
       double maxScroll = _scrollController.position.maxScrollExtent;
       _scrollController.animateTo(index > maxScroll ? maxScroll : index,
-          duration: Duration(milliseconds: 200), curve: Curves.ease);
+          duration: Style.animationDurationFast, curve: Curves.ease);
     }
   }
 

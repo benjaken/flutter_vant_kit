@@ -56,7 +56,7 @@ class _DemoImageWall extends State<DemoImageWall> {
         title("图片的缩放模式"),
         ImageWall(
           images: images,
-          imageFit: BoxFit.cover,
+          imageFit: BoxFit.contain,
           onUpload: (files) async {
             return Utils.toast(files.toString());
           },
