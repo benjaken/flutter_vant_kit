@@ -69,6 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: CellGroup(
                   border: false,
                   children: <Widget>[
+                    PageCell("Calendar 日历", (ctx) => DemoCalendar(), padding: false),
                     PageCell("Checkbox 复选框", (ctx) => DemoCheckbox(),
                         padding: true),
                     PageCell("Field 输入框", (ctx) => DemoField(), padding: false),

@@ -177,6 +177,44 @@ class Style {
   static const buttonPlainBackgroundColor = white;
   static const buttonDisabledOpacity = disabledOpacity;
 
+  // Calendar
+  static const calendarBorderRadius = borderRadiusLg;
+  static const calendarBackgroundColor = white;
+  static const calendarPopHeight = .8;
+  static const calendarHeaderBoxShadow = BoxShadow(
+    color: Colors.black12,
+    blurRadius: 10.0, // has the effect of softening the shadow
+    spreadRadius: 0, // has the effect of extending the shadow
+    offset: Offset(
+      0, // horizontal, move right 10
+      2, // vertical, move down 10
+    ),
+  );
+  static const calendarFontColor = textColor;
+  static const calendarHeight = 400.0;
+  static const calendarTitleHeight = 44.0;
+  static const calendarTitleFontSize = fontSizeLg;
+  static const calendarWeekdaysHeight = 30.0;
+  static const calendarWeekdaysFontSize = fontSizeMd;
+  static const calendarMonthTitleFontSize = fontSizeMd;
+  static const calendarMonthMarkColor = gray2;
+  static const calendarMonthMarkSize = 160.0;
+  static const calendarMonthMarkFontSize = 150.0;
+  static const calendarDayHeight = 60.0;
+  static const calendarDayFontSize = fontSizeLg;
+  static const calendarDayBorderRadius = borderRadiusMd;
+  static const calendarRangeEdgeColor = white;
+  // static const calendarRangeEdgeBackgroundColor = blue;
+  // static const calendarRangeMiddleColor = white;
+  // static const calendarRangeMiddleBackgroundOpacity = .1;
+  static const calendarSelectedDaySize = 54.0;
+  static const calendarSelectedDayColor = white;
+  static const calendarInfoFontSize = fontSizeXs;
+  static const calendarSelectedDayBackgroundColor = blue;
+  static const calendarDayDisabledColor = gray5;
+  static const calendarConfirmPadding = EdgeInsets.symmetric(vertical: 7.0, horizontal: paddingMd);
+  static const calendarConfirmButtonHeight = 36.0;
+
   // Card
   static const cardPadding =
       EdgeInsets.symmetric(vertical: paddingSm, horizontal: paddingMd);

@@ -31,7 +31,8 @@ flutter run
 
 | 表单组件 |
 | ------ |
-| [Checkbox 复选框](doc/checkbox.md)  |
+| [Calendar 日历](doc/calendar.md) |
+| [Checkbox 复选框](doc/checkbox.md) |
 | [Field 输入框](doc/field.md) |
 | [NumberKeyboard 数字键盘](doc/numberKeyboard.md) |
 | [PasswordInput 密码输入框](doc/passwordInput.md) |
