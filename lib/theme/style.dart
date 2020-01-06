@@ -178,7 +178,7 @@ class Style {
   static const buttonDisabledOpacity = disabledOpacity;
 
   // Calendar
-  static const calendarBorderRadius = borderRadiusLg;
+  static const calendarBorderRadius = 20.0;
   static const calendarBackgroundColor = white;
   static const calendarPopHeight = .8;
   static const calendarHeaderBoxShadow = BoxShadow(
@@ -204,9 +204,9 @@ class Style {
   static const calendarDayFontSize = fontSizeLg;
   static const calendarDayBorderRadius = borderRadiusMd;
   static const calendarRangeEdgeColor = white;
-  // static const calendarRangeEdgeBackgroundColor = blue;
+  static const calendarRangeEdgeBackgroundColor = blue;
   // static const calendarRangeMiddleColor = white;
-  // static const calendarRangeMiddleBackgroundOpacity = .1;
+  static const calendarRangeMiddleBackgroundOpacity = .1;
   static const calendarSelectedDaySize = 54.0;
   static const calendarSelectedDayColor = white;
   static const calendarInfoFontSize = fontSizeXs;

@@ -25,6 +25,7 @@ showModalBottomSheet(
 
 | 参数  | 说明  | 类型  | 默认值  |
 | ------------ | ------------ | ------------ | ------------ |
+| type | 选择类型，`single`表示选择单个日期，`range`表示选择日期区间 | `String` | `single` |
 | title | 日历标题 | `String` | `日期选择` |
 | color | 颜色，对底部按钮和选中日期生效 | `Color` | `blue` |
 | minDate | 最小日期 | `DateTime` | - |
