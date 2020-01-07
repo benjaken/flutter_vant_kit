@@ -193,15 +193,17 @@ class _NDialog extends State<NDialog> {
     Column _buildContent = Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        Container(
-          padding: Style.dialogHeaderPadding,
-          alignment: widget.titleAlign,
-          child: Text(widget.title ?? "",
-              style: TextStyle(
-                  fontSize: Style.dialogFontSize,
-                  color: Style.dialogTextColor,
-                  fontWeight: Style.dialogHeaderFontWeight)),
-        ),
+        widget.title != null
+            ? Container(
+                padding: Style.dialogHeaderPadding,
+                alignment: widget.titleAlign,
+                child: Text(widget.title,
+                    style: TextStyle(
+                        fontSize: Style.dialogFontSize,
+                        color: Style.dialogTextColor,
+                        fontWeight: Style.dialogHeaderFontWeight)),
+              )
+            : Container(),
         Flexible(
           child: widget.child ??
               Container(
@@ -209,7 +211,7 @@ class _NDialog extends State<NDialog> {
                     Style.dialogMessagePadding,
                     widget.title != null
                         ? Style.dialogHasTitleMessagePaddingTop
-                        : 0,
+                        : Style.dialogMessagePadding,
                     Style.dialogMessagePadding,
                     Style.dialogMessagePadding),
                 child: Text(widget.message,

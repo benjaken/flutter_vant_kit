@@ -205,7 +205,7 @@ class Style {
   static const calendarDayBorderRadius = borderRadiusMd;
   static const calendarRangeEdgeColor = white;
   static const calendarRangeEdgeBackgroundColor = blue;
-  // static const calendarRangeMiddleColor = white;
+  // static const calendarRangeMiddleColor = white;fieldInputPadding
   static const calendarRangeMiddleBackgroundOpacity = .1;
   static const calendarSelectedDaySize = 54.0;
   static const calendarSelectedDayColor = white;
@@ -364,7 +364,7 @@ class Style {
   static const fieldMinHeight = 30.0;
   static const fieldFontSize = fontSizeMd;
   static const fieldPadding =
-      EdgeInsets.symmetric(horizontal: paddingLg, vertical: 10);
+      EdgeInsets.symmetric(horizontal: paddingMd, vertical: 10);
   static const fieldInputPadding = EdgeInsets.symmetric(vertical: 5);
   static const fieldInputBackgroundColor = white;
   static const fieldInputTextColor = textColor;

@@ -10,7 +10,7 @@ class DemoCell extends StatefulWidget {
 class _DemoCell extends State<DemoCell> {
   Widget title(String title) {
     return Padding(
-      padding: EdgeInsets.fromLTRB(16, 30, 0, 10),
+      padding: EdgeInsets.symmetric(vertical: 20, horizontal: 16),
       child: Text(title, style: TextStyle(fontSize: 14, color: Colors.grey)),
     );
   }

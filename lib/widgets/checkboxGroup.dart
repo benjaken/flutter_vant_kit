@@ -57,7 +57,7 @@ class _CheckboxGroup extends State<CheckboxGroup> {
       Widget checkbox = NCheckbox(
         value: _values.contains(item.name),
         shape: widget.shape ?? item.shape,
-        text: widget.inCellGroup ? '' : item.text,
+        text: widget.inCellGroup ? null : item.text,
         disabled: widget.disabled ?? item.disabled,
         readonly: !_values.contains(item.name) && _values.length == widget.max,
         iconSize: widget.iconSize ?? item.iconSize,
