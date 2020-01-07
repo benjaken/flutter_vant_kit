@@ -16,22 +16,12 @@ class _DemoCalendar extends State<DemoCalendar> {
   List<DateTime> _selectedDate5;
   DateTime _selectedDate6;
   DateTime _selectedDate7;
-  DateTime _selectedDate8;
 
   Widget title(String title) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 20, horizontal: 16),
       child: Text(title, style: TextStyle(fontSize: 14, color: Colors.grey)),
     );
-  }
-
-  void showCalendar(Widget content) {
-    showModalBottomSheet(
-        context: context,
-        backgroundColor: Colors.transparent,
-        builder: (BuildContext context) {
-          return content;
-        });
   }
 
   String formatDateWithMonth(DateTime date) {
@@ -57,7 +47,7 @@ class _DemoCalendar extends State<DemoCalendar> {
                     ? formatDateWithYear(_selectedDate1)
                     : '',
                 isLink: true,
-                onClick: () => showCalendar(Calendar(
+                onClick: () => Calendar(
                   defaultDate: _selectedDate1,
                   maxDate: DateTime.now().add(Duration(days: 40)),
                   onConfirm: (date) {
@@ -65,7 +55,7 @@ class _DemoCalendar extends State<DemoCalendar> {
                       _selectedDate1 = date;
                     });
                   },
-                )),
+                ).show(context),
               ),
               Cell(
                 title: "选择日期区间",
@@ -73,7 +63,7 @@ class _DemoCalendar extends State<DemoCalendar> {
                     ? "${formatDateWithMonth(_selectedDate2[0])} - ${formatDateWithMonth(_selectedDate2[1])}"
                     : '',
                 isLink: true,
-                onClick: () => showCalendar(Calendar(
+                onClick: () => Calendar(
                   type: "range",
                   defaultDate: _selectedDate2,
                   onConfirm: (date) {
@@ -81,7 +71,7 @@ class _DemoCalendar extends State<DemoCalendar> {
                       _selectedDate2 = date;
                     });
                   },
-                )),
+                ).show(context),
               ),
             ],
           ),
@@ -94,7 +84,7 @@ class _DemoCalendar extends State<DemoCalendar> {
                     ? formatDateWithYear(_selectedDate3)
                     : '',
                 isLink: true,
-                onClick: () => showCalendar(Calendar(
+                onClick: () => Calendar(
                   showConfirm: false,
                   defaultDate: _selectedDate3,
                   onConfirm: (date) {
@@ -102,7 +92,7 @@ class _DemoCalendar extends State<DemoCalendar> {
                       _selectedDate3 = date;
                     });
                   },
-                )),
+                ).show(context),
               ),
               Cell(
                 title: "选择日期区间",
@@ -110,7 +100,7 @@ class _DemoCalendar extends State<DemoCalendar> {
                     ? "${formatDateWithMonth(_selectedDate4[0])} - ${formatDateWithMonth(_selectedDate4[1])}"
                     : '',
                 isLink: true,
-                onClick: () => showCalendar(Calendar(
+                onClick: () => Calendar(
                   type: "range",
                   showConfirm: false,
                   defaultDate: _selectedDate4,
@@ -119,7 +109,7 @@ class _DemoCalendar extends State<DemoCalendar> {
                       _selectedDate4 = date;
                     });
                   },
-                )),
+                ).show(context),
               ),
             ],
           ),
@@ -132,7 +122,7 @@ class _DemoCalendar extends State<DemoCalendar> {
                 value: _selectedDate5 != null
                     ? "${DateFormat('MM/dd').format(_selectedDate5[0])} - ${DateFormat('MM/dd').format(_selectedDate5[1])}"
                     : '',
-                onClick: () => showCalendar(Calendar(
+                onClick: () => Calendar(
                   color: Colors.green,
                   type: "range",
                   defaultDate: _selectedDate5,
@@ -141,7 +131,7 @@ class _DemoCalendar extends State<DemoCalendar> {
                       _selectedDate5 = date;
                     });
                   },
-                )),
+                ).show(context),
               ),
               Cell(
                 title: "自定义日期范围",
@@ -149,7 +139,7 @@ class _DemoCalendar extends State<DemoCalendar> {
                 value: _selectedDate6 != null
                     ? formatDateWithYear(_selectedDate6)
                     : '',
-                onClick: () => showCalendar(Calendar(
+                onClick: () => Calendar(
                   defaultDate: _selectedDate6,
                   minDate: DateFormat('yyyy-MM-dd').parse("2010-01-01"),
                   maxDate: DateFormat('yyyy-MM-dd').parse("2010-01-31"),
@@ -158,7 +148,7 @@ class _DemoCalendar extends State<DemoCalendar> {
                       _selectedDate6 = date;
                     });
                   },
-                )),
+                ).show(context),
               ),
               Cell(
                 title: "自定义按钮文字",
@@ -166,7 +156,7 @@ class _DemoCalendar extends State<DemoCalendar> {
                 value: _selectedDate7 != null
                     ? formatDateWithYear(_selectedDate7)
                     : '',
-                onClick: () => showCalendar(Calendar(
+                onClick: () => Calendar(
                   confirmText: "完成",
                   defaultDate: _selectedDate7,
                   onConfirm: (date) {
@@ -174,24 +164,8 @@ class _DemoCalendar extends State<DemoCalendar> {
                       _selectedDate7 = date;
                     });
                   },
-                )),
+                ).show(context),
               ),
-              // Cell(
-              //   title: "自定义日期文案",
-              //   isLink: true,
-              //   onClick: () => showCalendar(
-              //     Calendar(
-              //       showConfirm: false,
-              //       defaultDate: _selectedDate3 != null ? DateFormat("yyyy/MM/dd").parse(_selectedDate3) : null,
-              //       onConfirm: (date) {
-              //         print(date);
-              //         setState(() {
-              //           _selectedDate3 = DateFormat("yyyy/MM/dd").format(date);
-              //         });
-              //       },
-              //     )
-              //   ),
-              // )
             ],
           ),
           title("平铺展示"),
@@ -211,7 +185,7 @@ class _DemoCalendar extends State<DemoCalendar> {
             onSelect: (date) {
               Utils.toast(date.toString());
             },
-          ),
+          ).show(context),
         ]));
   }
 }

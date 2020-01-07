@@ -7,16 +7,10 @@ import 'package:flutter_vant_kit/main.dart';
 
 DateTime selectedDate;
 
-showModalBottomSheet(
-  context: context,
-  backgroundColor: Colors.transparent,
-  builder: (BuildContext context) {
-    return Calendar(
-      defaultDate: selectedDate,
-      ...
-    );
-  }
-);
+Calendar(
+  defaultDate: selectedDate,
+  ...
+).show(context);
 ```
 
 更多例子请参考[Demo](../example/lib/routes/demoCalendar.dart)
@@ -34,7 +28,9 @@ showModalBottomSheet(
 | rowHeight | 日期行高 | `double` | - |
 | poppable | 是否以弹层的形式展示日历 | `bool` | `true` |
 | round | 是否显示圆角弹窗 | `bool` | `true` |
+| showMark | 是否显示月份背景水印 | `bool` | `true` |
 | showConfirm | 是否展示确认按钮 | `bool` | `true` |
+| closeOnClickOverlay | 是否在点击遮罩层后关闭 | `bool` | `true` |
 | confirmText | 确认按钮的文字 | `String` | `确定` |
 | height | 日程高度，当 `poppable=false` 时生效 | `double` | `400.0` |
 | onSelect | 点击任意日期时触发 | `Function(DateTime date)` | - |

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_vant_kit/main.dart';
 import 'package:flutter_vant_kit/theme/style.dart';
 
-class Calendar extends StatefulWidget {
+class Calendar {
   // 选择类型
   final String type;
   // 日历标题
@@ -21,8 +21,12 @@ class Calendar extends StatefulWidget {
   final bool poppable;
   // 是否显示圆角弹窗
   final bool round;
+  // 是否显示月份背景水印
+  final bool showMark;
   // 是否展示确认按钮
   final bool showConfirm;
+  // 是否在点击遮罩层后关闭
+  final bool closeOnClickOverlay;
   // 确认按钮的文字
   final String confirmText;
   // 日程高度，当poppable为false时生效
@@ -43,21 +47,41 @@ class Calendar extends StatefulWidget {
       this.rowHeight: Style.calendarDayHeight,
       this.poppable: true,
       this.round: true,
+      this.showMark: true,
       this.showConfirm: true,
+      this.closeOnClickOverlay: true,
       this.confirmText: "确定",
       this.height: Style.calendarHeight,
       this.onSelect,
       this.onConfirm})
       : assert(type == 'single' || type == 'range',
-            "type must be single or range"),
-        super(key: key);
+            "type must be single or range");
 
-  @override
-  _Calendar createState() => _Calendar();
+  show(BuildContext context) {
+    return poppable
+        ? showModalBottomSheet(
+            context: context,
+            backgroundColor: Colors.transparent,
+            isDismissible: closeOnClickOverlay,
+            builder: (BuildContext context) {
+              return CalendarState(this);
+            })
+        : CalendarState(this);
+  }
 }
 
-class _Calendar extends State<Calendar> {
+class CalendarState extends StatefulWidget {
+  final Calendar calendar;
+
+  const CalendarState(this.calendar);
+
+  @override
+  _CalendarState createState() => _CalendarState();
+}
+
+class _CalendarState extends State<CalendarState> {
   List weekdays = ["日", "一", "二", "三", "四", "五", "六"];
+  Calendar _calendar;
   dynamic _defaultDate;
   dynamic _currentDate;
   DateTime _minDate;
@@ -74,18 +98,20 @@ class _Calendar extends State<Calendar> {
   @override
   void initState() {
     super.initState();
-    _isRange = widget.type == 'range';
-    _defaultDate = widget.defaultDate ?? (_isRange ? [] : DateTime.now());
-    _minDate = widget.minDate ?? DateTime.now();
-    _maxDate = widget.maxDate ?? DateTime.now().add(Duration(days: 180));
+    _calendar = widget.calendar;
+    _isRange = _calendar.type == 'range';
+    _defaultDate = _calendar.defaultDate ?? (_isRange ? [] : null);
+    _minDate = _calendar.minDate ?? DateTime.now();
+    _maxDate = _calendar.maxDate ?? DateTime.now().add(Duration(days: 180));
     if (_isRange && _defaultDate.length > 0) {
-      _startDate = DateTime(_defaultDate[0].year, _defaultDate[0].month, _defaultDate[0].day);
-      _endDate = DateTime(_defaultDate[1].year, _defaultDate[1].month, _defaultDate[1].day);
+      _startDate = DateTime(
+          _defaultDate[0].year, _defaultDate[0].month, _defaultDate[0].day);
+      _endDate = DateTime(
+          _defaultDate[1].year, _defaultDate[1].month, _defaultDate[1].day);
     } else {
-      _currentDate = _defaultDate;
+      _currentDate = _defaultDate ?? _minDate;
     }
-    _displayYear =
-        _isRange ? (_startDate ?? _minDate).year : _currentDate.year;
+    _displayYear = _isRange ? (_startDate ?? _minDate).year : _currentDate.year;
     _displayMonth =
         _isRange ? (_startDate ?? _minDate).month : _currentDate.month;
 
@@ -99,7 +125,8 @@ class _Calendar extends State<Calendar> {
     int baseYear = _minDate.year;
     int baseMonth = _minDate.month;
     setState(() {
-      _displayMonth = month + baseMonth > 12 ?  month + baseMonth - 12 : month + baseMonth;
+      _displayMonth =
+          month + baseMonth > 12 ? month + baseMonth - 12 : month + baseMonth;
       _displayYear = month + baseMonth > 12 ? baseYear + 1 : baseYear;
     });
   }
@@ -110,10 +137,13 @@ class _Calendar extends State<Calendar> {
     _scrollController.removeListener(_scrollListener);
   }
 
+  int getDifferentMonth(DateTime start, DateTime end) {
+    return (end.year - start.year) * 12 + (end.month - start.month) + 1;
+  }
+
   void _onLayoutDone(_) {
     DateTime currentDate = _isRange ? (_startDate ?? _minDate) : _currentDate;
-    int difference = currentDate.difference(_minDate).inDays;
-    int scrollIndex = (difference ~/ 30);
+    int scrollIndex = getDifferentMonth(_minDate, currentDate) - 1;
     if (scrollIndex != null && scrollIndex > 0) {
       double scrollLength =
           (scrollIndex * (Style.calendarDayHeight * 5.5)).toDouble();
@@ -135,13 +165,13 @@ class _Calendar extends State<Calendar> {
         Container(
           alignment: AlignmentDirectional.center,
           height: Style.calendarTitleHeight,
-          child: Text(widget.title,
+          child: Text(_calendar.title,
               style: TextStyle(
                   fontSize: Style.calendarTitleFontSize,
                   color: Style.calendarFontColor,
                   fontWeight: FontWeight.bold)),
         ),
-        widget.poppable
+        _calendar.poppable
             ? Positioned(
                 right: 0,
                 top: 0,
@@ -194,7 +224,7 @@ class _Calendar extends State<Calendar> {
     return DecoratedBox(
       decoration: BoxDecoration(
           borderRadius: BorderRadius.vertical(
-              top: Radius.circular(widget.round && widget.poppable
+              top: Radius.circular(_calendar.round && _calendar.poppable
                   ? Style.calendarBorderRadius
                   : 0)),
           color: Style.calendarBackgroundColor,
@@ -210,7 +240,7 @@ class _Calendar extends State<Calendar> {
   }
 
   Widget buildCalendar() {
-    return widget.poppable
+    return _calendar.poppable
         ? Expanded(
             child: SingleChildScrollView(
               controller: _scrollController,
@@ -220,7 +250,7 @@ class _Calendar extends State<Calendar> {
             ),
           )
         : Container(
-            height: widget.height,
+            height: _calendar.height,
             child: SingleChildScrollView(
               controller: _scrollController,
               child: buildCalendarContent(),
@@ -229,12 +259,11 @@ class _Calendar extends State<Calendar> {
   }
 
   Widget buildCalendarContent() {
-    int difference = _maxDate.difference(_minDate).inDays;
-    int monthLength = (difference ~/ 30) + 1;
+    int monthLength = getDifferentMonth(_minDate, _maxDate);
     return Container(
       padding: EdgeInsets.only(
           top: Style.paddingXs,
-          bottom: widget.showConfirm
+          bottom: _calendar.showConfirm
               ? Style.paddingXs + (Style.calendarConfirmButtonHeight + 7 * 2)
               : Style.paddingXs),
       child: Column(
@@ -248,31 +277,33 @@ class _Calendar extends State<Calendar> {
   Widget buildCalendarItems(int i) {
     int baseYear = _minDate.year;
     int baseMonth = _minDate.month;
-    int currentMonth = i + baseMonth > 12 ?  i + baseMonth - 12 :  i + baseMonth;
+    int currentMonth = i + baseMonth > 12 ? i + baseMonth - 12 : i + baseMonth;
     int currentYear = i + baseMonth > 12 ? baseYear + 1 : baseYear;
     int lastDay = DateTime(currentYear, currentMonth + 1, 0).day;
     int emptyDays = DateTime(currentYear, currentMonth, 1).weekday;
     emptyDays = emptyDays == 7 ? 0 : emptyDays;
     return Stack(
       children: <Widget>[
-        Positioned(
-            top: Style.calendarConfirmButtonHeight +
-                (currentMonth == _minDate.month
-                    ? 0
-                    : Style.calendarTitleHeight),
-            left: (MediaQuery.of(context).size.width -
-                    Style.calendarMonthMarkSize) /
-                2,
-            child: Container(
-              width: Style.calendarMonthMarkSize,
-              height: Style.calendarMonthMarkSize,
-              alignment: AlignmentDirectional.center,
-              child: Text("$currentMonth",
-                  style: TextStyle(
-                      fontSize: Style.calendarMonthMarkFontSize,
-                      fontWeight: Style.fontWeightBold,
-                      color: Style.calendarMonthMarkColor)),
-            )),
+        _calendar.showMark
+            ? Positioned(
+                top: Style.calendarConfirmButtonHeight +
+                    (currentMonth == _minDate.month
+                        ? 0
+                        : Style.calendarTitleHeight),
+                left: (MediaQuery.of(context).size.width -
+                        Style.calendarMonthMarkSize) /
+                    2,
+                child: Container(
+                  width: Style.calendarMonthMarkSize,
+                  height: Style.calendarMonthMarkSize,
+                  alignment: AlignmentDirectional.center,
+                  child: Text("$currentMonth",
+                      style: TextStyle(
+                          fontSize: Style.calendarMonthMarkFontSize,
+                          fontWeight: Style.fontWeightBold,
+                          color: Style.calendarMonthMarkColor)),
+                ))
+            : Container(),
         Container(
           child: Column(
             children: <Widget>[
@@ -291,9 +322,9 @@ class _Calendar extends State<Calendar> {
       ],
     );
   }
-  
+
   Widget buildCalendarItem(int year, int month, int day) {
-    bool isSelected = widget.type == "single" &&
+    bool isSelected = _calendar.type == "single" &&
         month == _currentDate.month &&
         day == _currentDate.day;
     DateTime currentDate = DateTime(year, month, day);
@@ -314,7 +345,8 @@ class _Calendar extends State<Calendar> {
       isEnd = month == _endDate.month && day == _endDate.day;
     }
     if (_isRange && _startDate != null && _endDate != null && !isEmpty) {
-      isCenter = currentDate.isAfter(_startDate) && currentDate.isBefore(_endDate);
+      isCenter =
+          currentDate.isAfter(_startDate) && currentDate.isBefore(_endDate);
     }
     String info = isStart ? _startString : isEnd ? _endString : '';
     return DecoratedBox(
@@ -328,9 +360,10 @@ class _Calendar extends State<Calendar> {
                   : BorderRadius.circular(
                       isCenter ? 0 : Style.calendarDayBorderRadius),
           color: isSelected || isStart || isEnd
-              ? widget.color ?? Style.calendarSelectedDayBackgroundColor
+              ? _calendar.color ?? Style.calendarSelectedDayBackgroundColor
               : isCenter
-                  ? (widget.color ?? Style.calendarSelectedDayBackgroundColor)
+                  ? (_calendar.color ??
+                          Style.calendarSelectedDayBackgroundColor)
                       .withOpacity(Style.calendarRangeMiddleBackgroundOpacity)
                   : null),
       child: Material(
@@ -351,7 +384,7 @@ class _Calendar extends State<Calendar> {
               : Theme.of(context).splashColor,
           child: Container(
             width: dayItemWidth,
-            height: widget.rowHeight,
+            height: _calendar.rowHeight,
             child: Stack(
               children: <Widget>[
                 Center(
@@ -361,7 +394,7 @@ class _Calendar extends State<Calendar> {
                           color: isSelected || isStart || isEnd
                               ? Style.calendarSelectedDayColor
                               : isCenter
-                                  ? widget.color ??
+                                  ? _calendar.color ??
                                       Style.calendarSelectedDayBackgroundColor
                                   : isDisabled
                                       ? Style.calendarDayDisabledColor
@@ -386,37 +419,37 @@ class _Calendar extends State<Calendar> {
             if (isEmpty || isDisabled) return;
             setState(() {
               if (_isRange) {
-                bool _hasStartDate = _startDate != null;
-                bool _hasEndDate = _endDate != null;
-                if (!_hasStartDate ||
+                if (_startDate == null ||
                     currentDate.isBefore(_startDate) ||
-                    _hasStartDate && _hasEndDate) {
+                    _startDate != null && _endDate != null) {
                   _endDate = null;
                   _startDate = currentDate;
                 }
-                if (_hasStartDate &&
+                if (_startDate != null &&
                     _endDate == null &&
                     currentDate.isAfter(_startDate)) {
                   _endDate = currentDate;
                 }
-                if (widget.onSelect != null && _hasStartDate && _hasEndDate) {
-                  widget.onSelect([_startDate, _endDate]);
+                if (_calendar.onSelect != null &&
+                    _startDate != null &&
+                    _endDate != null) {
+                  _calendar.onSelect([_startDate, _endDate]);
                 }
-                if (!widget.showConfirm &&
-                    widget.onConfirm != null &&
-                    _hasStartDate &&
-                    _hasEndDate) {
+                if (!_calendar.showConfirm &&
+                    _calendar.onConfirm != null &&
+                    _startDate != null &&
+                    _endDate != null) {
                   close(context);
-                  widget.onConfirm([_startDate, _endDate]);
+                  _calendar.onConfirm([_startDate, _endDate]);
                 }
               } else {
                 _currentDate = currentDate;
-                if (widget.onSelect != null) {
-                  widget.onSelect(_currentDate);
+                if (_calendar.onSelect != null) {
+                  _calendar.onSelect(_currentDate);
                 }
-                if (!widget.showConfirm && widget.onConfirm != null) {
+                if (!_calendar.showConfirm && _calendar.onConfirm != null) {
                   close(context);
-                  widget.onConfirm(_currentDate);
+                  _calendar.onConfirm(_currentDate);
                 }
               }
             });
@@ -438,16 +471,16 @@ class _Calendar extends State<Calendar> {
           height: Style.calendarConfirmButtonHeight,
           block: true,
           type: "info",
-          color: widget.color,
-          text: widget.confirmText,
+          color: _calendar.color,
+          text: _calendar.confirmText,
           round: true,
           onClick: () {
             close(context);
-            if (widget.onConfirm != null) {
+            if (_calendar.onConfirm != null) {
               if (_startDate != null && _endDate != null) {
-                widget.onConfirm([_startDate, _endDate]);
+                _calendar.onConfirm([_startDate, _endDate]);
               } else if (_currentDate != null) {
-                widget.onConfirm(_currentDate);
+                _calendar.onConfirm(_currentDate);
               }
             }
           },
@@ -456,27 +489,32 @@ class _Calendar extends State<Calendar> {
     );
   }
 
-  @override
-  Widget build(BuildContext context) {
+  Widget buildContent() {
     return Stack(
       children: <Widget>[
         Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.vertical(
-                top: Radius.circular(widget.round && widget.poppable
-                    ? Style.calendarBorderRadius
-                    : 0)),
-            color: Style.calendarBackgroundColor,
-          ),
           child: Column(
-            children: <Widget>[
-              buildTop(),
-              buildCalendar()
-            ],
+            children: <Widget>[buildTop(), buildCalendar()],
           ),
         ),
-        widget.showConfirm ? buildConfirmButton() : Container()
+        _calendar.showConfirm ? buildConfirmButton() : Container()
       ],
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.vertical(
+            top: Radius.circular(_calendar.round && _calendar.poppable
+                ? Style.calendarBorderRadius
+                : 0)),
+        color: Style.calendarBackgroundColor,
+      ),
+      child: _calendar.poppable ? SafeArea(
+        child: buildContent(),
+      ) : buildContent(),
     );
   }
 }
