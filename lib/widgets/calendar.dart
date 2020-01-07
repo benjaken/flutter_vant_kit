@@ -66,7 +66,7 @@ class _Calendar extends State<Calendar> {
   DateTime _endDate;
   String _startString = "开始";
   String _endString = "结束";
-  int _year;
+  int _displayYear;
   int _displayMonth;
   ScrollController _scrollController = new ScrollController();
   bool _isRange = false;
@@ -78,14 +78,16 @@ class _Calendar extends State<Calendar> {
     _defaultDate = widget.defaultDate ?? (_isRange ? [] : DateTime.now());
     _minDate = widget.minDate ?? DateTime.now();
     _maxDate = widget.maxDate ?? DateTime.now().add(Duration(days: 180));
-    _year = _minDate.year;
     if (_isRange && _defaultDate.length > 0) {
-      _startDate = _defaultDate[0];
-      _endDate = _defaultDate[1];
+      _startDate = DateTime(_defaultDate[0].year, _defaultDate[0].month, _defaultDate[0].day);
+      _endDate = DateTime(_defaultDate[1].year, _defaultDate[1].month, _defaultDate[1].day);
     } else {
       _currentDate = _defaultDate;
     }
-    _displayMonth = _isRange ? (_startDate??_minDate).month : _currentDate.month;
+    _displayYear =
+        _isRange ? (_startDate ?? _minDate).year : _currentDate.year;
+    _displayMonth =
+        _isRange ? (_startDate ?? _minDate).month : _currentDate.month;
 
     _scrollController..addListener(_scrollListener);
     WidgetsBinding.instance.addPostFrameCallback(_onLayoutDone);
@@ -94,9 +96,11 @@ class _Calendar extends State<Calendar> {
   void _scrollListener() {
     double offset = _scrollController.offset;
     int month = offset ~/ (Style.calendarDayHeight * 5.5);
+    int baseYear = _minDate.year;
     int baseMonth = _minDate.month;
     setState(() {
-      _displayMonth = baseMonth + month;
+      _displayMonth = month + baseMonth > 12 ?  month + baseMonth - 12 : month + baseMonth;
+      _displayYear = month + baseMonth > 12 ? baseYear + 1 : baseYear;
     });
   }
 
@@ -107,10 +111,12 @@ class _Calendar extends State<Calendar> {
   }
 
   void _onLayoutDone(_) {
-    int scrollIndex = _isRange ? (_startDate??_minDate).month : _currentDate.month;
-    if (scrollIndex != null && scrollIndex > 1) {
+    DateTime currentDate = _isRange ? (_startDate ?? _minDate) : _currentDate;
+    int difference = currentDate.difference(_minDate).inDays;
+    int scrollIndex = (difference ~/ 30);
+    if (scrollIndex != null && scrollIndex > 0) {
       double scrollLength =
-          ((scrollIndex - 1) * (Style.calendarDayHeight * 5.5)).toDouble();
+          (scrollIndex * (Style.calendarDayHeight * 5.5)).toDouble();
       double maxScroll = _scrollController.position.maxScrollExtent;
       _scrollController.animateTo(
           scrollLength > maxScroll ? maxScroll : scrollLength,
@@ -154,11 +160,11 @@ class _Calendar extends State<Calendar> {
     );
   }
 
-  Widget buildMonthTitle(int month) {
+  Widget buildMonthTitle(int year, int month) {
     return Container(
       alignment: AlignmentDirectional.center,
       height: Style.calendarTitleHeight,
-      child: Text("$_year年$month月",
+      child: Text("$year年$month月",
           style: TextStyle(
               fontSize: Style.calendarMonthTitleFontSize,
               color: Style.calendarFontColor,
@@ -196,7 +202,7 @@ class _Calendar extends State<Calendar> {
       child: Column(
         children: <Widget>[
           buildTitle(),
-          buildMonthTitle(_displayMonth),
+          buildMonthTitle(_displayYear, _displayMonth),
           buildWeekdays()
         ],
       ),
@@ -223,7 +229,8 @@ class _Calendar extends State<Calendar> {
   }
 
   Widget buildCalendarContent() {
-    int different = _maxDate.difference(_minDate).inDays;
+    int difference = _maxDate.difference(_minDate).inDays;
+    int monthLength = (difference ~/ 30) + 1;
     return Container(
       padding: EdgeInsets.only(
           top: Style.paddingXs,
@@ -231,7 +238,7 @@ class _Calendar extends State<Calendar> {
               ? Style.paddingXs + (Style.calendarConfirmButtonHeight + 7 * 2)
               : Style.paddingXs),
       child: Column(
-        children: List.generate((different ~/ 30) + 1, (i) {
+        children: List.generate(monthLength, (i) {
           return buildCalendarItems(i);
         }),
       ),
@@ -239,10 +246,12 @@ class _Calendar extends State<Calendar> {
   }
 
   Widget buildCalendarItems(int i) {
+    int baseYear = _minDate.year;
     int baseMonth = _minDate.month;
-    int currentMonth = i + baseMonth;
-    int lastDay = DateTime(_year, currentMonth + 1, 0).day;
-    int emptyDays = DateTime(_year, currentMonth, 1).weekday;
+    int currentMonth = i + baseMonth > 12 ?  i + baseMonth - 12 :  i + baseMonth;
+    int currentYear = i + baseMonth > 12 ? baseYear + 1 : baseYear;
+    int lastDay = DateTime(currentYear, currentMonth + 1, 0).day;
+    int emptyDays = DateTime(currentYear, currentMonth, 1).weekday;
     emptyDays = emptyDays == 7 ? 0 : emptyDays;
     return Stack(
       children: <Widget>[
@@ -269,11 +278,11 @@ class _Calendar extends State<Calendar> {
             children: <Widget>[
               currentMonth == _minDate.month
                   ? Container()
-                  : buildMonthTitle(currentMonth),
+                  : buildMonthTitle(currentYear, currentMonth),
               Wrap(
                 children: List.generate(lastDay + emptyDays, (i) {
                   int day = i - emptyDays + 1;
-                  return buildCalendarItem(currentMonth, day);
+                  return buildCalendarItem(currentYear, currentMonth, day);
                 }),
               )
             ],
@@ -282,17 +291,18 @@ class _Calendar extends State<Calendar> {
       ],
     );
   }
-
-  Widget buildCalendarItem(int month, int day) {
+  
+  Widget buildCalendarItem(int year, int month, int day) {
     bool isSelected = widget.type == "single" &&
         month == _currentDate.month &&
         day == _currentDate.day;
+    DateTime currentDate = DateTime(year, month, day);
     double dayItemWidth = MediaQuery.of(context).size.width / 7;
     dayItemWidth = dayItemWidth.toInt().toDouble();
     bool isEmpty = day < 1;
-    bool isDisabled = DateTime(_year, month, day)
+    bool isDisabled = currentDate
             .isBefore(DateTime(_minDate.year, _minDate.month, _minDate.day)) ||
-        DateTime(_year, month, day)
+        currentDate
             .isAfter(DateTime(_maxDate.year, _maxDate.month, _maxDate.day));
     bool isStart = false;
     bool isEnd = false;
@@ -304,8 +314,7 @@ class _Calendar extends State<Calendar> {
       isEnd = month == _endDate.month && day == _endDate.day;
     }
     if (_isRange && _startDate != null && _endDate != null && !isEmpty) {
-      DateTime date = DateTime(_year, month, day);
-      isCenter = date.isAfter(_startDate) && date.isBefore(_endDate);
+      isCenter = currentDate.isAfter(_startDate) && currentDate.isBefore(_endDate);
     }
     String info = isStart ? _startString : isEnd ? _endString : '';
     return DecoratedBox(
@@ -352,7 +361,8 @@ class _Calendar extends State<Calendar> {
                           color: isSelected || isStart || isEnd
                               ? Style.calendarSelectedDayColor
                               : isCenter
-                                  ? widget.color ?? Style.calendarSelectedDayBackgroundColor
+                                  ? widget.color ??
+                                      Style.calendarSelectedDayBackgroundColor
                                   : isDisabled
                                       ? Style.calendarDayDisabledColor
                                       : Style.calendarFontColor)),
@@ -375,33 +385,32 @@ class _Calendar extends State<Calendar> {
           onTap: () {
             if (isEmpty || isDisabled) return;
             setState(() {
-              DateTime selectedDate = DateTime(_year, month, day);
               if (_isRange) {
-                if (_startDate == null ||
-                    selectedDate.isBefore(_startDate) ||
-                    _startDate != null && _endDate != null) {
+                bool _hasStartDate = _startDate != null;
+                bool _hasEndDate = _endDate != null;
+                if (!_hasStartDate ||
+                    currentDate.isBefore(_startDate) ||
+                    _hasStartDate && _hasEndDate) {
                   _endDate = null;
-                  _startDate = selectedDate;
+                  _startDate = currentDate;
                 }
-                if (_startDate != null &&
+                if (_hasStartDate &&
                     _endDate == null &&
-                    selectedDate.isAfter(_startDate)) {
-                  _endDate = selectedDate;
+                    currentDate.isAfter(_startDate)) {
+                  _endDate = currentDate;
                 }
-                if (widget.onSelect != null &&
-                    _startDate != null &&
-                    _endDate != null) {
+                if (widget.onSelect != null && _hasStartDate && _hasEndDate) {
                   widget.onSelect([_startDate, _endDate]);
                 }
                 if (!widget.showConfirm &&
                     widget.onConfirm != null &&
-                    _startDate != null &&
-                    _endDate != null) {
+                    _hasStartDate &&
+                    _hasEndDate) {
                   close(context);
                   widget.onConfirm([_startDate, _endDate]);
                 }
               } else {
-                _currentDate = selectedDate;
+                _currentDate = currentDate;
                 if (widget.onSelect != null) {
                   widget.onSelect(_currentDate);
                 }
@@ -460,7 +469,10 @@ class _Calendar extends State<Calendar> {
             color: Style.calendarBackgroundColor,
           ),
           child: Column(
-            children: <Widget>[buildTop(), buildCalendar()],
+            children: <Widget>[
+              buildTop(),
+              buildCalendar()
+            ],
           ),
         ),
         widget.showConfirm ? buildConfirmButton() : Container()
@@ -474,7 +486,5 @@ class DayItem {
   final String info;
   final bool disabled;
 
-  DayItem({
-    this.date, this.info, this.disabled: false
-  });
+  DayItem({this.date, this.info, this.disabled: false});
 }

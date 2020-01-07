@@ -34,6 +34,14 @@ class _DemoCalendar extends State<DemoCalendar> {
         });
   }
 
+  String formatDateWithMonth(DateTime date) {
+    return DateFormat('MM/dd').format(date);
+  }
+
+  String formatDateWithYear(DateTime date) {
+    return DateFormat('yyyy/MM/dd').format(date);
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -46,11 +54,12 @@ class _DemoCalendar extends State<DemoCalendar> {
               Cell(
                 title: "选择单个日期",
                 value: _selectedDate1 != null
-                    ? DateFormat('yyyy/MM/dd').format(_selectedDate1)
+                    ? formatDateWithYear(_selectedDate1)
                     : '',
                 isLink: true,
                 onClick: () => showCalendar(Calendar(
                   defaultDate: _selectedDate1,
+                  maxDate: DateTime.now().add(Duration(days: 40)),
                   onConfirm: (date) {
                     setState(() {
                       _selectedDate1 = date;
@@ -61,20 +70,18 @@ class _DemoCalendar extends State<DemoCalendar> {
               Cell(
                 title: "选择日期区间",
                 value: _selectedDate2 != null
-                    ? "${DateFormat('MM/dd').format(_selectedDate2[0])} - ${DateFormat('MM/dd').format(_selectedDate2[1])}"
+                    ? "${formatDateWithMonth(_selectedDate2[0])} - ${formatDateWithMonth(_selectedDate2[1])}"
                     : '',
                 isLink: true,
-                onClick: () => showCalendar(
-                  Calendar(
-                    type: "range",
-                    defaultDate: _selectedDate2,
-                    onConfirm: (date) {
-                      setState(() {
-                        _selectedDate2 = date;
-                      });
-                    },
-                  )
-                ),
+                onClick: () => showCalendar(Calendar(
+                  type: "range",
+                  defaultDate: _selectedDate2,
+                  onConfirm: (date) {
+                    setState(() {
+                      _selectedDate2 = date;
+                    });
+                  },
+                )),
               ),
             ],
           ),
@@ -84,7 +91,7 @@ class _DemoCalendar extends State<DemoCalendar> {
               Cell(
                 title: "选择单个日期",
                 value: _selectedDate3 != null
-                    ? DateFormat('yyyy/MM/dd').format(_selectedDate3)
+                    ? formatDateWithYear(_selectedDate3)
                     : '',
                 isLink: true,
                 onClick: () => showCalendar(Calendar(
@@ -100,21 +107,19 @@ class _DemoCalendar extends State<DemoCalendar> {
               Cell(
                 title: "选择日期区间",
                 value: _selectedDate4 != null
-                    ? "${DateFormat('MM/dd').format(_selectedDate4[0])} - ${DateFormat('MM/dd').format(_selectedDate4[1])}"
+                    ? "${formatDateWithMonth(_selectedDate4[0])} - ${formatDateWithMonth(_selectedDate4[1])}"
                     : '',
                 isLink: true,
-                onClick: () => showCalendar(
-                  Calendar(
-                    type: "range",
-                    showConfirm: false,
-                    defaultDate: _selectedDate4,
-                    onConfirm: (date) {
-                      setState(() {
-                        _selectedDate4 = date;
-                      });
-                    },
-                  )
-                ),
+                onClick: () => showCalendar(Calendar(
+                  type: "range",
+                  showConfirm: false,
+                  defaultDate: _selectedDate4,
+                  onConfirm: (date) {
+                    setState(() {
+                      _selectedDate4 = date;
+                    });
+                  },
+                )),
               ),
             ],
           ),
@@ -142,7 +147,7 @@ class _DemoCalendar extends State<DemoCalendar> {
                 title: "自定义日期范围",
                 isLink: true,
                 value: _selectedDate6 != null
-                    ? DateFormat('yyyy/MM/dd').format(_selectedDate6)
+                    ? formatDateWithYear(_selectedDate6)
                     : '',
                 onClick: () => showCalendar(Calendar(
                   defaultDate: _selectedDate6,
@@ -159,7 +164,7 @@ class _DemoCalendar extends State<DemoCalendar> {
                 title: "自定义按钮文字",
                 isLink: true,
                 value: _selectedDate7 != null
-                    ? DateFormat('yyyy/MM/dd').format(_selectedDate7)
+                    ? formatDateWithYear(_selectedDate7)
                     : '',
                 onClick: () => showCalendar(Calendar(
                   confirmText: "完成",
@@ -196,13 +201,13 @@ class _DemoCalendar extends State<DemoCalendar> {
             title: "日历",
             type: "range",
             defaultDate: [
-              DateFormat('yyyy-MM-dd').parse("2012-01-10"),
-              DateFormat('yyyy-MM-dd').parse("2012-01-12")
+              DateFormat('yyyy-MM-dd').parse("2012-11-10"),
+              DateFormat('yyyy-MM-dd').parse("2012-11-12")
             ],
-            minDate: DateFormat('yyyy-MM-dd').parse("2012-01-10"),
+            minDate: DateFormat('yyyy-MM-dd').parse("2012-11-10"),
             maxDate: DateFormat('yyyy-MM-dd')
-                .parse("2012-01-10")
-                .add(Duration(days: 70)),
+                .parse("2012-11-10")
+                .add(Duration(days: 120)),
             onSelect: (date) {
               Utils.toast(date.toString());
             },
