@@ -69,6 +69,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: CellGroup(
                   border: false,
                   children: <Widget>[
+                    PageCell("Calendar 日历", (ctx) => DemoCalendar(),
+                        padding: false),
                     PageCell("Checkbox 复选框", (ctx) => DemoCheckbox(),
                         padding: true),
                     PageCell("Field 输入框", (ctx) => DemoField(), padding: false),
@@ -78,6 +80,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     PageCell(
                         "PasswordInput 密码输入框", (ctx) => DemoPasswordInput(),
                         padding: true),
+                    PageCell("Picker 选择器", (ctx) => DemoPicker(),
+                        padding: false),
                     PageCell("Radio 单选框", (ctx) => DemoRadio(), padding: true),
                     PageCell("Rate 评分", (ctx) => DemoRate(), padding: false),
                     PageCell("Search 搜索", (ctx) => DemoSearch(),

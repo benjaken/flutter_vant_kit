@@ -43,23 +43,18 @@ class _DemoCoupon extends State<DemoCoupon> {
           value: _discount ?? "${coupons.length}张可用",
           isLink: true,
           onClick: () {
-            showBottomSheet(
-                context: context,
-                builder: (BuildContext context) {
-                  return Coupon(
-                    chosenCoupon: _chosenCoupon,
-                    coupons: coupons,
-                    disabledCoupons: coupons.sublist(0, 2),
-                    onSelect: (val) {
-                      setState(() {
-                        _chosenCoupon = val;
-                        String value =
-                            (coupons[val].value / 100).toStringAsFixed(2);
-                        _discount = "-¥$value";
-                      });
-                    },
-                  );
+            Coupon(
+              chosenCoupon: _chosenCoupon,
+              coupons: coupons,
+              disabledCoupons: coupons.sublist(0, 2),
+              onSelect: (val) {
+                setState(() {
+                  _chosenCoupon = val;
+                  String value = (coupons[val].value / 100).toStringAsFixed(2);
+                  _discount = "-¥$value";
                 });
+              },
+            ).show(context);
           },
         )
       ],

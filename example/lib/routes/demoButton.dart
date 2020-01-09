@@ -270,13 +270,13 @@ class _DemoButton extends State<DemoButton> {
                 ),
                 NButton(
                   text: "渐变色按钮",
-                  gradient: LinearGradient(
+                  color: LinearGradient(
                       colors: [Colors.lightBlue[300], Colors.blueAccent]),
                   onClick: () {},
                 ),
                 NButton(
                   text: "渐变色按钮",
-                  gradient: LinearGradient(
+                  color: LinearGradient(
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
                       colors: [Colors.greenAccent, Colors.redAccent]),
@@ -284,7 +284,7 @@ class _DemoButton extends State<DemoButton> {
                 ),
                 NButton(
                   text: "渐变色按钮",
-                  gradient: RadialGradient(
+                  color: RadialGradient(
                       radius: 2,
                       colors: [Colors.lightBlue[300], Colors.blueAccent]),
                   onClick: () {},

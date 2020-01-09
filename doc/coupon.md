@@ -13,17 +13,12 @@ List<CouponItem> coupons = [
   )
 ]
 
-showBottomSheet(
-    context: context,
-    builder: (BuildContext context) {
-      return Coupon(
-        chosenCoupon: _chosenCoupon,
-        coupons: coupons,
-        disabledCoupons: coupons.sublist(0, 2),
-        ...
-      );
-    }
-  );
+Coupon(
+  chosenCoupon: _chosenCoupon,
+  coupons: coupons,
+  disabledCoupons: coupons.sublist(0, 2),
+  ...
+).show(context);
 ```
 
 更多例子请参考[Demo](../example/lib/routes/demoCoupon.dart)

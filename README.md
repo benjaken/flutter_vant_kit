@@ -10,7 +10,7 @@ Flutter Kit 是仿[Vant](https://youzan.github.io/vant/#/zh-CN/intro)组件库�
 
 ```
 dependencies:
-  flutter_vant_kit: ^0.1.7
+  flutter_vant_kit: ^0.2.0
 ```
 
 ### 运行Demo
@@ -31,10 +31,12 @@ flutter run
 
 | 表单组件 |
 | ------ |
-| [Checkbox 复选框](doc/checkbox.md)  |
+| [Calendar 日历](doc/calendar.md) |
+| [Checkbox 复选框](doc/checkbox.md) |
 | [Field 输入框](doc/field.md) |
 | [NumberKeyboard 数字键盘](doc/numberKeyboard.md) |
 | [PasswordInput 密码输入框](doc/passwordInput.md) |
+| [Picker 选择器](doc/picker.md) |
 | [Radio 单选框](doc/radio.md) |
 | [Rate 评分](doc/rate.md) |
 | [Search 搜索](doc/search.md) |

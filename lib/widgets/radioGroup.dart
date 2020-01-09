@@ -54,7 +54,7 @@ class _RadioGroup extends State<RadioGroup> {
       Widget checkbox = NCheckbox(
         value: _value == item.name,
         shape: widget.shape ?? item.shape,
-        text: widget.inCellGroup ? '' : item.text,
+        text: widget.inCellGroup ? null : item.text,
         disabled: widget.disabled ?? item.disabled,
         readonly: _value == item.name,
         iconSize: widget.iconSize ?? item.iconSize,

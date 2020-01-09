@@ -19,7 +19,7 @@ class _DemoField extends State<DemoField> {
 
   Widget title(String title) {
     return Padding(
-      padding: EdgeInsets.fromLTRB(20, 30, 0, 10),
+      padding: EdgeInsets.symmetric(vertical: 20, horizontal: 16),
       child: Text(title, style: TextStyle(fontSize: 14, color: Colors.grey)),
     );
   }
