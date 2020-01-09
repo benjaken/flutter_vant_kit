@@ -10,7 +10,7 @@ Flutter Kit 是仿[Vant](https://youzan.github.io/vant/#/zh-CN/intro)组件库�
 
 ```
 dependencies:
-  flutter_vant_kit: ^0.1.7
+  flutter_vant_kit: ^0.2.0
 ```
 
 ### 运行Demo

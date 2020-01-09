@@ -1,7 +1,7 @@
 name: flutter_vant_kit
 description: A vant-style flutter UI library.You can use this library to quickly build your application.
 
-version: 0.1.7
+version: 0.2.0
 homepage: https://github.com/benjaken/flutter_vant_kit
 
 environment:
