@@ -13,11 +13,9 @@ class NButton extends StatelessWidget {
   // 按钮高度
   final double height;
   // 按钮颜色
-  final Color color;
+  final dynamic color;
   // 左侧图标
   final Widget icon;
-  // 渐变色设置
-  final Gradient gradient;
   // 按钮内文字颜色
   final Color textColor;
   // 是否为块级元素
@@ -60,7 +58,6 @@ class NButton extends StatelessWidget {
       this.loading: false,
       this.padding,
       this.borderRadius,
-      this.gradient,
       this.onClick})
       : assert(["mini", "small", "normal", "large"].indexOf(size) > -1,
             "size must be mini, small, normal, or large"),
@@ -123,15 +120,15 @@ class NButton extends StatelessWidget {
 
   Widget buildContent() {
     Color buttonColor;
-    if (gradient == null) {
-      buttonColor = plain
-          ? Style.buttonPlainBackgroundColor
-          : (color ?? colors[type]["buttonColor"]);
-    }
+    buttonColor = color is Gradient
+        ? null
+        : plain
+            ? Style.buttonPlainBackgroundColor
+            : (color ?? colors[type]["buttonColor"]);
     Color buttonTextColor = (textColor ??
         (plain
             ? (color ?? colors[type]["buttonColor"])
-            : ((color != null || gradient != null) && type == 'default'
+            : ((color != null) && type == 'default'
                 ? Colors.white
                 : colors[type]["textColor"])));
 
@@ -173,25 +170,26 @@ class NButton extends StatelessWidget {
     Color borderColor;
     Color buttonColor;
 
-    if (gradient == null) {
-      borderColor = (color ?? colors[type]["borderColor"]);
-      buttonColor = plain
-          ? Style.buttonPlainBackgroundColor
-          : (color ?? colors[type]["buttonColor"]);
-    }
+    borderColor =
+        color is Gradient ? null : (color ?? colors[type]["borderColor"]);
+    buttonColor = color is Gradient
+        ? null
+        : plain
+            ? Style.buttonPlainBackgroundColor
+            : (color ?? colors[type]["buttonColor"]);
     return Opacity(
       opacity: disabled ? Style.buttonDisabledOpacity : 1.0,
       child: DecoratedBox(
           decoration: BoxDecoration(
               color: buttonColor ?? null,
-              gradient: gradient ?? null,
-              border: gradient == null
-                  ? Border.all(
+              gradient: color is Gradient ? color : null,
+              border: color is Gradient
+                  ? null
+                  : Border.all(
                       color: borderColor,
                       width: hairline
                           ? Style.buttonHairBorderWidth
-                          : Style.buttonBorderWidth)
-                  : null,
+                          : Style.buttonBorderWidth),
               borderRadius: borderRadius ??
                   (square
                       ? null

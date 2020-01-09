@@ -117,7 +117,7 @@ class SubmitBar extends StatelessWidget {
           NButton(
             text: loading ? "" : buttonText,
             round: true,
-            gradient: Style.submitBarButtonColor,
+            color: Style.submitBarButtonColor,
             width: Style.submitBarButtonWidth,
             height: Style.submitBarButtonHeight,
             loading: loading,
