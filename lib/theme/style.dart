@@ -475,6 +475,19 @@ class Style {
   static const passwordInputInfoColor = gray6;
   static const passwordInputInfoFontSize = fontSizeMd;
 
+  // Picker
+  static const pickerBackgroundColor = white;
+  static const pickerHeight = 260.0;
+  static const pickerToolbarHeight = 44.0;
+  static const pickerTitleFontSize = fontSizeLg;
+  static const pickerActionPadding = EdgeInsets.symmetric(horizontal: paddingMd);
+  static const pickerActionFontSize = fontSizeMd;
+  static const pickerActionTextColor = blue;
+  static const pickerOptionFontSize = fontSizeLg;
+  static const pickerOptionTextColor = black;
+  static const pickerLoadingIconColor = blue;
+  static const pickerLoadingMaskColor = Colors.white70;
+
   // Price
   static const priceFontSize = 20.0;
   static const priceTextColor = textColor;

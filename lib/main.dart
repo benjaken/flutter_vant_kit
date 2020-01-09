@@ -41,3 +41,4 @@ export 'widgets/swipe.dart';
 export 'widgets/tag.dart';
 export 'widgets/treeSelect.dart';
 export 'widgets/calendar.dart';
+export 'widgets/picker.dart';

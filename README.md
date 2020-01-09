@@ -36,6 +36,7 @@ flutter run
 | [Field 输入框](doc/field.md) |
 | [NumberKeyboard 数字键盘](doc/numberKeyboard.md) |
 | [PasswordInput 密码输入框](doc/passwordInput.md) |
+| [Picker 选择器](doc/picker.md) |
 | [Radio 单选框](doc/radio.md) |
 | [Rate 评分](doc/rate.md) |
 | [Search 搜索](doc/search.md) |

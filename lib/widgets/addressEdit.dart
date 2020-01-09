@@ -7,6 +7,7 @@ import 'package:flutter_vant_kit/widgets/field.dart';
 import 'package:flutter_vant_kit/widgets/cell.dart';
 import 'package:flutter_vant_kit/widgets/button.dart';
 import 'package:flutter_vant_kit/widgets/dialog.dart';
+import 'package:flutter_vant_kit/widgets/picker.dart';
 
 class AddressEdit extends StatefulWidget {
   // 地区选择列占位提示文字
@@ -67,6 +68,25 @@ class _AddressEdit extends State<AddressEdit> {
   };
   bool setDefaultAddress = false;
   Map<String, dynamic> _addressInfo;
+  List<PickerItem> options = [
+    PickerItem("广东省", child: [
+      PickerItem("广州市", child: [
+        PickerItem("天河区"),
+        PickerItem("萝岗区"),
+        PickerItem("荔湾区"),
+        PickerItem("番禺区"),
+        PickerItem("白云区"),
+      ]),
+      PickerItem("深圳市", child: [
+        PickerItem("南山区"),
+        PickerItem("福田区"),
+        PickerItem("龙岗区"),
+        PickerItem("宝安区"),
+        PickerItem("罗湖区"),
+      ])
+    ])
+  ];
+  List<int> _cityIndex = [];
 
   @override
   void initState() {
@@ -75,6 +95,8 @@ class _AddressEdit extends State<AddressEdit> {
     (_addressInfo ?? {}).forEach((key, value) {
       if (["province", "city", "county"].contains(key) && value != null)
         areas.add(value);
+      if (["provinceIndex", "cityIndex", "countyIndex"].contains(key))
+        _cityIndex.add(value??0);
       if (["name", "tel", "addressDetail", "postalCode"].contains(key) &&
           value != null) input[key].text = value;
     });
@@ -89,8 +111,11 @@ class _AddressEdit extends State<AddressEdit> {
     });
     List areas = input['area'].text.split('/');
     map['province'] = areas[0] ?? "";
+    map['provinceIndex'] = _cityIndex[0];
     map['city'] = areas[1] ?? "";
+    map['cityIndex'] = _cityIndex[1];
     map['county'] = areas[2] ?? "";
+    map['countyIndex'] = _cityIndex[2];
     map["isDefault"] = _addressInfo['isDefault'];
     _addressInfo = map;
     return map;
@@ -124,6 +149,28 @@ class _AddressEdit extends State<AddressEdit> {
       rightIcon: Icons.chevron_right,
       controller: input['area'],
       readonly: true,
+      onClick: () {
+        showModalBottomSheet(
+            context: context,
+            builder: (BuildContext context) {
+              return Picker(
+                colums: options,
+                level: 3,
+                defaultIndex: _cityIndex,
+                showToolbar: true,
+                onConfirm: (values, index) {
+                  setState(() {
+                    input['area'].text = values.join('/');
+                    _cityIndex = index;
+                  });
+                  Navigator.of(context).pop();
+                },
+                onCancel: (values, index) {
+                  Navigator.of(context).pop();
+                },
+              );
+            });
+      },
     );
   }
 
