@@ -96,7 +96,7 @@ class _AddressEdit extends State<AddressEdit> {
       if (["province", "city", "county"].contains(key) && value != null)
         areas.add(value);
       if (["provinceIndex", "cityIndex", "countyIndex"].contains(key))
-        _cityIndex.add(value??0);
+        _cityIndex.add(value ?? 0);
       if (["name", "tel", "addressDetail", "postalCode"].contains(key) &&
           value != null) input[key].text = value;
     });

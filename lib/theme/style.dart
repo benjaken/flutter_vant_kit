@@ -212,7 +212,8 @@ class Style {
   static const calendarInfoFontSize = fontSizeXs;
   static const calendarSelectedDayBackgroundColor = blue;
   static const calendarDayDisabledColor = gray5;
-  static const calendarConfirmPadding = EdgeInsets.symmetric(vertical: 7.0, horizontal: paddingMd);
+  static const calendarConfirmPadding =
+      EdgeInsets.symmetric(vertical: 7.0, horizontal: paddingMd);
   static const calendarConfirmButtonHeight = 36.0;
 
   // Card
@@ -480,7 +481,8 @@ class Style {
   static const pickerHeight = 260.0;
   static const pickerToolbarHeight = 44.0;
   static const pickerTitleFontSize = fontSizeLg;
-  static const pickerActionPadding = EdgeInsets.symmetric(horizontal: paddingMd);
+  static const pickerActionPadding =
+      EdgeInsets.symmetric(horizontal: paddingMd);
   static const pickerActionFontSize = fontSizeMd;
   static const pickerActionTextColor = blue;
   static const pickerOptionFontSize = fontSizeLg;

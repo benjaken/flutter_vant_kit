@@ -16,9 +16,9 @@ class ActionSheet {
   final bool round;
   // 关闭图标
   final IconData closeIcon;
-  // 是否在点击遮罩层后关闭	
+  // 是否在点击遮罩层后关闭
   final bool closeOnClickOverlay;
-  // 选中选项时触发，禁用或加载状态下不会触发	
+  // 选中选项时触发，禁用或加载状态下不会触发
   final Function(ActionSheetItem actionSheetItem, int index) onSelect;
   // 取消按钮点击时触发
   final Function() onCancel;
@@ -120,7 +120,8 @@ class ActionSheetState extends StatelessWidget {
                   ),
                   onTap: () {
                     if (action.loading || action.disabled) return;
-                    if (actionSheet.onSelect != null) actionSheet.onSelect(action, i);
+                    if (actionSheet.onSelect != null)
+                      actionSheet.onSelect(action, i);
                     close(context);
                   },
                 ),

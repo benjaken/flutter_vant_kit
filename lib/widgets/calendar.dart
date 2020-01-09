@@ -512,9 +512,11 @@ class _CalendarState extends State<CalendarState> {
                 : 0)),
         color: Style.calendarBackgroundColor,
       ),
-      child: _calendar.poppable ? SafeArea(
-        child: buildContent(),
-      ) : buildContent(),
+      child: _calendar.poppable
+          ? SafeArea(
+              child: buildContent(),
+            )
+          : buildContent(),
     );
   }
 }
