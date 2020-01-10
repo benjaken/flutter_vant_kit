@@ -47,6 +47,7 @@ flutter run
 | ------ |
 | [ActionSheet 上拉菜单](doc/actionSheet.md)  |
 | [Dialog 弹窗](doc/dialog.md) |
+| [Loading 加载](doc/loading.md) |
 
 | 展示组件 |
 | ------ |
@@ -54,7 +55,6 @@ flutter run
 | [Circle 环形进度条](doc/circle.md) |
 | [Collapse 折叠面板](doc/collapse.md) |
 | [Divider 分割线](doc/divider.md) |
-| [Loading 加载](doc/loading.md) |
 | [ImagePreview 图片预览](doc/imagePreview.md) |
 | [NoticeBar 通知栏](doc/noticeBar.md) |
 | [Panel 面板](doc/panel.md) |
@@ -82,9 +82,9 @@ flutter run
 
 ## Demo截图
 
-<img alt="Buttons" src="./imgs/buttons.jpg" width="320" />
-<img alt="Cell" src="./imgs/cell.jpg" width="320" />
-<img alt="Field" src="./imgs/field.jpg" width="320" />
+<img alt="Buttons" src="./imgs/buttons.gif" width="320" />
+<img alt="Cell" src="./imgs/cell.gif" width="320" />
+<img alt="Field" src="./imgs/field.gif" width="320" />
 <img alt="PasswordInput" src="./imgs/passwordInput.gif" width="320" />
 <img alt="ImageWall" src="./imgs/imageWall.gif" width="320" />
 <img alt="Steps" src="./imgs/steps.gif" width="320" />
