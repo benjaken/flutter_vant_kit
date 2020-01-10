@@ -32,4 +32,3 @@ flutter run
 <img alt="Steps" src="./imgs/steps.gif" width="320" />
 <img alt="TreeSelect" src="./imgs/treeSelect.gif" width="320" />
 <img alt="AddressList" src="./imgs/addressList.gif" width="320" />
-<img alt="Coupon" src="./imgs/coupon.gif" width="320" />
