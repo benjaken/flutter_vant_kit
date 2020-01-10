@@ -17,7 +17,7 @@ Price(
 | 参数  | 说明  | 类型  | 默认值  |
 | ------------ | ------------ | ------------ | ------------ |
 | value | 价格 | `double` | - |
-| color | 价格颜色 | `Color` | `black` |
+| color | 价格颜色 | `Color` | `#323233` |
 | size | 价格大小 | `double` | `20` |
 | currency | 货币符号 | `String` | `¥` |
 | decimal | 保留的小数点 | `int` | `2` |

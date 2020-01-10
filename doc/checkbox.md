@@ -33,7 +33,7 @@ CheckboxGroup(
 | disabled | 是否禁用复选框 | `bool` | `false` |
 | iconSize | 所有复选框的图标大小 | `double` | |
 | checkedColor | 所有复选框的选中状态颜色 | `Color` | - |
-| onChange | 当绑定值变化时触发的事件 | `Function` | - |
+| onChange | 当绑定值变化时触发的事件 | `Function(bool value)` | - |
 
 #### CheckItem
 
@@ -45,4 +45,4 @@ CheckboxGroup(
 | text | 选项的描述 | `String` | - |
 | disabled | 是否禁用复选框 | `bool` | `false` |
 | iconSize | 图标大小 | `double` | `20` |
-| checkedColor | 选中状态颜色 | `Color` | `blueAccent` |
+| checkedColor | 选中状态颜色 | `Color` | `#1989fa` |

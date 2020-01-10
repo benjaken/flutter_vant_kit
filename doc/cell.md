@@ -45,4 +45,4 @@ CellGroup(
 | customTitle | 自定义标题内容 | `Widget` | - |
 | customLabel | 自定义标题下方描述 | `Widget` | - |
 | customRight | 自定义右侧内容 | `Widget` | - |
-| onClick | 点击单元格时触发 | `Function` | - |
+| onClick | 点击单元格时触发 | `Function()` | - |

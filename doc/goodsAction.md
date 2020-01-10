@@ -38,7 +38,7 @@ GoodsAction(
 | text | 按钮文字 | `String` | - |
 | icon | 图标 | `IconData` | - |
 | info | 图标右上角徽标的内容 | `String` | - |
-| onClick | 点击后触发 | `Function` | - |
+| onClick | 点击后触发 | `Function()` | - |
 | customIcon | 自定义图标 | `Widget` | - |
 | customText | 自定义文本 | `Widget` | - |
 
@@ -51,5 +51,5 @@ GoodsAction(
 | color | 按钮颜色 | `Color` | - |
 | disabled | 是否禁用按钮 | `bool` | `false` |
 | loading | 按钮是否加载中 | `bool` | `false` |
-| onClick | 点击后触发 | `Function` | - |
+| onClick | 点击后触发 | `Function()` | - |
 | customText | 自定义文本 | `Widget` | - |

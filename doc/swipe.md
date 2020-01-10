@@ -31,10 +31,10 @@ Swipe(
 | initialSwipe | 初始位置索引值 | `int` | `0` |
 | showIndicators | 是否显示指示器 | `bool` | `true` |
 | indicatorSize | 指示器大小 | `double` | `8.0` |
-| indicatorColor | 指示器颜色 | `Color` | `blueAccent` |
+| indicatorColor | 指示器颜色 | `Color` | `#1989fa` |
 | scrollDirection | 滚动方向，可选值为`vertical` | `String` | `horizontal` |
 | curve | 动画效果 | `Curve` | `fastOutSlowIn` |
-| onChange | 每一页轮播后触发 | `function(int val)` | - |
+| onChange | 每一页轮播后触发 | `Function(int val)` | - |
 | viewportFraction | 每个页面在滚动方向占据的视窗比例 | `double` | `1.0` |
 | children | 显示内容 | `List<Widget>` | - |
 | indicator | 自定义指示器 | `Widget` | - |

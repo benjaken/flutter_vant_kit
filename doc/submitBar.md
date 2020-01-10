@@ -29,7 +29,7 @@ SubmitBar(
 | loading | 是否加载中 | `bool` | `false` |
 | currency | 货币符号 | `String` | `¥` |
 | decimalLength | 价格小数点后位数 | `int` | `2` |
-| onSubmit | 按钮点击事件回调 | `Function` | - |
+| onSubmit | 按钮点击事件回调 | `Function()` | - |
 | customTip | 提示文案中的额外操作和说明 | `Widget` | - |
 | customTop | 自定义订单栏上方内容 | `Widget` | - |
 | customLeft | 自定义订单栏左侧内容 | `Widget` | - |

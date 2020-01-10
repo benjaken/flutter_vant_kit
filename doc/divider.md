@@ -17,7 +17,7 @@ NDivider(
 | 参数  | 说明  | 类型  | 默认值  |
 | ------------ | ------------ | ------------ | ------------ |
 | content | 分隔符文字 | `String` | - |
-| fontColor | 文字颜色 | `Color` | `grey` |
+| fontColor | 文字颜色 | `Color` | `#969799` |
 | fontSize | 文字大小 | `double` | `14` |
 | lineColor | 分割线颜色 | `Color` | `#ebedf0` |
 | hairline | 是否为细分割线| `bool` | `false` |

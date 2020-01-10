@@ -21,7 +21,7 @@ Calendar(
 | ------------ | ------------ | ------------ | ------------ |
 | type | 选择类型，`single`表示选择单个日期，`range`表示选择日期区间 | `String` | `single` |
 | title | 日历标题 | `String` | `日期选择` |
-| color | 颜色，对底部按钮和选中日期生效 | `Color` | `blue` |
+| color | 颜色，对底部按钮和选中日期生效 | `Color` | `#1989fa` |
 | minDate | 最小日期 | `DateTime` | - |
 | maxDate | 最大日期 | `DateTime` | - |
 | defaultDate | 默认选中的日期 | `DateTime` | - |

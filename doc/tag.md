@@ -24,6 +24,6 @@ Tag(
 | plain | 是否为空心样式 | `bool` | `false` |
 | round | 是否为圆角样式 | `bool` | `false` |
 | mark | 是否为标记样式 | `bool` | `false` |
-| color | 标签颜色 | `Color` | `blueAccent` |
+| color | 标签颜色 | `Color` | `#1989fa` |
 | textColor | 文字颜色，优先于color属性 | `Color` | - |
-| onClose | 是否为可关闭标签 | `Function` | - |
+| onClose | 是否为可关闭标签 | `Function()` | - |

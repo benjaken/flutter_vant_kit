@@ -47,13 +47,13 @@ flutter run
 | ------ |
 | [ActionSheet 上拉菜单](doc/actionSheet.md)  |
 | [Dialog 弹窗](doc/dialog.md) |
-| [Divider 分割线](doc/divider.md) |
 
 | 展示组件 |
 | ------ |
 | [Badge 徽标](doc/badge.md)  |
 | [Circle 环形进度条](doc/circle.md) |
 | [Collapse 折叠面板](doc/collapse.md) |
+| [Divider 分割线](doc/divider.md) |
 | [Loading 加载](doc/loading.md) |
 | [ImagePreview 图片预览](doc/imagePreview.md) |
 | [NoticeBar 通知栏](doc/noticeBar.md) |

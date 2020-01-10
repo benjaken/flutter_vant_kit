@@ -41,6 +41,6 @@ Sidebar(
 | dot | 是否显示右上角小红点 | `bool` | `false` |
 | info | 右上角徽标的内容 | `String` | - |
 | disabled | 是否禁用该项 | `bool` | `false` |
-| onClick | 点击选项后触发 | `Function` | - |
+| onClick | 点击选项后触发 | `Function(int val)` | - |
 | children | 子选项内容 | `List` | - |
 | content | 自定义子选项内容 | `Widget` | - |

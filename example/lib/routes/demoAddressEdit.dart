@@ -33,9 +33,9 @@ class _DemoAddressEdit extends State<DemoAddressEdit> {
               "province": "广东省",
               "city": "深圳市",
               "county": "南山区",
-              "provinceIndex": 0,
-              "cityIndex": 1,
-              "countyIndex": 0,
+              "provinceId": 0,
+              "cityId": 1,
+              "countyId": 0,
               "addressDetail": "明珠花园5栋304房",
               "postalCode": "515000",
               "isDefault": true

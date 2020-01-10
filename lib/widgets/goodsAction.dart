@@ -57,7 +57,7 @@ class _GoodsAction extends State<GoodsAction> {
             text: button.loading ? "" : button.customText ?? button.text,
             disabled: button.disabled,
             loading: button.loading,
-            color: button.gradient ?? button.color ?? null,
+            color: button.color ?? null,
             height: Style.goodsActionButtonHeight,
             width: buttonWidth,
             padding: EdgeInsets.all(0),
@@ -152,8 +152,7 @@ class ActionButtonItem {
 
 class ButtonItem {
   final String text;
-  final Gradient gradient;
-  final Color color;
+  final dynamic color;
   final bool disabled;
   final bool loading;
   final Function() onClick;
@@ -161,7 +160,6 @@ class ButtonItem {
 
   ButtonItem(
       {this.text,
-      this.gradient,
       this.color,
       this.disabled: false,
       this.loading: false,

@@ -29,11 +29,11 @@ class _DemoGoodsAction extends State<DemoGoodsAction> {
             buttons: [
               ButtonItem(
                   text: "加入购物车",
-                  gradient: LinearGradient(
+                  color: LinearGradient(
                       colors: [Color(0xffffd01e), Color(0xffff8917)])),
               ButtonItem(
                   text: "立即购买",
-                  gradient: LinearGradient(
+                  color: LinearGradient(
                       colors: [Color(0xffff6034), Color(0xffee0a24)])),
             ],
           ),
@@ -48,11 +48,11 @@ class _DemoGoodsAction extends State<DemoGoodsAction> {
             buttons: [
               ButtonItem(
                   text: "加入购物车",
-                  gradient: LinearGradient(
+                  color: LinearGradient(
                       colors: [Color(0xffffd01e), Color(0xffff8917)])),
               ButtonItem(
                   text: "立即购买",
-                  gradient: LinearGradient(
+                  color: LinearGradient(
                       colors: [Color(0xffff6034), Color(0xffee0a24)])),
             ],
           ),
@@ -66,12 +66,12 @@ class _DemoGoodsAction extends State<DemoGoodsAction> {
               ButtonItem(
                   text: "加入购物车",
                   disabled: true,
-                  gradient: LinearGradient(
+                  color: LinearGradient(
                       colors: [Color(0xffffd01e), Color(0xffff8917)])),
               ButtonItem(
                   text: "立即购买",
                   loading: true,
-                  gradient: LinearGradient(
+                  color: LinearGradient(
                       colors: [Color(0xffff6034), Color(0xffee0a24)])),
             ],
           ),

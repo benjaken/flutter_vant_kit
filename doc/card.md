@@ -27,7 +27,7 @@ NCard(
 | originPrice | 商品划线原价 | `double` | - |
 | centered | 内容是否垂直居中 | `bool` | `false` |
 | currency | 货币符号 | `String` | `¥` |
-| onClick | 点击时触发 | `Function` | - |
+| onClick | 点击时触发 | `Function()` | - |
 | customTitle | 自定义标题内容 | `Widget` | - |
 | customDesc | 自定义描述 | `Widget` | - |
 | customNum | 自定义数量 | `Widget` | - |

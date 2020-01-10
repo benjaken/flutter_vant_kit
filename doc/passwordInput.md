@@ -23,6 +23,6 @@ PasswordInput(
 | mask | 是否隐藏密码内容 | `bool` | `true` |
 | hideWhenSubmitted | 当密码值位数等于最大程度，是否自动隐藏键盘 | `bool` | `false` |
 | info | 输入框下方文字提示 | `String` | - |
-| onClick | 输入框点击时触发 | `Function` | - |
-| onChange | 密码值改变时触发 | `Function` | - |
-| onSubmitted | 密码值位数等于最大程度时触发 | `Function` | - |
+| onClick | 输入框点击时触发 | `Function()` | - |
+| onChange | 密码值改变时触发 | `Function(String val)` | - |
+| onSubmitted | 密码值位数等于最大程度时触发 | `Function(String val)` | - |
