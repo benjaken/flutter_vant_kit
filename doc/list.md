@@ -26,4 +26,4 @@ NList(
 | mark | 是否为标记样式 | `bool` | `false` |
 | color | 标签颜色 | `Color` | `blueAccent` |
 | textColor | 文字颜色，优先于color属性 | `Color` | - |
-| onClose | 是否为可关闭标签 | `Function` | - |
+| onClose | 是否为可关闭标签 | `Function()` | - |

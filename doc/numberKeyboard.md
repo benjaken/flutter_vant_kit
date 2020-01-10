@@ -25,6 +25,6 @@ NumberKeyboard(
 | closeButtomText | 关闭按钮文字，空则不展示 | `String` | - |
 | deleteButtonText | 删除按钮文字 | `String` | `删除` |
 | showDeleteKey | 是否展示删除按钮 | `bool` | `true` |
-| onChange | 当前输入值改变时触发 | `Function` | - |
-| onSubmitted | 当前输入值等于最大值时触发 | `Function` | - |
-| onClose | 键盘关闭时触发 | `Function` | - |
+| onChange | 当前输入值改变时触发 | `Function(String val)` | - |
+| onSubmitted | 当前输入值等于最大值时触发 | `Function(String val)` | - |
+| onClose | 键盘关闭时触发 | `Function()` | - |

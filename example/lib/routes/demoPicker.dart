@@ -34,7 +34,7 @@ class _DemoPicker extends State<DemoPicker> {
   ];
 
   String _city;
-  int _cityIndex;
+  int _cityId;
 
   Widget title(String title) {
     return Padding(
@@ -75,12 +75,12 @@ class _DemoPicker extends State<DemoPicker> {
                   builder: (BuildContext context) {
                     return Picker(
                       colums: options,
-                      defaultIndex: _cityIndex,
+                      defaultIndex: _cityId,
                       showToolbar: true,
                       onConfirm: (values, index) {
                         setState(() {
                           _city = values.join('');
-                          _cityIndex = index;
+                          _cityId = index;
                         });
                         Navigator.of(context).pop();
                       },

@@ -29,7 +29,7 @@ Steps(
 | steps | 所有步骤 | `List<StepItem>` | - |
 | active | 当前步骤 | `int` | `0` |
 | direction | 显示方向，可选值为`vertical` | `String` | `horizontal` |
-| activeColor | 激活状态颜色 | `Color` | `blueAccent` |
+| activeColor | 激活状态颜色 | `Color` | `#07c160` |
 | activeIcon | 激活状态图标 | `IconData` | `check_circle` |
 | inactiveIcon | 未激活状态图标 | `IconData` | - |
 

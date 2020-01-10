@@ -12,6 +12,9 @@ List<AddressInfo> list = [
     province: "广东省",
     city: "深圳市",
     county: "南山区",
+    "provinceId": 0,
+    "cityId": 1,
+    "countyId": 0,
     addressDetail: "明珠花园 5 栋 304 房",
     postalCode: "515000",
     isDefault: true
@@ -58,6 +61,9 @@ AddressList(
 | province | 省份 | `String` |
 | city | 城市名 | `String` |
 | county | 区名 | `String` |
+| provinceId | 省份ID | `int` |
+| cityId | 城市ID | `int` |
+| countyId | 城区ID | `int` |
 | addressDetail | 详细地址 | `String` |
 | postalCode | 邮政编号 | `String` |
 | isDefault | 是否为默认地址 | `bool` |

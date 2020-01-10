@@ -223,6 +223,9 @@ class AddressInfo {
   final String province;
   final String city;
   final String county;
+  final int provinceId;
+  final int cityId;
+  final int countyId;
   final String addressDetail;
   final String postalCode;
   final bool isDefault;
@@ -233,6 +236,9 @@ class AddressInfo {
       this.province,
       this.city,
       this.county,
+      this.provinceId,
+      this.cityId,
+      this.countyId,
       this.addressDetail,
       this.postalCode,
       this.isDefault});

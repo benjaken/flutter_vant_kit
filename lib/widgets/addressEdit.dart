@@ -86,7 +86,7 @@ class _AddressEdit extends State<AddressEdit> {
       ])
     ])
   ];
-  List<int> _cityIndex = [];
+  List<int> _cityId = [];
 
   @override
   void initState() {
@@ -95,8 +95,8 @@ class _AddressEdit extends State<AddressEdit> {
     (_addressInfo ?? {}).forEach((key, value) {
       if (["province", "city", "county"].contains(key) && value != null)
         areas.add(value);
-      if (["provinceIndex", "cityIndex", "countyIndex"].contains(key))
-        _cityIndex.add(value ?? 0);
+      if (["provinceId", "cityId", "countyId"].contains(key))
+        _cityId.add(value ?? 0);
       if (["name", "tel", "addressDetail", "postalCode"].contains(key) &&
           value != null) input[key].text = value;
     });
@@ -111,11 +111,11 @@ class _AddressEdit extends State<AddressEdit> {
     });
     List areas = input['area'].text.split('/');
     map['province'] = areas[0] ?? "";
-    map['provinceIndex'] = _cityIndex[0];
+    map['provinceId'] = _cityId[0];
     map['city'] = areas[1] ?? "";
-    map['cityIndex'] = _cityIndex[1];
+    map['cityId'] = _cityId[1];
     map['county'] = areas[2] ?? "";
-    map['countyIndex'] = _cityIndex[2];
+    map['countyId'] = _cityId[2];
     map["isDefault"] = _addressInfo['isDefault'];
     _addressInfo = map;
     return map;
@@ -156,12 +156,12 @@ class _AddressEdit extends State<AddressEdit> {
               return Picker(
                 colums: options,
                 level: 3,
-                defaultIndex: _cityIndex,
+                defaultIndex: _cityId,
                 showToolbar: true,
                 onConfirm: (values, index) {
                   setState(() {
                     input['area'].text = values.join('/');
-                    _cityIndex = index;
+                    _cityId = index;
                   });
                   Navigator.of(context).pop();
                 },

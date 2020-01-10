@@ -28,4 +28,4 @@ Steppers(
 | showPlus | 是否显示增加按钮 | `bool` | `true` |
 | showMinus | 是否显示减少按钮 | `bool` | `true` |
 | decimalLength | 固定显示的小数位数 | `int` | `0` |
-| onChange | 当前值变化时触发的事件 | `Function` | - |
+| onChange | 当前值变化时触发的事件 | `Function(String val)` | - |

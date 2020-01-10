@@ -23,7 +23,7 @@ NButton(
 | text | 按钮文字 | `String` | - |
 | width | 按钮宽度 | `double` | - |
 | height | 按钮高度，优先级比`size`的高度高 | `double` | - |
-| color | 按钮颜色，优先级比`type`的颜色高，支持渐变色设置，`LinearGradient` `RadialGradient`等 | `Color || Gradient` | `blueAccent` |
+| color | 按钮颜色，优先级比`type`的颜色高，支持渐变色设置，`LinearGradient` `RadialGradient`等 | `Color || Gradient` | - |
 | icon | 左侧图标 | `Icon` | - |
 | textColor | 按钮文字颜色，优先级比`type`的颜色高 | `Color` | - |
 | block | 是否为块级元素 | `bool` | `false` |
@@ -35,4 +35,4 @@ NButton(
 | hairline | 是否使用 0.5px 边框 | `bool` | `false` |
 | padding | 自定义内边距，优先级比`size`的内边距高 | `EdgeInsets` | - |
 | borderRadius | 自定义按钮圆角，优先级比`size`的圆角高 | `BorderRadius` | - |
-| onClick | 点击按钮后回调 | `Function` | - |
+| onClick | 点击按钮后回调 | `Function()` | - |

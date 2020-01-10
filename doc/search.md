@@ -30,7 +30,7 @@ import 'package:flutter_vant_kit/main.dart';
 | rightIcon | 输入框右侧图标 | `IconData` | - |
 | left | 自定义左侧内容 | `Widget` | - |
 | right | 自定义右侧内容 | `Widget` | - |
-| onClickLeft | 点击左侧内容反馈 | `Function` | - |
-| onClickRight | 点击右侧内容反馈 | `Function` | - |
+| onClickLeft | 点击左侧内容反馈 | `Function()` | - |
+| onClickRight | 点击右侧内容反馈 | `Function()` | - |
 | onSubmitted | 点击提交按钮反馈 | `Function(String val)` | - |
-| onCancel | 点击取消按钮反馈 | `Function` | - |
+| onCancel | 点击取消按钮反馈 | `Function()` | - |

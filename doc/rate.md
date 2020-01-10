@@ -23,8 +23,8 @@ Rate(
 | gutter | 图标间距 | `double` | `4.0` |
 | icon | 自定义图标 | `IconData` | `star` |
 | voidIcon | 自定义未选中图标 | `IconData` | `star_border` |
-| color | 选中颜色 | `Color` | `orange` |
-| voidColor | 未选中颜色 | `Color` | `grey` |
+| color | 选中颜色 | `Color` | `#ffd21e` |
+| voidColor | 未选中颜色 | `Color` | `#dcdee0` |
 | readonly | 是否为只读状态 | `bool` | `false` |
 | disabled | 是否为禁用状态 | `bool` | `false` |
-| onChange | 当前分值变化时触发的事件 | `Function` | - |
+| onChange | 当前分值变化时触发的事件 | `Function(String val)` | - |
