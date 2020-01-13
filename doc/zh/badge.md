@@ -11,7 +11,7 @@ Badge(
 ),
 ```
 
-更多例子请参考[Demo](../example/lib/routes/demoBadge.dart)
+更多例子请参考[Demo](https://github.com/benjaken/flutter_vant_kit/blob/master/example/lib/routes/demoBadge.dart)
 
 ### API
 
@@ -21,5 +21,5 @@ Badge(
 | dot | 红点 | `bool` | `false` |
 | color | 自定义颜色 | `Color` | `#ee0a24` |
 | textColor | 自定义文本颜色 | `Color` | `#ffffff` |
-| textSize | 自定义文本大小 | `double` | `12` |
+| textSize | 自定义文本大小 | `double` | `12.0` |
 | child | 自定义徽标 | `Widget` | - |

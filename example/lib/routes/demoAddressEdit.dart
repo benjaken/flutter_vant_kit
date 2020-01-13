@@ -36,7 +36,7 @@ class _DemoAddressEdit extends State<DemoAddressEdit> {
               "provinceId": 0,
               "cityId": 1,
               "countyId": 0,
-              "addressDetail": "明珠花园5栋304房",
+              "addressDetail": "明珠花园",
               "postalCode": "515000",
               "isDefault": true
             },

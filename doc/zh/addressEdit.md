@@ -17,7 +17,7 @@ AddressEdit(
     "provinceId": 0,
     "cityId": 1,
     "countyId": 0,
-    "addressDetail": "明珠花园5栋304房",
+    "addressDetail": "明珠花园",
     "postalCode": "515000",
     "isDefault": true
   },
@@ -25,7 +25,7 @@ AddressEdit(
 )
 ```
 
-更多例子请参考[Demo](../example/lib/routes/demoAddressEdit.dart)
+更多例子请参考[Demo](https://github.com/benjaken/flutter_vant_kit/blob/master/example/lib/routes/demoAddressEdit.dart)
 
 ### API
 

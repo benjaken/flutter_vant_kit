@@ -15,7 +15,7 @@ List<AddressInfo> list = [
     "provinceId": 0,
     "cityId": 1,
     "countyId": 0,
-    addressDetail: "明珠花园 5 栋 304 房",
+    addressDetail: "明珠花园",
     postalCode: "515000",
     isDefault: true
   )
@@ -24,13 +24,12 @@ List<AddressInfo> list = [
 AddressList(
   id: 0,
   list: list,
-  top: Title("基本用法"),
   disabledList: disabledList,
   ...
 )
 ```
 
-更多例子请参考[Demo](../example/lib/routes/demoAddressList.dart)
+更多例子请参考[Demo](https://github.com/benjaken/flutter_vant_kit/blob/master/example/lib/routes/demoAddressList.dart)
 
 ### API
 
@@ -41,7 +40,6 @@ AddressList(
 | id | 当前选中地址的 id | `int` | - |
 | list | 地址列表 | `List<AddressInfo>` | - |
 | disabledList | 不可配送地址列表 | `List<AddressInfo>` | - |
-| mode | 显示模式，可选值为`simple` | `String` | `multi` |
 | disabledText | 不可配送提示文案 | `String` | `以下地址超出配送范围` |
 | switchable | 是否允许切换地址 | `bool` | `true` |
 | addButtonText | 底部按钮文字 | `String` | `新增地址` |

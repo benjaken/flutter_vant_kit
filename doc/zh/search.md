@@ -11,7 +11,7 @@ import 'package:flutter_vant_kit/main.dart';
 )
 ```
 
-更多例子请参考[Demo](../example/lib/routes/demoSearch.dart)
+更多例子请参考[Demo](https://github.com/benjaken/flutter_vant_kit/blob/master/example/lib/routes/demoSearch.dart)
 
 ### API
 
@@ -22,7 +22,7 @@ import 'package:flutter_vant_kit/main.dart';
 | maxLength | 输入的最大字符数 | `int` | `100` |
 | placeholder | 占位提示文字 | `String` | `请输入搜索关键词` |
 | clearable | 是否启用清除控件 | `bool` | `true` |
-| showAction | 是否启用清除控件 | `bool` | `false` |
+| showAction | 是否在搜索框右侧显示取消按钮 | `bool` | `false` |
 | actionText | 取消按钮文字 | `String` | `取消` |
 | disabled | 是否禁用输入框 | `bool` | `false` |
 | readonly | 是否将输入框设为只读 | `bool` | `false` |

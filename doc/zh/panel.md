@@ -12,7 +12,7 @@ Panel(
 )
 ```
 
-更多例子请参考[Demo](../example/lib/routes/demoPanel.dart)
+更多例子请参考[Demo](https://github.com/benjaken/flutter_vant_kit/blob/master/example/lib/routes/demoPanel.dart)
 
 ### API
 

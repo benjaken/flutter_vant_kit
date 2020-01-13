@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 0.2.1
+## 0.2.2
 
 - Add calendar and picker;
 - Fix some components bugs;

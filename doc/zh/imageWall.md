@@ -17,7 +17,7 @@ ImageWall(
 )
 ```
 
-更多例子请参考[Demo](../example/lib/routes/demoImageWall.dart)
+更多例子请参考[Demo](https://github.com/benjaken/flutter_vant_kit/blob/master/example/lib/routes/demoImageWall.dart)
 
 ### API
 
@@ -25,7 +25,6 @@ ImageWall(
 | ------------ | ------------ | ------------ | ------------ |
 | images | 图片文件数组 | `List` | - |
 | multiple | 是否可以多选图片 | `bool` | `false` |
-| length | 单行的图片数量 | `int` | `4` |
 | count | 最多可以选择的图片张数 | `int` | `9` |
 | imageFit | 图片预览样式 | `BoxFit` | `contain` |
 | uploadBtn | 自定义 button | `Widget` | - |

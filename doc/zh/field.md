@@ -12,7 +12,7 @@ Field(
 )
 ```
 
-更多例子请参考[Demo](../example/lib/routes/demoField.dart)
+更多例子请参考[Demo](https://github.com/benjaken/flutter_vant_kit/blob/master/example/lib/routes/demoField.dart)
 
 ### API
 
@@ -33,7 +33,7 @@ Field(
 | inputFormatters | 检验输入框正则 | `List<TextInputFormatter>` | - |
 | type | 输入框类型| `String` | `text` |
 | rows | 输入框行数，当`type=textarea`可用 | `int` | `2` |
-| showWordLimit | 显示字数统计 | `bool` | `false` |
+| showWordLimit | 是否显示字数统计，需要设置`maxlength`属性 | `bool` | `false` |
 | error | 是否将输入内容标红 | `bool` | `false` |
 | errorMessage | 底部错误提示文案 | `String` | - |
 | labelWidth | 左侧文本宽度 | `double` | `90.0` |
