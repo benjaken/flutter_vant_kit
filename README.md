@@ -20,7 +20,7 @@ flutter run
 
 ## API
 
-详见 [文档](https://benjaken.gitbook.io/flutterzu-jian-k/) 或 [doc文件夹](./doc)
+详见 [文档](https://benjaken.gitbook.io/flutter-vant-kit) 或 [doc文件夹](./doc)
 
 ## Demo截图
 
