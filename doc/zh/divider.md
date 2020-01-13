@@ -1,0 +1,25 @@
+## Divider 分割线
+
+### 使用范例
+
+```
+import 'package:flutter_vant_kit/main.dart';
+
+NDivider(
+  content: "分割线",
+)
+```
+
+更多例子请参考[Demo](https://github.com/benjaken/flutter_vant_kit/blob/master/example/lib/routes/demoDivider.dart)
+
+### API
+
+| 参数 | 说明 | 类型 | 默认值 |
+| ------------ | ------------ | ------------ | ------------ |
+| content | 分隔符文字 | `String` | - |
+| fontColor | 文字颜色 | `Color` | `#969799` |
+| fontSize | 文字大小 | `double` | `14` |
+| lineColor | 分割线颜色 | `Color` | `#ebedf0` |
+| hairline | 是否为细分割线| `bool` | `false` |
+| contentPosition | 文本位置 | `String` | `center` |
+| child | 自定义分隔符内容 | `Widget` | - |

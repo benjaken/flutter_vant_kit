@@ -24,7 +24,7 @@ class _DemoAddressList extends State<DemoAddressList> {
           province: "广东省",
           city: "深圳市",
           county: "南山区",
-          addressDetail: "明珠花园 5 栋 304 房",
+          addressDetail: "明珠花园",
           postalCode: "515000",
           isDefault: true),
       AddressInfo(
@@ -33,7 +33,7 @@ class _DemoAddressList extends State<DemoAddressList> {
           province: "广东省",
           city: "深圳市",
           county: "南山区",
-          addressDetail: "白石街道明珠花园 5 栋 303 房",
+          addressDetail: "白石街道明珠花园",
           postalCode: "515000",
           isDefault: false),
     ];
@@ -44,7 +44,7 @@ class _DemoAddressList extends State<DemoAddressList> {
           province: "广东省",
           city: "深圳市",
           county: "南山区",
-          addressDetail: "明珠花园 5 栋 304 房",
+          addressDetail: "明珠花园",
           postalCode: "515000",
           isDefault: false)
     ];

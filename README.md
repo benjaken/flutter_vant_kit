@@ -1,17 +1,17 @@
-# Flutter 组件库
+# Flutter Vant Kit
 
-Flutter Kit 是仿[Vant](https://youzan.github.io/vant/#/zh-CN/intro)组件库的flutter widget库
+Flutter Vant Kit is a [Vant](https://youzan.github.io/vant/#/zh-CN/intro) style flutter UI library.
 
-## 项目介绍
+## Introduction
 
-### 如何使用
+### How to use
 
 ```
 dependencies:
-  flutter_vant_kit: ^0.2.1
+  flutter_vant_kit: ^0.2.2
 ```
 
-### 运行Demo
+### How to run demo
 
 ```
 cd example/
@@ -20,9 +20,9 @@ flutter run
 
 ## API
 
-详见 [文档](https://benjaken.gitbook.io/flutter-vant-kit) 或 [doc文件夹](./doc)
+View [Documentation](https://benjaken.gitbook.io/flutter-vant-kit) 或 【[中文版](./doc/zh)|[English](./doc/en)】
 
-## Demo截图
+## Demo Screenshot
 
 <img alt="Buttons" src="./imgs/buttons.gif" width="320" />
 <img alt="Cell" src="./imgs/cell.gif" width="320" />
