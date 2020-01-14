@@ -1,6 +1,11 @@
 # CHANGELOG
 
-## 0.2.2
+## 0.2.3
+
+- Chore list;
+- Update docs;
+
+## 0.2.0
 
 - Add calendar and picker;
 - Fix some components bugs;
