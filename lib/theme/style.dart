@@ -413,6 +413,12 @@ class Style {
   static const imageWallUploadSize = 18.0;
   static const imageWallUploadColor = gray6;
 
+  // List
+  static const listIconMarginRight = EdgeInsets.only(right: 5.0);
+  static const listTextColor = gray6;
+  static const listTextFontSize = fontSizeMd;
+  static const listTextHeight = 50.0;
+
   // Loading
   static const loadingTextColor = gray6;
   static const loadingTextFontSize = fontSizeMd;

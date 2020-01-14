@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_vant_kit/main.dart';
 
@@ -8,30 +10,22 @@ class DemoList extends StatefulWidget {
 
 class _DemoList extends State<DemoList> with SingleTickerProviderStateMixin {
   TabController _tabController;
-  List<int> _dataList = [];
-
-  Future<bool> _getDataList(int page) async {
-    setState(() {
-      _dataList.addAll(List.generate(20, (i) => i));
-    });
-    return _dataList.length < 40;
-    // return records.length > 0;
-  }
+  List<int> _dataList1 = [];
+  List<int> _dataList2 = [];
+  bool _finished1 = false;
+  bool _finished2 = false;
+  bool _error = false;
 
   @override
   void initState() {
     super.initState();
-    _getDataList(1);
     _tabController = new TabController(vsync: this, length: 2);
   }
 
   Widget _buildItem(int i) {
-    return Container(
-      color: Colors.white,
-      margin: EdgeInsets.only(bottom: 2.0),
-      child: ListTile(
-        title: Text("${_dataList[i]}" ?? ''),
-      ),
+    return Cell(
+      isLink: true,
+      title: "$i",
     );
   }
 
@@ -52,12 +46,42 @@ class _DemoList extends State<DemoList> with SingleTickerProviderStateMixin {
         controller: _tabController,
         children: <Widget>[
           NList(
-              itemCount: _dataList.length,
-              onLoadMore: _getDataList,
-              itemBuilder: (context, i) {
-                return _buildItem(i);
-              }),
-          Center(child: Text('船')),
+            finished: _finished1,
+            finishedText: "没有更多了",
+            child: List.generate(_dataList1.length, (i) => _buildItem(_dataList1[i])),
+            onLoad: () {
+              return Future.delayed(const Duration(milliseconds: 300), () {
+                setState(() {
+                  _dataList1
+                      .addAll(List.generate(10, (i) => i + _dataList1.length));
+                  _finished1 = _dataList1.length >= 40;
+                });
+              });
+            },
+          ),
+          NList(
+            finished: _finished2,
+            finishedText: "没有更多了",
+            error: _error,
+            errorText: "请求失败，点击重新加载",
+            child: List.generate(_dataList2.length, (i) => _buildItem(_dataList2[i])),
+            onLoad: () {
+              if (_dataList2.length != 0) {
+                setState(() {
+                  _error = _dataList2.length == 10 && !_error;
+                });
+              }
+              if (!_error) {
+                return Future.delayed(const Duration(milliseconds: 300), () {
+                  setState(() {
+                    _dataList2.addAll(
+                        List.generate(10, (i) => i + _dataList2.length));
+                    _finished2 = _dataList2.length >= 30;
+                  });
+                });
+              }
+            },
+          ),
         ],
       ),
     );
