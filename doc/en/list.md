@@ -1,16 +1,26 @@
-## List 列表
+## List
 
 ### Example
 
 ```
 import 'package:flutter_vant_kit/main.dart';
 
+List<int> _dataList1 = [];
+bool _finished1 = false;
+
 NList(
-  itemCount: _dataList.length,
-  onLoadMore: _getDataList,
-  itemBuilder: (context, i) {
-    return _buildItem(i);
-  }
+  finished: _finished1,
+  finishedText: "No more",
+  child: List.generate(_dataList1.length, (i) => _buildItem(_dataList1[i])),
+  onLoad: () {
+    return Future.delayed(const Duration(milliseconds: 300), () {
+      setState(() {
+        _dataList1
+            .addAll(List.generate(10, (i) => i + _dataList1.length));
+        _finished1 = _dataList1.length >= 40;
+      });
+    });
+  },
 )
 ```
 
@@ -20,10 +30,11 @@ More examples please refer [Demo](https://github.com/benjaken/flutter_vant_kit/b
 
 | Attribute | Description | Type | Default |
 | ------------ | ------------ | ------------ | ------------ |
-| text | 标签内文字 | `String` | - |
-| plain | 是否为空心样式 | `bool` | `false` |
-| round | 是否为圆角样式 | `bool` | `false` |
-| mark | 是否为标记样式 | `bool` | `false` |
-| color | 标签颜色 | `Color` | `blueAccent` |
-| textColor | 文字颜色，优先于color属性 | `Color` | - |
-| onClose | 是否为可关闭标签 | `Function()` | - |
+| finished | Whether loading is finished，the `onLoad` event will not be triggered when finished | `bool` | `false` |
+| error | Whether loading is error，the `onLoad` event will be triggered only when error text clicked | `bool` | `false` |
+| offset | The `onLoad` event will be triggered when the distance between the scrollbar and the bottom is less than `offset` | `int` | `30` |
+| loadingText | Loading text | `String` | `加载中...` |
+| finishedText | Finished text | `String` | - |
+| errorText | Error loaded text | `String` | - |
+| child | List content | `List<Widget>` | - |
+| onLoad | Triggered when the distance between the scrollbar and the bottom is less than `offset` | `Function()` | - |

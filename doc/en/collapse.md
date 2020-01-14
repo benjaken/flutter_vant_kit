@@ -22,7 +22,7 @@ Collapse(
 )
 ```
 
-More examples please refer [Demo](../example/lib/routes/demoCollapse.dart)
+More examples please refer [Demo](https://github.com/benjaken/flutter_vant_kit/blob/master/example/lib/routes/demoCollapse.dart)
 
 ### API
 
