@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 0.2.3
+## 0.2.5
 
 - Chore list;
 - Update docs;
