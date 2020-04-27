@@ -40,7 +40,7 @@ class _DemoActionSheet extends State<DemoActionSheet> {
             onClick: () {
               ActionSheet(
                   actions: actionList,
-                  onSelect: (action, index) {
+                  onSelect: (action, index, context) {
                     Utils.toast(action.name);
                   }).show(context);
             },

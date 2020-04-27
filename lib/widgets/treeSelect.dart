@@ -43,7 +43,7 @@ class _TreeSelect extends State<TreeSelect> {
 
   List<Widget> buildItem() {
     List<Widget> widgets = [];
-    List areaList = widget.list[_mainActiveIndex].children;
+    List areaList = widget.list[_mainActiveIndex].children ?? [];
     for (int i = 0; i < areaList.length; i++) {
       TreeItem item = areaList[i];
       widgets.add(GestureDetector(
@@ -117,10 +117,12 @@ class _TreeSelect extends State<TreeSelect> {
             color: Style.treeSelectContentBackgroundColor,
             child: widget.list[_mainActiveIndex].content != null
                 ? widget.list[_mainActiveIndex].content
-                : Column(
+                : SingleChildScrollView(
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[...buildItem()],
-                  ),
+                  )
+                ),
           ),
         )
       ],

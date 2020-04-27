@@ -40,7 +40,7 @@ More examples please refer [Demo](https://github.com/benjaken/flutter_vant_kit/b
 | round | Whether to show round corner | `bool` | `true` |
 | closeIcon | Close icon | `IconData` | - |
 | closeOnClickOverlay | Whether to close when click overlay | `bool` | `true` |
-| onSelect | Triggered when click option | `Function(ActionSheetItem actionSheetItem, int index)` | - |
+| onSelect | Triggered when click option | `Function(ActionSheetItem actionSheetItem, int index, BuildContext context)` | - |
 | onCancel | Triggered when the cancel button is clicked | `Function()` | - |
 | onClose | Triggered when the menu is closed | `Function()` | - |
 | child | custom menu content | `Widget` | - |

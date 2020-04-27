@@ -73,8 +73,10 @@ class _Sidebar extends State<Sidebar> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[...buildItem()],
+    return SingleChildScrollView(
+      child: Column(
+        children: <Widget>[...buildItem()],
+      )
     );
   }
 }
