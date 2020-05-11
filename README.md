@@ -1,3 +1,8 @@
+```
+此项目仅供本人学习用，更新频率慢，若在项目中使用请移步到其它成熟的组件库
+This project is only for my own study, the update frequency is slow and untested, if you use it in the project, please move to other mature component libraries
+```
+
 # Flutter Vant Kit
 
 Flutter Vant Kit is a [Vant](https://youzan.github.io/vant/#/zh-CN/intro) style flutter UI library.
