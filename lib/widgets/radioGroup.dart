@@ -19,6 +19,8 @@ class RadioGroup extends StatefulWidget {
   final Color checkedColor;
   // 是否为单元格组件
   final bool inCellGroup;
+  // 布局方式
+  final Axis direction;
   // 当绑定值变化时触发的事件
   final Function(String val) onChange;
 
@@ -31,7 +33,9 @@ class RadioGroup extends StatefulWidget {
       this.checkedColor,
       this.inCellGroup: false,
       this.onChange,
-      this.iconSize})
+      this.iconSize,
+      this.direction: Axis.vertical
+      })
       : super(key: key);
 
   @override
@@ -84,9 +88,10 @@ class _RadioGroup extends State<RadioGroup> {
         ? CellGroup(
             children: <Widget>[...buildItems()],
           )
-        : Column(
+        : widget.direction == Axis.vertical ?  Column(
             children: <Widget>[...buildItems()],
-          );
+          ) : Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: <Widget>[...buildItems()]
+    ) ;
   }
 }
 

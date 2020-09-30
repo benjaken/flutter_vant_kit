@@ -34,7 +34,7 @@ class NDialog extends StatefulWidget {
   // 点击取消按钮时触发
   final Function() onCancel;
   // 关闭前的回调函数
-  final Function() beforeClose;
+  final Future<bool> Function() beforeClose;
   // 自定义内容
   final Widget child;
 
@@ -67,18 +67,21 @@ class _NDialog extends State<NDialog> {
   bool _confirmLoading = false;
 
   confirmDialog() async {
+    bool close = true;
     if (widget.beforeClose != null) {
       setState(() {
         _confirmLoading = true;
       });
-      await widget.beforeClose();
+      close = await widget.beforeClose();
     }
     setState(() {
       _confirmLoading = false;
     });
-    hideDialog();
-    if (widget.onConfirm != null) {
-      widget.onConfirm();
+    if (close) {
+      hideDialog();
+      if (widget.onConfirm != null) {
+        widget.onConfirm();
+      }
     }
   }
 
