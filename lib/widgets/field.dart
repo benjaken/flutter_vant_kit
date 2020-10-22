@@ -175,6 +175,7 @@ class _Field extends State<Field> {
             maxLines: widget.type == "textarea" ? widget.rows : 1,
             style: widget.style ??
                 TextStyle(
+                    fontSize: Style.fieldFontSize,
                     color: widget.error
                         ? Style.fieldInputErrorTextColor
                         : widget.disabled
