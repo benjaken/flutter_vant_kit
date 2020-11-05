@@ -92,7 +92,7 @@ class _Picker extends State<Picker> {
       {int baseLevel}) {
     baseLevel = baseLevel ?? 0;
     int index = _selectIndex[baseLevel];
-    if (baseLevel < level) {
+    if (baseLevel < level && list != null) {
       return getFloatArr(list[index].child, level, baseLevel: baseLevel + 1);
     } else {
       return list != null ? list : [PickerItem("-")];
