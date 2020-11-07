@@ -53,11 +53,7 @@ class Picker extends StatefulWidget {
 }
 
 class _Picker extends State<Picker> {
-  List<FixedExtentScrollController> scrollControllers = [
-    FixedExtentScrollController(),
-    FixedExtentScrollController(),
-    FixedExtentScrollController(),
-  ];
+  List<FixedExtentScrollController> scrollControllers;
 
   List _columns = [];
   List<String> _selectValues = [];
@@ -66,6 +62,9 @@ class _Picker extends State<Picker> {
 
   @override
   void initState() {
+    scrollControllers = List.generate(widget.level,
+            (i) => FixedExtentScrollController());
+
     isMultiple = widget.level > 1;
     if (isMultiple) {
       _selectIndex =
@@ -93,7 +92,7 @@ class _Picker extends State<Picker> {
       {int baseLevel}) {
     baseLevel = baseLevel ?? 0;
     int index = _selectIndex[baseLevel];
-    if (baseLevel < level) {
+    if (baseLevel < level && list != null) {
       return getFloatArr(list[index].child, level, baseLevel: baseLevel + 1);
     } else {
       return list != null ? list : [PickerItem("-")];
