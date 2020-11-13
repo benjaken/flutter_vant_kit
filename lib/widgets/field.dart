@@ -152,9 +152,10 @@ class _Field extends State<Field> {
               ? SizedBox(width: Style.intervalSm)
               : Container(),
           widget.label != null
-              ? Text("${widget.label}",
+              ? Flexible(child: Text("${widget.label}",
                   textAlign: widget.labelAlign,
-                  style: TextStyle(fontSize: Style.fieldFontSize))
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(fontSize: Style.fieldFontSize)))
               : Container()
         ],
       ),
