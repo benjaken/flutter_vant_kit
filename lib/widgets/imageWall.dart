@@ -8,20 +8,28 @@ import 'package:multi_image_picker/multi_image_picker.dart';
 class ImageWall extends StatefulWidget {
   // 图片文件数组
   final List<String> images;
+
   // 是否可以多选图片
   final bool multiple;
+
   // 单行的图片数量
   final int length;
+
   // 最多可以选择的图片张数
   final int count;
+
   // 图片预览样式
   final BoxFit imageFit;
+
   // 自定义 button
   final Widget uploadBtn;
+
   // 上传后返回全部图片信息
   final Function(List<String> newImages) onChange;
+
   // 监听图片上传
-  final Future<String> Function(List<Asset> file) onUpload;
+  final Future<List<String>> Function(List<Asset> file) onUpload;
+
   // 删除图片后的回调
   final Function(String removedUrl) onRemove;
 
@@ -138,12 +146,12 @@ class _ImageWall extends State<ImageWall> {
         } on Exception catch (e) {
           print(e.toString());
         }
-        String url = await widget.onUpload(resultList);
-        if (url == null || url.isEmpty) {
+        List<String> urls = await widget.onUpload(resultList);
+        if (urls == null || urls.isEmpty) {
           return;
         }
         setState(() {
-          images.add(url);
+          images.addAll(urls);
         });
         widget.onChange(images);
       },
