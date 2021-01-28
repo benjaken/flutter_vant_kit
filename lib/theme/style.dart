@@ -198,7 +198,7 @@ class Style {
   static const calendarWeekdaysFontSize = fontSizeMd;
   static const calendarMonthTitleFontSize = fontSizeMd;
   static const calendarMonthMarkColor = gray2;
-  static const calendarMonthMarkSize = 160.0;
+  static const calendarMonthMarkSize = 200.0;
   static const calendarMonthMarkFontSize = 150.0;
   static const calendarDayHeight = 60.0;
   static const calendarDayFontSize = fontSizeLg;
