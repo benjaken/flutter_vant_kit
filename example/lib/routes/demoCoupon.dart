@@ -8,8 +8,8 @@ class DemoCoupon extends StatefulWidget {
 }
 
 class _DemoCoupon extends State<DemoCoupon> {
-  String _discount;
-  int _chosenCoupon;
+  String? _discount;
+  int? _chosenCoupon;
 
   List<CoupenItem> coupons = List.generate(10, (i) {
     return CoupenItem(
@@ -50,7 +50,7 @@ class _DemoCoupon extends State<DemoCoupon> {
               onSelect: (val) {
                 setState(() {
                   _chosenCoupon = val;
-                  String value = (coupons[val].value / 100).toStringAsFixed(2);
+                  String value = (coupons[val].value! / 100).toStringAsFixed(2);
                   _discount = "-¥$value";
                 });
               },

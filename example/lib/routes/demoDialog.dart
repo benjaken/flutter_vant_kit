@@ -74,7 +74,7 @@ class _DemoDialog extends State<DemoDialog> {
           message: "代码是写出来给人看的，附带能在机器上运行",
           showCancelButton: true,
           beforeClose: () {
-            return Future.delayed(Duration(seconds: 1), () {});
+            return Future.delayed(Duration(seconds: 1), () {} as FutureOr<bool> Function()?);
           },
         );
       },
@@ -93,7 +93,7 @@ class _DemoDialog extends State<DemoDialog> {
           ),
           showCancelButton: true,
           beforeClose: () {
-            return Future.delayed(Duration(seconds: 1), () {});
+            return Future.delayed(Duration(seconds: 1), () {} as FutureOr<bool> Function()?);
           },
         );
       },

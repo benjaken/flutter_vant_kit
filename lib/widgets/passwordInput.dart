@@ -50,7 +50,7 @@ class _PasswordInput extends State<PasswordInput> {
   @override
   void initState() {
     _value = widget.value;
-    _codeList = []..length = widget.length;
+    _codeList = new List.filled(widget.length, '');
     List<String> origin = widget.value.split('');
     _codeList.setAll(0, origin);
     super.initState();
@@ -99,7 +99,7 @@ class _PasswordInput extends State<PasswordInput> {
                     ),
               color: Style.passwordInputBackgroundColor),
           child: Text(
-              _codeList.elementAt(p) == null
+              _codeList.elementAt(p) == ''
                   ? ""
                   : widget.mask
                       ? "●"
@@ -133,7 +133,7 @@ class _PasswordInput extends State<PasswordInput> {
                 onChange: (val) {
                   List<String> newval = val.split('');
                   setState(() {
-                    _codeList = []..length = widget.length;
+                    _codeList = new List.filled(widget.length, '');
                     _codeList.setAll(0, newval);
                     _value = val;
                   });

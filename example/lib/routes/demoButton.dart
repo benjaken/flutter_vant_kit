@@ -10,7 +10,7 @@ class DemoButton extends StatefulWidget {
 
 class _DemoButton extends State<DemoButton> {
   bool _loading = false;
-  Timer _timer;
+  late Timer _timer;
 
   @override
   void initState() {
@@ -271,7 +271,7 @@ class _DemoButton extends State<DemoButton> {
                 NButton(
                   text: "渐变色按钮",
                   color: LinearGradient(
-                      colors: [Colors.lightBlue[300], Colors.blueAccent]),
+                      colors: [Colors.lightBlue[300]!, Colors.blueAccent]),
                   onClick: () {},
                 ),
                 NButton(
@@ -286,7 +286,7 @@ class _DemoButton extends State<DemoButton> {
                   text: "渐变色按钮",
                   color: RadialGradient(
                       radius: 2,
-                      colors: [Colors.lightBlue[300], Colors.blueAccent]),
+                      colors: [Colors.lightBlue[300]!, Colors.blueAccent]),
                   onClick: () {},
                 ),
               ],

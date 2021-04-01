@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key}) : super(key: key);
+  MyHomePage({Key? key}) : super(key: key);
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -222,15 +222,15 @@ class PageCell extends StatelessWidget {
 class PageScaffold extends StatelessWidget {
   PageScaffold({this.title, this.body, this.padding: false});
 
-  final String title;
-  final Widget body;
+  final String? title;
+  final Widget? body;
   final bool padding;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(title),
+          title: Text(title!),
         ),
         body: SafeArea(
           child: padding
@@ -238,7 +238,7 @@ class PageScaffold extends StatelessWidget {
                   padding: const EdgeInsets.all(16.0),
                   child: body,
                 )
-              : body,
+              : body!,
         ));
   }
 }

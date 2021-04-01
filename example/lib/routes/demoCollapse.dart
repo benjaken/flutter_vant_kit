@@ -39,7 +39,7 @@ class _DemoCollapse extends State<DemoCollapse> {
               content: "代码是写出来给人看的，附带能在机器上运行",
             )
           ],
-          onChange: (List list) {
+          onChange: (List? list) {
             Utils.toast("Expanded! $list");
           },
         ),

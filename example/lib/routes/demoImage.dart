@@ -74,13 +74,13 @@ class _DemoImage extends State<DemoImage> {
               height: 100,
               fit: BoxFit.cover,
               loadingBuilder: (BuildContext context, Widget child,
-                  ImageChunkEvent loadingProgress) {
+                  ImageChunkEvent? loadingProgress) {
                 if (loadingProgress == null) return child;
                 return Center(
                   child: CircularProgressIndicator(
                     value: loadingProgress.expectedTotalBytes != null
                         ? loadingProgress.cumulativeBytesLoaded /
-                            loadingProgress.expectedTotalBytes
+                            loadingProgress.expectedTotalBytes!
                         : null,
                   ),
                 );

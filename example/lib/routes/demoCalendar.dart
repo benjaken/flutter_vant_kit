@@ -9,13 +9,13 @@ class DemoCalendar extends StatefulWidget {
 }
 
 class _DemoCalendar extends State<DemoCalendar> {
-  DateTime _selectedDate1;
-  List<DateTime> _selectedDate2;
-  DateTime _selectedDate3;
-  List<DateTime> _selectedDate4;
-  List<DateTime> _selectedDate5;
-  DateTime _selectedDate6;
-  DateTime _selectedDate7;
+  DateTime? _selectedDate1;
+  List<DateTime>? _selectedDate2;
+  DateTime? _selectedDate3;
+  List<DateTime>? _selectedDate4;
+  List<DateTime>? _selectedDate5;
+  DateTime? _selectedDate6;
+  DateTime? _selectedDate7;
 
   Widget title(String title) {
     return Padding(
@@ -44,7 +44,7 @@ class _DemoCalendar extends State<DemoCalendar> {
               Cell(
                 title: "选择单个日期",
                 value: _selectedDate1 != null
-                    ? formatDateWithYear(_selectedDate1)
+                    ? formatDateWithYear(_selectedDate1!)
                     : '',
                 isLink: true,
                 onClick: () => Calendar(
@@ -60,7 +60,7 @@ class _DemoCalendar extends State<DemoCalendar> {
               Cell(
                 title: "选择日期区间",
                 value: _selectedDate2 != null
-                    ? "${formatDateWithMonth(_selectedDate2[0])} - ${formatDateWithMonth(_selectedDate2[1])}"
+                    ? "${formatDateWithMonth(_selectedDate2![0])} - ${formatDateWithMonth(_selectedDate2![1])}"
                     : '',
                 isLink: true,
                 onClick: () => Calendar(
@@ -81,7 +81,7 @@ class _DemoCalendar extends State<DemoCalendar> {
               Cell(
                 title: "选择单个日期",
                 value: _selectedDate3 != null
-                    ? formatDateWithYear(_selectedDate3)
+                    ? formatDateWithYear(_selectedDate3!)
                     : '',
                 isLink: true,
                 onClick: () => Calendar(
@@ -97,7 +97,7 @@ class _DemoCalendar extends State<DemoCalendar> {
               Cell(
                 title: "选择日期区间",
                 value: _selectedDate4 != null
-                    ? "${formatDateWithMonth(_selectedDate4[0])} - ${formatDateWithMonth(_selectedDate4[1])}"
+                    ? "${formatDateWithMonth(_selectedDate4![0])} - ${formatDateWithMonth(_selectedDate4![1])}"
                     : '',
                 isLink: true,
                 onClick: () => Calendar(
@@ -120,7 +120,7 @@ class _DemoCalendar extends State<DemoCalendar> {
                 title: "自定义颜色",
                 isLink: true,
                 value: _selectedDate5 != null
-                    ? "${DateFormat('MM/dd').format(_selectedDate5[0])} - ${DateFormat('MM/dd').format(_selectedDate5[1])}"
+                    ? "${DateFormat('MM/dd').format(_selectedDate5![0])} - ${DateFormat('MM/dd').format(_selectedDate5![1])}"
                     : '',
                 onClick: () => Calendar(
                   color: Colors.green,
@@ -137,7 +137,7 @@ class _DemoCalendar extends State<DemoCalendar> {
                 title: "自定义日期范围",
                 isLink: true,
                 value: _selectedDate6 != null
-                    ? formatDateWithYear(_selectedDate6)
+                    ? formatDateWithYear(_selectedDate6!)
                     : '',
                 onClick: () => Calendar(
                   defaultDate: _selectedDate6,
@@ -154,7 +154,7 @@ class _DemoCalendar extends State<DemoCalendar> {
                 title: "自定义按钮文字",
                 isLink: true,
                 value: _selectedDate7 != null
-                    ? formatDateWithYear(_selectedDate7)
+                    ? formatDateWithYear(_selectedDate7!)
                     : '',
                 onClick: () => Calendar(
                   confirmText: "完成",

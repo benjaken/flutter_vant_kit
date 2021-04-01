@@ -33,8 +33,8 @@ class _DemoPicker extends State<DemoPicker> {
     ]),
   ];
 
-  String _city;
-  int _cityId;
+  String? _city;
+  int? _cityId;
 
   Widget title(String title) {
     return Padding(

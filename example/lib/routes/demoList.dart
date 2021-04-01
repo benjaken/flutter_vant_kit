@@ -9,7 +9,7 @@ class DemoList extends StatefulWidget {
 }
 
 class _DemoList extends State<DemoList> with SingleTickerProviderStateMixin {
-  TabController _tabController;
+  TabController? _tabController;
   List<int> _dataList1 = [];
   List<int> _dataList2 = [];
   bool _finished1 = false;

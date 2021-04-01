@@ -7,7 +7,7 @@ class DemoSidebar extends StatefulWidget {
 }
 
 class _DemoSidebar extends State<DemoSidebar> {
-  String _status = "New";
+  String? _status = "New";
   int _active = 0;
 
   Widget title(String title) {

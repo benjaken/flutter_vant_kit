@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 0.2.7
+
+- Upgrade to flutter2;
+- Support null safety;
+
 ## 0.2.5
 
 - Chore list;
