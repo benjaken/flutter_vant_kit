@@ -5,12 +5,12 @@ version: 0.2.5
 homepage: https://github.com/benjaken/flutter_vant_kit
 
 environment:
-  sdk: ">=2.3.0 <3.0.0"
+  sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
-  multi_image_picker: ^4.6.0
+  multi_image_picker: ^4.8.0
 
 dev_dependencies:
   flutter_test:

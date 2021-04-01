@@ -6,26 +6,26 @@ import 'package:flutter_vant_kit/widgets/cellGroup.dart';
 
 class RadioGroup extends StatefulWidget {
   // 选中项的标识符
-  final String value;
+  final String? value;
   // 形状
-  final String shape;
+  final String? shape;
   // 所有选项
-  final List<RadioItem> list;
+  final List<RadioItem>? list;
   // 是否禁用所有单选框
-  final bool disabled;
+  final bool? disabled;
   // 所有单选框的图标大小
-  final double iconSize;
+  final double? iconSize;
   // 所有单选框的选中状态颜色
-  final Color checkedColor;
+  final Color? checkedColor;
   // 是否为单元格组件
   final bool inCellGroup;
   // 布局方式
   final Axis direction;
   // 当绑定值变化时触发的事件
-  final Function(String val) onChange;
+  final Function(String? val)? onChange;
 
   RadioGroup(
-      {Key key,
+      {Key? key,
       this.shape,
       this.value,
       this.list,
@@ -43,7 +43,7 @@ class RadioGroup extends StatefulWidget {
 }
 
 class _RadioGroup extends State<RadioGroup> {
-  String _value;
+  String? _value;
 
   @override
   void initState() {
@@ -53,8 +53,8 @@ class _RadioGroup extends State<RadioGroup> {
 
   List<Widget> buildItems() {
     List<Widget> widgets = [];
-    for (int i = 0; i < widget.list.length; i++) {
-      RadioItem item = widget.list[i];
+    for (int i = 0; i < widget.list!.length; i++) {
+      RadioItem item = widget.list![i];
       Widget checkbox = NCheckbox(
         value: _value == item.name,
         shape: widget.shape ?? item.shape,
@@ -67,7 +67,7 @@ class _RadioGroup extends State<RadioGroup> {
           setState(() {
             _value = item.name;
           });
-          if (widget.onChange != null) widget.onChange(_value);
+          if (widget.onChange != null) widget.onChange!(_value);
         },
       );
       widgets.add(widget.inCellGroup
@@ -76,7 +76,7 @@ class _RadioGroup extends State<RadioGroup> {
               customRight: checkbox,
             )
           : checkbox);
-      if (i < widget.list.length - 1 && !widget.inCellGroup) {
+      if (i < widget.list!.length - 1 && !widget.inCellGroup) {
         widgets.add(SizedBox(height: Style.intervalLg));
       }
     }
@@ -96,10 +96,10 @@ class _RadioGroup extends State<RadioGroup> {
 }
 
 class RadioItem {
-  final String name;
+  final String? name;
   final bool value;
   final String shape;
-  final String text;
+  final String? text;
   final bool disabled;
   final double iconSize;
   final Color checkedColor;

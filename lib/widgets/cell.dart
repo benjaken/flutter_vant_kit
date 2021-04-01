@@ -3,34 +3,46 @@ import 'package:flutter_vant_kit/theme/style.dart';
 
 class Cell extends StatelessWidget {
   // 左侧标题
-  final String title;
+  final String? title;
+
   // 标题下方的描述信息
-  final String label;
+  final String? label;
+
   // 单元格大小
   final String size;
+
   // 右侧内容
-  final String value;
+  final String? value;
+
   // 左侧图标
-  final IconData icon;
+  final IconData? icon;
+
   // 是否显示表单必填星号
   final bool require;
+
   // 是否可点击
   final bool clickable;
+
   // 是否展示右侧箭头并开启点击反馈
   final bool isLink;
+
   // 箭头方向
   final String arrowDirection;
+
   // 自定义标题内容
-  final Widget customTitle;
+  final Widget? customTitle;
+
   // 自定义标题下方描述
-  final Widget customLabel;
+  final Widget? customLabel;
+
   // 自定义右侧内容
-  final Widget customRight;
+  final Widget? customRight;
+
   // 点击单元格时触发
-  final Function() onClick;
+  final Function()? onClick;
 
   Cell({
-    Key key,
+    Key? key,
     this.value,
     this.label,
     this.title,
@@ -54,13 +66,10 @@ class Cell extends StatelessWidget {
     switch (arrowDirection) {
       case "left":
         return Icons.chevron_left;
-        break;
       case "up":
         return Icons.expand_less;
-        break;
       case "down":
         return Icons.expand_more;
-        break;
       default:
         return Icons.chevron_right;
     }
@@ -94,7 +103,7 @@ class Cell extends StatelessWidget {
             : Container(),
         icon != null ? SizedBox(width: Style.intervalSm) : Container(),
         title != null
-            ? Text(title,
+            ? Text(title!,
                 style: TextStyle(
                   fontSize: sizes[size]['titleFontSize'],
                 ))
@@ -108,7 +117,7 @@ class Cell extends StatelessWidget {
     return Row(
       children: <Widget>[
         value != null
-            ? Text(value,
+            ? Text(value!,
                 style: TextStyle(
                     fontSize: Style.cellFontSize,
                     color: (title != null || customTitle != null)
@@ -119,7 +128,7 @@ class Cell extends StatelessWidget {
             ? Icon(getLinkIcon(),
                 color: Style.cellRightIconColor, size: Style.cellIconSize)
             : Container(),
-        customRight != null ? customRight : Container(),
+        customRight != null ? customRight ?? Container() : Container(),
       ],
     );
   }
@@ -127,7 +136,7 @@ class Cell extends StatelessWidget {
   Widget buildBottom() {
     return customLabel ??
         (label != null
-            ? Text(label,
+            ? Text(label!,
                 style: TextStyle(
                     fontSize: sizes[size]['labelFontSize'],
                     color: Style.cellLabelColor))
@@ -165,7 +174,7 @@ class Cell extends StatelessWidget {
                         horizontal: Style.cellHorizontalPadding),
                     child: buildContent()),
                 onTap: () {
-                  onClick();
+                  onClick!();
                 },
               ),
             ),

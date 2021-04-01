@@ -3,9 +3,9 @@ import 'package:flutter_vant_kit/theme/style.dart';
 
 class Loading extends StatelessWidget {
   // 加载描述
-  final String text;
+  final String? text;
   // 加载环颜色
-  final Color color;
+  final Color? color;
   // 加载环大小
   final double size;
   // 加载描述字体大小
@@ -13,10 +13,10 @@ class Loading extends StatelessWidget {
   // 加载条排列方式
   final bool vertical;
   // 自定义内容
-  final Widget loading;
+  final Widget? loading;
 
   const Loading(
-      {Key key,
+      {Key? key,
       this.text,
       this.color,
       this.size: Style.loadingSpinnerSize,

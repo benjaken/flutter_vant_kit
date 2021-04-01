@@ -6,26 +6,26 @@ import 'package:flutter_vant_kit/widgets/cellGroup.dart';
 
 class CheckboxGroup extends StatefulWidget {
   // 所有选项
-  final List<CheckItem> list;
+  final List<CheckItem>? list;
   // 所有选中项的标识符
-  final List<String> values;
+  final List<String?>? values;
   // 形状
-  final String shape;
+  final String? shape;
   // 最大可选数
   final int max;
   // 是否为单元格组件
   final bool inCellGroup;
   // 是否禁用复选框
-  final bool disabled;
+  final bool? disabled;
   // 所有复选框的图标大小
-  final double iconSize;
+  final double? iconSize;
   // 所有复选框的选中状态颜色
-  final Color checkedColor;
+  final Color? checkedColor;
   // 当绑定值变化时触发的事件
-  final Function(List<String> value) onChange;
+  final Function(List<String?>? value)? onChange;
 
   CheckboxGroup(
-      {Key key,
+      {Key? key,
       this.values,
       this.shape,
       this.list,
@@ -42,7 +42,7 @@ class CheckboxGroup extends StatefulWidget {
 }
 
 class _CheckboxGroup extends State<CheckboxGroup> {
-  List<String> _values;
+  List<String?>? _values;
 
   @override
   void initState() {
@@ -52,27 +52,27 @@ class _CheckboxGroup extends State<CheckboxGroup> {
 
   List<Widget> buildItems() {
     List<Widget> widgets = [];
-    for (int i = 0; i < widget.list.length; i++) {
-      CheckItem item = widget.list[i];
+    for (int i = 0; i < widget.list!.length; i++) {
+      CheckItem item = widget.list![i];
       Widget checkbox = NCheckbox(
-        value: _values.contains(item.name),
+        value: _values!.contains(item.name),
         shape: widget.shape ?? item.shape,
         text: widget.inCellGroup ? null : item.text,
         disabled: widget.disabled ?? item.disabled,
-        readonly: !_values.contains(item.name) && _values.length == widget.max,
+        readonly: !_values!.contains(item.name) && _values!.length == widget.max,
         iconSize: widget.iconSize ?? item.iconSize,
         checkedColor: widget.checkedColor ?? item.checkedColor,
         onChange: (val) {
-          if (val && _values.length < widget.max) {
+          if (val && _values!.length < widget.max) {
             setState(() {
-              _values.add(item.name);
+              _values!.add(item.name);
             });
           } else {
             setState(() {
-              _values.remove(item.name);
+              _values!.remove(item.name);
             });
           }
-          if (widget.onChange != null) widget.onChange(_values);
+          if (widget.onChange != null) widget.onChange!(_values);
         },
       );
       widgets.add(widget.inCellGroup
@@ -81,7 +81,7 @@ class _CheckboxGroup extends State<CheckboxGroup> {
               customRight: checkbox,
             )
           : checkbox);
-      if (i < widget.list.length - 1 && !widget.inCellGroup) {
+      if (i < widget.list!.length - 1 && !widget.inCellGroup) {
         widgets.add(SizedBox(height: Style.intervalLg));
       }
     }
@@ -101,10 +101,10 @@ class _CheckboxGroup extends State<CheckboxGroup> {
 }
 
 class CheckItem {
-  final String name;
+  final String? name;
   final bool value;
   final String shape;
-  final String text;
+  final String? text;
   final bool disabled;
   final double iconSize;
   final Color checkedColor;

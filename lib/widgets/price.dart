@@ -3,7 +3,7 @@ import 'package:flutter_vant_kit/theme/style.dart';
 
 class Price extends StatelessWidget {
   // 价格
-  final double value;
+  final double? value;
   // 价格颜色
   final Color color;
   // 价格大小
@@ -16,10 +16,10 @@ class Price extends StatelessWidget {
   final bool thousands;
 
   const Price(
-      {Key key,
+      {Key? key,
       this.currency: "¥",
       this.size: Style.priceFontSize,
-      @required this.value,
+      required this.value,
       this.color: Style.priceTextColor,
       this.decimal: 2,
       this.thousands: false})
@@ -27,14 +27,14 @@ class Price extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String integer = value.toInt().toString();
+    String integer = value!.toInt().toString();
     RegExp reg = new RegExp(r"(\d)((?:\d{3})+\b)");
     if (thousands)
       while (reg.hasMatch(integer)) {
         integer = integer.replaceAllMapped(
             reg, (match) => "${match.group(1)},${match.group(2)}");
       }
-    String decimalString = value.toStringAsFixed(decimal).split('.')[1];
+    String decimalString = value!.toStringAsFixed(decimal).split('.')[1];
     return Row(
       textBaseline: TextBaseline.ideographic,
       crossAxisAlignment: CrossAxisAlignment.baseline,

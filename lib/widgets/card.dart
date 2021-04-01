@@ -7,45 +7,45 @@ class NCard extends StatelessWidget {
   // 左侧图片
   final Image image;
   // 标题
-  final String title;
+  final String? title;
   // 描述
-  final String desc;
+  final String? desc;
   // 图片角标
-  final String tag;
+  final String? tag;
   // 商品数量
-  final int num;
+  final int? num;
   // 商品价格
-  final double price;
+  final double? price;
   // 商品划线原价
-  final double originPrice;
+  final double? originPrice;
   // 内容是否垂直居中
   final bool centered;
   // 货币符号
   final String currency;
   // 点击时触发
-  final Function() onClick;
+  final Function()? onClick;
   // 自定义标题内容
-  final Widget customTitle;
+  final Widget? customTitle;
   // 自定义描述
-  final Widget customDesc;
+  final Widget? customDesc;
   // 自定义数量
-  final Widget customNum;
+  final Widget? customNum;
   // 自定义价格
-  final Widget customPrice;
+  final Widget? customPrice;
   // 自定义商品原价
-  final Widget customOriginPrice;
+  final Widget? customOriginPrice;
   // 自定义图片
-  final Widget customThumb;
+  final Widget? customThumb;
   // 自定义图片角标
-  final Widget customTag;
+  final Widget? customTag;
   // 自定义描述下方标签区域
-  final Widget customTags;
+  final Widget? customTags;
   // 自定义 footer
-  final Widget customFooter;
+  final Widget? customFooter;
 
   const NCard(
-      {Key key,
-      @required this.image,
+      {Key? key,
+      required this.image,
       this.title,
       this.desc,
       this.tag,
@@ -101,12 +101,12 @@ class NCard extends StatelessWidget {
                   : CrossAxisAlignment.start,
               children: <Widget>[
                 customTitle ??
-                    Text(title,
+                    Text(title!,
                         style: TextStyle(
                             fontSize: Style.cardFontSize,
                             fontWeight: FontWeight.bold)),
                 customDesc ??
-                    Text(desc,
+                    Text(desc!,
                         maxLines: 1,
                         style: TextStyle(
                             fontSize: Style.cardFontSize,
@@ -133,7 +133,7 @@ class NCard extends StatelessWidget {
                       customOriginPrice ??
                           (originPrice != null
                               ? Text(
-                                  "$currency${originPrice.toStringAsFixed(2)}",
+                                  "$currency${originPrice!.toStringAsFixed(2)}",
                                   style: TextStyle(
                                       color: Style.cardOriginPriceColor,
                                       fontSize: Style.cardOriginPriceFontSize,
@@ -159,7 +159,7 @@ class NCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        if (onClick != null) onClick();
+        if (onClick != null) onClick!();
       },
       child: Container(
         color: Style.cardBackgroundColor,

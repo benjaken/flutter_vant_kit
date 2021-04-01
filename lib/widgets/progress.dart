@@ -19,14 +19,14 @@ class Progress extends StatefulWidget {
   // 轨道颜色
   final Color trackColor;
   // 文字显示
-  final String pivotText;
+  final String? pivotText;
   // 文字背景色
-  final Color pivotColor;
+  final Color? pivotColor;
   // 圆形进度条大小
   final double circularSize;
 
   Progress({
-    Key key,
+    Key? key,
     this.type: "line",
     this.inactive: false,
     this.percentage: 0,
@@ -47,21 +47,21 @@ class Progress extends StatefulWidget {
 class _Progress extends State<Progress> with SingleTickerProviderStateMixin {
   GlobalKey _pivotKey = GlobalKey();
   GlobalKey _progressKey = GlobalKey();
-  double pivotLeft = 0;
+  double? pivotLeft = 0;
   double pivotTop = 0;
-  double pivotRight;
+  double? pivotRight;
 
   @override
   void initState() {
-    WidgetsBinding.instance.addPostFrameCallback(_onLayoutDone);
+    WidgetsBinding.instance!.addPostFrameCallback(_onLayoutDone);
     super.initState();
   }
 
   _onLayoutDone(_) {
-    RenderBox pivot = _pivotKey.currentContext.findRenderObject();
+    RenderBox pivot = _pivotKey.currentContext!.findRenderObject() as RenderBox;
     double pivotWidth = pivot.size.width;
     double pivotHeight = pivot.size.height;
-    RenderBox progress = _progressKey.currentContext.findRenderObject();
+    RenderBox progress = _progressKey.currentContext!.findRenderObject() as RenderBox;
     double progressWidth = progress.size.width;
     double lineLeft =
         (widget.percentage / 100) * progressWidth - (pivotWidth / 2);

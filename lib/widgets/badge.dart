@@ -3,7 +3,7 @@ import 'package:flutter_vant_kit/theme/style.dart';
 
 class Badge extends StatefulWidget {
   // 角标内容
-  final String value;
+  final String? value;
   // 红点
   final bool dot;
   // 自定义颜色
@@ -16,13 +16,13 @@ class Badge extends StatefulWidget {
   final Widget child;
 
   const Badge(
-      {Key key,
+      {Key? key,
       this.value,
       this.dot: false,
       this.color: Style.badgeBackgroundColor,
       this.textColor: Style.badgeTextColor,
       this.textSize: Style.badgeTextFontSize,
-      @required this.child})
+      required this.child})
       : super(key: key);
 
   @override
@@ -37,12 +37,12 @@ class _Badge extends State<Badge> {
   @override
   void initState() {
     if (widget.value != null || widget.dot)
-      WidgetsBinding.instance.addPostFrameCallback(_onLayoutDone);
+      WidgetsBinding.instance!.addPostFrameCallback(_onLayoutDone);
     super.initState();
   }
 
   _onLayoutDone(_) {
-    RenderBox badge = _badgeKey.currentContext.findRenderObject();
+    RenderBox badge = _badgeKey.currentContext!.findRenderObject() as RenderBox;
     double badgeWidth = badge.size.width;
     double badgeHeight = badge.size.height;
     setState(() {
@@ -70,7 +70,7 @@ class _Badge extends State<Badge> {
             color: widget.color,
           ),
           child: widget.value != null
-              ? Text(widget.value,
+              ? Text(widget.value!,
                   style: TextStyle(
                       color: widget.textColor, fontSize: widget.textSize))
               : Container(),

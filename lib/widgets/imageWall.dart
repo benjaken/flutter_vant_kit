@@ -7,7 +7,7 @@ import 'package:multi_image_picker/multi_image_picker.dart';
 //照片墙
 class ImageWall extends StatefulWidget {
   // 图片文件数组
-  final List<String> images;
+  final List<String>? images;
 
   // 是否可以多选图片
   final bool multiple;
@@ -22,7 +22,7 @@ class ImageWall extends StatefulWidget {
   final BoxFit imageFit;
 
   // 自定义 button
-  final Widget uploadBtn;
+  final Widget? uploadBtn;
 
   // 上传后返回全部图片信息
   final Function(List<String> newImages) onChange;
@@ -31,18 +31,18 @@ class ImageWall extends StatefulWidget {
   final Future<List<String>> Function(List<Asset> file) onUpload;
 
   // 删除图片后的回调
-  final Function(String removedUrl) onRemove;
+  final Function(String? removedUrl)? onRemove;
 
   const ImageWall({
-    Key key,
+    Key? key,
     this.multiple: false,
     this.length: 4,
     this.count: 9,
     this.images,
     this.uploadBtn,
     this.imageFit: BoxFit.cover,
-    @required this.onChange,
-    @required this.onUpload,
+    required this.onChange,
+    required this.onUpload,
     this.onRemove,
   }) : super(key: key);
 
@@ -100,13 +100,13 @@ class _ImageWall extends State<ImageWall> {
                 color: Style.imageWallCloseButtonColor,
                 size: Style.imageWallCloseButtonFontSize),
             onTap: () {
-              String removedUrl;
+              String? removedUrl;
               setState(() {
                 removedUrl = images.removeAt(index);
               });
               widget.onChange(images);
               if (widget.onRemove != null) {
-                widget.onRemove(removedUrl);
+                widget.onRemove!(removedUrl);
               }
             },
           ),
@@ -131,7 +131,7 @@ class _ImageWall extends State<ImageWall> {
     return InkWell(
       child: widget.uploadBtn ?? btn,
       onTap: () async {
-        List<Asset> resultList = List<Asset>();
+        List<Asset> resultList = [];
         try {
           resultList = await MultiImagePicker.pickImages(
             maxImages: widget.multiple ? widget.count - images.length : 1,

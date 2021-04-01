@@ -4,16 +4,16 @@ import 'package:flutter_vant_kit/widgets/divider.dart';
 
 class CellGroup extends StatelessWidget {
   // 分组标题
-  final String title;
+  final String? title;
   // 是否显示外边框
   final bool border;
   // 自定义边框样式
-  final BoxDecoration decoration;
+  final BoxDecoration? decoration;
   // 默认插槽
-  final List<Widget> children;
+  final List<Widget>? children;
 
   CellGroup(
-      {Key key, this.title, this.children, this.border: true, this.decoration})
+      {Key? key, this.title, this.children, this.border: true, this.decoration})
       : super(key: key);
 
   buildItems(List list) {
@@ -37,7 +37,7 @@ class CellGroup extends StatelessWidget {
         title != null
             ? Padding(
                 padding: Style.cellGroupTitlePadding,
-                child: Text(title,
+                child: Text(title!,
                     style: TextStyle(
                         fontSize: Style.cellGroupTitleFontSize,
                         color: Colors.grey)),
@@ -58,7 +58,7 @@ class CellGroup extends StatelessWidget {
                       : null,
                   color: Colors.white),
           child: Column(
-            children: buildItems(children),
+            children: buildItems(children!),
           ),
         )
       ],

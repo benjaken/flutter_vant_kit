@@ -4,10 +4,10 @@ import 'package:flutter_vant_kit/widgets/badge.dart';
 import 'package:flutter_vant_kit/widgets/button.dart';
 
 class GoodsAction extends StatefulWidget {
-  final List<ActionButtonItem> actions;
-  final List<ButtonItem> buttons;
+  final List<ActionButtonItem>? actions;
+  final List<ButtonItem>? buttons;
 
-  GoodsAction({Key key, this.actions, this.buttons}) : super(key: key);
+  GoodsAction({Key? key, this.actions, this.buttons}) : super(key: key);
 
   @override
   _GoodsAction createState() => _GoodsAction();
@@ -15,20 +15,20 @@ class GoodsAction extends StatefulWidget {
 
 class _GoodsAction extends State<GoodsAction> {
   GlobalKey _buttonsKey = GlobalKey();
-  double buttonWidth;
-  List<ActionButtonItem> _actions;
-  List<ButtonItem> _buttons;
+  double? buttonWidth;
+  late List<ActionButtonItem> _actions;
+  late List<ButtonItem> _buttons;
 
   @override
   void initState() {
     _actions = widget.actions ?? [];
     _buttons = widget.buttons ?? [];
-    WidgetsBinding.instance.addPostFrameCallback(_onLayoutDone);
+    WidgetsBinding.instance!.addPostFrameCallback(_onLayoutDone);
     super.initState();
   }
 
   _onLayoutDone(_) {
-    RenderBox buttons = _buttonsKey.currentContext.findRenderObject();
+    RenderBox buttons = _buttonsKey.currentContext!.findRenderObject() as RenderBox;
     double buttonsWidth = buttons.size.width;
     setState(() {
       buttonWidth = (buttonsWidth - (Style.paddingSm * 2)) / _buttons.length;
@@ -54,7 +54,7 @@ class _GoodsAction extends State<GoodsAction> {
                         ? BorderRadius.horizontal(
                             right: Radius.circular(Style.borderRadiusMax))
                         : null,
-            text: button.loading ? "" : button.customText ?? button.text,
+            text: button.loading ? "" : button.customText as String? ?? button.text,
             disabled: button.disabled,
             loading: button.loading,
             color: button.color ?? null,
@@ -63,7 +63,7 @@ class _GoodsAction extends State<GoodsAction> {
             padding: EdgeInsets.all(0),
             onClick: () {
               if (button.disabled) return;
-              if (button.onClick != null) button.onClick();
+              if (button.onClick != null) button.onClick!();
             },
           );
         }),
@@ -79,7 +79,7 @@ class _GoodsAction extends State<GoodsAction> {
         type: MaterialType.transparency,
         child: InkWell(
           onTap: () {
-            if (action.onClick != null) action.onClick();
+            if (action.onClick != null) action.onClick!();
           },
           child: Container(
             width: Style.goodsActionIconWidth,
@@ -134,12 +134,12 @@ class _GoodsAction extends State<GoodsAction> {
 }
 
 class ActionButtonItem {
-  final String text;
-  final IconData icon;
-  final String info;
-  final Function() onClick;
-  final Widget customIcon;
-  final Widget customText;
+  final String? text;
+  final IconData? icon;
+  final String? info;
+  final Function()? onClick;
+  final Widget? customIcon;
+  final Widget? customText;
 
   ActionButtonItem(
       {this.text,
@@ -151,12 +151,12 @@ class ActionButtonItem {
 }
 
 class ButtonItem {
-  final String text;
+  final String? text;
   final dynamic color;
   final bool disabled;
   final bool loading;
-  final Function() onClick;
-  final Widget customText;
+  final Function()? onClick;
+  final Widget? customText;
 
   ButtonItem(
       {this.text,

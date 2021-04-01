@@ -11,25 +11,25 @@ class NoticeBar extends StatefulWidget {
   // 通知文本内容
   final String text;
   // 左侧图标
-  final IconData leftIcon;
+  final IconData? leftIcon;
   // 通知栏模式，可选值为 closeable、link
-  final String mode;
+  final String? mode;
   // 是否在长度溢出时滚动播放
   final bool scrollable;
   // 是否开启文本换行，只在禁用滚动时生效
   final bool wrapable;
   // 关闭通知栏时触发
-  final Function() onClose;
+  final Function()? onClose;
   // 点击通知栏时触发
-  final Function() onClick;
+  final Function()? onClick;
   // 滚动速率
   final int speed;
   // 动画延迟时间 (s)
   final int delay;
 
   NoticeBar(
-      {Key key,
-      @required this.text,
+      {Key? key,
+      required this.text,
       this.color: Style.noticeBarTextColor,
       this.background: Style.noticeBarBackgroundColor,
       this.leftIcon,
@@ -46,11 +46,11 @@ class NoticeBar extends StatefulWidget {
 }
 
 class _NoticeBar extends State<NoticeBar> {
-  ScrollController scrollController;
-  double screenWidth;
-  double screenHeight;
+  ScrollController? scrollController;
+  late double screenWidth;
+  double? screenHeight;
   double position = 0.0;
-  Timer _timer;
+  Timer? _timer;
   GlobalKey _key = GlobalKey();
   bool showNotice = true;
 
@@ -58,28 +58,28 @@ class _NoticeBar extends State<NoticeBar> {
   void initState() {
     scrollController = new ScrollController();
     if (widget.scrollable)
-      WidgetsBinding.instance.addPostFrameCallback(_onLayoutDone);
+      WidgetsBinding.instance!.addPostFrameCallback(_onLayoutDone);
     super.initState();
   }
 
   _onLayoutDone(_) {
-    RenderBox notice = _key.currentContext.findRenderObject();
+    RenderBox notice = _key.currentContext!.findRenderObject() as RenderBox;
     double widgetWidth = notice.size.width;
     screenWidth = MediaQuery.of(context).size.width;
     screenHeight = MediaQuery.of(context).size.height;
 
     _timer = Timer.periodic(new Duration(milliseconds: widget.delay), (timer) {
-      double maxScrollExtent = scrollController.position.maxScrollExtent;
-      double pixels = scrollController.position.pixels;
+      double maxScrollExtent = scrollController!.position.maxScrollExtent;
+      double pixels = scrollController!.position.pixels;
       if (pixels + widget.speed >= maxScrollExtent) {
         position = (maxScrollExtent - (screenWidth * 0.5) + widgetWidth) / 2 -
             widgetWidth +
             pixels -
             maxScrollExtent;
-        scrollController.jumpTo(position);
+        scrollController!.jumpTo(position);
       }
       position += widget.speed;
-      scrollController.animateTo(position,
+      scrollController!.animateTo(position,
           duration: new Duration(milliseconds: widget.delay),
           curve: Curves.linear);
     });
@@ -87,7 +87,7 @@ class _NoticeBar extends State<NoticeBar> {
 
   @override
   void dispose() {
-    if (_timer != null) _timer.cancel();
+    if (_timer != null) _timer!.cancel();
     super.dispose();
   }
 
@@ -147,10 +147,10 @@ class _NoticeBar extends State<NoticeBar> {
                   setState(() {
                     showNotice = false;
                   });
-                  widget.onClose();
+                  widget.onClose!();
                 }
                 if (widget.mode == "link" && widget.onClick != null) {
-                  widget.onClick();
+                  widget.onClick!();
                 }
               },
             )

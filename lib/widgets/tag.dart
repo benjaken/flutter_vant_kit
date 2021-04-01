@@ -15,14 +15,14 @@ class Tag extends StatefulWidget {
   // 是否为标记样式
   final bool mark;
   // 标签颜色
-  final Color color;
+  final Color? color;
   // 文字颜色，优先于color属性
-  final Color textColor;
+  final Color? textColor;
   // 是否为可关闭标签
-  final Function() onClose;
+  final Function()? onClose;
 
   Tag({
-    Key key,
+    Key? key,
     this.type: "default",
     this.size: "default",
     this.text: "",
@@ -63,7 +63,7 @@ class _Tag extends State<Tag> {
   };
 
   void close() {
-    widget.onClose();
+    widget.onClose!();
     setState(() {
       isShow = false;
     });
@@ -72,10 +72,10 @@ class _Tag extends State<Tag> {
   @override
   Widget build(BuildContext context) {
     Color borderColor = widget.color ?? colors[widget.type]['color'];
-    Color bageColor = widget.plain
+    Color? bageColor = widget.plain
         ? Style.tagPlainBackgroundColor
         : widget.color ?? colors[widget.type]['color'];
-    Color textColor = widget.textColor ??
+    Color? textColor = widget.textColor ??
         (widget.plain
             ? widget.color ?? colors[widget.type]['color']
             : Style.tagTextColor);

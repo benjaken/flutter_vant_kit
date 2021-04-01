@@ -5,30 +5,30 @@ import 'package:flutter_vant_kit/widgets/divider.dart';
 
 class ActionSheet {
   // 菜单选项
-  final List<ActionSheetItem> actions;
+  final List<ActionSheetItem>? actions;
   // 顶部标题
-  final String title;
+  final String? title;
   // 取消按钮文字
-  final String cancelText;
+  final String? cancelText;
   // 选项上方的描述信息
-  final String description;
+  final String? description;
   // 是否显示圆角
   final bool round;
   // 关闭图标
-  final IconData closeIcon;
+  final IconData? closeIcon;
   // 是否在点击遮罩层后关闭
   final bool closeOnClickOverlay;
   // 选中选项时触发，禁用或加载状态下不会触发
-  final Function(ActionSheetItem actionSheetItem, int index, BuildContext context) onSelect;
+  final Function(ActionSheetItem actionSheetItem, int index, BuildContext context)? onSelect;
   // 取消按钮点击时触发
-  final Function() onCancel;
+  final Function()? onCancel;
   // 关闭菜单时触发
-  final Function() onClose;
+  final Function()? onClose;
   // 自定义菜单内容
-  final Widget child;
+  final Widget? child;
 
   const ActionSheet(
-      {Key key,
+      {Key? key,
       this.actions,
       this.title,
       this.cancelText,
@@ -76,7 +76,7 @@ class ActionSheetState extends StatelessWidget {
               fontSize: Style.actionSheetItemFontSize,
               color: action.disabled
                   ? Style.actionSheetItemDisabledTextColor
-                  : action.color ?? Style.actionSheetItemTextColor)),
+                  : action.color)),
       SizedBox(width: action.subname != null ? Style.intervalSm : 0),
       Text(action.subname ?? "",
           style: TextStyle(
@@ -85,10 +85,10 @@ class ActionSheetState extends StatelessWidget {
     ];
   }
 
-  buildActionSheetItem(BuildContext context, List<ActionSheetItem> actions) {
+  buildActionSheetItem(BuildContext context, List<ActionSheetItem>? actions) {
     List<Widget> widgets = [];
     if (actionSheet.child != null) return [actionSheet.child];
-    for (int i = 0; i < actions.length; i++) {
+    for (int i = 0; i < actions!.length; i++) {
       ActionSheetItem action = actions[i];
       widgets.add(Column(
         children: <Widget>[
@@ -121,7 +121,7 @@ class ActionSheetState extends StatelessWidget {
                   onTap: () {
                     if (action.loading || action.disabled) return;
                     if (actionSheet.onSelect != null)
-                      actionSheet.onSelect(action, i, context);
+                      actionSheet.onSelect!(action, i, context);
                     close(context);
                   },
                 ),
@@ -144,14 +144,14 @@ class ActionSheetState extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   actionSheet.title != null
-                      ? Text(actionSheet.title,
+                      ? Text(actionSheet.title!,
                           style: TextStyle(
                               fontSize: Style.actionSheetHeaderFontSize,
                               fontWeight: FontWeight.bold))
                       : Container(),
                   SizedBox(height: Style.intervalSm),
                   actionSheet.description != null
-                      ? Text(actionSheet.description,
+                      ? Text(actionSheet.description!,
                           style: TextStyle(
                               fontSize: Style.actionSheetDescriptionFontSize,
                               color: Style.actionSheetDescriptionColor))
@@ -198,13 +198,13 @@ class ActionSheetState extends StatelessWidget {
               child: Container(
                 alignment: AlignmentDirectional.center,
                 height: Style.actionSheetItemHeight,
-                child: Text(actionSheet.cancelText,
+                child: Text(actionSheet.cancelText!,
                     style: TextStyle(
                         fontSize: Style.actionSheetItemFontSize,
                         color: Style.actionSheetItemTextColor)),
               ),
               onTap: () {
-                if (actionSheet.onCancel != null) actionSheet.onCancel();
+                if (actionSheet.onCancel != null) actionSheet.onCancel!();
                 close(context);
               },
             ),
@@ -216,7 +216,7 @@ class ActionSheetState extends StatelessWidget {
   }
 
   void close(BuildContext context) {
-    if (actionSheet.onClose != null) actionSheet.onClose();
+    if (actionSheet.onClose != null) actionSheet.onClose!();
     Navigator.of(context).pop();
   }
 
@@ -247,9 +247,9 @@ class ActionSheetState extends StatelessWidget {
 
 class ActionSheetItem {
   // 标题
-  final String name;
+  final String? name;
   // 二级标题
-  final String subname;
+  final String? subname;
   // 选项文字颜色
   final Color color;
   // 是否为加载状态

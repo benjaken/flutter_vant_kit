@@ -25,12 +25,12 @@ class Rate extends StatefulWidget {
   // 是否为禁用状态
   final bool disabled;
   // 当前分值变化时触发的事件
-  final Function(String val) onChange;
+  final Function(String val)? onChange;
 
   Rate({
-    Key key,
+    Key? key,
     this.count: 5,
-    @required this.value,
+    required this.value,
     this.size: Style.rateIconSize,
     this.gutter: Style.rateHorizontalGutter,
     this.icon: Icons.star,
@@ -48,7 +48,7 @@ class Rate extends StatefulWidget {
 }
 
 class _Rate extends State<Rate> {
-  int _starNum;
+  late int _starNum;
 
   @override
   void initState() {
@@ -85,7 +85,7 @@ class _Rate extends State<Rate> {
                       _starNum = i;
                     });
                     if (widget.onChange != null)
-                      widget.onChange(_starNum.toString());
+                      widget.onChange!(_starNum.toString());
                   }),
       );
       widgets.add(item);

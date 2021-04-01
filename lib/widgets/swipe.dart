@@ -5,35 +5,47 @@ import 'package:flutter_vant_kit/theme/style.dart';
 class Swipe extends StatefulWidget {
   //是否自动播放
   final bool autoPlay;
+
   // 自动轮播间隔
-  final Duration interval;
+  final Duration? interval;
+
   // 动画时长
-  final Duration duration;
+  final Duration? duration;
+
   // 初始位置索引值
   final int initialSwipe;
+
   // 是否显示指示器
   final bool showIndicators;
+
   //指示器大小
   final double indicatorSize;
+
   // 指示器颜色
   final Color indicatorColor;
+
   // 滚动方向
   final String scrollDirection;
+
   // 动画效果，默认fastOutSlowIn
   final Curve curve;
+
   // 每一页轮播后触发
-  final Function(int val) onChange;
+  final Function(int val)? onChange;
+
   // 每个页面在滚动方向占据的视窗比例，默认为 1
   final double viewportFraction;
+
   // 显示内容
   final List<Widget> children;
+
   // 自定义指示器
-  final Widget indicator;
+  final Widget? indicator;
 
   final int _length;
 
   Swipe(
-      {@required this.children,
+      {required this.children,
       this.interval,
       this.autoPlay: false,
       this.initialSwipe: 0,
@@ -57,10 +69,10 @@ class Swipe extends StatefulWidget {
 }
 
 class _Swipe extends State<Swipe> with SingleTickerProviderStateMixin {
-  PageController _pageController;
-  Timer timer;
-  int _currentPage;
-  int _realCurrentPage;
+  PageController? _pageController;
+  Timer? timer;
+  late int _currentPage;
+  int? _realCurrentPage;
 
   @override
   void initState() {
@@ -80,8 +92,8 @@ class _Swipe extends State<Swipe> with SingleTickerProviderStateMixin {
         setState(() {
           _currentPage = toPage;
         });
-        _pageController.animateToPage(toPage,
-            duration: duration, curve: widget.curve);
+        _pageController!
+            .animateToPage(toPage, duration: duration, curve: widget.curve);
       });
     }
   }
@@ -89,7 +101,7 @@ class _Swipe extends State<Swipe> with SingleTickerProviderStateMixin {
   @override
   void dispose() {
     if (timer != null) {
-      timer.cancel();
+      timer!.cancel();
     }
     super.dispose();
   }
@@ -119,12 +131,13 @@ class _Swipe extends State<Swipe> with SingleTickerProviderStateMixin {
                       _realCurrentPage = i % widget._length;
                     });
                     if (widget.onChange != null)
-                      widget.onChange((i) % 100 % widget._length + 1);
+                      widget.onChange!((i) % 100 % widget._length + 1);
                   })),
           widget.showIndicators
               ? (widget.indicator != null
-                  ? widget.indicator
-                  : _buildIndicators())
+                      ? widget.indicator
+                      : _buildIndicators()) ??
+                  Container()
               : Container()
         ],
       ),

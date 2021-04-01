@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_vant_kit/theme/style.dart';
 
 class NCheckbox extends StatefulWidget {
-  final String name;
+  final String? name;
   bool value;
   final String shape;
-  final String text;
+  final String? text;
   final bool disabled;
   final bool readonly;
   final double iconSize;
   final Color checkedColor;
-  final Function(bool value) onChange;
+  final Function(bool value)? onChange;
 
   NCheckbox(
-      {Key key,
+      {Key? key,
       this.name,
       this.value: false,
       this.shape: 'round',
@@ -50,7 +50,7 @@ class _NCheckbox extends State<NCheckbox> {
         if (widget.disabled || widget.readonly) return;
         setState(() {
           widget.value = !widget.value;
-          if (widget.onChange != null) widget.onChange(widget.value);
+          if (widget.onChange != null) widget.onChange!(widget.value);
         });
       },
       child: Container(
