@@ -5,23 +5,30 @@ import 'package:flutter_vant_kit/widgets/numberKeyboard.dart';
 class PasswordInput extends StatefulWidget {
   // 密码值
   final String value;
+
   // 密码最大长度
   final int length;
+
   // 是否隐藏密码内容
   final bool mask;
+
   // 当密码值位数等于最大程度，是否自动隐藏键盘
   final bool hideWhenSubmitted;
+
   // 输入框下方文字提示
-  final String info;
+  final String? info;
+
   // 输入框点击时触发
-  final Function() onClick;
+  final Function()? onClick;
+
   // 密码值改变时触发
-  final Function(String val) onChange;
+  final Function(String val)? onChange;
+
   // 密码值位数等于最大程度时触发
-  final Function(String val) onSubmitted;
+  final Function(String val)? onSubmitted;
 
   PasswordInput(
-      {Key key,
+      {Key? key,
       this.value: "",
       this.length: 6,
       this.mask: true,
@@ -37,13 +44,13 @@ class PasswordInput extends StatefulWidget {
 }
 
 class _PasswordInput extends State<PasswordInput> {
-  String _value;
-  List<String> _codeList;
+  String? _value;
+  late List<String> _codeList;
 
   @override
   void initState() {
     _value = widget.value;
-    _codeList = new List()..length = widget.length;
+    _codeList = []..length = widget.length;
     List<String> origin = widget.value.split('');
     _codeList.setAll(0, origin);
     super.initState();
@@ -94,7 +101,9 @@ class _PasswordInput extends State<PasswordInput> {
           child: Text(
               _codeList.elementAt(p) == null
                   ? ""
-                  : widget.mask ? "●" : _codeList[p],
+                  : widget.mask
+                      ? "●"
+                      : _codeList[p],
               style: TextStyle(
                   fontSize: Style.passwordInputFontSize,
                   color: Style.passwordInputColor))),
@@ -124,22 +133,22 @@ class _PasswordInput extends State<PasswordInput> {
                 onChange: (val) {
                   List<String> newval = val.split('');
                   setState(() {
-                    _codeList = new List()..length = widget.length;
+                    _codeList = []..length = widget.length;
                     _codeList.setAll(0, newval);
                     _value = val;
                   });
-                  if (widget.onChange != null) widget.onChange(val);
+                  if (widget.onChange != null) widget.onChange!(val);
                   if (widget.onSubmitted != null &&
                       newval.length == widget.length) {
                     if (widget.hideWhenSubmitted) Navigator.pop(context);
-                    widget.onSubmitted(val);
+                    widget.onSubmitted!(val);
                   }
                 }).show(context);
-            if (widget.onClick != null) widget.onClick();
+            if (widget.onClick != null) widget.onClick!();
           },
         ),
         widget.info != null
-            ? Text(widget.info,
+            ? Text(widget.info!,
                 style: TextStyle(
                     fontSize: Style.passwordInputInfoFontSize,
                     color: Style.passwordInputInfoColor))

@@ -18,7 +18,7 @@ class Steppers extends StatefulWidget {
   // 自定义大小
   final double size;
   // 自定义 input 宽度
-  final double inputWidth;
+  final double? inputWidth;
   // 是否显示增加按钮
   final bool showPlus;
   // 是否显示减少按钮
@@ -26,10 +26,10 @@ class Steppers extends StatefulWidget {
   // 固定显示的小数位数
   final int decimalLength;
   // 当前值变化时触发的事件
-  final Function(String val) onChange;
+  final Function(String val)? onChange;
 
   Steppers(
-      {Key key,
+      {Key? key,
       this.value: 1,
       this.onChange,
       this.min: 0,
@@ -49,7 +49,7 @@ class Steppers extends StatefulWidget {
 }
 
 class _Stepper extends State<Steppers> {
-  double value;
+  late double value;
 
   @override
   void initState() {
@@ -93,7 +93,7 @@ class _Stepper extends State<Steppers> {
                   setState(() {
                     value = newVal;
                   });
-                  widget.onChange(val);
+                  widget.onChange!(val);
                 },
         ),
       ),
@@ -138,7 +138,7 @@ class _Stepper extends State<Steppers> {
                   setState(() {
                     value = newVal;
                   });
-                  widget.onChange(val);
+                  widget.onChange!(val);
                 },
         ),
       ),
@@ -189,7 +189,7 @@ class _Stepper extends State<Steppers> {
             setState(() {
               value = number;
             });
-            widget.onChange(newVal);
+            widget.onChange!(newVal);
           },
         ),
       ),

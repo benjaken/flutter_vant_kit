@@ -8,32 +8,32 @@ class CollapseItem extends StatefulWidget {
   // 是否为展开状态
   bool isExpanded;
   // 唯一标识符，默认为索引值
-  final String name;
+  final String? name;
   // 左侧图标
-  final IconData icon;
+  final IconData? icon;
   // 标题栏左侧内容
-  final String title;
+  final String? title;
   // 标题栏右侧内容
-  final String value;
+  final String? value;
   // 标题栏描述信息
-  final String label;
+  final String? label;
   // 自定义右侧图标
-  final Icon rightIcon;
+  final Icon? rightIcon;
   // 是否可点击
   final bool clickable;
   // 自定义标题内容
-  final Widget customTitle;
+  final Widget? customTitle;
   // 自定义标题下方描述
-  final Widget customLabel;
+  final Widget? customLabel;
   // 面板纯文本内容
-  final String content;
+  final String? content;
   // 自定义面板内容
-  final Widget child;
+  final Widget? child;
   // 面板展开后回调
-  final Function(bool val) onExpansionChanged;
+  final Function(bool val)? onExpansionChanged;
 
   CollapseItem({
-    Key key,
+    Key? key,
     this.title,
     this.name,
     this.icon,
@@ -60,9 +60,9 @@ class _CollapseItem extends State<CollapseItem>
   static final Animatable<double> _halfTween =
       Tween<double>(begin: 0, end: 0.5);
 
-  AnimationController _controller;
-  Animation<double> _iconTurns;
-  Animation<double> _heightFactor;
+  late AnimationController _controller;
+  late Animation<double> _iconTurns;
+  late Animation<double> _heightFactor;
 
   @override
   void initState() {
@@ -95,7 +95,7 @@ class _CollapseItem extends State<CollapseItem>
     }
     PageStorage.of(context)?.writeState(context, widget.isExpanded);
     if (widget.onExpansionChanged != null)
-      widget.onExpansionChanged(widget.isExpanded);
+      widget.onExpansionChanged!(widget.isExpanded);
   }
 
   @override
@@ -108,10 +108,10 @@ class _CollapseItem extends State<CollapseItem>
       });
     }
     PageStorage.of(context)?.writeState(context, widget.isExpanded);
-    super.didUpdateWidget(oldWidget);
+    super.didUpdateWidget(oldWidget as CollapseItem);
   }
 
-  Widget _buildChildren(BuildContext context, Widget child) {
+  Widget _buildChildren(BuildContext context, Widget? child) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[

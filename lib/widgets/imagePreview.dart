@@ -4,7 +4,7 @@ import 'package:flutter_vant_kit/widgets/swipe.dart';
 
 class ImagePreview extends StatefulWidget {
   // 需要预览的图片数组
-  final List<Widget> images;
+  final List<Widget>? images;
   // 图片预览起始位置索引
   final int startPosition;
   // 是否显示页数
@@ -12,12 +12,12 @@ class ImagePreview extends StatefulWidget {
   // 是否显示轮播指示器
   final bool showIndicators;
   // 动画时长
-  final Duration swipeDuration;
+  final Duration? swipeDuration;
   // 切换图片时的回调函数
-  final Function(int val) onChange;
+  final Function(int val)? onChange;
 
   ImagePreview(
-      {Key key,
+      {Key? key,
       this.images,
       this.startPosition: 0,
       this.showIndex: true,
@@ -30,7 +30,7 @@ class ImagePreview extends StatefulWidget {
 }
 
 class _ImagePreview extends State<ImagePreview> {
-  int _current;
+  int? _current;
 
   @override
   void initState() {
@@ -45,7 +45,7 @@ class _ImagePreview extends State<ImagePreview> {
       child: Container(
         width: 40,
         alignment: AlignmentDirectional.center,
-        child: Text("$_current/${widget.images.length}",
+        child: Text("$_current/${widget.images!.length}",
             style: TextStyle(
                 fontSize: Style.imagePreviewIndexFontSize,
                 color: Style.imagePreviewIndexTextColor,
@@ -63,14 +63,14 @@ class _ImagePreview extends State<ImagePreview> {
           child: Swipe(
             initialSwipe: widget.startPosition,
             autoPlay: false,
-            children: widget.images,
+            children: widget.images!,
             showIndicators: widget.showIndicators,
             duration: widget.swipeDuration ?? Style.imagePreviewDuration,
             onChange: (val) {
               setState(() {
                 _current = val;
               });
-              if (widget.onChange != null) widget.onChange(val);
+              if (widget.onChange != null) widget.onChange!(val);
             },
           ),
         ),

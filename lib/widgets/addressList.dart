@@ -5,11 +5,11 @@ import 'package:flutter_vant_kit/widgets/button.dart';
 
 class AddressList extends StatefulWidget {
   // 当前选中地址的 id
-  final int id;
+  final int? id;
   // 地址列表
-  final List<AddressInfo> list;
+  final List<AddressInfo>? list;
   // 不可配送地址列表
-  final List<AddressInfo> disabledList;
+  final List<AddressInfo>? disabledList;
   // 不可配送提示文案
   final String disabledText;
   // 是否允许切换地址
@@ -19,18 +19,18 @@ class AddressList extends StatefulWidget {
   // 默认地址标签文字
   final String defaultTagText;
   // 点击新增按钮时触发
-  final Function() onAdd;
+  final Function()? onAdd;
   // 点击编辑按钮时触发
-  final Function(AddressInfo info, int i) onEdit;
+  final Function(AddressInfo info, int i)? onEdit;
   // 切换选中的地址时触发
-  final Function(AddressInfo info, int i) onSelect;
+  final Function(AddressInfo info, int i)? onSelect;
   // 在顶部插入内容
-  final Widget top;
+  final Widget? top;
   // 在列表下方插入内容
-  final Widget children;
+  final Widget? children;
 
   AddressList(
-      {Key key,
+      {Key? key,
       this.id,
       this.list,
       this.disabledList,
@@ -50,9 +50,9 @@ class AddressList extends StatefulWidget {
 }
 
 class _AddressList extends State<AddressList> {
-  int _id;
-  List<AddressInfo> _list;
-  List<AddressInfo> _disabledList;
+  int? _id;
+  late List<AddressInfo> _list;
+  List<AddressInfo>? _disabledList;
 
   @override
   void initState() {
@@ -90,10 +90,10 @@ class _AddressList extends State<AddressList> {
                               color: disabled
                                   ? Style.addressListItemDisabledTextColor
                                   : Style.addressListItemTextColor)),
-                      item.isDefault && !disabled
+                      item.isDefault! && !disabled
                           ? SizedBox(width: Style.intervalMd)
                           : Container(),
-                      item.isDefault && !disabled
+                      item.isDefault! && !disabled
                           ? Tag(
                               text: "${widget.defaultTagText}",
                               round: true,
@@ -127,7 +127,7 @@ class _AddressList extends State<AddressList> {
                 size: Style.addressListEditIconSize),
             onPressed: () {
               if (disabled) return;
-              if (widget.onEdit != null) widget.onEdit(item, i);
+              if (widget.onEdit != null) widget.onEdit!(item, i);
             },
           )
         ],
@@ -163,7 +163,7 @@ class _AddressList extends State<AddressList> {
                 setState(() {
                   _id = i;
                 });
-                if (widget.onSelect != null) widget.onSelect(item, i);
+                if (widget.onSelect != null) widget.onSelect!(item, i);
               },
               child: buildContent(item, i, disabled),
             ),
@@ -188,7 +188,7 @@ class _AddressList extends State<AddressList> {
           type: "danger",
           round: true,
           onClick: () {
-            if (widget.onAdd != null) widget.onAdd();
+            if (widget.onAdd != null) widget.onAdd!();
           },
         ),
       ),
@@ -218,17 +218,17 @@ class _AddressList extends State<AddressList> {
 }
 
 class AddressInfo {
-  final String name;
-  final String tel;
-  final String province;
-  final String city;
-  final String county;
-  final int provinceId;
-  final int cityId;
-  final int countyId;
-  final String addressDetail;
-  final String postalCode;
-  final bool isDefault;
+  final String? name;
+  final String? tel;
+  final String? province;
+  final String? city;
+  final String? county;
+  final int? provinceId;
+  final int? cityId;
+  final int? countyId;
+  final String? addressDetail;
+  final String? postalCode;
+  final bool? isDefault;
 
   AddressInfo(
       {this.name,

@@ -19,10 +19,10 @@ class Skeleton extends StatelessWidget {
   // 是否显示占位图
   final bool loading;
   // 不显示占位图时显示内容
-  final Widget child;
+  final Widget? child;
 
   const Skeleton(
-      {Key key,
+      {Key? key,
       this.row: 0,
       this.rowWidth: 1,
       this.title: false,
@@ -78,7 +78,7 @@ class Skeleton extends StatelessWidget {
     }
 
     return child != null && !loading
-        ? child
+        ? child!
         : Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,

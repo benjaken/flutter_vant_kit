@@ -4,43 +4,60 @@ import 'package:flutter_vant_kit/theme/style.dart';
 class NButton extends StatelessWidget {
   // 类型
   final String type;
+
   // 尺寸
   final String size;
+
   // 按钮文字
-  final String text;
+  final String? text;
+
   // 按钮宽度
-  final double width;
+  final double? width;
+
   // 按钮高度
-  final double height;
+  final double? height;
+
   // 按钮颜色
   final dynamic color;
+
   // 左侧图标
-  final Widget icon;
+  final Widget? icon;
+
   // 按钮内文字颜色
-  final Color textColor;
+  final Color? textColor;
+
   // 是否为块级元素
   final bool block;
+
   // 是否为朴素按钮
   final bool plain;
+
   // 是否为方形按钮
   final bool square;
+
   // 是否为圆形按钮
   final bool round;
+
   // 是否禁用按钮
   final bool disabled;
+
   // 是否为加载中
   final bool loading;
+
   // 是否使用 0.5px 边框
   final bool hairline;
+
   // 自定义内边距
-  final EdgeInsets padding;
+  final EdgeInsets? padding;
+
   // 自定义按钮圆角
-  final BorderRadius borderRadius;
+  final BorderRadius? borderRadius;
+
   // 点击后回调
-  final Function() onClick;
+  final Function()? onClick;
 
   NButton(
-      {Key key,
+      {Key? key,
       this.type: "default",
       this.size: "normal",
       this.text,
@@ -119,13 +136,13 @@ class NButton extends StatelessWidget {
   };
 
   Widget buildContent() {
-    Color buttonColor;
+    Color? buttonColor;
     buttonColor = color is Gradient
         ? null
         : plain
             ? Style.buttonPlainBackgroundColor
             : (color ?? colors[type]["buttonColor"]);
-    Color buttonTextColor = (textColor ??
+    Color? buttonTextColor = (textColor ??
         (plain
             ? (color ?? colors[type]["buttonColor"])
             : ((color != null) && type == 'default'
@@ -150,12 +167,12 @@ class NButton extends StatelessWidget {
                     strokeWidth: Style.borderWidthBase,
                   ),
                 )
-              : (icon != null ? icon : Container()),
+              : (icon != null ? icon : Container()) ?? Container(),
           (loading || icon != null) && text != null
               ? SizedBox(width: Style.intervalSm)
               : Container(),
           text != null
-              ? Text(text,
+              ? Text(text!,
                   style: TextStyle(
                       color: buttonTextColor,
                       fontSize: sizes[size]["fontSize"]))
@@ -167,8 +184,8 @@ class NButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color borderColor;
-    Color buttonColor;
+    Color? borderColor;
+    Color? buttonColor;
 
     borderColor =
         color is Gradient ? null : (color ?? colors[type]["borderColor"]);
@@ -186,7 +203,7 @@ class NButton extends StatelessWidget {
               border: color is Gradient
                   ? null
                   : Border.all(
-                      color: borderColor,
+                      color: borderColor!,
                       width: hairline
                           ? Style.buttonHairBorderWidth
                           : Style.buttonBorderWidth),
@@ -218,7 +235,7 @@ class NButton extends StatelessWidget {
                             ? Style.buttonRoundBorderRadius
                             : Style.buttonBorderRadius)),
                 onTap: () {
-                  if (!disabled && !loading && onClick != null) onClick();
+                  if (!disabled && !loading && onClick != null) onClick!();
                 },
                 child: buildContent()),
           )),

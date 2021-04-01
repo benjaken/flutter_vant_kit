@@ -13,7 +13,7 @@ class AddressEdit extends StatefulWidget {
   // 地区选择列占位提示文字
   final String areaColumnsPlaceholder;
   // 收货人信息初始值
-  final Map<String, dynamic> addressInfo;
+  final Map<String, dynamic>? addressInfo;
   // 是否显示邮政编码
   final bool showPostal;
   // 是否显示删除按钮
@@ -29,16 +29,16 @@ class AddressEdit extends StatefulWidget {
   // 详细地址最大长度
   final int detailMaxlength;
   // 自定义内容
-  final List<Widget> children;
+  final List<Widget>? children;
   // 点击保存按钮时触发
-  final Function(Map map) onSave;
+  final Function(Map map)? onSave;
   // 确认删除地址时触发
-  final Function(Map map) onDelete;
+  final Function(Map map)? onDelete;
   // 取消删除地址时触发
-  final Function(Map map) onCancelDelete;
+  final Function(Map map)? onCancelDelete;
 
   AddressEdit(
-      {Key key,
+      {Key? key,
       this.areaColumnsPlaceholder: "选择省 / 市 / 区",
       this.showPostal: true,
       this.showDelete: false,
@@ -67,7 +67,7 @@ class _AddressEdit extends State<AddressEdit> {
     "postalCode": TextEditingController(),
   };
   bool setDefaultAddress = false;
-  Map<String, dynamic> _addressInfo;
+  Map<String, dynamic>? _addressInfo;
   List<PickerItem> options = [
     PickerItem("广东省", child: [
       PickerItem("广州市", child: [
@@ -116,7 +116,7 @@ class _AddressEdit extends State<AddressEdit> {
     map['cityId'] = _cityId[1];
     map['county'] = areas[2] ?? "";
     map['countyId'] = _cityId[2];
-    map["isDefault"] = _addressInfo['isDefault'];
+    map["isDefault"] = _addressInfo!['isDefault'];
     _addressInfo = map;
     return map;
   }
@@ -203,11 +203,11 @@ class _AddressEdit extends State<AddressEdit> {
       customRight: SizedBox(
         height: Style.addressEditSwitchHeight,
         child: CupertinoSwitch(
-          value: _addressInfo["isDefault"] ?? false,
+          value: _addressInfo!["isDefault"] ?? false,
           activeColor: Style.addressEditSwitchColor,
           onChanged: (bool value) {
             setState(() {
-              _addressInfo["isDefault"] = value;
+              _addressInfo!["isDefault"] = value;
             });
           },
         ),
@@ -222,7 +222,7 @@ class _AddressEdit extends State<AddressEdit> {
       block: true,
       type: "danger",
       onClick: () {
-        if (widget.onSave != null) widget.onSave(getContent());
+        if (widget.onSave != null) widget.onSave!(getContent());
       },
     );
   }
@@ -240,11 +240,11 @@ class _AddressEdit extends State<AddressEdit> {
               message: "确定要删除么",
               showCancelButton: true,
               onConfirm: () {
-                if (widget.onDelete != null) widget.onDelete(getContent());
+                if (widget.onDelete != null) widget.onDelete!(getContent());
               },
               onCancel: () {
                 if (widget.onCancelDelete != null)
-                  widget.onCancelDelete(getContent());
+                  widget.onCancelDelete!(getContent());
               },
             );
           },

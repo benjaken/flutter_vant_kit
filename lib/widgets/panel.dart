@@ -6,17 +6,17 @@ class Panel extends StatelessWidget {
   // 标题
   final String title;
   // 描述
-  final String desc;
+  final String? desc;
   // 状态
-  final String status;
+  final String? status;
   // 自定义内容
-  final Widget body;
+  final Widget? body;
   // 自定义 footer
-  final Widget footer;
+  final Widget? footer;
 
   Panel(
-      {Key key,
-      @required this.title,
+      {Key? key,
+      required this.title,
       this.desc,
       this.status,
       this.body,
@@ -42,7 +42,7 @@ class Panel extends StatelessWidget {
               mainAxisSize: MainAxisSize.max,
               children: <Widget>[
                 Cell(
-                  title: title ?? "",
+                  title: title,
                   label: desc ?? "",
                   customRight: Text(status ?? "",
                       style: TextStyle(

@@ -14,11 +14,11 @@ class Steps extends StatefulWidget {
   // 激活状态图标
   final IconData activeIcon;
   // 未激活状态图标
-  final IconData inactiveIcon;
+  final IconData? inactiveIcon;
 
   Steps(
-      {Key key,
-      @required this.steps,
+      {Key? key,
+      required this.steps,
       this.active: 0,
       this.direction: 'horizontal',
       this.activeColor: Style.stepFinishLineColor,
@@ -39,7 +39,7 @@ class _Steps extends State<Steps> {
   Widget buildHorizontalTop(StepItem step, int i) {
     return Container(
       margin: EdgeInsets.only(bottom: Style.paddingXs),
-      child: Text(step.title ?? "",
+      child: Text(step.title,
           style: TextStyle(
               fontSize: Style.stepHorizontalTitleFontSize,
               color: i == widget.active
@@ -151,7 +151,7 @@ class _Steps extends State<Steps> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text(step.title ?? "",
+                  Text(step.title,
                       style: TextStyle(
                           fontSize: Style.stepFontSize,
                           color: i == widget.active
@@ -225,7 +225,7 @@ class _Steps extends State<Steps> {
 
 class StepItem {
   final String title;
-  final String date;
+  final String? date;
 
   StepItem(this.title, [this.date]);
 }

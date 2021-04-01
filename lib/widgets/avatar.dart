@@ -5,22 +5,22 @@ class Avatar extends StatelessWidget {
   // 头像类型
   final String type;
   // 头像大小
-  final double size;
+  final double? size;
   // 头像形状
   final String shape;
   // 头像背景颜色
-  final Color color;
+  final Color? color;
   // 头像图标颜色
-  final Color iconColor;
+  final Color? iconColor;
   // 自定义图标内容
-  final Widget custom;
+  final Widget? custom;
   // 头像图片内容
-  final ImageProvider image;
+  final ImageProvider? image;
   // 点击头像后回调
-  final Function() onClick;
+  final Function()? onClick;
 
   Avatar(
-      {Key key,
+      {Key? key,
       this.type: 'normal',
       this.size,
       this.shape: 'round',
@@ -45,11 +45,11 @@ class Avatar extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        if (onClick != null) onClick();
+        if (onClick != null) onClick!();
       },
       child: Container(
-        width: size ?? defaultSize[type] * 1.5,
-        height: size ?? defaultSize[type] * 1.5,
+        width: size ?? defaultSize[type]! * 1.5,
+        height: size ?? defaultSize[type]! * 1.5,
         decoration: BoxDecoration(
             color: color ?? Style.avatarBackgroundColor,
             borderRadius: BorderRadius.circular(shape == 'square'

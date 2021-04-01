@@ -9,13 +9,13 @@ class NList extends StatefulWidget {
   bool error;
   final int offset;
   final String loadingText;
-  final String finishedText;
-  final String errorText;
-  final List<Widget> child;
+  final String? finishedText;
+  final String? errorText;
+  final List<Widget>? child;
   final Function() onLoad;
 
   NList(
-      {Key key,
+      {Key? key,
       this.child,
       this.finished: false,
       this.error: false,
@@ -23,7 +23,7 @@ class NList extends StatefulWidget {
       this.loadingText: "加载中...",
       this.finishedText,
       this.errorText,
-      @required this.onLoad})
+      required this.onLoad})
       : assert(onLoad != null, "onLoad must not be null"),
         super(key: key);
 
@@ -34,7 +34,7 @@ class NList extends StatefulWidget {
 class _NList extends State<NList> {
   ScrollController _controller = ScrollController();
   bool _loading = false;
-  Timer timer;
+  Timer? timer;
 
   @override
   void initState() {
@@ -46,7 +46,7 @@ class _NList extends State<NList> {
   void _scrollListener() {
     double offset = _controller.offset;
     double maxScroll = _controller.position.maxScrollExtent;
-    if (offset + widget.offset > maxScroll && (timer == null || !timer.isActive)) {
+    if (offset + widget.offset > maxScroll && (timer == null || !timer!.isActive)) {
       timer = Timer(Duration(milliseconds: 100), () => loadData());
     }
     if (widget.finished) _controller.removeListener(_scrollListener);

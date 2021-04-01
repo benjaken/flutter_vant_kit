@@ -5,11 +5,11 @@ import 'package:flutter_vant_kit/widgets/button.dart';
 
 class Coupon {
   // 当前选中优惠券的索引
-  final int chosenCoupon;
+  final int? chosenCoupon;
   // 可用优惠券列表
-  final List<CoupenItem> coupons;
+  final List<CoupenItem>? coupons;
   // 不可用优惠券列表
-  final List<CoupenItem> disabledCoupons;
+  final List<CoupenItem>? disabledCoupons;
   // 可用优惠券列表标题
   final String enabledTitle;
   // 不可用优惠券列表标题
@@ -21,7 +21,7 @@ class Coupon {
   // 兑换码最大长度
   final int exchangeMaxLength;
   // 滚动至特定优惠券位置
-  final int displayedCouponIndex;
+  final int? displayedCouponIndex;
   // 是否显示列表底部按钮
   final bool showCloseButton;
   // 列表底部按钮文字
@@ -31,14 +31,14 @@ class Coupon {
   // 是否展示兑换栏
   final bool showExchangeBar;
   // 列表为空时的占位图
-  final Image emptyImage;
+  final Image? emptyImage;
   // 优惠券切换回调
-  final Function(int val) onSelect;
+  final Function(int val)? onSelect;
   // 兑换优惠券回调
-  final Function(String val) onExchange;
+  final Function(String val)? onExchange;
 
   Coupon({
-    Key key,
+    Key? key,
     this.chosenCoupon,
     this.coupons,
     this.disabledCoupons,
@@ -78,27 +78,27 @@ class CouponState extends StatefulWidget {
 class _CouponState extends State<CouponState>
     with SingleTickerProviderStateMixin {
   TextEditingController searchInput = TextEditingController();
-  TabController _tabController;
+  TabController? _tabController;
   ScrollController _scrollController = new ScrollController();
-  int _chosenCoupon;
-  List<CoupenItem> _coupons;
-  List<CoupenItem> _disabledCoupons;
-  Coupon couponWidget;
+  int? _chosenCoupon;
+  late List<CoupenItem> _coupons;
+  late List<CoupenItem> _disabledCoupons;
+  Coupon? couponWidget;
 
   @override
   void initState() {
     _tabController = TabController(vsync: this, length: 2);
     couponWidget = widget.coupon;
     print(couponWidget);
-    _coupons = couponWidget.coupons ?? [];
-    _disabledCoupons = couponWidget.disabledCoupons ?? [];
-    _chosenCoupon = couponWidget.chosenCoupon;
-    WidgetsBinding.instance.addPostFrameCallback(_onLayoutDone);
+    _coupons = couponWidget!.coupons ?? [];
+    _disabledCoupons = couponWidget!.disabledCoupons ?? [];
+    _chosenCoupon = couponWidget!.chosenCoupon;
+    WidgetsBinding.instance!.addPostFrameCallback(_onLayoutDone);
     super.initState();
   }
 
   void _onLayoutDone(_) {
-    int scrollIndex = couponWidget.displayedCouponIndex ?? _chosenCoupon;
+    int? scrollIndex = couponWidget!.displayedCouponIndex ?? _chosenCoupon;
     if (scrollIndex != null && scrollIndex > 2) {
       int couponsLength = _coupons.length;
       int prevIndex = (scrollIndex > (couponsLength - 2)
@@ -114,30 +114,30 @@ class _CouponState extends State<CouponState>
 
   @override
   void dispose() {
-    if (_tabController != null) _tabController.dispose();
+    if (_tabController != null) _tabController!.dispose();
     if (_scrollController != null) _scrollController.dispose();
     super.dispose();
   }
 
   Widget buildSearchField() {
     return Field(
-      placeholder: couponWidget.inputPlaceholder,
+      placeholder: couponWidget!.inputPlaceholder,
       controller: searchInput,
-      maxLength: couponWidget.exchangeMaxLength,
+      maxLength: couponWidget!.exchangeMaxLength,
       onChange: (val) {
         setState(() {
           searchInput.text = val;
         });
       },
       right: NButton(
-        text: couponWidget.exchangeButtonText,
+        text: couponWidget!.exchangeButtonText,
         size: "small",
         type: "info",
-        disabled: couponWidget.exchangeButtonDisabled || searchInput.text == '',
+        disabled: couponWidget!.exchangeButtonDisabled || searchInput.text == '',
         width: Style.couponListExchangeButtonWidth,
         onClick: () {
-          if (couponWidget.onExchange != null)
-            couponWidget.onExchange(searchInput.text);
+          if (couponWidget!.onExchange != null)
+            couponWidget!.onExchange!(searchInput.text);
         },
       ),
     );
@@ -166,10 +166,10 @@ class _CouponState extends State<CouponState>
                   width: Style.borderWidthBase, color: Style.borderColor))),
       child: TabBar(
           tabs: <Widget>[
-            Tab(text: "${couponWidget.enabledTitle}（${_coupons.length}）"),
+            Tab(text: "${couponWidget!.enabledTitle}（${_coupons.length}）"),
             Tab(
                 text:
-                    "${couponWidget.disabledTitle}（${_disabledCoupons.length}）"),
+                    "${couponWidget!.disabledTitle}（${_disabledCoupons.length}）"),
           ],
           controller: _tabController,
           indicatorColor: Style.couponListTabIndicatorColor,
@@ -319,8 +319,8 @@ class _CouponState extends State<CouponState>
                     setState(() {
                       if (disabled) return;
                       _chosenCoupon = i;
-                      if (couponWidget.onSelect != null)
-                        couponWidget.onSelect(i);
+                      if (couponWidget!.onSelect != null)
+                        couponWidget!.onSelect!(i);
                       Navigator.of(context).pop();
                     });
                   },
@@ -362,7 +362,7 @@ class _CouponState extends State<CouponState>
     return Expanded(
       child: Padding(
         padding: EdgeInsets.only(
-            bottom: couponWidget.showCloseButton
+            bottom: couponWidget!.showCloseButton
                 ? Style.couponListCloseButtonHeight
                 : 0),
         child: TabBarView(
@@ -389,7 +389,7 @@ class _CouponState extends State<CouponState>
           child: Container(
             height: Style.couponListCloseButtonHeight,
             alignment: AlignmentDirectional.center,
-            child: Text(couponWidget.closeButtonText,
+            child: Text(couponWidget!.closeButtonText,
                 style: TextStyle(
                     fontSize: Style.couponListCloseButtonFontSize,
                     color: Style.couponListCloseButtonColor,
@@ -408,7 +408,7 @@ class _CouponState extends State<CouponState>
           color: Style.couponListBackgroundColor,
           child: Column(
             children: <Widget>[
-              couponWidget.showExchangeBar ? buildSearchField() : Container(),
+              couponWidget!.showExchangeBar ? buildSearchField() : Container(),
               buildTabBar(),
               buildTabView(),
             ],
@@ -419,7 +419,7 @@ class _CouponState extends State<CouponState>
           left: 0,
           right: 0,
           child:
-              couponWidget.showCloseButton ? buildBottomSheet() : Container(),
+              couponWidget!.showCloseButton ? buildBottomSheet() : Container(),
         )
       ],
     );
@@ -428,18 +428,18 @@ class _CouponState extends State<CouponState>
 
 class CoupenItem {
   @required
-  final String name;
+  final String? name;
   @required
-  final double value;
+  final double? value;
   @required
-  final String valueDesc;
+  final String? valueDesc;
   @required
-  final String unitDesc;
-  final String condition;
-  final String startAt;
-  final String endAt;
-  final String description;
-  final String reason;
+  final String? unitDesc;
+  final String? condition;
+  final String? startAt;
+  final String? endAt;
+  final String? description;
+  final String? reason;
 
   CoupenItem(
       {this.name,

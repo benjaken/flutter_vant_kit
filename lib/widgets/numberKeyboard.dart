@@ -3,25 +3,25 @@ import 'package:flutter_vant_kit/theme/style.dart';
 
 class NumberKeyboard {
   // 当前输入值
-  final String value;
+  final String? value;
   // 键盘标题
-  final String title;
+  final String? title;
   // 输入值最大长度
-  final int maxlength;
+  final int? maxlength;
   // 左下角按键内容
-  final String extraKey;
+  final String? extraKey;
   // 关闭按钮文字，空则不展示
-  final String closeButtomText;
+  final String? closeButtomText;
   // 删除按钮文字
   final String deleteButtonText;
   // 是否展示删除按钮
   final bool showDeleteKey;
   // 当前输入值改变时触发
-  final Function(String val) onChange;
+  final Function(String val)? onChange;
   // 当前输入值等于最大值时触发
-  final Function(String val) onSubmitted;
+  final Function(String val)? onSubmitted;
   // 键盘关闭时触发
-  final Function() onClose;
+  final Function()? onClose;
   //TODO:增加点击空白区域关闭键盘
   // final bool hideOnClickOutside;
   //TODO:点击返回键时直接返回，
@@ -42,8 +42,8 @@ class NumberKeyboard {
 
   show(BuildContext context) {
     var _list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 0, 0];
-    int length = value.length;
-    List<String> _codeList = [...value.split("")];
+    int length = value!.length;
+    List<String?> _codeList = [...value!.split("")];
 
     Widget buildTitle() {
       return (title != null || closeButtomText != null)
@@ -62,7 +62,7 @@ class NumberKeyboard {
                 children: <Widget>[
                   title != null
                       ? Text(
-                          title,
+                          title!,
                           style: TextStyle(
                             fontSize: Style.numberKeyboardTitleFontSize,
                             color: Style.numberKeyboardTitleTextColor,
@@ -71,13 +71,13 @@ class NumberKeyboard {
                       : Container(),
                   closeButtomText != null
                       ? GestureDetector(
-                          child: Text(closeButtomText,
+                          child: Text(closeButtomText!,
                               style: TextStyle(
                                   fontSize: Style.numberKeyboardCloseFontSize,
                                   color: Style.numberKeyboardCloseColor)),
                           onTap: () {
                             Navigator.pop(context);
-                            if (onClose != null) onClose();
+                            if (onClose != null) onClose!();
                           },
                         )
                       : Container(),
@@ -139,11 +139,11 @@ class NumberKeyboard {
                   for (int i = 0; i < _codeList.length; i++) {
                     code = code + _codeList[i].toString();
                   }
-                  if (onChange != null) onChange(code);
+                  if (onChange != null) onChange!(code);
                   if (maxlength != null &&
                       _codeList.length == maxlength &&
                       onSubmitted != null) {
-                    onSubmitted(code);
+                    onSubmitted!(code);
                   }
                 },
               ),

@@ -5,13 +5,13 @@ import 'package:flutter_vant_kit/theme/style.dart';
 
 class Picker extends StatefulWidget {
   // 对象数组，配置每一列显示的数据
-  final List<PickerItem> colums;
+  final List<PickerItem>? colums;
   // 是否显示顶部栏
   final bool showToolbar;
   // 顶部栏位置，可选值为bottom
   final String toolbarPosition;
   // 顶部栏标题
-  final String title;
+  final String? title;
   // 是否显示加载状态
   final bool loading;
   // 选项高度
@@ -25,14 +25,14 @@ class Picker extends StatefulWidget {
   // 多列选择的列数
   final int level;
   // 点击取消按钮时触发
-  final Function(List<String> selectedValues, dynamic selectedIndex) onCancel;
+  final Function(List<String?> selectedValues, dynamic selectedIndex)? onCancel;
   // 点击完成按钮时触发
-  final Function(List<String> selectedValues, dynamic selectedIndex) onConfirm;
+  final Function(List<String?> selectedValues, dynamic selectedIndex)? onConfirm;
   // 选项改变时触发
-  final Function(List<String> selectedValues, dynamic selectedIndex) onChange;
+  final Function(List<String?> selectedValues, dynamic selectedIndex)? onChange;
 
   const Picker(
-      {Key key,
+      {Key? key,
       this.colums,
       this.showToolbar: false,
       this.toolbarPosition: "top",
@@ -53,10 +53,10 @@ class Picker extends StatefulWidget {
 }
 
 class _Picker extends State<Picker> {
-  List<FixedExtentScrollController> scrollControllers;
+  late List<FixedExtentScrollController> scrollControllers;
 
   List _columns = [];
-  List<String> _selectValues = [];
+  List<String?> _selectValues = [];
   dynamic _selectIndex = [];
   bool isMultiple = false;
 
@@ -70,30 +70,30 @@ class _Picker extends State<Picker> {
       _selectIndex =
           widget.defaultIndex ?? List.generate(widget.level, (i) => 0);
       List.generate(widget.level, (i) {
-        int index = _selectIndex[i];
+        int? index = _selectIndex[i];
         if (i == 0) {
-          _selectValues.add(widget.colums[index].text);
+          _selectValues.add(widget.colums![index!].text);
           _columns.add(widget.colums);
         } else {
           List<PickerItem> items = getFloatArr(widget.colums, i);
-          _selectValues.add(items[index].text);
+          _selectValues.add(items[index!].text);
           _columns.add(items);
         }
       });
     } else {
       _selectIndex = widget.defaultIndex ?? 0;
-      _selectValues = [widget.colums[_selectIndex].text];
+      _selectValues = [widget.colums![_selectIndex].text];
       _columns.add(widget.colums);
     }
     super.initState();
   }
 
-  List<PickerItem> getFloatArr(List<PickerItem> list, int level,
-      {int baseLevel}) {
+  List<PickerItem> getFloatArr(List<PickerItem>? list, int level,
+      {int? baseLevel}) {
     baseLevel = baseLevel ?? 0;
-    int index = _selectIndex[baseLevel];
+    int? index = _selectIndex[baseLevel];
     if (baseLevel < level && list != null) {
-      return getFloatArr(list[index].child, level, baseLevel: baseLevel + 1);
+      return getFloatArr(list[index!].child, level, baseLevel: baseLevel + 1);
     } else {
       return list != null ? list : [PickerItem("-")];
     }
@@ -134,7 +134,7 @@ class _Picker extends State<Picker> {
       child: InkWell(
         onTap: () {
           if (widget.onConfirm != null)
-            widget.onConfirm(_selectValues, _selectIndex);
+            widget.onConfirm!(_selectValues, _selectIndex);
         },
         child: Container(
           padding: Style.pickerActionPadding,
@@ -154,7 +154,7 @@ class _Picker extends State<Picker> {
       child: InkWell(
         onTap: () {
           if (widget.onCancel != null)
-            widget.onCancel(_selectValues, _selectIndex);
+            widget.onCancel!(_selectValues, _selectIndex);
         },
         child: Container(
           padding: Style.pickerActionPadding,
@@ -211,7 +211,7 @@ class _Picker extends State<Picker> {
             }
           });
           if (widget.onChange != null)
-            widget.onChange(_selectValues, _selectIndex);
+            widget.onChange!(_selectValues, _selectIndex);
         },
         // 滚筒的曲率,就是弯曲的程度
         useMagnifier: false,
@@ -269,7 +269,7 @@ class _Picker extends State<Picker> {
 
 class PickerItem {
   final String text;
-  final List<PickerItem> child;
+  final List<PickerItem>? child;
 
   PickerItem(this.text, {this.child});
 }

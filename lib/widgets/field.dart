@@ -4,72 +4,103 @@ import 'package:flutter_vant_kit/theme/style.dart';
 
 class Field extends StatefulWidget {
   // 控制属性
-  final TextEditingController controller;
+  final TextEditingController? controller;
+
   // 输入类型
-  final TextInputType keyboardType;
+  final TextInputType? keyboardType;
+
   // 焦点控制
-  final FocusNode focusNode;
+  final FocusNode? focusNode;
+
   // 键盘右下角的类型
   final TextInputAction textInputAction;
+
   // 输入框左侧文本
-  final String label;
+  final String? label;
+
   // 输入的最大字符数
-  final int maxLength;
+  final int? maxLength;
+
   // 占位提示文字
-  final String placeholder;
+  final String? placeholder;
+
   // 是否禁用输入框
   final bool disabled;
+
   // 是否只读
   final bool readonly;
+
   // 是否显示表单必填星号
   final bool require;
+
   // 是否启用清除控件
   final bool clearable;
+
   // 自动聚焦
   final bool autofocus;
+
   // 检验输入框正则
-  final List<TextInputFormatter> inputFormatters;
+  final List<TextInputFormatter>? inputFormatters;
+
   // 输入框类型
   final String type;
+
   // 输入框行数，当type=textarea可用
   final int rows;
+
   // 显示字数统计
   final bool showWordLimit;
+
   // 是否将输入内容标红
   final bool error;
+
   // 底部错误提示文案
-  final String errorMessage;
+  final String? errorMessage;
+
   // 左侧文本宽度
   final double labelWidth;
+
   // 左侧文本对齐方式
   final TextAlign labelAlign;
+
   // 输入框内容对齐方式
   final TextAlign inputAlign;
+
   // 左侧图标
-  final IconData leftIcon;
+  final IconData? leftIcon;
+
   // 点击左侧图标时触发
-  final Function() clickLeft;
+  final Function()? clickLeft;
+
   // 右侧图标
-  final IconData rightIcon;
+  final IconData? rightIcon;
+
   // 点击右侧图标时触发
-  final Function() clickRight;
+  final Function()? clickRight;
+
   // 自定义右侧内容
-  final Widget right;
+  final Widget? right;
+
   // 工具栏定制
-  final ToolbarOptions toolbarOptions;
+  final ToolbarOptions? toolbarOptions;
+
   // 输入框内容变化时触发
-  final Function(String val) onChange;
+  final Function(String val)? onChange;
+
   // 输入框内容编辑结束时触发
-  final Function() onEditingComplete;
+  final Function()? onEditingComplete;
+
   // 输入框获得焦点时触发
-  final Function() onClick;
+  final Function()? onClick;
+
   // 内容提交(按回车)的回调
-  final Function(String val) onSubmitted;
+  final Function(String val)? onSubmitted;
+
   // 文本样式
-  final TextStyle style;
+  final TextStyle? style;
 
   Field({
-    Key key,
+    Key? key,
     this.keyboardType,
     this.focusNode,
     this.textInputAction: TextInputAction.done,
@@ -110,20 +141,20 @@ class Field extends StatefulWidget {
 
 class _Field extends State<Field> {
   bool _isShowPwd = false;
-  bool _isShowDelete;
+  late bool _isShowDelete;
 
   @override
   void initState() {
     super.initState();
 
     /// 获取初始化值
-    _isShowDelete = widget.controller.text.isNotEmpty;
+    _isShowDelete = widget.controller!.text.isNotEmpty;
 
     /// 监听输入改变
-    widget.controller.addListener(() {
+    widget.controller!.addListener(() {
       if (mounted) {
         setState(() {
-          _isShowDelete = widget.controller.text.isNotEmpty;
+          _isShowDelete = widget.controller!.text.isNotEmpty;
         });
       }
     });
@@ -145,17 +176,18 @@ class _Field extends State<Field> {
           widget.leftIcon != null
               ? GestureDetector(
                   child: Icon(widget.leftIcon, size: Style.fieldIconSize),
-                  onTap: () => widget.clickLeft(),
+                  onTap: () => widget.clickLeft!(),
                 )
               : Container(),
           widget.leftIcon != null
               ? SizedBox(width: Style.intervalSm)
               : Container(),
           widget.label != null
-              ? Flexible(child: Text("${widget.label}",
-                  textAlign: widget.labelAlign,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(fontSize: Style.fieldFontSize)))
+              ? Flexible(
+                  child: Text("${widget.label}",
+                      textAlign: widget.labelAlign,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(fontSize: Style.fieldFontSize)))
               : Container()
         ],
       ),
@@ -208,13 +240,13 @@ class _Field extends State<Field> {
                 : Style.fieldInputTextColor,
             cursorWidth: Style.fieldInputCursorWidth,
             onChanged: (val) {
-              if (widget.onChange != null) widget.onChange(val);
+              if (widget.onChange != null) widget.onChange!(val);
             },
             onTap: () {
-              if (widget.onClick != null) widget.onClick();
+              if (widget.onClick != null) widget.onClick!();
             },
             onFieldSubmitted: (val) {
-              if (widget.onSubmitted != null) widget.onSubmitted(val);
+              if (widget.onSubmitted != null) widget.onSubmitted!(val);
             }));
   }
 
@@ -248,8 +280,8 @@ class _Field extends State<Field> {
                       size: Style.fieldClearIconSize,
                       color: Style.fieldClearIconColor),
                   onTap: () {
-                    widget.controller.text = '';
-                    if (widget.onChange != null) widget.onChange("");
+                    widget.controller!.text = '';
+                    if (widget.onChange != null) widget.onChange!("");
                   },
                 )
               : Container(),
@@ -261,7 +293,7 @@ class _Field extends State<Field> {
                   child: Icon(widget.rightIcon,
                       size: Style.fieldIconSize,
                       color: Style.fieldRightIconColor),
-                  onTap: () => widget.clickRight(),
+                  onTap: () => widget.clickRight!(),
                 )
               : Container(),
         ],
@@ -283,7 +315,7 @@ class _Field extends State<Field> {
           SizedBox(width: widget.label != null ? Style.intervalLg : 0),
           buildTextField(),
           buildRight(),
-          widget.right != null ? widget.right : Container(),
+          widget.right != null ? widget.right ?? Container() : Container(),
         ],
       ),
     );

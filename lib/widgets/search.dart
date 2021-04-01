@@ -5,7 +5,7 @@ class Search extends StatefulWidget {
   // 搜索框形状
   final String shape;
   // 搜索框背景色
-  final Color background;
+  final Color? background;
   // 输入的最大字符数
   final int maxLength;
   // 占位提示文字
@@ -23,22 +23,22 @@ class Search extends StatefulWidget {
   // 输入框左侧图标
   final IconData leftIcon;
   // 输入框右侧图标
-  final IconData rightIcon;
+  final IconData? rightIcon;
   // 自定义左侧内容
-  final Widget left;
+  final Widget? left;
   // 自定义右侧内容
-  final Widget right;
+  final Widget? right;
   // 点击左侧内容反馈
-  final Function() onClickLeft;
+  final Function()? onClickLeft;
   // 点击右侧内容反馈
-  final Function() onClickRight;
+  final Function()? onClickRight;
   // 点击提交按钮反馈
-  final Function(String val) onSubmitted;
+  final Function(String val)? onSubmitted;
   // 点击取消按钮反馈
-  final Function() onCancel;
+  final Function()? onCancel;
 
   Search(
-      {Key key,
+      {Key? key,
       this.shape: "square",
       this.background,
       this.maxLength: 100,
@@ -77,7 +77,7 @@ class _Search extends State<Search> {
                       size: Style.searchLabelFontSize,
                       color: Style.searchLeftIconColor),
                   onTap: () {
-                    if (widget.onClickLeft != null) widget.onClickLeft();
+                    if (widget.onClickLeft != null) widget.onClickLeft!();
                   },
                 ),
         ),
@@ -103,7 +103,7 @@ class _Search extends State<Search> {
               cursorColor: Style.searchInputColor,
               cursorWidth: 1.0,
               onSubmitted: (val) {
-                if (widget.onSubmitted != null) widget.onSubmitted(val);
+                if (widget.onSubmitted != null) widget.onSubmitted!(val);
               }),
         ),
         widget.rightIcon != null
@@ -116,7 +116,7 @@ class _Search extends State<Search> {
                           size: Style.searchLabelFontSize,
                           color: Style.searchLabelColor),
                       onTap: () {
-                        if (widget.onClickRight != null) widget.onClickRight();
+                        if (widget.onClickRight != null) widget.onClickRight!();
                       },
                     )
                   ],
@@ -152,7 +152,7 @@ class _Search extends State<Search> {
                         ? widget.right
                         : GestureDetector(
                             onTap: () {
-                              if (widget.onCancel != null) widget.onCancel();
+                              if (widget.onCancel != null) widget.onCancel!();
                             },
                             child: Text(widget.actionText,
                                 style: TextStyle(

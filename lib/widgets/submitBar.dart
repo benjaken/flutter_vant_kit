@@ -5,19 +5,19 @@ import 'package:flutter_vant_kit/widgets/price.dart';
 
 class SubmitBar extends StatelessWidget {
   // 价格
-  final double price;
+  final double? price;
   // 价格左侧文案
   final String label;
   // 价格右侧文案
-  final String suffixLabel;
+  final String? suffixLabel;
   // 价格文案对齐方向
   final String textAlign;
   // 按钮文字
-  final String buttonText;
+  final String? buttonText;
   // 提示文案
-  final String tip;
+  final String? tip;
   // 左侧图标
-  final IconData tipIcon;
+  final IconData? tipIcon;
   // 是否禁用按钮
   final bool disabled;
   // 是否加载中
@@ -27,16 +27,16 @@ class SubmitBar extends StatelessWidget {
   // 价格小数点后位数
   final int decimalLength;
   // 按钮点击事件回调
-  final Function() onSubmit;
+  final Function()? onSubmit;
   // 提示文案中的额外操作和说明
-  final Widget customTip;
+  final Widget? customTip;
   // 自定义订单栏上方内容
-  final Widget customTop;
+  final Widget? customTop;
   // 自定义订单栏左侧内容
-  final Widget customLeft;
+  final Widget? customLeft;
 
   const SubmitBar(
-      {Key key,
+      {Key? key,
       this.price,
       this.label: "合计：",
       this.suffixLabel,
@@ -123,7 +123,7 @@ class SubmitBar extends StatelessWidget {
             loading: loading,
             disabled: disabled,
             onClick: () {
-              if (onSubmit != null) onSubmit();
+              if (onSubmit != null) onSubmit!();
             },
           )
         ],

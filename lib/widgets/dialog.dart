@@ -4,9 +4,9 @@ import 'package:flutter_vant_kit/theme/style.dart';
 ///自定义Dialog
 class NDialog extends StatefulWidget {
   // 弹窗标题
-  final String title;
+  final String? title;
   // 弹窗内容
-  final String message;
+  final String? message;
   // 标题对齐方式
   final AlignmentDirectional titleAlign;
   // 内容对齐方式
@@ -30,16 +30,16 @@ class NDialog extends StatefulWidget {
   // 是否在点击遮罩层后关闭弹窗
   final bool closeOnClickOverlay;
   // 点击确认按钮时触发
-  final Function() onConfirm;
+  final Function()? onConfirm;
   // 点击取消按钮时触发
-  final Function() onCancel;
+  final Function()? onCancel;
   // 关闭前的回调函数
-  final Future<bool> Function() beforeClose;
+  final Future<bool> Function()? beforeClose;
   // 自定义内容
-  final Widget child;
+  final Widget? child;
 
   const NDialog(
-      {Key key,
+      {Key? key,
       this.title,
       this.message,
       this.titleAlign: AlignmentDirectional.center,
@@ -72,7 +72,7 @@ class _NDialog extends State<NDialog> {
       setState(() {
         _confirmLoading = true;
       });
-      close = await widget.beforeClose();
+      close = await widget.beforeClose!();
     }
     setState(() {
       _confirmLoading = false;
@@ -80,14 +80,14 @@ class _NDialog extends State<NDialog> {
     if (close) {
       hideDialog();
       if (widget.onConfirm != null) {
-        widget.onConfirm();
+        widget.onConfirm!();
       }
     }
   }
 
   hideDialog() async {
     if (widget.onCancel != null) {
-      widget.onCancel();
+      widget.onCancel!();
     }
     Navigator.of(context).pop();
   }
@@ -200,7 +200,7 @@ class _NDialog extends State<NDialog> {
             ? Container(
                 padding: Style.dialogHeaderPadding,
                 alignment: widget.titleAlign,
-                child: Text(widget.title,
+                child: Text(widget.title!,
                     style: TextStyle(
                         fontSize: Style.dialogFontSize,
                         color: Style.dialogTextColor,
@@ -217,7 +217,7 @@ class _NDialog extends State<NDialog> {
                         : Style.dialogMessagePadding,
                     Style.dialogMessagePadding,
                     Style.dialogMessagePadding),
-                child: Text(widget.message,
+                child: Text(widget.message!,
                     textAlign: widget.messageAlign,
                     style: TextStyle(
                         fontSize: Style.dialogMessageFontSize,

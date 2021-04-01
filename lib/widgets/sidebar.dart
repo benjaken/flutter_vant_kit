@@ -4,13 +4,13 @@ import 'package:flutter_vant_kit/widgets/badge.dart';
 
 class Sidebar extends StatefulWidget {
   // 当前选项
-  final int active;
+  final int? active;
   // 所有选项
   final List<SideBarItem> list;
   // 当前值改变时触发
-  final Function(int val) onChange;
+  final Function(int val)? onChange;
 
-  Sidebar({Key key, this.active: 0, @required this.list, this.onChange})
+  Sidebar({Key? key, this.active: 0, required this.list, this.onChange})
       : super(key: key);
 
   @override
@@ -18,7 +18,7 @@ class Sidebar extends StatefulWidget {
 }
 
 class _Sidebar extends State<Sidebar> {
-  int _active;
+  int? _active;
 
   @override
   void initState() {
@@ -62,9 +62,9 @@ class _Sidebar extends State<Sidebar> {
           if (item.disabled) return;
           setState(() {
             _active = i;
-            if (widget.onChange != null) widget.onChange(i);
+            if (widget.onChange != null) widget.onChange!(i);
           });
-          if (item.onClick != null) item.onClick(i);
+          if (item.onClick != null) item.onClick!(i);
         },
       ));
     }
@@ -82,13 +82,13 @@ class _Sidebar extends State<Sidebar> {
 }
 
 class SideBarItem {
-  String title;
+  String? title;
   bool dot;
-  String info;
+  String? info;
   bool disabled;
-  Function(int val) onClick;
-  List children;
-  Widget content;
+  Function(int val)? onClick;
+  List? children;
+  Widget? content;
 
   SideBarItem(
       {this.title,

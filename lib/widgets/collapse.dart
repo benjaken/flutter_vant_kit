@@ -5,7 +5,7 @@ import 'package:flutter_vant_kit/widgets/divider.dart';
 
 class Collapse extends StatefulWidget {
   // 当前展开面板的 name
-  final List<String> name;
+  final List<String>? name;
   // 子面板
   final List<CollapseItem> list;
   // 是否为手风琴
@@ -13,12 +13,12 @@ class Collapse extends StatefulWidget {
   // 是否显示外边框
   final bool border;
   // 切换面板时触发
-  final Function(List<String>) onChange;
+  final Function(List<String>?)? onChange;
 
   Collapse(
-      {Key key,
+      {Key? key,
       this.name,
-      @required this.list,
+      required this.list,
       this.accordion: false,
       this.border: true,
       this.onChange})
@@ -29,7 +29,7 @@ class Collapse extends StatefulWidget {
 }
 
 class _Collapse extends State<Collapse> {
-  List<String> _name;
+  List<String>? _name;
 
   @override
   void initState() {
@@ -51,16 +51,16 @@ class _Collapse extends State<Collapse> {
         label: item.label,
         customLabel: item.customLabel,
         clickable: item.clickable,
-        isExpanded: _name.contains(name),
+        isExpanded: _name!.contains(name),
         content: item.content,
         child: item.child,
         rightIcon: item.rightIcon,
         onExpansionChanged: (val) {
           setState(() {
             if (widget.accordion) _name = [];
-            val ? _name.add(name) : _name.remove(name);
+            val ? _name!.add(name) : _name!.remove(name);
           });
-          if (widget.onChange != null) widget.onChange(_name);
+          if (widget.onChange != null) widget.onChange!(_name);
         },
       ));
       if (i < widget.list.length - 1) widgets.add(NDivider());
