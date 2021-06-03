@@ -22,7 +22,7 @@ class _DemoActionSheet extends State<DemoActionSheet> {
 
   Widget title(String title) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 20),
+      padding: EdgeInsets.symmetric(vertical: 20, horizontal: 16),
       child: Text(title, style: TextStyle(fontSize: 14, color: Colors.grey)),
     );
   }
@@ -34,55 +34,58 @@ class _DemoActionSheet extends State<DemoActionSheet> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           title("基础用法"),
-          NButton(
-            text: "弹出菜单",
-            type: "primary",
-            onClick: () {
-              ActionSheet(
-                  actions: actionList,
-                  onSelect: (action, index, context) {
-                    Utils.toast(action.name!);
-                  }).show(context);
-            },
+          CellGroup(
+            border: false,
+            children: [
+              Cell(
+                title: "弹出菜单",
+                isLink: true,
+                onClick: () {
+                  ActionSheet(
+                      actions: actionList,
+                      onSelect: (action, index, context) {
+                        Utils.toast(action.name!);
+                      }).show(context);
+                },
+              ),
+              Cell(
+                title: "展示取消按钮",
+                isLink: true,
+                onClick: () {
+                  ActionSheet(
+                    actions: actionList,
+                    cancelText: "取消",
+                    onCancel: () {
+                      Utils.toast("cancel");
+                    },
+                  ).show(context);
+                },
+              ),
+              Cell(
+                title: "展示描述信息",
+                isLink: true,
+                onClick: () {
+                  ActionSheet(
+                    actions: actionList,
+                    title: "标题",
+                    description: "这是一段描述信息",
+                  ).show(context);
+                },
+              ),
+            ],
           ),
           title("选项状态"),
-          NButton(
-            text: "弹出菜单",
-            type: "primary",
+          Cell(
+            title: "选项状态",
+            isLink: true,
             onClick: () {
               ActionSheet(actions: actionList2).show(context);
             },
           ),
-          title("展示取消按钮"),
-          NButton(
-            text: "弹出菜单",
-            type: "primary",
-            onClick: () {
-              ActionSheet(
-                actions: actionList,
-                cancelText: "取消",
-                onCancel: () {
-                  Utils.toast("cancel");
-                },
-              ).show(context);
-            },
-          ),
-          title("展示描述信息"),
-          NButton(
-            text: "弹出菜单",
-            type: "primary",
-            onClick: () {
-              ActionSheet(
-                actions: actionList,
-                title: "标题",
-                description: "这是一段描述信息",
-              ).show(context);
-            },
-          ),
-          title("展示标题栏"),
-          NButton(
-            text: "弹出菜单",
-            type: "primary",
+          title("自定义面板"),
+          Cell(
+            title: "自定义面板",
+            isLink: true,
             onClick: () {
               ActionSheet(
                 child: Container(

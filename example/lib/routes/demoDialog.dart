@@ -74,7 +74,9 @@ class _DemoDialog extends State<DemoDialog> {
           message: "代码是写出来给人看的，附带能在机器上运行",
           showCancelButton: true,
           beforeClose: () {
-            return Future.delayed(Duration(seconds: 1), () {} as FutureOr<bool> Function()?);
+            return Future.delayed(Duration(seconds: 1), () {
+              return true;
+            });
           },
         );
       },
@@ -93,7 +95,8 @@ class _DemoDialog extends State<DemoDialog> {
           ),
           showCancelButton: true,
           beforeClose: () {
-            return Future.delayed(Duration(seconds: 1), () {} as FutureOr<bool> Function()?);
+            return Future.delayed(
+                Duration(seconds: 1), () {} as FutureOr<bool> Function()?);
           },
         );
       },
@@ -102,7 +105,7 @@ class _DemoDialog extends State<DemoDialog> {
 
   Widget title(String title) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 20),
+      padding: EdgeInsets.symmetric(vertical: 20, horizontal: 16),
       child: Text(title, style: TextStyle(fontSize: 14, color: Colors.grey)),
     );
   }
@@ -114,72 +117,55 @@ class _DemoDialog extends State<DemoDialog> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           title("基础用法"),
-          Row(
-            children: <Widget>[
-              NButton(
-                text: "提示弹窗",
-                type: "primary",
+          CellGroup(
+            children: [
+              Cell(
+                title: "提示弹窗",
+                isLink: true,
                 onClick: () {
                   _showDialog1(context);
                 },
               ),
-              SizedBox(width: 10),
-              NButton(
-                text: "提示弹窗(无标题)",
-                type: "primary",
+              Cell(
+                title: "提示弹窗(无标题)",
+                isLink: true,
                 onClick: () {
                   _showDialog2(context);
                 },
               ),
-            ],
-          ),
-          title("确认弹窗"),
-          Row(
-            children: <Widget>[
-              NButton(
-                text: "确认弹窗",
-                type: "primary",
+              Cell(
+                title: "确认弹窗",
+                isLink: true,
                 onClick: () {
                   _showDialog3(context);
-                },
-              ),
-              SizedBox(width: 10),
-              NButton(
-                text: "自定义确认弹窗",
-                type: "primary",
-                onClick: () {
-                  _showDialog4(context);
                 },
               ),
             ],
           ),
           title("异步调用"),
-          Row(
-            children: <Widget>[
-              NButton(
-                text: "异步调用",
-                type: "primary",
-                onClick: () {
-                  _showDialog5(context);
-                },
-              ),
-            ],
+          Cell(
+            title: "异步调用",
+            isLink: true,
+            onClick: () {
+              _showDialog5(context);
+            },
+          ),
+          title("自定义确认弹窗"),
+          Cell(
+            title: "自定义确认弹窗",
+            isLink: true,
+            onClick: () {
+              _showDialog4(context);
+            },
           ),
           title("自定义内容"),
-          Row(
-            children: <Widget>[
-              NButton(
-                text: "自定义内容",
-                type: "primary",
-                onClick: () {
-                  _showDialog6(context);
-                },
-              ),
-            ],
+          Cell(
+            title: "自定义内容",
+            isLink: true,
+            onClick: () {
+              _showDialog6(context);
+            },
           ),
-          SizedBox(
-            height: 20,
-          )
         ],
       ),
     );

@@ -115,7 +115,7 @@ class _CouponState extends State<CouponState>
   @override
   void dispose() {
     if (_tabController != null) _tabController!.dispose();
-    if (_scrollController != null) _scrollController.dispose();
+    _scrollController.dispose();
     super.dispose();
   }
 
@@ -133,7 +133,8 @@ class _CouponState extends State<CouponState>
         text: couponWidget!.exchangeButtonText,
         size: "small",
         type: "info",
-        disabled: couponWidget!.exchangeButtonDisabled || searchInput.text == '',
+        disabled:
+            couponWidget!.exchangeButtonDisabled || searchInput.text == '',
         width: Style.couponListExchangeButtonWidth,
         onClick: () {
           if (couponWidget!.onExchange != null)

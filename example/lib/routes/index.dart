@@ -39,3 +39,5 @@ export 'demoAvatar.dart';
 export 'demoCollapse.dart';
 export 'demoCalendar.dart';
 export 'demoPicker.dart';
+export 'demoContactCard.dart';
+export 'demoShareSheet.dart';

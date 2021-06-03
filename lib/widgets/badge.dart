@@ -6,6 +6,8 @@ class Badge extends StatefulWidget {
   final String? value;
   // 红点
   final bool dot;
+  // 最大值，超过最大值会显示，仅当content为数字时有效
+  final int? max;
   // 自定义颜色
   final Color color;
   // 自定义文本颜色
@@ -13,16 +15,20 @@ class Badge extends StatefulWidget {
   // 自定义文本大小
   final double textSize;
   // 自定义内容
-  final Widget child;
+  final Widget? child;
+  // 自定义徽标内容
+  final Widget? content;
 
   const Badge(
       {Key? key,
       this.value,
       this.dot: false,
+      this.max,
       this.color: Style.badgeBackgroundColor,
       this.textColor: Style.badgeTextColor,
       this.textSize: Style.badgeTextFontSize,
-      required this.child})
+      this.child,
+      this.content})
       : super(key: key);
 
   @override
@@ -36,7 +42,7 @@ class _Badge extends State<Badge> {
 
   @override
   void initState() {
-    if (widget.value != null || widget.dot)
+    if (widget.value != null || widget.content != null || widget.dot)
       WidgetsBinding.instance!.addPostFrameCallback(_onLayoutDone);
     super.initState();
   }
@@ -51,34 +57,45 @@ class _Badge extends State<Badge> {
     });
   }
 
+  formatValue(String val) {
+    var format = int.tryParse(val);
+    if (format is int) {
+      return widget.max != null && format > (widget.max as int)
+          ? (widget.max.toString() + '+')
+          : format.toString();
+    } else {
+      return val;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    List<Widget> widgets = [widget.child];
-    if (widget.value != null || widget.dot) {
+    List<Widget> widgets = widget.child != null ? [widget.child as Widget] : [];
+    if (widget.value != null || widget.content != null || widget.dot) {
       widgets.add(Positioned(
         top: _badgeTop,
         right: _badgeLeft,
         child: Container(
           key: _badgeKey,
-          padding: widget.value != null
+          padding: (widget.value != null || widget.content != null)
               ? Style.badgeValuePadding
               : EdgeInsets.all(Style.badgeDotPadding),
           decoration: BoxDecoration(
-            borderRadius: widget.value != null
-                ? BorderRadius.circular(Style.borderRadiusMax)
-                : BorderRadius.circular(Style.borderRadiusMax),
+            borderRadius: BorderRadius.circular(Style.borderRadiusMax),
             color: widget.color,
           ),
-          child: widget.value != null
-              ? Text(widget.value!,
-                  style: TextStyle(
-                      color: widget.textColor, fontSize: widget.textSize))
-              : Container(),
+          child: widget.content != null
+              ? widget.content
+              : widget.value != null
+                  ? Text(formatValue(widget.value!),
+                      style: TextStyle(
+                          color: widget.textColor, fontSize: widget.textSize))
+                  : Container(),
         ),
       ));
     }
     return Stack(
-      overflow: Overflow.visible,
+      clipBehavior: Clip.none,
       children: widgets,
     );
   }

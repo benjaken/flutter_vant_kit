@@ -27,7 +27,8 @@ class Picker extends StatefulWidget {
   // 点击取消按钮时触发
   final Function(List<String?> selectedValues, dynamic selectedIndex)? onCancel;
   // 点击完成按钮时触发
-  final Function(List<String?> selectedValues, dynamic selectedIndex)? onConfirm;
+  final Function(List<String?> selectedValues, dynamic selectedIndex)?
+      onConfirm;
   // 选项改变时触发
   final Function(List<String?> selectedValues, dynamic selectedIndex)? onChange;
 
@@ -62,8 +63,8 @@ class _Picker extends State<Picker> {
 
   @override
   void initState() {
-    scrollControllers = List.generate(widget.level,
-            (i) => FixedExtentScrollController());
+    scrollControllers =
+        List.generate(widget.level, (i) => FixedExtentScrollController());
 
     isMultiple = widget.level > 1;
     if (isMultiple) {

@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.3.0
+- Add share sheet and contact card;
+- Fix demo;
+
 ## 0.2.7
 
 - Upgrade to flutter2;

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_vant_kit/main.dart';
 import 'package:flutter_vant_kit/theme/style.dart';
 
+// ignore: must_be_immutable
 class NList extends StatefulWidget {
   bool finished;
   bool error;
@@ -24,8 +25,7 @@ class NList extends StatefulWidget {
       this.finishedText,
       this.errorText,
       required this.onLoad})
-      : assert(onLoad != null, "onLoad must not be null"),
-        super(key: key);
+      : super(key: key);
 
   @override
   _NList createState() => _NList();
@@ -46,7 +46,8 @@ class _NList extends State<NList> {
   void _scrollListener() {
     double offset = _controller.offset;
     double maxScroll = _controller.position.maxScrollExtent;
-    if (offset + widget.offset > maxScroll && (timer == null || !timer!.isActive)) {
+    if (offset + widget.offset > maxScroll &&
+        (timer == null || !timer!.isActive)) {
       timer = Timer(Duration(milliseconds: 100), () => loadData());
     }
     if (widget.finished) _controller.removeListener(_scrollListener);

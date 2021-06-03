@@ -72,7 +72,7 @@ class _ImageWall extends State<ImageWall> {
     for (int i = 0; i < images.length; i++) {
       widgets.add(_buildImageItem(i));
     }
-    if (widget.count == null || images.length < widget.count) {
+    if (images.length < widget.count) {
       widgets.add(_buildAddImageButton());
     }
     return widgets;
@@ -80,7 +80,7 @@ class _ImageWall extends State<ImageWall> {
 
   Widget _buildImageItem(int index) {
     return Stack(
-      overflow: Overflow.visible,
+      clipBehavior: Clip.none,
       children: <Widget>[
         ClipRRect(
             child: Image.network(
@@ -147,7 +147,7 @@ class _ImageWall extends State<ImageWall> {
           print(e.toString());
         }
         List<String> urls = await widget.onUpload(resultList);
-        if (urls == null || urls.isEmpty) {
+        if (urls.isEmpty) {
           return;
         }
         setState(() {

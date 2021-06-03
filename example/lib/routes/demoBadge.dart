@@ -14,11 +14,11 @@ class _DemoBadge extends State<DemoBadge> {
     );
   }
 
-  Widget testButton() {
-    return NButton(
-      text: "按钮",
-      type: "primary",
-      onClick: () {},
+  Widget testWidget() {
+    return Container(
+      width: 40,
+      height: 40,
+      decoration: BoxDecoration(color: Color(0xffdcdee0)),
     );
   }
 
@@ -28,42 +28,75 @@ class _DemoBadge extends State<DemoBadge> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          title("数字"),
-          Row(children: <Widget>[
+          title("基础用法"),
+          Wrap(spacing: 16.0, children: <Widget>[
+            Badge(
+              value: "5",
+              child: testWidget(),
+            ),
             Badge(
               value: "10",
-              child: testButton(),
+              child: testWidget(),
             ),
-          ]),
-          title("红点"),
-          Row(children: <Widget>[
-            Badge(child: testButton(), dot: true),
-          ]),
-          title("文本"),
-          Row(children: <Widget>[
             Badge(
-              child: testButton(),
-              value: "NEW",
+              value: "Hot",
+              child: testWidget(),
+            ),
+            Badge(
+              dot: true,
+              child: testWidget(),
             ),
           ]),
-          title("自定义样式"),
-          Row(
+          title("最大值"),
+          Wrap(spacing: 16.0, children: <Widget>[
+            Badge(
+              value: "20",
+              max: 9,
+              child: testWidget(),
+            ),
+            Badge(
+              value: "50",
+              max: 20,
+              child: testWidget(),
+            ),
+            Badge(
+              value: "200",
+              max: 99,
+              child: testWidget(),
+            ),
+          ]),
+          title("自定义颜色"),
+          Wrap(
+            spacing: 16.0,
             children: <Widget>[
               Badge(
-                value: "自定义",
-                color: Colors.purpleAccent,
-                child: testButton(),
-              ),
-              SizedBox(
-                width: 25,
+                value: "5",
+                color: Color(0xff1989fa),
+                child: testWidget(),
               ),
               Badge(
-                value: "自定义",
+                value: "10",
                 color: Colors.greenAccent,
                 textColor: Colors.green,
-                textSize: 16,
-                child: testButton(),
+                child: testWidget(),
               ),
+              Badge(
+                dot: true,
+                color: Color(0xff1989fa),
+                child: testWidget(),
+              ),
+            ],
+          ),
+          title("自定义徽标内容"),
+          Wrap(
+            spacing: 16.0,
+            children: <Widget>[
+              Badge(
+                  content: Icon(Icons.add, size: 12.0, color: Colors.white),
+                  child: testWidget()),
+              Badge(
+                  content: Icon(Icons.close, size: 12.0, color: Colors.white),
+                  child: testWidget())
             ],
           )
         ],

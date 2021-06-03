@@ -283,6 +283,24 @@ class Style {
   static const countDownTextColor = textColor;
   static const countDownFontSize = fontSizeMd;
 
+  // ContactCard
+  static const contactCardBackgroundColor = white;
+  static const contactCardPadding = EdgeInsets.all(paddingMd);
+  static const contactCardFontSize = fontSizeMd;
+  static const contactCardTextColor = textColor;
+  static const contactCardAddPadding = EdgeInsets.all(paddingBase);
+  static const contactCardAddBackgroundColor = blue;
+  static const contactCardAddColor = white;
+  static const contactCardAddSize = 24.0;
+  static const contactCardLeftIconPadding = EdgeInsets.only(right: paddingSm);
+  static const contactCardLeftIconSize = 20.0;
+  static const contactCardLeftIconColor = gray8;
+  static const contactCardIconColor = gray6;
+  static const contactCardIconSize = 16.0;
+  static const contactCardBorderItemWidth = 16.0;
+  static const contactCardBorderItemHeight = 2.0;
+  static const contactCardBorderItemSpace = 4.0;
+
   // Coupon
   static const couponMargin = EdgeInsets.only(bottom: paddingMd);
   static const couponContentPadding =
@@ -400,6 +418,8 @@ class Style {
   static const imagePreviewIndexFontSize = fontSizeMd;
   static const imagePreviewImageHeight = 280.0;
   static const imagePreviewDuration = animationDurationSlow;
+  static const imagePreviewCloseColor = gray5;
+  static const imagePreviewCloseSize = 20.0;
 
   // ImageWall
   static const imageWallPadding = EdgeInsets.symmetric(horizontal: paddingSm);
@@ -535,6 +555,26 @@ class Style {
   static const searchActionTextColor = textColor;
   static const searchActionFontSize = fontSizeMd;
 
+  // ShareSheet
+  static const shareSheetHeaderBorderRadius = 20.0;
+  static const shareSheetBackgroundColor = white;
+  static const shareSheetHeaderPadding = EdgeInsets.fromLTRB(16, 12, 16, 4);
+  static const shareSheetHeaderFontSize = fontSizeLg;
+  static const shareSheetDescriptionColor = gray7;
+  static const shareSheetDescriptionFontSize = fontSizeMd;
+  static const shareSheetPadding = 16.0;
+  static const shareSheetItemSize = 80.0;
+  static const shareSheetItemIconSize = 48.0;
+  static const shareSheetItemIconColor = gray7;
+  static const shareSheetItemFontSize = fontSizeSm;
+  static const shareSheetItemFontColor = gray7;
+  static const shareSheetItemDescriptionFontColor = gray5;
+  static const shareSheetCancelItemHeight = 50.0;
+  static const shareSheetCancelItemFontSize = fontSizeLg;
+  static const shareSheetCancelItemTextColor = textColor;
+  static const shareSheetCancelPaddingTop = paddingXs;
+  static const shareSheetCancelPaddingColor = backgroundColor;
+
   // Skeleton
   static const skeletonRowHeight = 16.0;
   static const skeletonTitleHeight = 20.0;
@@ -617,12 +657,11 @@ class Style {
   static const swipeDuration = animationDurationSlow;
 
   // Tag
-  static const tagPadding =
-      EdgeInsets.symmetric(vertical: 2, horizontal: paddingBase);
+  static const tagPadding = EdgeInsets.symmetric(horizontal: paddingBase);
   static const tagMargin = EdgeInsets.only(right: intervalLg);
-  static const tagFontSize = fontSizeXs;
-  static const tagMediumFontSize = fontSizeSm;
-  static const tagLargeFontSize = fontSizeMd;
+  static const tagFontSize = fontSizeSm;
+  static const tagMediumFontSize = fontSizeMd;
+  static const tagLargeFontSize = fontSizeLg;
   static const tagTextColor = white;
   static const tagBorderRadius = borderRadiusSm;
   static const tagRoundBorderRadius = borderRadiusMax;

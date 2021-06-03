@@ -74,10 +74,9 @@ class _Sidebar extends State<Sidebar> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(
-        children: <Widget>[...buildItem()],
-      )
-    );
+        child: Column(
+      children: <Widget>[...buildItem()],
+    ));
   }
 }
 

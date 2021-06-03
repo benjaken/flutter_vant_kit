@@ -48,7 +48,8 @@ class _DemoList extends State<DemoList> with SingleTickerProviderStateMixin {
           NList(
             finished: _finished1,
             finishedText: "没有更多了",
-            child: List.generate(_dataList1.length, (i) => _buildItem(_dataList1[i])),
+            child: List.generate(
+                _dataList1.length, (i) => _buildItem(_dataList1[i])),
             onLoad: () {
               return Future.delayed(const Duration(milliseconds: 300), () {
                 setState(() {
@@ -64,7 +65,8 @@ class _DemoList extends State<DemoList> with SingleTickerProviderStateMixin {
             finishedText: "没有更多了",
             error: _error,
             errorText: "请求失败，点击重新加载",
-            child: List.generate(_dataList2.length, (i) => _buildItem(_dataList2[i])),
+            child: List.generate(
+                _dataList2.length, (i) => _buildItem(_dataList2[i])),
             onLoad: () {
               if (_dataList2.length != 0) {
                 setState(() {

@@ -25,7 +25,7 @@ class _DemoField extends State<DemoField> {
   }
 
   bool isEmptyName(String text) {
-    return !(text != null && text != "");
+    return text == "";
   }
 
   bool isErrorPhone(String text) {

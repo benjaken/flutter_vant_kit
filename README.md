@@ -13,7 +13,7 @@ Flutter Vant Kit is a [Vant](https://youzan.github.io/vant/#/zh-CN/intro) style 
 
 ```
 dependencies:
-  flutter_vant_kit: ^0.2.7
+  flutter_vant_kit: ^0.3.0
 ```
 
 ### How to run demo

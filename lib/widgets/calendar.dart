@@ -111,7 +111,8 @@ class _CalendarState extends State<CalendarState> {
     } else {
       _currentDate = _defaultDate ?? _minDate;
     }
-    _displayYear = _isRange ? (_startDate ?? _minDate)!.year : _currentDate.year;
+    _displayYear =
+        _isRange ? (_startDate ?? _minDate)!.year : _currentDate.year;
     _displayMonth =
         _isRange ? (_startDate ?? _minDate)!.month : _currentDate.month;
 
@@ -144,7 +145,7 @@ class _CalendarState extends State<CalendarState> {
   void _onLayoutDone(_) {
     DateTime currentDate = _isRange ? (_startDate ?? _minDate!) : _currentDate;
     int scrollIndex = getDifferentMonth(_minDate!, currentDate) - 1;
-    if (scrollIndex != null && scrollIndex > 0) {
+    if (scrollIndex > 0) {
       double scrollLength =
           (scrollIndex * (Style.calendarDayHeight * 5.5)).toDouble();
       double maxScroll = _scrollController.position.maxScrollExtent;
@@ -331,8 +332,8 @@ class _CalendarState extends State<CalendarState> {
     double dayItemWidth = MediaQuery.of(context).size.width / 7;
     dayItemWidth = dayItemWidth.toInt().toDouble();
     bool isEmpty = day < 1;
-    bool isDisabled = currentDate
-            .isBefore(DateTime(_minDate!.year, _minDate!.month, _minDate!.day)) ||
+    bool isDisabled = currentDate.isBefore(
+            DateTime(_minDate!.year, _minDate!.month, _minDate!.day)) ||
         currentDate
             .isAfter(DateTime(_maxDate.year, _maxDate.month, _maxDate.day));
     bool isStart = false;
@@ -348,7 +349,11 @@ class _CalendarState extends State<CalendarState> {
       isCenter =
           currentDate.isAfter(_startDate!) && currentDate.isBefore(_endDate!);
     }
-    String info = isStart ? _startString : isEnd ? _endString : '';
+    String info = isStart
+        ? _startString
+        : isEnd
+            ? _endString
+            : '';
     return DecoratedBox(
       decoration: BoxDecoration(
           borderRadius: isStart

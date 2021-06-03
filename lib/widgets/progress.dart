@@ -61,14 +61,17 @@ class _Progress extends State<Progress> with SingleTickerProviderStateMixin {
     RenderBox pivot = _pivotKey.currentContext!.findRenderObject() as RenderBox;
     double pivotWidth = pivot.size.width;
     double pivotHeight = pivot.size.height;
-    RenderBox progress = _progressKey.currentContext!.findRenderObject() as RenderBox;
+    RenderBox progress =
+        _progressKey.currentContext!.findRenderObject() as RenderBox;
     double progressWidth = progress.size.width;
     double lineLeft =
         (widget.percentage / 100) * progressWidth - (pivotWidth / 2);
     setState(() {
       pivotLeft = widget.type == "circular"
           ? (widget.circularSize - pivotWidth) / 2
-          : widget.percentage < 90 ? lineLeft : null;
+          : widget.percentage < 90
+              ? lineLeft
+              : null;
       pivotRight =
           widget.type != "circular" && widget.percentage >= 90 ? 0 : null;
       pivotTop = widget.type == "circular"
@@ -109,7 +112,7 @@ class _Progress extends State<Progress> with SingleTickerProviderStateMixin {
     return Container(
       key: _progressKey,
       margin: Style.progressMargin,
-      child: Stack(overflow: Overflow.visible, children: <Widget>[
+      child: Stack(clipBehavior: Clip.none, children: <Widget>[
         widget.type == "circular"
             ? SizedBox(
                 height: widget.circularSize,

@@ -5,43 +5,30 @@ import 'package:flutter_vant_kit/theme/style.dart';
 class Swipe extends StatefulWidget {
   //是否自动播放
   final bool autoPlay;
-
   // 自动轮播间隔
   final Duration? interval;
-
   // 动画时长
   final Duration? duration;
-
   // 初始位置索引值
-  final int initialSwipe;
-
+  final int? initialSwipe;
   // 是否显示指示器
   final bool showIndicators;
-
   //指示器大小
   final double indicatorSize;
-
   // 指示器颜色
   final Color indicatorColor;
-
   // 滚动方向
   final String scrollDirection;
-
   // 动画效果，默认fastOutSlowIn
   final Curve curve;
-
   // 每一页轮播后触发
   final Function(int val)? onChange;
-
   // 每个页面在滚动方向占据的视窗比例，默认为 1
   final double viewportFraction;
-
   // 显示内容
   final List<Widget> children;
-
   // 自定义指示器
   final Widget? indicator;
-
   final int _length;
 
   Swipe(
@@ -60,9 +47,7 @@ class Swipe extends StatefulWidget {
       this.indicator})
       : _length = children.length,
         assert(children.length > 0, 'children 数量必须大于零'),
-        assert(viewportFraction > 0.0),
-        assert((initialSwipe >= 0) && (initialSwipe < children.length),
-            'initialSwipe 越界');
+        assert(viewportFraction > 0.0);
 
   @override
   _Swipe createState() => _Swipe();
@@ -78,7 +63,7 @@ class _Swipe extends State<Swipe> with SingleTickerProviderStateMixin {
   void initState() {
     super.initState();
     //如果初始值是0，往左就滑不动了，所以给它赋一个大于零的值
-    _currentPage = 100 * widget._length + widget.initialSwipe;
+    _currentPage = 100 * widget._length + (widget.initialSwipe ?? 0);
 
     _realCurrentPage = widget.initialSwipe;
     _pageController = PageController(

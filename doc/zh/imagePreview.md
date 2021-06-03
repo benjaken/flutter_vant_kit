@@ -11,14 +11,9 @@ List<Widget> images = [
   ...
 ];
 
-showDialog(
+showImagePreview(
   context: context,
-  barrierDismissible: true,
-  builder: (BuildContext context) {
-    return ImagePreview(
-      images: images,
-    );
-  }
+  images: images,
 );
 ```
 
@@ -32,5 +27,9 @@ showDialog(
 | startPosition | 图片预览起始位置索引 | `int` | `0` |
 | showIndex | 是否显示页数 | `bool` | `true` |
 | showIndicators | 是否显示轮播指示器 | `bool` | `false` |
-| swipeDuration | 动画时长| `Duration` | `Duration(seconds: 1)` |
+| swipeDuration | 动画时长 | `Duration` | `Duration(seconds: 1)` |
+| closeable | 是否显示关闭图标	| `bool` | `false` |
+| close-icon | 关闭图标| `IconData` | - |
+| closeIconPosition | 关闭图标位置，可选值为`top-left` `bottom-left` `bottom-right` | `String` | `top-right`|
 | onChange | 切换图片时的回调函数 | `Function(int val)` | - |
+| onClose | 关闭时触发 | `Function (int index)` | - |

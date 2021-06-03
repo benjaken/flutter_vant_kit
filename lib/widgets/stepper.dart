@@ -165,7 +165,7 @@ class _Stepper extends State<Steppers> {
           keyboardType: TextInputType.numberWithOptions(
               decimal: widget.decimalLength > 0),
           inputFormatters: [
-            WhitelistingTextInputFormatter(
+            FilteringTextInputFormatter.allow(
                 RegExp("[0-9${widget.decimalLength > 0 ? '.' : ''}]"))
           ],
           decoration: InputDecoration(

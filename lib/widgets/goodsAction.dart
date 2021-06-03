@@ -28,7 +28,8 @@ class _GoodsAction extends State<GoodsAction> {
   }
 
   _onLayoutDone(_) {
-    RenderBox buttons = _buttonsKey.currentContext!.findRenderObject() as RenderBox;
+    RenderBox buttons =
+        _buttonsKey.currentContext!.findRenderObject() as RenderBox;
     double buttonsWidth = buttons.size.width;
     setState(() {
       buttonWidth = (buttonsWidth - (Style.paddingSm * 2)) / _buttons.length;
@@ -54,7 +55,9 @@ class _GoodsAction extends State<GoodsAction> {
                         ? BorderRadius.horizontal(
                             right: Radius.circular(Style.borderRadiusMax))
                         : null,
-            text: button.loading ? "" : button.customText as String? ?? button.text,
+            text: button.loading
+                ? ""
+                : button.customText as String? ?? button.text,
             disabled: button.disabled,
             loading: button.loading,
             color: button.color ?? null,

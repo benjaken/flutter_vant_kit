@@ -42,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
         centerTitle: true,
       ),
       body: Container(
-        color: Colors.white,
+        color: Color(0xfff7f8fa),
         child: SafeArea(
           child: Collapse(
             name: ["0"],
@@ -101,10 +101,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   border: false,
                   children: <Widget>[
                     PageCell("ActionSheet 上拉菜单", (ctx) => DemoActionSheet(),
-                        padding: true),
-                    PageCell("Dialog 弹窗", (ctx) => DemoDialog(), padding: true),
+                        padding: false),
+                    PageCell("Dialog 弹窗", (ctx) => DemoDialog(),
+                        padding: false),
                     PageCell("Loading 加载", (ctx) => DemoLoading(),
                         padding: true),
+                    PageCell("ShareSheet 分享面板", (ctx) => DemoShareSheet(),
+                        padding: false),
                   ],
                 ),
               ),
@@ -124,7 +127,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     PageCell("Divider 分割线", (ctx) => DemoDivider(),
                         padding: true),
                     PageCell("ImagePreview 图片预览", (ctx) => DemoImagePreview(),
-                        padding: true),
+                        padding: false),
                     PageCell("List 列表", (ctx) => DemoList(),
                         padding: false, withScaffold: false),
                     PageCell("NoticeBar 通知栏", (ctx) => DemoNoticeBar(),
@@ -169,6 +172,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     PageCell("AddressList 地址列表", (ctx) => DemoAddressList(),
                         padding: false),
                     PageCell("Card 商品卡片", (ctx) => DemoCard(), padding: false),
+                    PageCell("ContactCard 联系人卡片", (ctx) => DemoContactCard(),
+                        padding: false),
                     PageCell("Coupon 优惠券选择器", (ctx) => DemoCoupon(),
                         padding: false),
                     PageCell("GoodsAction 商品导航", (ctx) => DemoGoodsAction(),
@@ -233,12 +238,11 @@ class PageScaffold extends StatelessWidget {
           title: Text(title!),
         ),
         body: SafeArea(
-          child: padding
-              ? Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: body,
-                )
-              : body!,
-        ));
+            child: Container(
+                padding: EdgeInsets.all(padding ? 16.0 : 0),
+                decoration: BoxDecoration(
+                  color: Color(0xfff7f8fa),
+                ),
+                child: body)));
   }
 }

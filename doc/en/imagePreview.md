@@ -11,14 +11,9 @@ List<Widget> images = [
   ...
 ];
 
-showDialog(
+showImagePreview(
   context: context,
-  barrierDismissible: true,
-  builder: (BuildContext context) {
-    return ImagePreview(
-      images: images,
-    );
-  }
+  images: images,
 );
 ```
 
@@ -33,4 +28,8 @@ More examples please refer [Demo](https://github.com/benjaken/flutter_vant_kit/b
 | showIndex | Whether to show index | `bool` | `true` |
 | showIndicators | Whether to show indicators | `bool` | `false` |
 | swipeDuration | Animation duration | `Duration` | `Duration(seconds: 1)`|
+| closeable | Whether to show close icon | `bool` | `false`|
+| closeIcon | Close icon | `IconData` | -|
+| closeIconPosition | Close icon position，can be set to `top-left` `bottom-left` `bottom-right` | `String` | `top-right`|
 | onChange | Triggered when current image change | `Function (int val)` | - |
+| onClose | Emitted when closing ImagePreview | `Function (int index)` | - |

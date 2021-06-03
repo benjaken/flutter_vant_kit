@@ -19,7 +19,9 @@ class ActionSheet {
   // 是否在点击遮罩层后关闭
   final bool closeOnClickOverlay;
   // 选中选项时触发，禁用或加载状态下不会触发
-  final Function(ActionSheetItem actionSheetItem, int index, BuildContext context)? onSelect;
+  final Function(
+          ActionSheetItem actionSheetItem, int index, BuildContext context)?
+      onSelect;
   // 取消按钮点击时触发
   final Function()? onCancel;
   // 关闭菜单时触发
@@ -187,7 +189,7 @@ class ActionSheetState extends StatelessWidget {
       children: <Widget>[
         Container(
             height: Style.actionSheetCancelPaddingTop,
-            color: Style.backgroundColor),
+            color: Style.actionSheetCancelPaddingColor),
         DecoratedBox(
           decoration: BoxDecoration(
             color: Style.actionSheetItemBackground,

@@ -22,152 +22,71 @@ class _DemoTag extends State<DemoTag> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         title("基础用法"),
-        Row(
-          children: <Widget>[
-            Tag(text: "标签"),
-            Tag(type: "primary", text: "标签"),
-            Tag(type: "success", text: "标签"),
-            Tag(type: "danger", text: "标签"),
-            Tag(type: "warning", text: "标签"),
-          ],
-        ),
-        title("圆角样式"),
-        Row(
-          children: <Widget>[
-            Tag(
-              text: "标签",
-              round: true,
-            ),
-            Tag(
-              type: "primary",
-              text: "标签",
-              round: true,
-            ),
-            Tag(
-              type: "success",
-              text: "标签",
-              round: true,
-            ),
-            Tag(
-              type: "danger",
-              text: "标签",
-              round: true,
-            ),
-            Tag(
-              type: "warning",
-              text: "标签",
-              round: true,
-            ),
-          ],
-        ),
-        title("标记样式"),
-        Row(
-          children: <Widget>[
-            Tag(
-              text: "标签",
-              mark: true,
-            ),
-            Tag(
-              type: "primary",
-              text: "标签",
-              mark: true,
-            ),
-            Tag(
-              type: "success",
-              text: "标签",
-              mark: true,
-            ),
-            Tag(
-              type: "danger",
-              text: "标签",
-              mark: true,
-            ),
-            Tag(
-              type: "warning",
-              text: "标签",
-              mark: true,
-            ),
-          ],
-        ),
-        title("空心样式"),
-        Row(
-          children: <Widget>[
-            Tag(
-              text: "标签",
-              plain: true,
-            ),
-            Tag(
-              type: "primary",
-              text: "标签",
-              plain: true,
-            ),
-            Tag(
-              type: "success",
-              text: "标签",
-              plain: true,
-            ),
-            Tag(
-              type: "danger",
-              text: "标签",
-              plain: true,
-            ),
-            Tag(
-              type: "warning",
-              text: "标签",
-              plain: true,
-            ),
-          ],
-        ),
-        title("自定义颜色"),
-        Row(children: <Widget>[
-          Tag(color: Colors.pinkAccent, text: "标签"),
-          Tag(color: Colors.pinkAccent, plain: true, text: "标签"),
-          Tag(color: Colors.purple, text: "标签"),
-          Tag(color: Colors.purple, plain: true, text: "标签"),
-          Tag(color: Colors.red[100], textColor: Colors.red[600], text: "标签"),
+        CellGroup(border: false, children: <Widget>[
+          Cell(title: 'default类型', customRight: Tag(text: "标签")),
+          Cell(
+              title: 'primary类型',
+              customRight: Tag(type: "primary", text: "标签")),
+          Cell(
+              title: 'success类型',
+              customRight: Tag(type: "success", text: "标签")),
+          Cell(title: 'danger类型', customRight: Tag(type: "danger", text: "标签")),
+          Cell(
+              title: 'warning类型',
+              customRight: Tag(type: "warning", text: "标签")),
+        ]),
+        title("样式风格"),
+        CellGroup(border: false, children: <Widget>[
+          Cell(
+              title: '空心样式',
+              customRight: Tag(type: "primary", text: "标签", plain: true)),
+          Cell(
+              title: '圆角样式',
+              customRight: Tag(type: "primary", text: "标签", round: true)),
+          Cell(
+              title: '标记样式',
+              customRight: Tag(type: "primary", text: "标签", mark: true)),
+          Cell(
+              title: '可关闭标签',
+              customRight: Tag(
+                type: "primary",
+                text: "标签",
+                onClose: () async {
+                  Utils.toast("close");
+                },
+              )),
         ]),
         title("标签大小"),
-        Row(children: <Widget>[
-          Tag(
-            text: "标签",
-            type: "success",
-          ),
-          Tag(
-            text: "标签",
-            size: "medium",
-            type: "success",
-          ),
-          Tag(
-            text: "标签",
-            size: "large",
-            type: "success",
-          ),
+        CellGroup(border: false, children: <Widget>[
+          Cell(title: '小号标签', customRight: Tag(type: "primary", text: "标签")),
+          Cell(
+              title: '中号标签',
+              customRight: Tag(type: "primary", text: "标签", size: "medium")),
+          Cell(
+              title: '大号标签',
+              customRight: Tag(type: "primary", text: "标签", size: "large"))
         ]),
-        title("可关闭标签"),
-        Row(children: <Widget>[
-          Tag(
-            text: "标签",
-            onClose: () async {
-              Utils.toast("close");
-            },
-          ),
-          Tag(
-            type: "primary",
-            text: "标签",
-            onClose: () async {
-              Utils.toast("close");
-            },
-          ),
-          Tag(
-            plain: true,
-            round: true,
-            type: "primary",
-            text: "标签",
-            onClose: () async {
-              Utils.toast("close");
-            },
-          )
-        ])
+        title("自定义颜色"),
+        CellGroup(border: false, children: <Widget>[
+          Cell(
+              title: '背景颜色',
+              customRight:
+                  Tag(type: "primary", text: "标签", color: Colors.purple)),
+          Cell(
+              title: '文字颜色',
+              customRight: Tag(
+                  type: "primary",
+                  text: "标签",
+                  color: Colors.red[100],
+                  textColor: Colors.red[600])),
+          Cell(
+              title: '空心颜色',
+              customRight: Tag(
+                  type: "primary",
+                  text: "标签",
+                  plain: true,
+                  color: Colors.purple))
+        ]),
       ],
     ));
   }

@@ -42,3 +42,6 @@ export 'widgets/tag.dart';
 export 'widgets/treeSelect.dart';
 export 'widgets/calendar.dart';
 export 'widgets/picker.dart';
+export 'widgets/picker.dart';
+export 'widgets/contactCard.dart';
+export 'widgets/shareSheet.dart';

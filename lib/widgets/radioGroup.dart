@@ -34,8 +34,7 @@ class RadioGroup extends StatefulWidget {
       this.inCellGroup: false,
       this.onChange,
       this.iconSize,
-      this.direction: Axis.vertical
-      })
+      this.direction: Axis.vertical})
       : super(key: key);
 
   @override
@@ -88,10 +87,13 @@ class _RadioGroup extends State<RadioGroup> {
         ? CellGroup(
             children: <Widget>[...buildItems()],
           )
-        : widget.direction == Axis.vertical ?  Column(
-            children: <Widget>[...buildItems()],
-          ) : Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: <Widget>[...buildItems()]
-    ) ;
+        : widget.direction == Axis.vertical
+            ? Column(
+                children: <Widget>[...buildItems()],
+              )
+            : Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[...buildItems()]);
   }
 }
 

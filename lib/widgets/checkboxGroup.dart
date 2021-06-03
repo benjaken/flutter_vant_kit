@@ -59,7 +59,8 @@ class _CheckboxGroup extends State<CheckboxGroup> {
         shape: widget.shape ?? item.shape,
         text: widget.inCellGroup ? null : item.text,
         disabled: widget.disabled ?? item.disabled,
-        readonly: !_values!.contains(item.name) && _values!.length == widget.max,
+        readonly:
+            !_values!.contains(item.name) && _values!.length == widget.max,
         iconSize: widget.iconSize ?? item.iconSize,
         checkedColor: widget.checkedColor ?? item.checkedColor,
         onChange: (val) {

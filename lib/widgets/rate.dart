@@ -74,7 +74,9 @@ class _Rate extends State<Rate> {
             child: Icon(
               _starNum >= i ? widget.icon : widget.voidIcon,
               color: _starNum >= i
-                  ? widget.disabled ? Style.rateDisabledColor : widget.color
+                  ? widget.disabled
+                      ? Style.rateDisabledColor
+                      : widget.color
                   : widget.voidColor,
               size: widget.size,
             ),

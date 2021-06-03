@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_vant_kit/theme/style.dart';
 
+// ignore: must_be_immutable
 class NCheckbox extends StatefulWidget {
   final String? name;
   bool value;
@@ -36,7 +37,9 @@ class _NCheckbox extends State<NCheckbox> {
   Widget build(BuildContext context) {
     Color backgroundColor = widget.disabled
         ? Style.checkboxDisabledBackgroundColor
-        : widget.value ? widget.checkedColor : Style.checkboxBackgroundColor;
+        : widget.value
+            ? widget.checkedColor
+            : Style.checkboxBackgroundColor;
     Color borderColor = widget.disabled || !widget.value
         ? Style.checkboxBorderColor
         : widget.checkedColor;

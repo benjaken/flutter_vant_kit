@@ -118,11 +118,10 @@ class _TreeSelect extends State<TreeSelect> {
             child: widget.list[_mainActiveIndex!].content != null
                 ? widget.list[_mainActiveIndex!].content
                 : SingleChildScrollView(
-                  child: Column(
+                    child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[...buildItem()],
-                  )
-                ),
+                  )),
           ),
         )
       ],

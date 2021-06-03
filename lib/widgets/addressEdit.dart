@@ -136,7 +136,7 @@ class _AddressEdit extends State<AddressEdit> {
       controller: input['tel'],
       keyboardType: TextInputType.phone,
       inputFormatters: [
-        WhitelistingTextInputFormatter(RegExp("[0-9]")),
+        FilteringTextInputFormatter.allow(RegExp("[0-9]")),
         LengthLimitingTextInputFormatter(11)
       ],
     );
@@ -191,7 +191,7 @@ class _AddressEdit extends State<AddressEdit> {
       controller: input['postalCode'],
       keyboardType: TextInputType.number,
       inputFormatters: [
-        WhitelistingTextInputFormatter(RegExp("[0-9]")),
+        FilteringTextInputFormatter.allow(RegExp("[0-9]")),
         LengthLimitingTextInputFormatter(6)
       ],
     );

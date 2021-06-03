@@ -4,6 +4,7 @@ import 'package:flutter_vant_kit/widgets/cell.dart';
 
 const Duration _kExpand = Style.animationDurationFast;
 
+// ignore: must_be_immutable
 class CollapseItem extends StatefulWidget {
   // 是否为展开状态
   bool isExpanded;
