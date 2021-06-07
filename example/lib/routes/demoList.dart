@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:example/generated/i18n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vant_kit/main.dart';
 
@@ -33,11 +34,11 @@ class _DemoList extends State<DemoList> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("List 列表"),
+        title: Text(I18n.of(context)!.display_list_title),
         bottom: TabBar(
           tabs: <Widget>[
-            Tab(text: "基础用法"),
-            Tab(text: "错误提示"),
+            Tab(text: I18n.of(context)!.basic_usage),
+            Tab(text: I18n.of(context)!.error_tip),
           ],
           controller: _tabController,
         ),
@@ -47,7 +48,7 @@ class _DemoList extends State<DemoList> with SingleTickerProviderStateMixin {
         children: <Widget>[
           NList(
             finished: _finished1,
-            finishedText: "没有更多了",
+            finishedText: I18n.of(context)!.no_more,
             child: List.generate(
                 _dataList1.length, (i) => _buildItem(_dataList1[i])),
             onLoad: () {
@@ -62,9 +63,9 @@ class _DemoList extends State<DemoList> with SingleTickerProviderStateMixin {
           ),
           NList(
             finished: _finished2,
-            finishedText: "没有更多了",
+            finishedText: I18n.of(context)!.no_more,
             error: _error,
-            errorText: "请求失败，点击重新加载",
+            errorText: I18n.of(context)!.request_error,
             child: List.generate(
                 _dataList2.length, (i) => _buildItem(_dataList2[i])),
             onLoad: () {

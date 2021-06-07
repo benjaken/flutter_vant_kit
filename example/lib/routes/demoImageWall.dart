@@ -1,3 +1,4 @@
+import 'package:example/generated/i18n.dart';
 import 'package:flutter/material.dart';
 import '../utils/index.dart';
 import 'package:flutter_vant_kit/main.dart';
@@ -27,7 +28,7 @@ class _DemoImageWall extends State<DemoImageWall> {
         child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        title("基础用法"),
+        title(I18n.of(context)!.basic_usage),
         ImageWall(
           images: images,
           count: 6,
@@ -36,7 +37,7 @@ class _DemoImageWall extends State<DemoImageWall> {
           },
           onChange: (image) {},
         ),
-        title("多选图片"),
+        title(I18n.of(context)!.multiple_image),
         ImageWall(
           images: images,
           count: 6,
@@ -46,14 +47,7 @@ class _DemoImageWall extends State<DemoImageWall> {
           },
           onChange: (image) {},
         ),
-        // title("自定义每行数量"),
-        // ImageWall(
-        //   images: images,
-        //   length: 3,
-        //   onUpload: (files) async {},
-        //   onChange: (image) {},
-        // ),
-        title("图片的缩放模式"),
+        title(I18n.of(context)!.image_zoom_mode),
         ImageWall(
           images: images,
           imageFit: BoxFit.contain,

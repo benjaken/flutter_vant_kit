@@ -7,9 +7,9 @@ class Coupon {
   // 当前选中优惠券的索引
   final int? chosenCoupon;
   // 可用优惠券列表
-  final List<CoupenItem>? coupons;
+  final List<CouponItem>? coupons;
   // 不可用优惠券列表
-  final List<CoupenItem>? disabledCoupons;
+  final List<CouponItem>? disabledCoupons;
   // 可用优惠券列表标题
   final String enabledTitle;
   // 不可用优惠券列表标题
@@ -81,8 +81,8 @@ class _CouponState extends State<CouponState>
   TabController? _tabController;
   ScrollController _scrollController = new ScrollController();
   int? _chosenCoupon;
-  late List<CoupenItem> _coupons;
-  late List<CoupenItem> _disabledCoupons;
+  late List<CouponItem> _coupons;
+  late List<CouponItem> _disabledCoupons;
   Coupon? couponWidget;
 
   @override
@@ -179,7 +179,7 @@ class _CouponState extends State<CouponState>
     );
   }
 
-  Widget buildCouponContainerLeft(CoupenItem coupon, int i, bool disabled) {
+  Widget buildCouponContainerLeft(CouponItem coupon, int i, bool disabled) {
     return Container(
       width: Style.couponHeadWidth,
       child: Column(
@@ -220,7 +220,7 @@ class _CouponState extends State<CouponState>
     );
   }
 
-  Widget buildCouponContainerRight(CoupenItem coupon, int i, bool disabled) {
+  Widget buildCouponContainerRight(CouponItem coupon, int i, bool disabled) {
     return Expanded(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -257,7 +257,7 @@ class _CouponState extends State<CouponState>
     );
   }
 
-  Widget buildCouponContainer(CoupenItem coupon, int i, bool disabled) {
+  Widget buildCouponContainer(CouponItem coupon, int i, bool disabled) {
     return Container(
       padding: Style.couponContentPadding,
       child: Row(
@@ -270,7 +270,7 @@ class _CouponState extends State<CouponState>
     );
   }
 
-  Widget buildDescription(CoupenItem coupon, int i, bool disabled) {
+  Widget buildDescription(CouponItem coupon, int i, bool disabled) {
     return Container(
       alignment: AlignmentDirectional.centerStart,
       decoration: BoxDecoration(
@@ -287,7 +287,7 @@ class _CouponState extends State<CouponState>
   }
 
   Widget buildCoupon(int i, bool disabled) {
-    CoupenItem coupon = disabled ? _disabledCoupons[i] : _coupons[i];
+    CouponItem coupon = disabled ? _disabledCoupons[i] : _coupons[i];
     return Container(
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(Style.couponBorderRadius),
@@ -427,7 +427,7 @@ class _CouponState extends State<CouponState>
   }
 }
 
-class CoupenItem {
+class CouponItem {
   @required
   final String? name;
   @required
@@ -442,7 +442,7 @@ class CoupenItem {
   final String? description;
   final String? reason;
 
-  CoupenItem(
+  CouponItem(
       {this.name,
       this.condition,
       this.startAt,

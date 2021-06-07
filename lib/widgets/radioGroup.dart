@@ -73,6 +73,13 @@ class _RadioGroup extends State<RadioGroup> {
           ? Cell(
               title: item.text,
               customRight: checkbox,
+              clickable: true,
+              onClick: () {
+                setState(() {
+                  if (_value == item.name) return;
+                  _value = item.name;
+                });
+              },
             )
           : checkbox);
       if (i < widget.list!.length - 1 && !widget.inCellGroup) {

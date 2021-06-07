@@ -26,6 +26,9 @@ class Cell extends StatelessWidget {
   // 是否展示右侧箭头并开启点击反馈
   final bool isLink;
 
+  // 是否使内容垂直居中
+  final bool center;
+
   // 箭头方向
   final String arrowDirection;
 
@@ -51,6 +54,7 @@ class Cell extends StatelessWidget {
     this.require: false,
     this.clickable: false,
     this.isLink: false,
+    this.center: false,
     this.onClick,
     this.arrowDirection: "right",
     this.customTitle,
@@ -144,18 +148,22 @@ class Cell extends StatelessWidget {
   }
 
   Widget buildContent() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.max,
+    return Row(
+      mainAxisAlignment: (title != null || customTitle != null)
+          ? MainAxisAlignment.spaceBetween
+          : MainAxisAlignment.start,
+      crossAxisAlignment:
+          center ? CrossAxisAlignment.center : CrossAxisAlignment.start,
       children: <Widget>[
-        Row(
-          mainAxisAlignment: (title != null || customTitle != null)
-              ? MainAxisAlignment.spaceBetween
-              : MainAxisAlignment.start,
-          children: <Widget>[buildLeft(), buildRight()],
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            buildLeft(),
+            SizedBox(height: Style.intervalSm),
+            buildBottom()
+          ],
         ),
-        SizedBox(height: Style.intervalSm),
-        buildBottom()
+        buildRight()
       ],
     );
   }

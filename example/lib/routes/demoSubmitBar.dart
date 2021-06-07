@@ -1,3 +1,4 @@
+import 'package:example/generated/i18n.dart';
 import 'package:flutter/material.dart';
 import '../utils/index.dart';
 import 'package:flutter_vant_kit/main.dart';
@@ -21,35 +22,36 @@ class _DemoSubmitBar extends State<DemoSubmitBar> {
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-          title("基础用法"),
-          SubmitBar(buttonText: "提交订单", price: 30.50),
-          title("禁用状态"),
+          title(I18n.of(context)!.basic_usage),
+          SubmitBar(buttonText: I18n.of(context)!.submit_orders, price: 30.50),
+          title(I18n.of(context)!.disabled_status),
           SubmitBar(
-            buttonText: "提交订单",
+            buttonText: I18n.of(context)!.submit_orders,
             price: 30.50,
-            tip: "你的收货地址不支持同城送，我们已为你推荐快递",
+            tip: I18n.of(context)!.address_tip,
             tipIcon: Icons.error_outline,
             disabled: true,
           ),
-          title("加载状态"),
+          title(I18n.of(context)!.loading_status),
           SubmitBar(
-            buttonText: "提交订单",
+            buttonText: I18n.of(context)!.submit_orders,
             price: 30.50,
             loading: true,
           ),
-          title("高级用法"),
+          title(I18n.of(context)!.advanced_usage),
           SubmitBar(
-            buttonText: "提交订单",
+            buttonText: I18n.of(context)!.submit_orders,
             price: 30.50,
-            tip: "你的收货地址不支持同城送，",
+            tip: I18n.of(context)!.address_tip,
             customTip: GestureDetector(
               onTap: () {
                 Utils.toast("Clicked Tip");
               },
-              child: Text("修改地址",
+              child: Text(I18n.of(context)!.change_address,
                   style: TextStyle(fontSize: 12, color: Colors.blueAccent)),
             ),
-            customLeft: NCheckbox(text: "全选", value: true),
+            customLeft:
+                NCheckbox(text: I18n.of(context)!.select_all, value: true),
           ),
         ]));
   }

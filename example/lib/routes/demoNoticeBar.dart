@@ -1,3 +1,4 @@
+import 'package:example/generated/i18n.dart';
 import 'package:flutter/material.dart';
 import '../utils/index.dart';
 import 'package:flutter_vant_kit/main.dart';
@@ -19,26 +20,26 @@ class _DemoNoticeBar extends State<DemoNoticeBar> {
   Widget build(BuildContext context) {
     return ListView(
       children: <Widget>[
-        title("基础用法"),
+        title(I18n.of(context)!.basic_usage),
         NoticeBar(
-          text: "足协杯战线连续第2年上演广州德比战，上赛季半决赛上恒大以两回合5-3的总比分淘汰富力。",
+          text: I18n.of(context)!.example_notice_bar,
           leftIcon: Icons.volume_up,
         ),
-        title("禁止滚动"),
+        title(I18n.of(context)!.no_scrolling),
         NoticeBar(
           scrollable: false,
           leftIcon: Icons.volume_up,
-          text: "足协杯战线连续第2年上演广州德比战，上赛季半决赛上恒大以两回合5-3的总比分淘汰富力。",
+          text: I18n.of(context)!.example_notice_bar,
         ),
-        title("多行展示"),
+        title(I18n.of(context)!.multi_line_display),
         NoticeBar(
           scrollable: false,
           wrapable: true,
-          text: "足协杯战线连续第2年上演广州德比战，上赛季半决赛上恒大以两回合5-3的总比分淘汰富力。",
+          text: I18n.of(context)!.example_notice_bar,
         ),
-        title("通知栏模式"),
+        title(I18n.of(context)!.notice_bar_mode),
         NoticeBar(
-          text: "足协杯战线连续第2年上演广州德比战，上赛季半决赛上恒大以两回合5-3的总比分淘汰富力。",
+          text: I18n.of(context)!.example_notice_bar,
           mode: "closeable",
           onClose: () {
             Utils.toast("NoticeBar closed");
@@ -48,15 +49,15 @@ class _DemoNoticeBar extends State<DemoNoticeBar> {
           height: 4,
         ),
         NoticeBar(
-          text: "足协杯战线连续第2年上演广州德比战，上赛季半决赛上恒大以两回合5-3的总比分淘汰富力。",
+          text: I18n.of(context)!.example_notice_bar,
           mode: "link",
           onClick: () {
             Utils.toast("NoticeBar clicked");
           },
         ),
-        title("自定义样式"),
+        title(I18n.of(context)!.custom_style),
         NoticeBar(
-          text: "足协杯战线连续第2年上演广州德比战，上赛季半决赛上恒大以两回合5-3的总比分淘汰富力。",
+          text: I18n.of(context)!.example_notice_bar,
           leftIcon: Icons.info_outline,
           background: Color(0xffecf9ff),
           color: Color(0xff1989fa),

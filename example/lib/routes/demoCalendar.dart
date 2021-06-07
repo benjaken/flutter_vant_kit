@@ -1,3 +1,4 @@
+import 'package:example/generated/i18n.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../utils/index.dart';
@@ -38,11 +39,11 @@ class _DemoCalendar extends State<DemoCalendar> {
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-          title("基础用法"),
+          title(I18n.of(context)!.basic_usage),
           CellGroup(
             children: <Widget>[
               Cell(
-                title: "选择单个日期",
+                title: I18n.of(context)!.select_single_date,
                 value: _selectedDate1 != null
                     ? formatDateWithYear(_selectedDate1!)
                     : '',
@@ -58,7 +59,7 @@ class _DemoCalendar extends State<DemoCalendar> {
                 ).show(context),
               ),
               Cell(
-                title: "选择日期区间",
+                title: I18n.of(context)!.select_date_range,
                 value: _selectedDate2 != null
                     ? "${formatDateWithMonth(_selectedDate2![0])} - ${formatDateWithMonth(_selectedDate2![1])}"
                     : '',
@@ -75,11 +76,11 @@ class _DemoCalendar extends State<DemoCalendar> {
               ),
             ],
           ),
-          title("快捷选择"),
+          title(I18n.of(context)!.quick_select),
           CellGroup(
             children: <Widget>[
               Cell(
-                title: "选择单个日期",
+                title: I18n.of(context)!.select_single_date,
                 value: _selectedDate3 != null
                     ? formatDateWithYear(_selectedDate3!)
                     : '',
@@ -95,7 +96,7 @@ class _DemoCalendar extends State<DemoCalendar> {
                 ).show(context),
               ),
               Cell(
-                title: "选择日期区间",
+                title: I18n.of(context)!.select_date_range,
                 value: _selectedDate4 != null
                     ? "${formatDateWithMonth(_selectedDate4![0])} - ${formatDateWithMonth(_selectedDate4![1])}"
                     : '',
@@ -113,11 +114,11 @@ class _DemoCalendar extends State<DemoCalendar> {
               ),
             ],
           ),
-          title("自定义日历"),
+          title(I18n.of(context)!.custom_calendar),
           CellGroup(
             children: <Widget>[
               Cell(
-                title: "自定义颜色",
+                title: I18n.of(context)!.custom_color,
                 isLink: true,
                 value: _selectedDate5 != null
                     ? "${DateFormat('MM/dd').format(_selectedDate5![0])} - ${DateFormat('MM/dd').format(_selectedDate5![1])}"
@@ -134,7 +135,7 @@ class _DemoCalendar extends State<DemoCalendar> {
                 ).show(context),
               ),
               Cell(
-                title: "自定义日期范围",
+                title: I18n.of(context)!.custom_date_range,
                 isLink: true,
                 value: _selectedDate6 != null
                     ? formatDateWithYear(_selectedDate6!)
@@ -151,13 +152,13 @@ class _DemoCalendar extends State<DemoCalendar> {
                 ).show(context),
               ),
               Cell(
-                title: "自定义按钮文字",
+                title: I18n.of(context)!.custom_button_text,
                 isLink: true,
                 value: _selectedDate7 != null
                     ? formatDateWithYear(_selectedDate7!)
                     : '',
                 onClick: () => Calendar(
-                  confirmText: "完成",
+                  confirmText: I18n.of(context)!.finish,
                   defaultDate: _selectedDate7,
                   onConfirm: (date) {
                     setState(() {
@@ -168,11 +169,11 @@ class _DemoCalendar extends State<DemoCalendar> {
               ),
             ],
           ),
-          title("平铺展示"),
+          title(I18n.of(context)!.tiled_display),
           Calendar(
             poppable: false,
             showConfirm: false,
-            title: "日历",
+            title: I18n.of(context)!.calendar,
             type: "range",
             defaultDate: [
               DateFormat('yyyy-MM-dd').parse("2012-11-10"),

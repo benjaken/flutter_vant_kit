@@ -476,8 +476,8 @@ class Style {
   static const paginationItemPadding = 10.0;
   static const paginationFontSize = fontSizeMd;
   static const paginationItemBackground = white;
-  static const paginationItemColor = green;
-  static const paginationActiveItemBackground = green;
+  static const paginationItemColor = blue;
+  static const paginationActiveItemBackground = blue;
   static const paginationActiveItemColor = white;
   static const paginationDescColor = gray7;
   static const paginationDisabledOpacity = disabledOpacity;
@@ -608,7 +608,7 @@ class Style {
   static const stepProcessTextColor = textColor;
   static const stepFontSize = fontSizeMd;
   static const stepLineColor = borderColor;
-  static const stepFinishLineColor = green;
+  static const stepFinishLineColor = blue;
   static const stepFinishTextColor = textColor;
   static const stepIconSize = 14.0;
   static const stepCircleSize = 8.0;

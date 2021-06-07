@@ -1,3 +1,4 @@
+import 'package:example/generated/i18n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vant_kit/main.dart';
 
@@ -20,23 +21,23 @@ class _DemoPanel extends State<DemoPanel> {
       child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            title("基础用法"),
+            title(I18n.of(context)!.basic_usage),
             Panel(
-                title: "标题",
-                desc: "描述信息",
-                status: "状态",
+                title: I18n.of(context)!.title,
+                desc: I18n.of(context)!.description,
+                status: I18n.of(context)!.status,
                 body: Column(
                   mainAxisSize: MainAxisSize.max,
-                  children: <Widget>[Text("内容")],
+                  children: <Widget>[Text(I18n.of(context)!.content)],
                 )),
-            title("高级用法"),
+            title(I18n.of(context)!.advanced_usage),
             Panel(
-              title: "标题",
-              desc: "描述信息",
-              status: "状态",
+              title: I18n.of(context)!.title,
+              desc: I18n.of(context)!.description,
+              status: I18n.of(context)!.status,
               body: Column(
                 mainAxisSize: MainAxisSize.max,
-                children: <Widget>[Text("内容")],
+                children: <Widget>[Text(I18n.of(context)!.content)],
               ),
               footer: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -46,7 +47,7 @@ class _DemoPanel extends State<DemoPanel> {
                     type: "danger",
                     size: "small",
                     width: 60,
-                    text: "确定",
+                    text: I18n.of(context)!.confirm,
                     onClick: () => {},
                   ),
                   SizedBox(width: 8),
@@ -54,7 +55,7 @@ class _DemoPanel extends State<DemoPanel> {
                     padding: EdgeInsets.symmetric(vertical: 6, horizontal: 12),
                     size: "small",
                     width: 60,
-                    text: "取消",
+                    text: I18n.of(context)!.cancel,
                     onClick: () => {},
                   ),
                 ],

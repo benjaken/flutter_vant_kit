@@ -1,3 +1,4 @@
+import 'package:example/generated/i18n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vant_kit/main.dart';
 
@@ -20,16 +21,16 @@ class _DemoSidebar extends State<DemoSidebar> {
   @override
   Widget build(BuildContext context) {
     List<SideBarItem> list1 = [
-      SideBarItem(title: "标签名"),
-      SideBarItem(title: "标签名"),
-      SideBarItem(title: "标签名"),
+      SideBarItem(title: I18n.of(context)!.tag),
+      SideBarItem(title: I18n.of(context)!.tag),
+      SideBarItem(title: I18n.of(context)!.tag),
     ];
 
     List<SideBarItem> list2 = [
-      SideBarItem(title: "标签名", dot: true),
-      SideBarItem(title: "标签名", info: "5"),
+      SideBarItem(title: I18n.of(context)!.tag, dot: true),
+      SideBarItem(title: I18n.of(context)!.tag, info: "5"),
       SideBarItem(
-          title: "标签名",
+          title: I18n.of(context)!.tag,
           info: _status,
           onClick: (val) {
             setState(() {
@@ -40,9 +41,9 @@ class _DemoSidebar extends State<DemoSidebar> {
     ];
 
     List<SideBarItem> list3 = [
-      SideBarItem(title: "标签名"),
-      SideBarItem(title: "标签名", disabled: true),
-      SideBarItem(title: "标签名"),
+      SideBarItem(title: I18n.of(context)!.tag),
+      SideBarItem(title: I18n.of(context)!.tag, disabled: true),
+      SideBarItem(title: I18n.of(context)!.tag),
     ];
     return SingleChildScrollView(
       child: Wrap(
@@ -52,7 +53,7 @@ class _DemoSidebar extends State<DemoSidebar> {
           Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                title("基础用法"),
+                title(I18n.of(context)!.basic_usage),
                 Sidebar(
                   list: list1,
                 )
@@ -60,7 +61,7 @@ class _DemoSidebar extends State<DemoSidebar> {
           Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                title("提示信息"),
+                title(I18n.of(context)!.tip),
                 Sidebar(
                   active: _active,
                   list: list2,
@@ -69,7 +70,7 @@ class _DemoSidebar extends State<DemoSidebar> {
           Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                title("禁用选项"),
+                title(I18n.of(context)!.disabled_options),
                 Sidebar(
                   list: list3,
                 )

@@ -1,3 +1,4 @@
+import 'package:example/generated/i18n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vant_kit/main.dart';
 
@@ -22,17 +23,17 @@ class _DemoCircle extends State<DemoCircle> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          title("基础用法"),
+          title(I18n.of(context)!.basic_usage),
           Progress(
               percentage: 30,
               type: "circular",
               showPivot: true,
               circularSize: 120),
-          title("样式定制"),
+          title(I18n.of(context)!.custom_style),
           Row(
             children: <Widget>[
               NButton(
-                text: "增加",
+                text: I18n.of(context)!.increase,
                 type: "primary",
                 onClick: () {
                   setState(() {
@@ -42,7 +43,7 @@ class _DemoCircle extends State<DemoCircle> {
               ),
               SizedBox(width: 6),
               NButton(
-                text: "减少",
+                text: I18n.of(context)!.reduce,
                 type: "danger",
                 onClick: () {
                   setState(() {
@@ -57,20 +58,20 @@ class _DemoCircle extends State<DemoCircle> {
               type: "circular",
               showPivot: true,
               strokeWidth: 10,
-              pivotText: "宽度定制"),
+              pivotText: I18n.of(context)!.custom_width),
           Progress(
               percentage: percentage,
               type: "circular",
               showPivot: true,
               color: Colors.redAccent,
-              pivotText: "颜色定制"),
+              pivotText: I18n.of(context)!.custom_color),
           Progress(
               percentage: percentage,
               type: "circular",
               showPivot: true,
               circularSize: 150,
               color: Colors.purple,
-              pivotText: "大小定制"),
+              pivotText: I18n.of(context)!.custom_size),
           SizedBox(
             height: 20,
           )

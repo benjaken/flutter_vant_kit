@@ -79,6 +79,19 @@ class _CheckboxGroup extends State<CheckboxGroup> {
       widgets.add(widget.inCellGroup
           ? Cell(
               title: item.text,
+              clickable: true,
+              onClick: () {
+                if (_values!.indexOf(item.name) < 0 &&
+                    _values!.length < widget.max) {
+                  setState(() {
+                    _values!.add(item.name);
+                  });
+                } else {
+                  setState(() {
+                    _values!.remove(item.name);
+                  });
+                }
+              },
               customRight: checkbox,
             )
           : checkbox);

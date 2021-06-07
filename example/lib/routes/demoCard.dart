@@ -1,3 +1,4 @@
+import 'package:example/generated/i18n.dart';
 import 'package:flutter/material.dart';
 import '../utils/index.dart';
 import 'package:flutter_vant_kit/main.dart';
@@ -21,31 +22,31 @@ class _DemoCard extends State<DemoCard> {
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-          title("基础用法"),
+          title(I18n.of(context)!.basic_usage),
           NCard(
-              title: "商品名称",
-              desc: "描述信息",
+              title: I18n.of(context)!.product_name,
+              desc: I18n.of(context)!.description,
               num: 2,
               price: 2.00,
               image: Image.network("https://img.yzcdn.cn/vant/t-thirt.jpg")),
-          title("营销信息"),
+          title(I18n.of(context)!.marketing_information),
           NCard(
-            title: "商品名称",
-            desc: "描述信息",
+            title: I18n.of(context)!.product_name,
+            desc: I18n.of(context)!.description,
             num: 2,
             price: 2.00,
-            tag: "标签",
+            tag: I18n.of(context)!.tag,
             originPrice: 10.00,
             image: Image.network("https://img.yzcdn.cn/vant/t-thirt.jpg"),
             onClick: () {
-              Utils.toast("Clicked");
+              Utils.toast(I18n.of(context)!.clicked);
             },
           ),
-          title("自定义内容"),
+          title(I18n.of(context)!.custom_content),
           NCard(
-            customTitle: Text("商品名称",
+            customTitle: Text(I18n.of(context)!.product_name,
                 style: TextStyle(fontSize: 16, color: Colors.blueAccent)),
-            desc: "描述信息",
+            desc: I18n.of(context)!.description,
             num: 2,
             customPrice: Price(
               value: 2.0,
@@ -54,8 +55,8 @@ class _DemoCard extends State<DemoCard> {
             image: Image.network("https://img.yzcdn.cn/vant/t-thirt.jpg"),
             customTags: Row(
               children: <Widget>[
-                Tag(text: "标签", plain: true),
-                Tag(text: "标签", plain: true)
+                Tag(text: I18n.of(context)!.tag, plain: true),
+                Tag(text: I18n.of(context)!.tag, plain: true)
               ],
             ),
             customFooter: Padding(
@@ -64,14 +65,14 @@ class _DemoCard extends State<DemoCard> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
                   NButton(
-                    text: "按钮",
+                    text: I18n.of(context)!.button,
                     round: true,
                     size: "mini",
                     padding: EdgeInsets.symmetric(vertical: 3, horizontal: 12),
                   ),
                   SizedBox(width: 6),
                   NButton(
-                    text: "按钮",
+                    text: I18n.of(context)!.button,
                     round: true,
                     size: "mini",
                     padding: EdgeInsets.symmetric(vertical: 3, horizontal: 12),

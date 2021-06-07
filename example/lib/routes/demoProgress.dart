@@ -1,3 +1,4 @@
+import 'package:example/generated/i18n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vant_kit/main.dart';
 
@@ -20,32 +21,32 @@ class _DemoProgress extends State<DemoProgress> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          title("基础用法"),
+          title(I18n.of(context)!.basic_usage),
           Progress(percentage: 50, showPivot: true),
-          title("线条粗细"),
+          title(I18n.of(context)!.line_thickness),
           Progress(percentage: 50, strokeWidth: 8, showPivot: true),
-          title("置灰"),
+          title(I18n.of(context)!.ash),
           Progress(percentage: 50, inactive: true, showPivot: true),
-          title("样式定制"),
+          title(I18n.of(context)!.custom_style),
           Column(
             children: <Widget>[
               Progress(
                   percentage: 30,
                   color: Colors.orangeAccent,
                   pivotColor: Colors.orangeAccent,
-                  pivotText: "橙色",
+                  pivotText: I18n.of(context)!.orange,
                   showPivot: true),
               Progress(
                   percentage: 50,
                   color: Colors.redAccent,
                   pivotColor: Colors.redAccent,
-                  pivotText: "红色",
+                  pivotText: I18n.of(context)!.red,
                   showPivot: true),
               Progress(
                   percentage: 70,
                   color: Colors.purple,
                   pivotColor: Colors.purple,
-                  pivotText: "紫色",
+                  pivotText: I18n.of(context)!.purple,
                   showPivot: true)
             ],
           ),

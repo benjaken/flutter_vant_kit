@@ -1,3 +1,4 @@
+import 'package:example/generated/i18n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vant_kit/main.dart';
 
@@ -7,11 +8,6 @@ class DemoRadio extends StatefulWidget {
 }
 
 class _DemoRadio extends State<DemoRadio> {
-  List<RadioItem> list = [
-    RadioItem(name: "a", text: "单选框1"),
-    RadioItem(name: "b", text: "单选框2"),
-  ];
-
   Widget title(String title) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 20),
@@ -21,26 +17,30 @@ class _DemoRadio extends State<DemoRadio> {
 
   @override
   Widget build(BuildContext context) {
+    List<RadioItem> list = [
+      RadioItem(name: "a", text: I18n.of(context)!.radio),
+      RadioItem(name: "b", text: I18n.of(context)!.radio),
+    ];
     return SingleChildScrollView(
         child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        title("基础用法"),
+        title(I18n.of(context)!.basic_usage),
         RadioGroup(
           value: 'a',
           list: list,
         ),
-        title("禁用状态"),
+        title(I18n.of(context)!.disabled_status),
         RadioGroup(list: list, value: 'a', disabled: true),
-        title("自定义颜色"),
+        title(I18n.of(context)!.custom_color),
         RadioGroup(list: list, value: 'a', checkedColor: Colors.green),
-        title("自定义形状"),
+        title(I18n.of(context)!.custom_shape),
         RadioGroup(
           list: list,
           value: 'a',
           shape: 'square',
         ),
-        title("搭配单元格组件使用"),
+        title(I18n.of(context)!.use_with_cell),
         RadioGroup(
           list: list,
           value: 'a',

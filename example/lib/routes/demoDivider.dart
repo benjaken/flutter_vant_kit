@@ -1,3 +1,4 @@
+import 'package:example/generated/i18n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vant_kit/main.dart';
 
@@ -20,43 +21,43 @@ class _DemoDivider extends State<DemoDivider> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          title("基础用法"),
+          title(I18n.of(context)!.basic_usage),
           NDivider(),
-          title("展示文本"),
+          title(I18n.of(context)!.display_text),
           NDivider(
-            content: "分割线",
+            content: I18n.of(context)!.divider,
           ),
-          title("内容位置"),
+          title(I18n.of(context)!.content_position),
           NDivider(
-            content: "分割线",
+            content: I18n.of(context)!.divider,
             contentPosition: 'left',
           ),
           SizedBox(height: 10),
           NDivider(
-            content: "分割线",
+            content: I18n.of(context)!.divider,
             contentPosition: 'right',
           ),
-          title("细分割线"),
+          title(I18n.of(context)!.hairline_divider),
           NDivider(
-            content: "分割线",
+            content: I18n.of(context)!.divider,
             hairline: true,
           ),
-          title("自定义颜色"),
+          title(I18n.of(context)!.custom_color),
           NDivider(
               lineColor: Colors.redAccent,
               fontColor: Colors.redAccent,
-              content: "没有更多了"),
+              content: I18n.of(context)!.no_more),
           SizedBox(height: 10),
           NDivider(
               lineColor: Colors.orangeAccent,
               fontColor: Colors.orangeAccent,
-              content: "没有更多了"),
+              content: I18n.of(context)!.no_more),
           SizedBox(height: 10),
           NDivider(
               lineColor: Colors.blueAccent,
               fontColor: Colors.blueAccent,
-              content: "没有更多了"),
-          title("自定义内容"),
+              content: I18n.of(context)!.no_more),
+          title(I18n.of(context)!.custom_content),
           NDivider(child: Icon(Icons.cancel, color: Colors.blueAccent)),
           SizedBox(
             height: 20,

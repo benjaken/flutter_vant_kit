@@ -1,3 +1,4 @@
+import 'package:example/generated/i18n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vant_kit/main.dart';
 
@@ -28,7 +29,7 @@ class _DemoBadge extends State<DemoBadge> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          title("基础用法"),
+          title(I18n.of(context)!.basic_usage),
           Wrap(spacing: 16.0, children: <Widget>[
             Badge(
               value: "5",
@@ -47,7 +48,7 @@ class _DemoBadge extends State<DemoBadge> {
               child: testWidget(),
             ),
           ]),
-          title("最大值"),
+          title(I18n.of(context)!.max),
           Wrap(spacing: 16.0, children: <Widget>[
             Badge(
               value: "20",
@@ -65,7 +66,7 @@ class _DemoBadge extends State<DemoBadge> {
               child: testWidget(),
             ),
           ]),
-          title("自定义颜色"),
+          title(I18n.of(context)!.custom_color),
           Wrap(
             spacing: 16.0,
             children: <Widget>[
@@ -87,7 +88,7 @@ class _DemoBadge extends State<DemoBadge> {
               ),
             ],
           ),
-          title("自定义徽标内容"),
+          title(I18n.of(context)!.custom_content),
           Wrap(
             spacing: 16.0,
             children: <Widget>[

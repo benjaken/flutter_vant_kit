@@ -1,3 +1,4 @@
+import 'package:example/generated/i18n.dart';
 import 'package:flutter/material.dart';
 import '../utils/index.dart';
 import 'package:flutter_vant_kit/main.dart';
@@ -28,9 +29,9 @@ class _DemoImagePreview extends State<DemoImagePreview> {
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-          title("基础用法"),
+          title(I18n.of(context)!.basic_usage),
           Cell(
-            title: "预览图片",
+            title: I18n.of(context)!.preview_image,
             isLink: true,
             onClick: () {
               showImagePreview(
@@ -39,12 +40,12 @@ class _DemoImagePreview extends State<DemoImagePreview> {
               );
             },
           ),
-          title("传入配置项"),
+          title(I18n.of(context)!.incoming_configuration),
           CellGroup(
             border: false,
             children: [
               Cell(
-                title: "指定初始位置",
+                title: I18n.of(context)!.initial_position,
                 isLink: true,
                 onClick: () {
                   showImagePreview(
@@ -59,7 +60,7 @@ class _DemoImagePreview extends State<DemoImagePreview> {
                 },
               ),
               Cell(
-                title: "展示关闭按钮",
+                title: I18n.of(context)!.show_close_button,
                 isLink: true,
                 onClick: () {
                   showImagePreview(
@@ -67,7 +68,7 @@ class _DemoImagePreview extends State<DemoImagePreview> {
                 },
               ),
               Cell(
-                title: "监听关闭事件",
+                title: I18n.of(context)!.listen_close_events,
                 isLink: true,
                 onClick: () {
                   showImagePreview(
@@ -75,7 +76,8 @@ class _DemoImagePreview extends State<DemoImagePreview> {
                       images: images,
                       closeable: true,
                       onClose: (int index) {
-                        Utils.toast('在第' + index.toString() + '张图片关闭');
+                        Utils.toast(I18n.of(context)!
+                            .close_in_image); // index.toString()
                       });
                 },
               )

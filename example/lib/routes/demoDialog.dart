@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:example/generated/i18n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vant_kit/main.dart';
 
@@ -14,8 +15,8 @@ class _DemoDialog extends State<DemoDialog> {
       context: context,
       builder: (_) {
         return NDialog(
-          title: '标题',
-          message: "代码是写出来给人看的，附带能在机器上运行",
+          title: I18n.of(context)!.title,
+          message: I18n.of(context)!.example_content,
         );
       },
     );
@@ -26,7 +27,7 @@ class _DemoDialog extends State<DemoDialog> {
       context: context,
       builder: (_) {
         return NDialog(
-          message: "代码是写出来给人看的，附带能在机器上运行",
+          message: I18n.of(context)!.example_content,
         );
       },
     );
@@ -37,8 +38,8 @@ class _DemoDialog extends State<DemoDialog> {
       context: context,
       builder: (_) {
         return NDialog(
-          title: "标题",
-          message: "代码是写出来给人看的，附带能在机器上运行",
+          title: I18n.of(context)!.title,
+          message: I18n.of(context)!.example_content,
           showCancelButton: true,
         );
       },
@@ -50,8 +51,8 @@ class _DemoDialog extends State<DemoDialog> {
       context: context,
       builder: (_) {
         return NDialog(
-            title: "标题",
-            message: "代码是写出来给人看的，附带能在机器上运行",
+            title: I18n.of(context)!.title,
+            message: I18n.of(context)!.example_content,
             showCancelButton: true,
             confirmButtonColor: Colors.blueAccent,
             confirmTextColor: Colors.white,
@@ -70,8 +71,8 @@ class _DemoDialog extends State<DemoDialog> {
       context: context,
       builder: (_) {
         return NDialog(
-          title: "标题",
-          message: "代码是写出来给人看的，附带能在机器上运行",
+          title: I18n.of(context)!.title,
+          message: I18n.of(context)!.example_content,
           showCancelButton: true,
           beforeClose: () {
             return Future.delayed(Duration(seconds: 1), () {
@@ -88,7 +89,7 @@ class _DemoDialog extends State<DemoDialog> {
       context: context,
       builder: (_) {
         return NDialog(
-          title: "标题",
+          title: I18n.of(context)!.title,
           child: Container(
             padding: EdgeInsets.all(24),
             child: Image.network("https://img.yzcdn.cn/vant/apple-1.jpg"),
@@ -116,25 +117,25 @@ class _DemoDialog extends State<DemoDialog> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          title("基础用法"),
+          title(I18n.of(context)!.basic_usage),
           CellGroup(
             children: [
               Cell(
-                title: "提示弹窗",
+                title: I18n.of(context)!.tip_dialog,
                 isLink: true,
                 onClick: () {
                   _showDialog1(context);
                 },
               ),
               Cell(
-                title: "提示弹窗(无标题)",
+                title: I18n.of(context)!.tip_dialog_no_title,
                 isLink: true,
                 onClick: () {
                   _showDialog2(context);
                 },
               ),
               Cell(
-                title: "确认弹窗",
+                title: I18n.of(context)!.confirm_dialog,
                 isLink: true,
                 onClick: () {
                   _showDialog3(context);
@@ -142,25 +143,25 @@ class _DemoDialog extends State<DemoDialog> {
               ),
             ],
           ),
-          title("异步调用"),
+          title(I18n.of(context)!.async_call),
           Cell(
-            title: "异步调用",
+            title: I18n.of(context)!.async_call,
             isLink: true,
             onClick: () {
               _showDialog5(context);
             },
           ),
-          title("自定义确认弹窗"),
+          title(I18n.of(context)!.custom_confirm_dialog),
           Cell(
-            title: "自定义确认弹窗",
+            title: I18n.of(context)!.custom_confirm_dialog,
             isLink: true,
             onClick: () {
               _showDialog4(context);
             },
           ),
-          title("自定义内容"),
+          title(I18n.of(context)!.custom_content),
           Cell(
-            title: "自定义内容",
+            title: I18n.of(context)!.custom_content,
             isLink: true,
             onClick: () {
               _showDialog6(context);

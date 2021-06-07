@@ -1,3 +1,4 @@
+import 'package:example/generated/i18n.dart';
 import 'package:flutter/material.dart';
 import '../utils/index.dart';
 import 'package:flutter_vant_kit/main.dart';
@@ -21,84 +22,109 @@ class _DemoCell extends State<DemoCell> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          title("基础用法"),
-          CellGroup(children: <Widget>[
-            Cell(title: "单元格", value: "内容"),
-            Cell(title: "单元格", value: "内容", label: "描述信息", require: true),
-          ]),
-          title("单元格大小"),
-          CellGroup(children: <Widget>[
-            Cell(title: "单元格", value: "内容", size: "large"),
-            Cell(title: "单元格", value: "内容", size: "large", label: "描述信息"),
-          ]),
-          title("展示图标"),
-          CellGroup(children: <Widget>[
-            Cell(title: "单元格", value: "内容", icon: Icons.my_location),
-          ]),
-          title("只设置 value"),
-          CellGroup(children: <Widget>[
-            Cell(value: "内容"),
-          ]),
-          title("可点击"),
+          title(I18n.of(context)!.basic_usage),
           CellGroup(children: <Widget>[
             Cell(
-              title: "单元格",
+                title: I18n.of(context)!.cell_title,
+                value: I18n.of(context)!.content),
+            Cell(
+                title: I18n.of(context)!.cell_title,
+                value: I18n.of(context)!.content,
+                label: I18n.of(context)!.description,
+                require: true),
+          ]),
+          title(I18n.of(context)!.cell_size),
+          CellGroup(children: <Widget>[
+            Cell(
+                title: I18n.of(context)!.cell_title,
+                value: I18n.of(context)!.content,
+                size: "large"),
+            Cell(
+                title: I18n.of(context)!.cell_title,
+                value: I18n.of(context)!.content,
+                size: "large",
+                label: I18n.of(context)!.description),
+          ]),
+          title(I18n.of(context)!.show_icon),
+          CellGroup(children: <Widget>[
+            Cell(
+                title: I18n.of(context)!.cell_title,
+                value: I18n.of(context)!.content,
+                icon: Icons.my_location),
+          ]),
+          title(I18n.of(context)!.only_value),
+          CellGroup(children: <Widget>[
+            Cell(value: I18n.of(context)!.content),
+          ]),
+          title(I18n.of(context)!.clickable),
+          CellGroup(children: <Widget>[
+            Cell(
+              title: I18n.of(context)!.cell_title,
               isLink: true,
               onClick: () {
-                Utils.toast("Clicked");
+                Utils.toast(I18n.of(context)!.clicked);
               },
             ),
             Cell(
-              title: "单元格",
-              value: "内容",
+              title: I18n.of(context)!.cell_title,
+              value: I18n.of(context)!.content,
               isLink: true,
               onClick: () {
-                Utils.toast("Clicked");
+                Utils.toast(I18n.of(context)!.clicked);
               },
             ),
             Cell(
-              title: "单元格",
-              value: "内容",
-              label: "描述信息",
+              title: I18n.of(context)!.cell_title,
+              value: I18n.of(context)!.content,
+              label: I18n.of(context)!.description,
               arrowDirection: "down",
               isLink: true,
               onClick: () {
-                Utils.toast("Clicked");
+                Utils.toast(I18n.of(context)!.clicked);
               },
             ),
           ]),
-          title("分组标题"),
-          CellGroup(title: "分组 1", children: <Widget>[
-            Cell(title: "单元格", value: "内容"),
+          title(I18n.of(context)!.group_title),
+          CellGroup(title: I18n.of(context)!.group1, children: <Widget>[
+            Cell(
+                title: I18n.of(context)!.cell_title,
+                value: I18n.of(context)!.content),
           ]),
-          CellGroup(title: "分组 2", children: <Widget>[
-            Cell(title: "单元格", value: "内容"),
+          CellGroup(title: I18n.of(context)!.group2, children: <Widget>[
+            Cell(
+                title: I18n.of(context)!.cell_title,
+                value: I18n.of(context)!.content),
           ]),
-          title("自定义插槽"),
+          title(I18n.of(context)!.custom_slot),
           CellGroup(children: <Widget>[
             Cell(
               customTitle: Row(
                 children: <Widget>[
-                  Text("自定义标题"),
+                  Text(I18n.of(context)!.custom_title),
                   SizedBox(width: 4),
                   Tag(
-                    text: "标签",
+                    text: I18n.of(context)!.tag,
                     color: Colors.blueAccent,
                   )
                 ],
               ),
-              value: "内容",
+              value: I18n.of(context)!.content,
               isLink: true,
             ),
             Cell(
-                title: "单元格",
+                title: I18n.of(context)!.cell_title,
                 icon: Icons.store,
                 customRight:
                     Icon(Icons.search, color: Colors.blueAccent, size: 16))
           ]),
-          SizedBox(
-            height: 20,
-          )
+          title(I18n.of(context)!.row_center),
+          CellGroup(children: <Widget>[
+            Cell(
+                title: I18n.of(context)!.cell_title,
+                value: I18n.of(context)!.content,
+                label: I18n.of(context)!.description,
+                center: true),
+          ])
         ],
       ),
     );

@@ -1,3 +1,4 @@
+import 'package:example/generated/i18n.dart';
 import 'package:flutter/material.dart';
 import '../utils/index.dart';
 import 'package:flutter_vant_kit/main.dart';
@@ -21,53 +22,53 @@ class _DemoCollapse extends State<DemoCollapse> {
         child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        title("基础用法"),
+        title(I18n.of(context)!.basic_usage),
         Collapse(
           list: [
             CollapseItem(
-              title: "标题1",
-              content: "代码是写出来给人看的，附带能在机器上运行",
+              title: I18n.of(context)!.title,
+              content: "I18n.of(context)!.example_content",
             ),
             CollapseItem(
-              title: "标题2",
-              content: "代码是写出来给人看的，附带能在机器上运行",
+              title: I18n.of(context)!.title,
+              content: "I18n.of(context)!.example_content",
             ),
             CollapseItem(
-              title: "标题3",
-              label: "不能点击",
+              title: I18n.of(context)!.title,
+              label: I18n.of(context)!.disabled_click,
               clickable: false,
-              content: "代码是写出来给人看的，附带能在机器上运行",
+              content: "I18n.of(context)!.example_content",
             )
           ],
           onChange: (List? list) {
             Utils.toast("Expanded! $list");
           },
         ),
-        title("手风琴"),
+        title(I18n.of(context)!.accordion),
         Collapse(
           accordion: true,
           name: ['0'],
           list: [
             CollapseItem(
-              title: "标题1",
-              content: "代码是写出来给人看的，附带能在机器上运行",
+              title: I18n.of(context)!.title,
+              content: "I18n.of(context)!.example_content",
             ),
             CollapseItem(
-              title: "标题2",
-              content: "代码是写出来给人看的，附带能在机器上运行",
+              title: I18n.of(context)!.title,
+              content: "I18n.of(context)!.example_content",
             ),
             CollapseItem(
-              title: "标题3",
-              content: "代码是写出来给人看的，附带能在机器上运行",
+              title: I18n.of(context)!.title,
+              content: "I18n.of(context)!.example_content",
             )
           ],
         ),
-        title("自定义标题内容"),
+        title(I18n.of(context)!.custom_content),
         Collapse(
           border: false,
           list: [
             CollapseItem(
-              title: "标题1",
+              title: I18n.of(context)!.title,
               customTitle: Padding(
                 padding: EdgeInsets.only(left: 6),
                 child: Icon(Icons.info_outline,
@@ -78,14 +79,14 @@ class _DemoCollapse extends State<DemoCollapse> {
                   Icon(Icons.favorite, size: 16, color: Colors.blueAccent),
               child: Padding(
                 padding: EdgeInsets.all(12),
-                child: Text("代码是写出来给人看的，附带能在机器上运行",
+                child: Text("I18n.of(context)!.example_content",
                     style: TextStyle(color: Colors.red, fontSize: 12)),
               ),
             ),
             CollapseItem(
-              title: "标题2",
+              title: I18n.of(context)!.title,
               name: 'b',
-              value: "内容",
+              value: I18n.of(context)!.content,
               icon: Icons.store,
               child: Padding(
                 padding: EdgeInsets.all(12),

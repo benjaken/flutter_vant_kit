@@ -6,7 +6,7 @@
 import 'package:flutter_vant_kit/main.dart';
 
 List<CouponItem> coupons = [
-   CoupenItem(
+   CouponItem(
     condition: 'No usage threshold \nUp to ¥12 discount',
     description: 'Description',
     ...
@@ -30,8 +30,8 @@ More examples please refer [Demo](https://github.com/benjaken/flutter_vant_kit/b
 | Attribute | Description | Type | Default |
 | ------------ | ------------ | ------------ | ------------ |
 | chosenCoupon | Currently selected coupon | `int` | - |
-| coupons | Coupon list | `List<CoupenItem>` | - |
-| disabledCoupons | Disabled coupon list | `List<CoupenItem>` | - |
+| coupons | Coupon list | `List<CouponItem>` | - |
+| disabledCoupons | Disabled coupon list | `List<CouponItem>` | - |
 | enabledTitle | Title of coupon list | `String` | `Available` |
 | disabledTitle | Title of disabled coupon list | `String` | `Unavailable` |
 | exchangeButtonText | exchange button text | `String` | `Exchange` |

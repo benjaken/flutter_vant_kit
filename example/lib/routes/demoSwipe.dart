@@ -1,3 +1,4 @@
+import 'package:example/generated/i18n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vant_kit/main.dart';
 
@@ -37,7 +38,7 @@ class _DemoSwipe extends State<DemoSwipe> {
   @override
   Widget build(BuildContext context) {
     return ListView(children: <Widget>[
-      title("基础用法"),
+      title(I18n.of(context)!.basic_usage),
       Container(
           height: 220.0,
           child: Swipe(
@@ -49,7 +50,7 @@ class _DemoSwipe extends State<DemoSwipe> {
               Image.network("https://img.yzcdn.cn/vant/apple-4.jpg")
             ],
           )),
-      title("监听 change 事件"),
+      title(I18n.of(context)!.listen_to_change_event),
       Container(
           height: 220.0,
           child: Swipe(
@@ -60,7 +61,7 @@ class _DemoSwipe extends State<DemoSwipe> {
             //   Utils.toast(val);
             // },
           )),
-      title("纵向滚动"),
+      title(I18n.of(context)!.vertical_scroll),
       Container(
           height: 220.0,
           child: Swipe(
@@ -69,7 +70,7 @@ class _DemoSwipe extends State<DemoSwipe> {
             indicatorColor: Colors.white,
             children: buildItem(4),
           )),
-      title("自定义动画"),
+      title(I18n.of(context)!.custom_animation),
       Container(
           height: 220.0,
           child: Swipe(
@@ -80,7 +81,7 @@ class _DemoSwipe extends State<DemoSwipe> {
             duration: Duration(seconds: 3),
             children: buildItem(4),
           )),
-      title("设置滑块占比"),
+      title(I18n.of(context)!.set_slider_proportion),
       Container(
           height: 220.0,
           child: Swipe(
@@ -93,7 +94,7 @@ class _DemoSwipe extends State<DemoSwipe> {
               Image.network("https://img.yzcdn.cn/vant/apple-4.jpg")
             ],
           )),
-      title("自定义指示器"),
+      title(I18n.of(context)!.custom_indicator),
       Container(
           height: 220.0,
           child: Swipe(

@@ -1,3 +1,4 @@
+import 'package:example/generated/i18n.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_vant_kit/main.dart';
@@ -11,19 +12,6 @@ class _DemoCoupon extends State<DemoCoupon> {
   String? _discount;
   int? _chosenCoupon;
 
-  List<CoupenItem> coupons = List.generate(10, (i) {
-    return CoupenItem(
-        condition: '无使用门槛\n最多优惠12元',
-        description: '描述信息',
-        reason: '优惠券不可用原因',
-        value: 150,
-        name: '优惠券名称',
-        startAt: DateFormat("yyyy-MM-dd").format(DateTime.parse("20170310")),
-        endAt: DateFormat("yyyy-MM-dd").format(DateTime.parse("20171210")),
-        valueDesc: i % 2 == 0 ? '8.5' : '1.5',
-        unitDesc: i % 2 == 0 ? '折' : '元');
-  });
-
   Widget title(String title) {
     return Padding(
       padding: EdgeInsets.all(20),
@@ -33,14 +21,27 @@ class _DemoCoupon extends State<DemoCoupon> {
 
   @override
   Widget build(BuildContext context) {
+    List<CouponItem> coupons = List.generate(10, (i) {
+      return CouponItem(
+          condition: I18n.of(context)!.example_coupon_condition,
+          description: I18n.of(context)!.description,
+          reason: I18n.of(context)!.example_coupon_reason,
+          value: 150,
+          name: I18n.of(context)!.example_coupon_name,
+          startAt: DateFormat("yyyy-MM-dd").format(DateTime.parse("20170310")),
+          endAt: DateFormat("yyyy-MM-dd").format(DateTime.parse("20171210")),
+          valueDesc: i % 2 == 0 ? '8.5' : '1.5',
+          unitDesc:
+              i % 2 == 0 ? I18n.of(context)!.discount : I18n.of(context)!.yuan);
+    });
     return SingleChildScrollView(
         child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        title("基础用法"),
+        title(I18n.of(context)!.basic_usage),
         Cell(
-          title: "优惠券",
-          value: _discount ?? "${coupons.length}张可用",
+          title: I18n.of(context)!.coupon,
+          value: _discount ?? "${coupons.length}${I18n.of(context)!.available}",
           isLink: true,
           onClick: () {
             Coupon(

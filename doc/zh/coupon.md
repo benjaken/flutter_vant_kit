@@ -6,7 +6,7 @@
 import 'package:flutter_vant_kit/main.dart';
 
 List<CouponItem> coupons = [
-   CoupenItem(
+   CouponItem(
     condition: '无使用门槛\n最多优惠12元',
     description: '描述信息',
     ...
@@ -30,8 +30,8 @@ Coupon(
 | 参数 | 说明 | 类型 | 默认值 |
 | ------------ | ------------ | ------------ | ------------ |
 | chosenCoupon | 当前选中优惠券的索引 | `int` | - |
-| coupons | 可用优惠券列表 | `List<CoupenItem>` | - |
-| disabledCoupons | 不可用优惠券列表 | `List<CoupenItem>` | - |
+| coupons | 可用优惠券列表 | `List<CouponItem>` | - |
+| disabledCoupons | 不可用优惠券列表 | `List<CouponItem>` | - |
 | enabledTitle | 可用优惠券列表标题 | `String` | `可使用优惠券` |
 | disabledTitle | 不可用优惠券列表标题 | `String` | `不可使用优惠券` |
 | exchangeButtonText | 兑换按钮文字 | `String` | `兑换` |

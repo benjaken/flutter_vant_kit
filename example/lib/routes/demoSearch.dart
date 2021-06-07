@@ -1,3 +1,4 @@
+import 'package:example/generated/i18n.dart';
 import 'package:flutter/material.dart';
 import '../utils/index.dart';
 import 'package:flutter_vant_kit/main.dart';
@@ -24,9 +25,9 @@ class _DemoSearch extends State<DemoSearch> {
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-          title("基础用法"),
+          title(I18n.of(context)!.basic_usage),
           Search(),
-          title("事件监听"),
+          title(I18n.of(context)!.event_monitor),
           Search(
             showAction: true,
             onSubmitted: (val) {
@@ -36,20 +37,20 @@ class _DemoSearch extends State<DemoSearch> {
               Utils.toast("canceled");
             },
           ),
-          title("自定义样式"),
+          title(I18n.of(context)!.custom_style),
           Search(
             shape: "round",
             background: Color(0xfff2f3DA),
             showAction: true,
             maxLength: 16,
-            placeholder: "请输入任何东西",
+            placeholder: I18n.of(context)!.placeholder_input,
           ),
-          title("自定义按钮"),
+          title(I18n.of(context)!.custom_button_text),
           Search(
             showAction: true,
             left: Row(
               children: <Widget>[
-                Text("地址"),
+                Text(I18n.of(context)!.address),
                 SizedBox(width: 6),
                 GestureDetector(
                   child: Icon(_icon, color: _color, size: 18),
@@ -72,10 +73,10 @@ class _DemoSearch extends State<DemoSearch> {
                   onTap: () {
                     Utils.toast("clicked Right");
                   },
-                  child: Text("搜索"),
+                  child: Text(I18n.of(context)!.search),
                 ),
                 SizedBox(width: 4),
-                Text("收藏")
+                Text(I18n.of(context)!.collect)
               ],
             ),
           )

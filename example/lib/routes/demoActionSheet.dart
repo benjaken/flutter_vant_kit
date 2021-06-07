@@ -1,3 +1,4 @@
+import 'package:example/generated/i18n.dart';
 import 'package:flutter/material.dart';
 import '../utils/index.dart';
 import 'package:flutter_vant_kit/main.dart';
@@ -8,18 +9,6 @@ class DemoActionSheet extends StatefulWidget {
 }
 
 class _DemoActionSheet extends State<DemoActionSheet> {
-  List<ActionSheetItem> actionList = [
-    ActionSheetItem(name: "选项"),
-    ActionSheetItem(name: "选项"),
-    ActionSheetItem(name: "选项", subname: "基本信息"),
-  ];
-
-  List<ActionSheetItem> actionList2 = [
-    ActionSheetItem(name: "选项", color: Colors.green),
-    ActionSheetItem(loading: true),
-    ActionSheetItem(name: "选项", disabled: true),
-  ];
-
   Widget title(String title) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 20, horizontal: 16),
@@ -29,16 +18,29 @@ class _DemoActionSheet extends State<DemoActionSheet> {
 
   @override
   Widget build(BuildContext context) {
+    List<ActionSheetItem> actionList = [
+      ActionSheetItem(name: I18n.of(context)!.option),
+      ActionSheetItem(name: I18n.of(context)!.option),
+      ActionSheetItem(
+          name: I18n.of(context)!.option,
+          subname: I18n.of(context)!.basic_info),
+    ];
+
+    List<ActionSheetItem> actionList2 = [
+      ActionSheetItem(name: I18n.of(context)!.option, color: Colors.green),
+      ActionSheetItem(loading: true),
+      ActionSheetItem(name: I18n.of(context)!.option, disabled: true),
+    ];
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          title("基础用法"),
+          title(I18n.of(context)!.basic_usage),
           CellGroup(
             border: false,
             children: [
               Cell(
-                title: "弹出菜单",
+                title: I18n.of(context)!.basic_usage,
                 isLink: true,
                 onClick: () {
                   ActionSheet(
@@ -49,42 +51,42 @@ class _DemoActionSheet extends State<DemoActionSheet> {
                 },
               ),
               Cell(
-                title: "展示取消按钮",
+                title: I18n.of(context)!.show_cancel_button,
                 isLink: true,
                 onClick: () {
                   ActionSheet(
                     actions: actionList,
-                    cancelText: "取消",
+                    cancelText: I18n.of(context)!.cancel,
                     onCancel: () {
-                      Utils.toast("cancel");
+                      Utils.toast(I18n.of(context)!.cancel);
                     },
                   ).show(context);
                 },
               ),
               Cell(
-                title: "展示描述信息",
+                title: I18n.of(context)!.show_description,
                 isLink: true,
                 onClick: () {
                   ActionSheet(
                     actions: actionList,
-                    title: "标题",
-                    description: "这是一段描述信息",
+                    title: I18n.of(context)!.title,
+                    description: I18n.of(context)!.description,
                   ).show(context);
                 },
               ),
             ],
           ),
-          title("选项状态"),
+          title(I18n.of(context)!.option_status),
           Cell(
-            title: "选项状态",
+            title: I18n.of(context)!.option_status,
             isLink: true,
             onClick: () {
               ActionSheet(actions: actionList2).show(context);
             },
           ),
-          title("自定义面板"),
+          title(I18n.of(context)!.custom_panel),
           Cell(
-            title: "自定义面板",
+            title: I18n.of(context)!.custom_panel,
             isLink: true,
             onClick: () {
               ActionSheet(
@@ -94,7 +96,7 @@ class _DemoActionSheet extends State<DemoActionSheet> {
                   alignment: AlignmentDirectional.topStart,
                   child: Text("data"),
                 ),
-                title: "标题",
+                title: I18n.of(context)!.title,
                 closeIcon: Icons.highlight_off,
               ).show(context);
             },

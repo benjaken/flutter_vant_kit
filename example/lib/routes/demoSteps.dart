@@ -1,3 +1,4 @@
+import 'package:example/generated/i18n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vant_kit/main.dart';
 
@@ -22,12 +23,12 @@ class _DemoSteps extends State<DemoSteps> {
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-          title("基础用法"),
+          title(I18n.of(context)!.basic_usage),
           Steps(steps: [
-            StepItem("买家下单"),
-            StepItem("商家接单"),
-            StepItem("买家提货"),
-            StepItem("交易完成"),
+            StepItem(I18n.of(context)!.buyer_orders),
+            StepItem(I18n.of(context)!.merchant_orders),
+            StepItem(I18n.of(context)!.buyer_pick_up),
+            StepItem(I18n.of(context)!.transaction_complete),
           ], active: _active),
           Padding(
               padding: EdgeInsets.all(20),
@@ -35,7 +36,7 @@ class _DemoSteps extends State<DemoSteps> {
                 runSpacing: 10,
                 children: <Widget>[
                   NButton(
-                    text: "上一步",
+                    text: I18n.of(context)!.prev,
                     type: "primary",
                     plain: true,
                     onClick: () {
@@ -47,7 +48,7 @@ class _DemoSteps extends State<DemoSteps> {
                   ),
                   SizedBox(width: 6),
                   NButton(
-                    text: "下一步",
+                    text: I18n.of(context)!.next,
                     type: "primary",
                     plain: true,
                     onClick: () {
@@ -59,26 +60,26 @@ class _DemoSteps extends State<DemoSteps> {
                   ),
                 ],
               )),
-          title("自定义样式"),
+          title(I18n.of(context)!.custom_style),
           Steps(
             steps: [
-              StepItem("买家下单"),
-              StepItem("商家接单"),
-              StepItem("买家提货"),
-              StepItem("交易完成"),
+              StepItem(I18n.of(context)!.buyer_orders),
+              StepItem(I18n.of(context)!.merchant_orders),
+              StepItem(I18n.of(context)!.buyer_pick_up),
+              StepItem(I18n.of(context)!.transaction_complete),
             ],
             active: _active,
             activeIcon: Icons.done,
             inactiveIcon: Icons.chevron_right,
-            activeColor: Colors.blueAccent,
+            activeColor: Colors.green,
           ),
-          title("竖向步骤条"),
+          title(I18n.of(context)!.vertical_step_bar),
           Steps(
             steps: [
-              StepItem("【城市】物流状态1", "2016-07-12 12:40"),
-              StepItem("【城市】物流状态2", "2016-07-12 12:40"),
-              StepItem("【城市】物流状态3", "2016-07-12 12:40"),
-              StepItem("【城市】快件已发货", "2016-07-12 12:40"),
+              StepItem(I18n.of(context)!.step1, "2016-07-12 12:40"),
+              StepItem(I18n.of(context)!.step2, "2016-07-12 12:40"),
+              StepItem(I18n.of(context)!.step3, "2016-07-12 12:40"),
+              StepItem(I18n.of(context)!.step4, "2016-07-12 12:40")
             ],
             active: _active,
             direction: 'vertical',

@@ -1,3 +1,4 @@
+import 'package:example/generated/i18n.dart';
 import 'package:flutter/material.dart';
 import '../utils/index.dart';
 import 'package:flutter_vant_kit/main.dart';
@@ -21,69 +22,84 @@ class _DemoTag extends State<DemoTag> {
         child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        title("基础用法"),
+        title(I18n.of(context)!.basic_usage),
         CellGroup(border: false, children: <Widget>[
-          Cell(title: 'default类型', customRight: Tag(text: "标签")),
           Cell(
-              title: 'primary类型',
-              customRight: Tag(type: "primary", text: "标签")),
+              title: I18n.of(context)!.default_type,
+              customRight: Tag(text: I18n.of(context)!.tag)),
           Cell(
-              title: 'success类型',
-              customRight: Tag(type: "success", text: "标签")),
-          Cell(title: 'danger类型', customRight: Tag(type: "danger", text: "标签")),
+              title: I18n.of(context)!.primary,
+              customRight: Tag(type: "primary", text: I18n.of(context)!.tag)),
           Cell(
-              title: 'warning类型',
-              customRight: Tag(type: "warning", text: "标签")),
+              title: I18n.of(context)!.success,
+              customRight: Tag(type: "success", text: I18n.of(context)!.tag)),
+          Cell(
+              title: I18n.of(context)!.danger,
+              customRight: Tag(type: "danger", text: I18n.of(context)!.tag)),
+          Cell(
+              title: I18n.of(context)!.warning,
+              customRight: Tag(type: "warning", text: I18n.of(context)!.tag)),
         ]),
-        title("样式风格"),
+        title(I18n.of(context)!.style),
         CellGroup(border: false, children: <Widget>[
           Cell(
-              title: '空心样式',
-              customRight: Tag(type: "primary", text: "标签", plain: true)),
+              title: I18n.of(context)!.plain_style,
+              customRight: Tag(
+                  type: "primary", text: I18n.of(context)!.tag, plain: true)),
           Cell(
-              title: '圆角样式',
-              customRight: Tag(type: "primary", text: "标签", round: true)),
+              title: I18n.of(context)!.round_style,
+              customRight: Tag(
+                  type: "primary", text: I18n.of(context)!.tag, round: true)),
           Cell(
-              title: '标记样式',
-              customRight: Tag(type: "primary", text: "标签", mark: true)),
+              title: I18n.of(context)!.mark_style,
+              customRight: Tag(
+                  type: "primary", text: I18n.of(context)!.tag, mark: true)),
           Cell(
-              title: '可关闭标签',
+              title: I18n.of(context)!.closeable_tag,
               customRight: Tag(
                 type: "primary",
-                text: "标签",
+                text: I18n.of(context)!.tag,
                 onClose: () async {
                   Utils.toast("close");
                 },
               )),
         ]),
-        title("标签大小"),
-        CellGroup(border: false, children: <Widget>[
-          Cell(title: '小号标签', customRight: Tag(type: "primary", text: "标签")),
-          Cell(
-              title: '中号标签',
-              customRight: Tag(type: "primary", text: "标签", size: "medium")),
-          Cell(
-              title: '大号标签',
-              customRight: Tag(type: "primary", text: "标签", size: "large"))
-        ]),
-        title("自定义颜色"),
+        title(I18n.of(context)!.tag_size),
         CellGroup(border: false, children: <Widget>[
           Cell(
-              title: '背景颜色',
-              customRight:
-                  Tag(type: "primary", text: "标签", color: Colors.purple)),
+              title: I18n.of(context)!.small_tag,
+              customRight: Tag(type: "primary", text: I18n.of(context)!.tag)),
           Cell(
-              title: '文字颜色',
+              title: I18n.of(context)!.medium_tag,
               customRight: Tag(
                   type: "primary",
-                  text: "标签",
+                  text: I18n.of(context)!.tag,
+                  size: "medium")),
+          Cell(
+              title: I18n.of(context)!.large_tag,
+              customRight: Tag(
+                  type: "primary", text: I18n.of(context)!.tag, size: "large"))
+        ]),
+        title(I18n.of(context)!.custom_color),
+        CellGroup(border: false, children: <Widget>[
+          Cell(
+              title: I18n.of(context)!.background_color,
+              customRight: Tag(
+                  type: "primary",
+                  text: I18n.of(context)!.tag,
+                  color: Colors.purple)),
+          Cell(
+              title: I18n.of(context)!.font_color,
+              customRight: Tag(
+                  type: "primary",
+                  text: I18n.of(context)!.tag,
                   color: Colors.red[100],
                   textColor: Colors.red[600])),
           Cell(
-              title: '空心颜色',
+              title: I18n.of(context)!.plain_color,
               customRight: Tag(
                   type: "primary",
-                  text: "标签",
+                  text: I18n.of(context)!.tag,
                   plain: true,
                   color: Colors.purple))
         ]),

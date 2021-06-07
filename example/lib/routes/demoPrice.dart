@@ -1,3 +1,4 @@
+import 'package:example/generated/i18n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vant_kit/main.dart';
 
@@ -20,22 +21,22 @@ class _DemoPrice extends State<DemoPrice> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          title("基础用法"),
+          title(I18n.of(context)!.basic_usage),
           Price(
             value: 1234.567,
           ),
-          title("保留三位小数"),
+          title(I18n.of(context)!.keep_three_decimal),
           Price(
             value: 1234.567,
             decimal: 3,
           ),
-          title("自定义符号和颜色"),
+          title(I18n.of(context)!.custom_decimal),
           Price(
             currency: "\$",
             color: Colors.red,
             value: 1234.567,
           ),
-          title("按照千分号形式显示"),
+          title(I18n.of(context)!.display_in_thousands),
           Price(
             thousands: true,
             value: 10010.01,

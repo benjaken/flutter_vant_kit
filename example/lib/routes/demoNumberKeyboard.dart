@@ -1,3 +1,4 @@
+import 'package:example/generated/i18n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vant_kit/main.dart';
 
@@ -22,28 +23,28 @@ class _DemoNumberKeyboard extends State<DemoNumberKeyboard> {
         child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        title("基础用法"),
+        title(I18n.of(context)!.basic_usage),
         NButton(
-          text: "弹出默认键盘",
+          text: I18n.of(context)!.show_default_keyboard,
           type: "primary",
           onClick: () {
             NumberKeyboard(
-              title: "默认键盘",
-              closeButtomText: "完成",
+              title: I18n.of(context)!.default_keyboard,
+              closeButtomText: I18n.of(context)!.finish,
               extraKey: ".",
             ).show(context);
           },
         ),
-        title("双向绑定"),
+        title(I18n.of(context)!.two_way_binding),
         Field(
-          placeholder: "点此输入",
+          placeholder: I18n.of(context)!.placeholder_input,
           controller: testInput,
           readonly: true,
           onClick: () {
             NumberKeyboard(
                 value: testInput.text,
                 maxlength: 6,
-                closeButtomText: "完成",
+                closeButtomText: I18n.of(context)!.finish,
                 extraKey: ".",
                 onChange: (String val) {
                   setState(() {

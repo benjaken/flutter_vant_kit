@@ -1,3 +1,4 @@
+import 'package:example/generated/i18n.dart';
 import 'package:flutter/material.dart';
 import '../utils/index.dart';
 import 'package:flutter_vant_kit/main.dart';
@@ -21,7 +22,7 @@ class _DemoAvatar extends State<DemoAvatar> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          title("基本用法"),
+          title(I18n.of(context)!.basic_usage),
           Wrap(
             spacing: 12,
             crossAxisAlignment: WrapCrossAlignment.center,
@@ -31,7 +32,7 @@ class _DemoAvatar extends State<DemoAvatar> {
               Avatar(type: 'small'),
             ],
           ),
-          title("形状类型"),
+          title(I18n.of(context)!.shape_type),
           Wrap(
             spacing: 12,
             crossAxisAlignment: WrapCrossAlignment.center,
@@ -41,9 +42,9 @@ class _DemoAvatar extends State<DemoAvatar> {
               Avatar(type: 'small', shape: "square"),
             ],
           ),
-          title("修改颜色"),
+          title(I18n.of(context)!.change_color),
           Avatar(color: Colors.blueAccent, iconColor: Colors.white),
-          title("自定义内容"),
+          title(I18n.of(context)!.custom_content),
           Wrap(
             spacing: 12,
             crossAxisAlignment: WrapCrossAlignment.center,
@@ -59,10 +60,10 @@ class _DemoAvatar extends State<DemoAvatar> {
               ),
             ],
           ),
-          title("点击触发事件"),
+          title(I18n.of(context)!.click_event),
           Avatar(
             onClick: () {
-              Utils.toast("Clicked!");
+              Utils.toast(I18n.of(context)!.clicked);
             },
           ),
         ],

@@ -1,3 +1,4 @@
+import 'package:example/generated/i18n.dart';
 import 'package:flutter/material.dart';
 
 class DemoImage extends StatefulWidget {
@@ -29,13 +30,13 @@ class _DemoImage extends State<DemoImage> {
         child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        title("基础用法"),
+        title(I18n.of(context)!.basic_usage),
         Wrap(direction: Axis.horizontal, spacing: 20, children: <Widget>[
           Image.asset("imgs/avatar.png", width: 100, height: 100),
           Image.network("https://img.yzcdn.cn/vant/cat.jpeg",
               width: 100, height: 100)
         ]),
-        title("填充模式"),
+        title(I18n.of(context)!.fill_mode),
         Wrap(
             direction: Axis.horizontal,
             spacing: 12,
@@ -63,7 +64,7 @@ class _DemoImage extends State<DemoImage> {
                   "scale-down"),
               SizedBox(width: 10),
             ]),
-        title("带加载提示的图片"),
+        title(I18n.of(context)!.image_with_loading),
         Wrap(
           direction: Axis.horizontal,
           spacing: 20,

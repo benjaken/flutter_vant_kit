@@ -1,3 +1,4 @@
+import 'package:example/generated/i18n.dart';
 import 'package:example/utils/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vant_kit/main.dart';
@@ -21,44 +22,44 @@ class _DemoShareSheet extends State<DemoShareSheet> {
         child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        title("基础用法"),
+        title(I18n.of(context)!.basic_usage),
         Cell(
-          title: '显示分享面板',
+          title: I18n.of(context)!.show_share_panel,
           isLink: true,
           onClick: () {
             ShareSheet(
-                title: "立即分享给好友",
+                title: I18n.of(context)!.share_to_friend,
                 options: [
                   ShareSheetItem(
-                      name: '微信',
+                      name: I18n.of(context)!.wechat,
                       icon: Image.network(
                           'https://img01.yzcdn.cn/vant/share-sheet-wechat.png')),
                   ShareSheetItem(
-                      name: '朋友圈',
+                      name: I18n.of(context)!.wechat_group,
                       icon: Image.network(
                           'https://img01.yzcdn.cn/vant/share-sheet-wechat-moments.png')),
                   ShareSheetItem(
-                      name: '微博',
+                      name: I18n.of(context)!.weibo,
                       icon: Image.network(
                           'https://img01.yzcdn.cn/vant/share-sheet-weibo.png')),
                   ShareSheetItem(
-                      name: 'QQ',
+                      name: I18n.of(context)!.qq,
                       icon: Image.network(
                           'https://img01.yzcdn.cn/vant/share-sheet-qq.png')),
                   ShareSheetItem(
-                    name: '复制链接',
+                    name: I18n.of(context)!.copy_link,
                     icon: Icon(
                       Icons.link,
                     ),
                   ),
                   ShareSheetItem(
-                    name: '分享海报',
+                    name: I18n.of(context)!.share_paper,
                     icon: Icon(
                       Icons.image,
                     ),
                   ),
                   ShareSheetItem(
-                    name: '二维码',
+                    name: I18n.of(context)!.qrcode,
                     icon: Icon(
                       Icons.qr_code,
                     ),
@@ -69,104 +70,107 @@ class _DemoShareSheet extends State<DemoShareSheet> {
                 }).show(context);
           },
         ),
-        title("展示多行选项"),
+        title(I18n.of(context)!.show_multi_line_options),
         Cell(
-          title: '显示分享面板',
+          title: I18n.of(context)!.show_share_panel,
           isLink: true,
           onClick: () {
-            ShareSheet(title: "立即分享给好友", wrap: true, options: [
-              ShareSheetItem(
-                  name: '微信',
-                  icon: Image.network(
-                      'https://img01.yzcdn.cn/vant/share-sheet-wechat.png')),
-              ShareSheetItem(
-                  name: '朋友圈',
-                  icon: Image.network(
-                      'https://img01.yzcdn.cn/vant/share-sheet-wechat-moments.png')),
-              ShareSheetItem(
-                  name: '微博',
-                  icon: Image.network(
-                      'https://img01.yzcdn.cn/vant/share-sheet-weibo.png')),
-              ShareSheetItem(
-                  name: 'QQ',
-                  icon: Image.network(
-                      'https://img01.yzcdn.cn/vant/share-sheet-qq.png')),
-              ShareSheetItem(
-                name: '复制链接',
-                icon: Icon(
-                  Icons.link,
-                ),
-              ),
-              ShareSheetItem(
-                name: '分享海报',
-                icon: Icon(
-                  Icons.image,
-                ),
-              ),
-              ShareSheetItem(
-                name: '二维码',
-                icon: Icon(
-                  Icons.qr_code,
-                ),
-              ),
-              // ShareSheetItem(name: '站内分享')
-            ]).show(context);
-          },
-        ),
-        title("自定义图标"),
-        Cell(
-          title: '显示分享面板',
-          isLink: true,
-          onClick: () {
-            ShareSheet(title: "立即分享给好友", description: "描述信息", options: [
-              ShareSheetItem(
-                  name: '名称',
-                  icon: Image.network(
-                      'https://img01.yzcdn.cn/vant/custom-icon-fire.png')),
-              ShareSheetItem(
-                  name: '名称',
-                  icon: Image.network(
-                      'https://img01.yzcdn.cn/vant/custom-icon-light.png')),
-              ShareSheetItem(
-                  name: '名称',
-                  icon: Image.network(
-                      'https://img01.yzcdn.cn/vant/custom-icon-water.png'))
-            ]).show(context);
-          },
-        ),
-        title("展示描述信息"),
-        Cell(
-          title: '显示分享面板',
-          isLink: true,
-          onClick: () {
-            ShareSheet(title: "立即分享给好友", description: "描述信息", options: [
-              ShareSheetItem(
-                  name: '微信',
-                  icon: Image.network(
-                      'https://img01.yzcdn.cn/vant/share-sheet-wechat.png')),
-              ShareSheetItem(
-                  name: '微博',
-                  icon: Image.network(
-                      'https://img01.yzcdn.cn/vant/share-sheet-weibo.png')),
-              ShareSheetItem(
-                  name: '复制链接',
-                  icon: Icon(
-                    Icons.link,
+            ShareSheet(
+                title: I18n.of(context)!.share_to_friend,
+                wrap: true,
+                options: [
+                  ShareSheetItem(
+                      name: I18n.of(context)!.wechat,
+                      icon: Image.network(
+                          'https://img01.yzcdn.cn/vant/share-sheet-wechat.png')),
+                  ShareSheetItem(
+                      name: I18n.of(context)!.wechat_group,
+                      icon: Image.network(
+                          'https://img01.yzcdn.cn/vant/share-sheet-wechat-moments.png')),
+                  ShareSheetItem(
+                      name: I18n.of(context)!.weibo,
+                      icon: Image.network(
+                          'https://img01.yzcdn.cn/vant/share-sheet-weibo.png')),
+                  ShareSheetItem(
+                      name: I18n.of(context)!.qq,
+                      icon: Image.network(
+                          'https://img01.yzcdn.cn/vant/share-sheet-qq.png')),
+                  ShareSheetItem(
+                    name: I18n.of(context)!.copy_link,
+                    icon: Icon(
+                      Icons.link,
+                    ),
                   ),
-                  description: '描述信息'),
-              ShareSheetItem(
-                name: '分享海报',
-                icon: Icon(
-                  Icons.image,
-                ),
-              ),
-              ShareSheetItem(
-                name: '二维码',
-                icon: Icon(
-                  Icons.qr_code,
-                ),
-              )
-            ]).show(context);
+                  ShareSheetItem(
+                    name: I18n.of(context)!.share_paper,
+                    icon: Icon(
+                      Icons.image,
+                    ),
+                  ),
+                  ShareSheetItem(
+                    name: I18n.of(context)!.qrcode,
+                    icon: Icon(
+                      Icons.qr_code,
+                    ),
+                  ),
+                ]).show(context);
+          },
+        ),
+        title(I18n.of(context)!.custom_icon),
+        Cell(
+          title: I18n.of(context)!.show_share_panel,
+          isLink: true,
+          onClick: () {
+            ShareSheet(
+                title: I18n.of(context)!.share_to_friend,
+                description: I18n.of(context)!.description,
+                options: [
+                  ShareSheetItem(
+                      name: I18n.of(context)!.name,
+                      icon: Image.network(
+                          'https://img01.yzcdn.cn/vant/custom-icon-fire.png')),
+                  ShareSheetItem(
+                      name: I18n.of(context)!.name,
+                      icon: Image.network(
+                          'https://img01.yzcdn.cn/vant/custom-icon-light.png')),
+                  ShareSheetItem(
+                      name: I18n.of(context)!.name,
+                      icon: Image.network(
+                          'https://img01.yzcdn.cn/vant/custom-icon-water.png'))
+                ]).show(context);
+          },
+        ),
+        title(I18n.of(context)!.display_description),
+        Cell(
+          title: I18n.of(context)!.show_share_panel,
+          isLink: true,
+          onClick: () {
+            ShareSheet(
+                title: I18n.of(context)!.share_to_friend,
+                description: I18n.of(context)!.description,
+                options: [
+                  ShareSheetItem(
+                      name: I18n.of(context)!.wechat,
+                      icon: Image.network(
+                          'https://img01.yzcdn.cn/vant/share-sheet-wechat.png')),
+                  ShareSheetItem(
+                      name: I18n.of(context)!.wechat_group,
+                      icon: Image.network(
+                          'https://img01.yzcdn.cn/vant/share-sheet-wechat-moments.png')),
+                  ShareSheetItem(
+                    name: I18n.of(context)!.share_paper,
+                    description: I18n.of(context)!.description,
+                    icon: Icon(
+                      Icons.image,
+                    ),
+                  ),
+                  ShareSheetItem(
+                    name: I18n.of(context)!.qrcode,
+                    icon: Icon(
+                      Icons.qr_code,
+                    ),
+                  ),
+                ]).show(context);
           },
         ),
       ],

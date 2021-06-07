@@ -1,3 +1,4 @@
+import 'package:example/generated/i18n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vant_kit/main.dart';
 
@@ -20,19 +21,15 @@ class _DemoPagination extends State<DemoPagination> {
         child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        title("基础用法"),
+        title(I18n.of(context)!.basic_usage),
         Pagination(
           totalItems: 36,
         ),
-        title("简单模式"),
+        title(I18n.of(context)!.simple_mode),
         Pagination(
           totalItems: 120,
           mode: 'simple',
         ),
-        // title("显示省略号"),
-        // Pagination(
-        //   totalItems: 120,
-        // )
       ],
     ));
   }

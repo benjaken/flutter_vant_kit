@@ -1,3 +1,4 @@
+import 'package:example/generated/i18n.dart';
 import 'package:example/utils/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vant_kit/main.dart';
@@ -20,18 +21,22 @@ class _DemoContactCard extends State<DemoContactCard> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          title("添加联系人"),
-          ContactCard(type: 'add', onClick: () => {Utils.toast('新增')}),
-          title("编辑联系人"),
+          title(I18n.of(context)!.add_contacts),
+          ContactCard(
+              type: 'add', onClick: () => {Utils.toast(I18n.of(context)!.add)}),
+          title(I18n.of(context)!.add_contacts),
           ContactCard(
             type: 'edit',
-            name: '张三',
+            name: I18n.of(context)!.example_name,
             tel: '13000000000',
-            onClick: () => {Utils.toast('编辑')},
+            onClick: () => {Utils.toast(I18n.of(context)!.edit)},
           ),
-          title("不可编辑"),
+          title(I18n.of(context)!.disabled_edit),
           ContactCard(
-              type: 'edit', name: '张三', tel: '13000000000', editAble: false)
+              type: 'edit',
+              name: I18n.of(context)!.example_name,
+              tel: '13000000000',
+              editAble: false)
         ],
       ),
     );

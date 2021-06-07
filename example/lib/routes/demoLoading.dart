@@ -1,3 +1,4 @@
+import 'package:example/generated/i18n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vant_kit/main.dart';
 
@@ -20,36 +21,36 @@ class _DemoLoading extends State<DemoLoading> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          title("基础用法"),
+          title(I18n.of(context)!.basic_usage),
           Loading(),
-          title("自定义颜色"),
+          title(I18n.of(context)!.custom_color),
           Loading(
             color: Colors.blueAccent,
           ),
-          title("加载文案"),
+          title(I18n.of(context)!.load_text),
           Loading(
             color: Colors.blueAccent,
-            text: "加载中...",
+            text: I18n.of(context)!.loading,
           ),
-          title("垂直排列"),
+          title(I18n.of(context)!.vertical_arrangement),
           Loading(
             color: Colors.blueAccent,
-            text: "加载中...",
+            text: I18n.of(context)!.loading,
             size: 20,
             vertical: true,
           ),
-          title("自定义 Loading"),
+          title(I18n.of(context)!.custom_loading),
           Container(
             width: 100,
             child: Loading(
               loading: Image.network(
                   "https://loading.io/mod/spinner/lava-lamp/sample.gif"),
-              text: "加载中...",
+              text: I18n.of(context)!.loading,
             ),
           ),
-          title("显示Loading"),
+          title(I18n.of(context)!.show_loading),
           NButton(
-            text: "显示loading",
+            text: I18n.of(context)!.show_loading,
             type: "primary",
             onClick: () {
               showDialog(
@@ -64,7 +65,7 @@ class _DemoLoading extends State<DemoLoading> {
                         padding: EdgeInsets.all(20),
                         child: Loading(
                           color: Colors.blueAccent,
-                          text: "加载中...",
+                          text: I18n.of(context)!.loading,
                         ),
                       ),
                     );

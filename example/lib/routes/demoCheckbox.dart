@@ -1,3 +1,4 @@
+import 'package:example/generated/i18n.dart';
 import 'package:flutter/material.dart';
 import '../utils/index.dart';
 import 'package:flutter_vant_kit/main.dart';
@@ -8,24 +9,6 @@ class DemoCheckbox extends StatefulWidget {
 }
 
 class _DemoCheckbox extends State<DemoCheckbox> {
-  List<CheckItem> list = [
-    CheckItem(name: "a", text: "复选框a"),
-    CheckItem(name: "b", text: "复选框b"),
-  ];
-
-  List<CheckItem> list2 = [
-    CheckItem(name: "a", text: "复选框a"),
-    CheckItem(name: "b", text: "复选框b"),
-    CheckItem(name: "c", text: "复选框c", checkedColor: Colors.green),
-    CheckItem(name: "d", text: "复选框d", disabled: true),
-  ];
-
-  List<CheckItem> list3 = [
-    CheckItem(name: "a", text: "复选框a"),
-    CheckItem(name: "b", text: "复选框b"),
-    CheckItem(name: "c", text: "复选框c"),
-  ];
-
   Widget title(String title) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 20),
@@ -35,11 +18,30 @@ class _DemoCheckbox extends State<DemoCheckbox> {
 
   @override
   Widget build(BuildContext context) {
+    List<CheckItem> list = [
+      CheckItem(name: "a", text: I18n.of(context)!.checkbox)
+    ];
+
+    List<CheckItem> list2 = [
+      CheckItem(name: "a", text: I18n.of(context)!.checkbox),
+      CheckItem(name: "b", text: I18n.of(context)!.checkbox),
+      CheckItem(
+          name: "c",
+          text: I18n.of(context)!.checkbox,
+          checkedColor: Colors.green),
+      CheckItem(name: "d", text: I18n.of(context)!.checkbox, disabled: true),
+    ];
+
+    List<CheckItem> list3 = [
+      CheckItem(name: "a", text: I18n.of(context)!.checkbox),
+      CheckItem(name: "b", text: I18n.of(context)!.checkbox),
+      CheckItem(name: "c", text: I18n.of(context)!.checkbox),
+    ];
     return SingleChildScrollView(
         child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        title("基础用法"),
+        title(I18n.of(context)!.basic_usage),
         CheckboxGroup(
           list: list,
           values: ["a"],
@@ -47,36 +49,36 @@ class _DemoCheckbox extends State<DemoCheckbox> {
             Utils.toast(list.toString());
           },
         ),
-        title("禁用状态"),
+        title(I18n.of(context)!.disabled_status),
         CheckboxGroup(
           list: list,
           values: ["a"],
           disabled: true,
         ),
-        title("自定义形状"),
+        title(I18n.of(context)!.custom_shape),
         CheckboxGroup(
           list: list,
           values: ["a"],
           shape: "square",
         ),
-        title("自定义颜色"),
+        title(I18n.of(context)!.custom_color),
         CheckboxGroup(
           list: list,
           values: ["a"],
           checkedColor: Colors.green,
         ),
-        title("复选框组"),
+        title(I18n.of(context)!.checkbox_group),
         CheckboxGroup(
           list: list2,
           values: ["a", "b"],
         ),
-        title("设置最大可选数"),
+        title(I18n.of(context)!.max_count),
         CheckboxGroup(
           list: list3,
           values: ["a"],
           max: 2,
         ),
-        title("单元格组件"),
+        title(I18n.of(context)!.cell_component),
         CheckboxGroup(
           list: list3,
           values: ['a'],

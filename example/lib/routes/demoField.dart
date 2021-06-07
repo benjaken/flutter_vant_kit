@@ -1,3 +1,4 @@
+import 'package:example/generated/i18n.dart';
 import 'package:flutter/material.dart';
 import '../utils/index.dart';
 import 'package:flutter_vant_kit/main.dart';
@@ -39,11 +40,11 @@ class _DemoField extends State<DemoField> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          title("基础用法"),
+          title(I18n.of(context)!.basic_usage),
           CellGroup(
             children: <Widget>[
               Field(
-                placeholder: "请输入用户名",
+                placeholder: I18n.of(context)!.placeholder_username,
                 controller: testInput1,
                 onChange: (val) {
                   Utils.toast("text changed: $val");
@@ -54,11 +55,11 @@ class _DemoField extends State<DemoField> {
               )
             ],
           ),
-          title("自定义类型"),
+          title(I18n.of(context)!.custom_type),
           CellGroup(children: <Widget>[
             Field(
-              label: "用户名",
-              placeholder: "请输入用户名",
+              label: I18n.of(context)!.username,
+              placeholder: I18n.of(context)!.placeholder_username,
               controller: testInput2,
               maxLength: 10,
               clearable: true,
@@ -69,18 +70,18 @@ class _DemoField extends State<DemoField> {
               },
             ),
             Field(
-                label: "密码",
-                placeholder: "请输入密码",
+                label: I18n.of(context)!.password,
+                placeholder: I18n.of(context)!.placeholder_password,
                 controller: testInput3,
                 require: true,
                 type: "password"),
           ]),
-          title("禁用输入框"),
+          title(I18n.of(context)!.disabled_field),
           CellGroup(
             children: <Widget>[
               Field(
-                label: "用户名",
-                placeholder: "输入框已禁用",
+                label: I18n.of(context)!.username,
+                placeholder: I18n.of(context)!.placeholder_disabled_field,
                 disabled: true,
                 controller: testInput4,
                 leftIcon: Icons.perm_identity,
@@ -90,12 +91,12 @@ class _DemoField extends State<DemoField> {
               )
             ],
           ),
-          title("错误提示"),
+          title(I18n.of(context)!.error_tip),
           CellGroup(
             children: <Widget>[
               Field(
-                label: "用户名",
-                placeholder: "请输入用户名",
+                label: I18n.of(context)!.username,
+                placeholder: I18n.of(context)!.placeholder_username,
                 error: isEmptyName(testInput5.text),
                 controller: testInput5,
                 maxLength: 10,
@@ -107,10 +108,12 @@ class _DemoField extends State<DemoField> {
                 },
               ),
               Field(
-                label: "手机号",
-                placeholder: "请输入手机号",
+                label: I18n.of(context)!.mobile,
+                placeholder: I18n.of(context)!.placeholder_mobile,
                 controller: testInput6,
-                errorMessage: isErrorPhone(testInput6.text) ? "手机号格式错误" : null,
+                errorMessage: isErrorPhone(testInput6.text)
+                    ? I18n.of(context)!.error_mobile
+                    : null,
                 maxLength: 11,
                 clearable: true,
                 onChange: (val) {
@@ -121,15 +124,15 @@ class _DemoField extends State<DemoField> {
               ),
             ],
           ),
-          title("插入按钮"),
+          title(I18n.of(context)!.insert_button),
           CellGroup(
             children: <Widget>[
               Field(
-                label: "短信验证码",
-                placeholder: "请输入短信验证码",
+                label: I18n.of(context)!.code,
+                placeholder: I18n.of(context)!.placeholder_code,
                 controller: testInput7,
                 right: NButton(
-                  text: "发送验证码",
+                  text: I18n.of(context)!.send_code,
                   type: "primary",
                   size: "small",
                   onClick: () => {},
@@ -137,12 +140,12 @@ class _DemoField extends State<DemoField> {
               ),
             ],
           ),
-          title("显示字数统计"),
+          title(I18n.of(context)!.show_word_count),
           CellGroup(
             children: <Widget>[
               Field(
-                  label: "留言",
-                  placeholder: "请输入留言",
+                  label: I18n.of(context)!.comment,
+                  placeholder: I18n.of(context)!.placeholder_comment,
                   controller: testInput8,
                   type: "textarea",
                   rows: 5,

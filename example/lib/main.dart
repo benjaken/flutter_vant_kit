@@ -3,18 +3,44 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import './routes/index.dart';
 import 'package:flutter_vant_kit/main.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import './generated/i18n.dart';
 
 void main() async {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  final i18n = I18n.delegate;
+
+  @override
+  void initState() {
+    super.initState();
+    I18n.onLocaleChanged = onLocaleChange;
+  }
+
+  void onLocaleChange(Locale locale) {
+    setState(() {
+      I18n.locale = locale;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter 组件库',
+      title: 'Flutter Vant Kit',
+      localizationsDelegates: [
+        i18n,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: i18n.supportedLocales,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -36,156 +62,194 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text("Flutter 组件库"),
-        centerTitle: true,
-      ),
+          // Here we take the value from the MyHomePage object that was created by
+          // the App.build method, and use it to set our appbar title.
+          title: Text("Flutter Vant Kit"),
+          centerTitle: true,
+          actions: [
+            IconButton(
+                onPressed: () {
+                  String lang = I18n.delegate.getLocale();
+                  I18n.onLocaleChanged!(lang == 'zh_CN'
+                      ? Locale("en", "US")
+                      : Locale("zh", "CN"));
+                },
+                icon: Icon(Icons.translate_outlined))
+          ]),
       body: Container(
         color: Color(0xfff7f8fa),
         child: SafeArea(
-          child: Collapse(
-            name: ["0"],
-            list: [
-              CollapseItem(
-                customTitle:
-                    Text("基础组件", style: TextStyle(fontWeight: FontWeight.bold)),
-                isExpanded: true,
-                child: CellGroup(
-                  border: false,
-                  children: <Widget>[
-                    PageCell("Button 按钮", (ctx) => DemoButton(),
-                        padding: false),
-                    PageCell("Cell 单元格", (ctx) => DemoCell(), padding: false),
-                    PageCell("Image 图片", (ctx) => DemoImage(), padding: true),
-                    PageCell("Avatar 头像", (ctx) => DemoAvatar(), padding: true),
-                  ],
-                ),
+            child: SingleChildScrollView(
+          child: Column(
+            children: [
+              CellGroup(
+                title: I18n.of(context)!.base_title,
+                border: false,
+                children: <Widget>[
+                  PageCell(I18n.of(context)!.base_button_title,
+                      (ctx) => DemoButton(),
+                      padding: false),
+                  PageCell(
+                      I18n.of(context)!.base_cell_title, (ctx) => DemoCell(),
+                      padding: false),
+                  PageCell(
+                      I18n.of(context)!.base_image_title, (ctx) => DemoImage(),
+                      padding: true),
+                  PageCell(I18n.of(context)!.base_avatar_title,
+                      (ctx) => DemoAvatar(),
+                      padding: true),
+                ],
               ),
-              CollapseItem(
-                customTitle:
-                    Text("表单组件", style: TextStyle(fontWeight: FontWeight.bold)),
-                isExpanded: true,
-                child: CellGroup(
-                  border: false,
-                  children: <Widget>[
-                    PageCell("Calendar 日历", (ctx) => DemoCalendar(),
-                        padding: false),
-                    PageCell("Checkbox 复选框", (ctx) => DemoCheckbox(),
-                        padding: true),
-                    PageCell("Field 输入框", (ctx) => DemoField(), padding: false),
-                    PageCell(
-                        "NumberKeyboard 数字键盘", (ctx) => DemoNumberKeyboard(),
-                        padding: true),
-                    PageCell(
-                        "PasswordInput 密码输入框", (ctx) => DemoPasswordInput(),
-                        padding: true),
-                    PageCell("Picker 选择器", (ctx) => DemoPicker(),
-                        padding: false),
-                    PageCell("Radio 单选框", (ctx) => DemoRadio(), padding: true),
-                    PageCell("Rate 评分", (ctx) => DemoRate(), padding: false),
-                    PageCell("Search 搜索", (ctx) => DemoSearch(),
-                        padding: false),
-                    PageCell("Stepper 步进器", (ctx) => DemoStepper(),
-                        padding: false),
-                    PageCell("ImageWall 图片选择器", (ctx) => DemoImageWall(),
-                        padding: false),
-                  ],
-                ),
+              CellGroup(
+                title: I18n.of(context)!.form_title,
+                border: false,
+                children: <Widget>[
+                  PageCell(I18n.of(context)!.form_calendar_title,
+                      (ctx) => DemoCalendar(),
+                      padding: false),
+                  PageCell(I18n.of(context)!.form_checkbox_title,
+                      (ctx) => DemoCheckbox(),
+                      padding: true),
+                  PageCell(
+                      I18n.of(context)!.form_field_title, (ctx) => DemoField(),
+                      padding: false),
+                  PageCell(I18n.of(context)!.form_number_keyboard_title,
+                      (ctx) => DemoNumberKeyboard(),
+                      padding: true),
+                  PageCell(I18n.of(context)!.form_password_input_title,
+                      (ctx) => DemoPasswordInput(),
+                      padding: true),
+                  PageCell(I18n.of(context)!.form_picker_title,
+                      (ctx) => DemoPicker(),
+                      padding: false),
+                  PageCell(
+                      I18n.of(context)!.form_radio_title, (ctx) => DemoRadio(),
+                      padding: true),
+                  PageCell(
+                      I18n.of(context)!.form_rate_title, (ctx) => DemoRate(),
+                      padding: false),
+                  PageCell(I18n.of(context)!.form_search_title,
+                      (ctx) => DemoSearch(),
+                      padding: false),
+                  PageCell(I18n.of(context)!.form_stepper_title,
+                      (ctx) => DemoStepper(),
+                      padding: false),
+                  PageCell(I18n.of(context)!.form_image_wall_title,
+                      (ctx) => DemoImageWall(),
+                      padding: false),
+                ],
               ),
-              CollapseItem(
-                customTitle:
-                    Text("反馈组件", style: TextStyle(fontWeight: FontWeight.bold)),
-                isExpanded: true,
-                child: CellGroup(
-                  border: false,
-                  children: <Widget>[
-                    PageCell("ActionSheet 上拉菜单", (ctx) => DemoActionSheet(),
-                        padding: false),
-                    PageCell("Dialog 弹窗", (ctx) => DemoDialog(),
-                        padding: false),
-                    PageCell("Loading 加载", (ctx) => DemoLoading(),
-                        padding: true),
-                    PageCell("ShareSheet 分享面板", (ctx) => DemoShareSheet(),
-                        padding: false),
-                  ],
-                ),
+              CellGroup(
+                title: I18n.of(context)!.action_title,
+                border: false,
+                children: <Widget>[
+                  PageCell(I18n.of(context)!.action_action_sheet_title,
+                      (ctx) => DemoActionSheet(),
+                      padding: false),
+                  PageCell(I18n.of(context)!.action_dialog_title,
+                      (ctx) => DemoDialog(),
+                      padding: false),
+                  PageCell(I18n.of(context)!.action_loading_title,
+                      (ctx) => DemoLoading(),
+                      padding: true),
+                  PageCell(I18n.of(context)!.action_share_sheet_title,
+                      (ctx) => DemoShareSheet(),
+                      padding: false),
+                ],
               ),
-              CollapseItem(
-                customTitle:
-                    Text("展示组件", style: TextStyle(fontWeight: FontWeight.bold)),
-                isExpanded: true,
-                child: CellGroup(
-                  border: false,
-                  children: <Widget>[
-                    PageCell("Badge 徽标", (ctx) => DemoBadge(), padding: true),
-                    PageCell("Circle 环形进度条", (ctx) => DemoCircle(),
-                        padding: true),
-                    PageCell("Collapse 折叠面板", (ctx) => DemoCollapse(),
-                        padding: false),
-                    // PageCell("CountDown 倒计时", (ctx) => DemoCountDown(), padding: false),
-                    PageCell("Divider 分割线", (ctx) => DemoDivider(),
-                        padding: true),
-                    PageCell("ImagePreview 图片预览", (ctx) => DemoImagePreview(),
-                        padding: false),
-                    PageCell("List 列表", (ctx) => DemoList(),
-                        padding: false, withScaffold: false),
-                    PageCell("NoticeBar 通知栏", (ctx) => DemoNoticeBar(),
-                        padding: false),
-                    PageCell("Panel 面板", (ctx) => DemoPanel(), padding: false),
-                    PageCell("Price 商品价格", (ctx) => DemoPrice(), padding: true),
-                    PageCell("Progress 进度条", (ctx) => DemoProgress(),
-                        padding: true),
-                    PageCell("Skeleton 骨架屏", (ctx) => DemoSkeleton(),
-                        padding: true),
-                    PageCell("Steps 步骤条", (ctx) => DemoSteps(), padding: false),
-                    PageCell("Swipe 轮播", (ctx) => DemoSwipe(), padding: false),
-                    PageCell("Tag 标签", (ctx) => DemoTag(), padding: true),
-                  ],
-                ),
+              CellGroup(
+                title: I18n.of(context)!.display_title,
+                border: false,
+                children: <Widget>[
+                  PageCell(I18n.of(context)!.display_badge_title,
+                      (ctx) => DemoBadge(),
+                      padding: true),
+                  PageCell(I18n.of(context)!.display_circle_title,
+                      (ctx) => DemoCircle(),
+                      padding: true),
+                  PageCell(I18n.of(context)!.display_collapse_title,
+                      (ctx) => DemoCollapse(),
+                      padding: false),
+                  PageCell(I18n.of(context)!.display_divider_title,
+                      (ctx) => DemoDivider(),
+                      padding: true),
+                  PageCell(I18n.of(context)!.display_image_preview_title,
+                      (ctx) => DemoImagePreview(),
+                      padding: false),
+                  PageCell(
+                      I18n.of(context)!.display_list_title, (ctx) => DemoList(),
+                      padding: false, withScaffold: false),
+                  PageCell(I18n.of(context)!.display_notice_bar_title,
+                      (ctx) => DemoNoticeBar(),
+                      padding: false),
+                  PageCell(I18n.of(context)!.display_panel_title,
+                      (ctx) => DemoPanel(),
+                      padding: false),
+                  PageCell(I18n.of(context)!.display_price_title,
+                      (ctx) => DemoPrice(),
+                      padding: true),
+                  PageCell(I18n.of(context)!.display_progress_title,
+                      (ctx) => DemoProgress(),
+                      padding: true),
+                  PageCell(I18n.of(context)!.display_skeleton_title,
+                      (ctx) => DemoSkeleton(),
+                      padding: true),
+                  PageCell(I18n.of(context)!.display_steps_title,
+                      (ctx) => DemoSteps(),
+                      padding: false),
+                  PageCell(I18n.of(context)!.display_swipe_title,
+                      (ctx) => DemoSwipe(),
+                      padding: false),
+                  PageCell(
+                      I18n.of(context)!.display_tag_title, (ctx) => DemoTag(),
+                      padding: true),
+                ],
               ),
-              CollapseItem(
-                customTitle:
-                    Text("导航组件", style: TextStyle(fontWeight: FontWeight.bold)),
-                isExpanded: true,
-                child: CellGroup(
-                  border: false,
-                  children: <Widget>[
-                    PageCell("Pagination 分页", (ctx) => DemoPagination(),
-                        padding: true),
-                    PageCell("Sidebar 侧边导航", (ctx) => DemoSidebar(),
-                        padding: true),
-                    PageCell("TreeSelect 分类选择", (ctx) => DemoTreeSelect(),
-                        padding: false),
-                  ],
-                ),
+              CellGroup(
+                title: I18n.of(context)!.navigation_title,
+                border: false,
+                children: <Widget>[
+                  PageCell(I18n.of(context)!.navigation_pagination_title,
+                      (ctx) => DemoPagination(),
+                      padding: true),
+                  PageCell(I18n.of(context)!.navigation_sidebar_title,
+                      (ctx) => DemoSidebar(),
+                      padding: true),
+                  PageCell(I18n.of(context)!.navigation_tree_select_title,
+                      (ctx) => DemoTreeSelect(),
+                      padding: false),
+                ],
               ),
-              CollapseItem(
-                customTitle:
-                    Text("业务组件", style: TextStyle(fontWeight: FontWeight.bold)),
-                isExpanded: true,
-                child: CellGroup(
-                  border: false,
-                  children: <Widget>[
-                    PageCell("AddressEdit 地址编辑", (ctx) => DemoAddressEdit(),
-                        padding: false),
-                    PageCell("AddressList 地址列表", (ctx) => DemoAddressList(),
-                        padding: false),
-                    PageCell("Card 商品卡片", (ctx) => DemoCard(), padding: false),
-                    PageCell("ContactCard 联系人卡片", (ctx) => DemoContactCard(),
-                        padding: false),
-                    PageCell("Coupon 优惠券选择器", (ctx) => DemoCoupon(),
-                        padding: false),
-                    PageCell("GoodsAction 商品导航", (ctx) => DemoGoodsAction(),
-                        padding: false),
-                    PageCell("SubmitBar 提交订单栏", (ctx) => DemoSubmitBar(),
-                        padding: false),
-                  ],
-                ),
-              ),
+              CellGroup(
+                title: I18n.of(context)!.business_title,
+                border: false,
+                children: <Widget>[
+                  PageCell(I18n.of(context)!.business_address_edit_title,
+                      (ctx) => DemoAddressEdit(),
+                      padding: false),
+                  PageCell(I18n.of(context)!.business_address_list_title,
+                      (ctx) => DemoAddressList(),
+                      padding: false),
+                  PageCell(I18n.of(context)!.business_card_title,
+                      (ctx) => DemoCard(),
+                      padding: false),
+                  PageCell(I18n.of(context)!.business_contact_card_title,
+                      (ctx) => DemoContactCard(),
+                      padding: false),
+                  PageCell(I18n.of(context)!.business_coupon_title,
+                      (ctx) => DemoCoupon(),
+                      padding: false),
+                  PageCell(I18n.of(context)!.business_goods_action_title,
+                      (ctx) => DemoGoodsAction(),
+                      padding: false),
+                  PageCell(I18n.of(context)!.business_submit_bar_title,
+                      (ctx) => DemoSubmitBar(),
+                      padding: false),
+                ],
+              )
             ],
           ),
-        ),
+        )),
       ),
     );
   }
@@ -236,6 +300,7 @@ class PageScaffold extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: Text(title!),
+          centerTitle: true,
         ),
         body: SafeArea(
             child: Container(

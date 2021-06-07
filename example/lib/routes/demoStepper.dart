@@ -1,3 +1,4 @@
+import 'package:example/generated/i18n.dart';
 import 'package:flutter/material.dart';
 import '../utils/index.dart';
 import 'package:flutter_vant_kit/main.dart';
@@ -24,7 +25,7 @@ class _DemoStepper extends State<DemoStepper> {
           CellGroup(
             children: <Widget>[
               Cell(
-                title: "基础用法",
+                title: I18n.of(context)!.basic_usage,
                 customRight: Steppers(
                   onChange: (val) {
                     Utils.toast(val);
@@ -32,7 +33,7 @@ class _DemoStepper extends State<DemoStepper> {
                 ),
               ),
               Cell(
-                title: "步长设置",
+                title: I18n.of(context)!.step_size,
                 customRight: Steppers(
                   step: 2,
                   onChange: (val) {
@@ -41,7 +42,7 @@ class _DemoStepper extends State<DemoStepper> {
                 ),
               ),
               Cell(
-                title: "限制输入范围",
+                title: I18n.of(context)!.limit_input_range,
                 customRight: Steppers(
                   value: 5,
                   min: 5,
@@ -52,11 +53,11 @@ class _DemoStepper extends State<DemoStepper> {
                 ),
               ),
               Cell(
-                title: "禁用状态",
+                title: I18n.of(context)!.disabled_status,
                 customRight: Steppers(value: 1, disabled: true),
               ),
               Cell(
-                title: "禁用输入框状态",
+                title: I18n.of(context)!.displayed_input_status,
                 customRight: Steppers(
                   value: 1,
                   disabledInput: true,
@@ -64,7 +65,7 @@ class _DemoStepper extends State<DemoStepper> {
                 ),
               ),
               Cell(
-                title: "小数点",
+                title: I18n.of(context)!.decimal_point,
                 customRight: Steppers(
                   value: 1,
                   step: 0.2,
@@ -74,7 +75,7 @@ class _DemoStepper extends State<DemoStepper> {
                 ),
               ),
               Cell(
-                title: "自定义大小",
+                title: I18n.of(context)!.custom_size,
                 customRight: Steppers(
                   value: 1,
                   size: 28,

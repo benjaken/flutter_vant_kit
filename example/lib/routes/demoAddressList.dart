@@ -1,3 +1,4 @@
+import 'package:example/generated/i18n.dart';
 import 'package:flutter/material.dart';
 import '../utils/index.dart';
 import 'package:flutter_vant_kit/main.dart';
@@ -19,32 +20,32 @@ class _DemoAddressList extends State<DemoAddressList> {
   Widget build(BuildContext context) {
     List<AddressInfo> list = [
       AddressInfo(
-          name: "张三",
+          name: I18n.of(context)!.example_name,
           tel: "18345234123",
-          province: "广东省",
-          city: "深圳市",
-          county: "南山区",
-          addressDetail: "明珠花园",
+          province: I18n.of(context)!.example_province,
+          city: I18n.of(context)!.example_city,
+          county: I18n.of(context)!.example_county,
+          addressDetail: I18n.of(context)!.example_address,
           postalCode: "515000",
           isDefault: true),
       AddressInfo(
-          name: "李四",
+          name: I18n.of(context)!.example_name2,
           tel: "18345234123",
-          province: "广东省",
-          city: "深圳市",
-          county: "南山区",
-          addressDetail: "白石街道明珠花园",
+          province: I18n.of(context)!.example_province,
+          city: I18n.of(context)!.example_city,
+          county: I18n.of(context)!.example_county,
+          addressDetail: I18n.of(context)!.example_address,
           postalCode: "515000",
           isDefault: false),
     ];
     List<AddressInfo> disabledList = [
       AddressInfo(
-          name: "王五",
+          name: I18n.of(context)!.example_name3,
           tel: "18345234123",
-          province: "广东省",
-          city: "深圳市",
-          county: "南山区",
-          addressDetail: "明珠花园",
+          province: I18n.of(context)!.example_province,
+          city: I18n.of(context)!.example_city,
+          county: I18n.of(context)!.example_county,
+          addressDetail: I18n.of(context)!.example_address,
           postalCode: "515000",
           isDefault: false)
     ];
@@ -52,16 +53,16 @@ class _DemoAddressList extends State<DemoAddressList> {
     return AddressList(
       id: 0,
       list: list,
-      top: title("基本用法"),
+      top: title(I18n.of(context)!.basic_usage),
       disabledList: disabledList,
       onSelect: (item, i) {
         Utils.toast(item.toString());
       },
       onEdit: (item, i) {
-        Utils.toast("edit");
+        Utils.toast(I18n.of(context)!.edit);
       },
       onAdd: () {
-        Utils.toast('add');
+        Utils.toast(I18n.of(context)!.add);
       },
     );
   }
