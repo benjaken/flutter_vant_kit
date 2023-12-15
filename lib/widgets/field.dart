@@ -261,7 +261,7 @@ class _Field extends State<Field> {
           widget.type == "password"
               ? GestureDetector(
                   child: Icon(
-                      _isShowPwd ? Icons.visibility_off : Icons.visibility,
+                      _isShowPwd ? Icons.visibility : Icons.visibility_off,
                       size: Style.fieldIconSize,
                       color: Style.fieldRightIconColor),
                   onTap: () {
